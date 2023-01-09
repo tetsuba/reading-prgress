@@ -1,0 +1,9 @@
+// Vitest Snapshot v1
+
+exports[`Home > should render 1`] = `
+<DocumentFragment>
+  <h1>
+    This is the home page
+  </h1>
+</DocumentFragment>
+`;
