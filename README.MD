@@ -8,6 +8,8 @@ An application to track the progress of a reader.
  - [Typescript]("https://www.typescriptlang.org/")
  - [Eslint]("https://eslint.org/")
  - [Prettier]("https://prettier.io/")
+ - Tailwind
+ - react-query
 
 ## Testing
  - [Vitest]("https://vitest.dev/")
@@ -17,3 +19,7 @@ An application to track the progress of a reader.
 
 ## Other Tech
  - [Speech Recognition]("https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition#instance_methods")
+
+
+
+// http://18.132.193.58:3001/api/
