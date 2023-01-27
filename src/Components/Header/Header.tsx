@@ -1,8 +1,6 @@
 import NavDesktop from "../Nav/NavDesktop";
 import NavMobil from "../Nav/NavMobile";
 
-
-
 export default function Header() {
     return (
         <div className="isolate bg-white">

@@ -1,6 +1,8 @@
 import {useMutation} from "react-query"
+import {useNavigate} from "react-router-dom"
 import {formDataToObject, getErrorMessage} from "../lib/utils"
 import {loginUser} from "../lib/service"
+import ls from "../lib/localStorage"
 
 // COMPONENTS
 import Button from "../Components/Button/Button"
@@ -14,9 +16,12 @@ type PropTypes = {
 }
 export default function Login (props: PropTypes) {
     const mutation = useMutation(loginUser)
+    const navigate = useNavigate();
 
     if (mutation.isSuccess) {
         props.setShowLogin(false)
+        ls.save(mutation.data.data.token)
+        navigate('/dashboard')
     }
 
     return (

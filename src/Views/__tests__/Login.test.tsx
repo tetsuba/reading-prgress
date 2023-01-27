@@ -1,16 +1,26 @@
 import {fireEvent, render, screen, waitFor, act} from "@testing-library/react";
-import {WrapperWithQuery} from "../../vitest-setup";
+import {WrapperWithQueryAndRouter} from "../../vitest-setup";
 import Login from "../Login"
 
 import axios from 'axios'
 
 vi.mock('axios')
 
+/* Note:
+ * This was mocked to stop a warning message from being displayed
+ * when running the test.
+ * */
+vi.mock('react-router-dom', () => ({
+    ...vi.importActual('react-router-dom') as object,
+    useNavigate: () => vi.fn(),
+}));
+
+
 const setShowLoginMock = vi.fn()
 
 describe('Login', () => {
     test("should render", () => {
-        const { asFragment } = render(<WrapperWithQuery><Login setShowLogin={setShowLoginMock} /></WrapperWithQuery>)
+        const { asFragment } = render(<WrapperWithQueryAndRouter pathname="/"><Login setShowLogin={setShowLoginMock} /></WrapperWithQueryAndRouter>)
         expect(asFragment()).toMatchSnapshot()
     });
     test('should return an error if email or password is incorrect', async () => {
@@ -42,7 +52,7 @@ describe('Login', () => {
             }
         }
 
-        render(<WrapperWithQuery><Login setShowLogin={setShowLoginMock} /></WrapperWithQuery>)
+        render(<WrapperWithQueryAndRouter pathname="/"><Login setShowLogin={setShowLoginMock} /></WrapperWithQueryAndRouter>)
 
         act(() => {
             fireEvent.submit(screen.getByTestId('login-form'), eventTarget)
@@ -69,7 +79,7 @@ describe('Login', () => {
 
 
 
-        render(<WrapperWithQuery><Login setShowLogin={setShowLoginMock} /></WrapperWithQuery>)
+        render(<WrapperWithQueryAndRouter pathname="/"><Login setShowLogin={setShowLoginMock} /></WrapperWithQueryAndRouter>)
 
         act(() => {
             fireEvent.submit(screen.getByTestId('login-form'), eventTarget)

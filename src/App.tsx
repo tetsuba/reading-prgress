@@ -6,6 +6,8 @@ import Contact from "./Views/Contact"
 import ReadingView from "./Views/ReadingView"
 import Header from "./Components/Header/Header";
 import Register from "./Views/Register";
+import Dashboard from "./Views/Dashboard";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,8 +27,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/reading" element={<ReadingView />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="/reading" element={<ProtectedRoute><ReadingView /></ProtectedRoute>} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
