@@ -1,9 +1,8 @@
 import {fireEvent, render, screen, waitFor, act} from "@testing-library/react";
-import {WrapperWithQueryAndRouter} from "../../vitest-setup";
+import {WrapperWith_Store_Query_Router} from "../../vitest-setup";
 import Login from "../Login"
 
 import axios from 'axios'
-
 vi.mock('axios')
 
 /* Note:
@@ -20,7 +19,7 @@ const setShowLoginMock = vi.fn()
 
 describe('Login', () => {
     test("should render", () => {
-        const { asFragment } = render(<WrapperWithQueryAndRouter pathname="/"><Login setShowLogin={setShowLoginMock} /></WrapperWithQueryAndRouter>)
+        const { asFragment } = render(<WrapperWith_Store_Query_Router pathname="/"><Login setShowLogin={setShowLoginMock} /></WrapperWith_Store_Query_Router>)
         expect(asFragment()).toMatchSnapshot()
     });
     test('should return an error if email or password is incorrect', async () => {
@@ -52,7 +51,7 @@ describe('Login', () => {
             }
         }
 
-        render(<WrapperWithQueryAndRouter pathname="/"><Login setShowLogin={setShowLoginMock} /></WrapperWithQueryAndRouter>)
+        render(<WrapperWith_Store_Query_Router pathname="/"><Login setShowLogin={setShowLoginMock} /></WrapperWith_Store_Query_Router>)
 
         act(() => {
             fireEvent.submit(screen.getByTestId('login-form'), eventTarget)
@@ -63,7 +62,14 @@ describe('Login', () => {
     test('should return success with correct login details', async () => {
         // @ts-ignore
         axios.post.mockResolvedValue({
-            data: {success: 'success'},
+            data: {
+                data: {
+                    firstName: 'firstName',
+                    lastName: 'lastName',
+                    email: 'email',
+                    id: 'id'
+                }
+            },
         })
 
         const eventTarget = {
@@ -79,7 +85,7 @@ describe('Login', () => {
 
 
 
-        render(<WrapperWithQueryAndRouter pathname="/"><Login setShowLogin={setShowLoginMock} /></WrapperWithQueryAndRouter>)
+        render(<WrapperWith_Store_Query_Router pathname="/"><Login setShowLogin={setShowLoginMock} /></WrapperWith_Store_Query_Router>)
 
         act(() => {
             fireEvent.submit(screen.getByTestId('login-form'), eventTarget)

@@ -1,8 +1,10 @@
 import {NavLink} from "react-router-dom"
 import ls from "../../lib/localStorage";
+import {useSelector} from "react-redux";
+import {userTokenSelector} from "../../store/user/userSelectors";
 
 export default function NavLinksLeftDesktop() {
-    const token = ls.get()
+    const userToken = useSelector(userTokenSelector)
     const NOT_ACTIVE = 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
     const ACTIVE = 'bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium'
     function getClasses({isActive}: {isActive: boolean}) {
@@ -21,7 +23,7 @@ export default function NavLinksLeftDesktop() {
             <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
                     {
-                        token
+                        userToken
                             ? (
                                 <>
                                     <NavLink className={getClasses} to="/dashboard">Dashboard</NavLink>

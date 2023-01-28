@@ -1,6 +1,7 @@
 import {QueryClient, QueryClientProvider} from "react-query"
 import {MemoryRouter} from "react-router-dom"
-
+import {Provider} from "react-redux"
+import store from './store/store'
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -17,6 +18,20 @@ type PropTypes = {
     pathname: string,
     children: JSX.Element
 }
+
+
+export function WrapperWith_Store_Query_Router(props: PropTypes) {
+    return (
+        <Provider store={store}>
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter initialEntries={['', { pathname: props.pathname }]}>
+                    {props.children}
+                </MemoryRouter>
+            </QueryClientProvider>
+        </Provider>
+    )
+}
+
 export function WrapperWithQueryAndRouter(props: PropTypes) {
     return (
         <QueryClientProvider client={queryClient}>

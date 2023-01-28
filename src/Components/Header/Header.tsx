@@ -1,13 +1,13 @@
-import NavLinksLeftDesktop from "../Nav/NavLinksLeftDesktop";
-import NavMobil from "../Nav/NavMobile";
-import Nav from "../Nav/Nav";
+type PropTypes = {
+    text: string
+}
 
-export default function Header() {
+export default function Header(props: PropTypes) {
     return (
-        <div className="isolate bg-white">
-            <div className="px-6 pt-6 lg:px-8">
-                <Nav />
+        <header className="bg-white shadow">
+            <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+                <h1 className="text-3xl font-bold tracking-tight text-gray-900">{props.text}</h1>
             </div>
-        </div>
+        </header>
     )
  }

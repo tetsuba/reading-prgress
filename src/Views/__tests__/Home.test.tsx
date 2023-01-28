@@ -1,6 +1,6 @@
 import {render, fireEvent, screen, waitFor, waitForElementToBeRemoved} from "@testing-library/react"
 import Home from "../Home"
-import {WrapperWithRouter, WrapperWithQueryAndRouter} from "../../vitest-setup"
+import {WrapperWithRouter, WrapperWithQueryAndRouter, WrapperWith_Store_Query_Router} from "../../vitest-setup"
 
 describe("Home", () => {
   beforeAll(() => {
@@ -15,7 +15,7 @@ describe("Home", () => {
     })
 
     test("should open and close login modal", async () => {
-      render(<WrapperWithQueryAndRouter pathname="/"><Home /></WrapperWithQueryAndRouter>)
+      render(<WrapperWith_Store_Query_Router pathname="/"><Home /></WrapperWith_Store_Query_Router>)
       fireEvent.click(screen.getByText('Log in'))
       await waitFor(() => expect(screen.getByTestId('login-view')))
       fireEvent.click(screen.getByTestId('modal-close'))

@@ -4,6 +4,9 @@ import {NavLink, useNavigate} from "react-router-dom";
 import ls from "../../lib/localStorage";
 import Modal from "../Modal/Modal";
 import Login from "../../Views/Login"
+import {useDispatch, useSelector} from "react-redux";
+import {userTokenSelector} from "../../store/user/userSelectors";
+import {resetUserToInitialState} from "../../store/user/userSlice";
 
 const classNames = 'inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20'
 
@@ -13,6 +16,8 @@ function getClasses({isActive}: {isActive: boolean}) {
         : "block px-4 py-2 text-sm text-gray-700"
 }
 export default function NavLinksRightDesktop() {
+    const dispatch = useDispatch()
+    const userToken = useSelector(userTokenSelector)
     const [showMenu, setShowMenu] = useState(false)
     const [showLogin, setShowLogin] = useState(false)
     const navigate = useNavigate()
@@ -23,7 +28,7 @@ export default function NavLinksRightDesktop() {
                 <div className="relative ml-3">
                     <div>
                         {
-                            token
+                            userToken
                             ? (
                                     <Button
                                         clickHandler={() => setShowMenu(!showMenu)}
@@ -65,6 +70,7 @@ export default function NavLinksRightDesktop() {
                             <Button
                                 clickHandler={() => {
                                     setShowMenu(!showMenu)
+                                    dispatch(resetUserToInitialState())
                                     ls.remove()
                                     navigate('/')
                                 }}
