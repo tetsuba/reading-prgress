@@ -10,6 +10,8 @@ An application to track the progress of a reader.
  - [Prettier]("https://prettier.io/")
  - Tailwind
  - react-query
+ - Redux
+ - React Router
 
 ## Testing
  - [Vitest]("https://vitest.dev/")
@@ -20,6 +22,3 @@ An application to track the progress of a reader.
 ## Other Tech
  - [Speech Recognition]("https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition#instance_methods")
 
-
-
-// http://18.132.193.58:3001/api/
