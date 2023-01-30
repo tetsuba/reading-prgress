@@ -15,11 +15,9 @@ export default function NavLinksLeftDesktop() {
   return (
     <div className="flex items-center">
       <div className="flex-shrink-0">
-        <img
-          className="h-8 w-8"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-          alt="Your Company"
-        />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 stroke-white">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+          </svg>
       </div>
       <div className="hidden md:block">
         <div className="ml-10 flex items-baseline space-x-4">
