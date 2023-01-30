@@ -5,17 +5,7 @@ import { Routes, Route } from 'react-router-dom'
 import localStorage from '../../../lib/localStorage'
 import axios from 'axios'
 
-const mockedNavigator = vi.fn()
-
 vi.mock('axios')
-
-vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom')
-  return {
-    ...(actual as object),
-    useNavigate: () => mockedNavigator,
-  }
-})
 
 const HomeMock = () => <div>Home Mock</div>
 const DashMock = () => <div>Dash Mock</div>
@@ -32,11 +22,12 @@ const AXIOS_ERROR: any = {
   },
 }
 
-const spy = vi.spyOn(localStorage, 'get')
+const spyGet = vi.spyOn(localStorage, 'get')
+const spyRemove = vi.spyOn(localStorage, 'remove')
 
 describe('FirstLoad', () => {
-  test('Bearer token is available and get an error', async () => {
-    spy.mockImplementation(() => 'Bearer token')
+  test('Bearer token is available and respond with an error', async () => {
+    spyGet.mockImplementation(() => 'Bearer token')
     // @ts-ignore
     axios.get.mockRejectedValueOnce(AXIOS_ERROR)
 
@@ -51,13 +42,15 @@ describe('FirstLoad', () => {
       </WrapperWith_Store_Query_Router>
     )
 
-    expect(spy).toHaveBeenCalledTimes(1)
+    expect(spyGet).toHaveBeenCalledTimes(1)
     await waitFor(() => expect(axios.get).toHaveBeenCalled())
     await waitFor(() => expect(screen.getByText('Loading...')))
-    await waitFor(() => expect(mockedNavigator).toHaveBeenCalled())
+    await waitFor(() => expect(spyRemove).toHaveBeenCalledTimes(1))
+
+
   })
-  test('Bearer token is available and get user data', async () => {
-    spy.mockImplementation(() => 'Bearer token')
+  test('Bearer token is available and respond with user data', async () => {
+    spyGet.mockImplementation(() => 'Bearer token')
     // @ts-ignore
     axios.get.mockResolvedValueOnce({
       data: {
@@ -81,13 +74,13 @@ describe('FirstLoad', () => {
       </WrapperWith_Store_Query_Router>
     )
 
-    expect(spy).toHaveBeenCalled()
+    expect(spyGet).toHaveBeenCalled()
     await waitFor(() => expect(axios.get).toHaveBeenCalled())
     await waitFor(() => expect(screen.getByText('Loading...')))
     await waitFor(() => expect(screen.getByText('Dash Mock')))
   })
   test('Bearer token not available', async () => {
-    spy.mockImplementation(() => null)
+    spyGet.mockImplementation(() => null)
 
     render(
       <WrapperWith_Store_Query_Router pathname="/dash">

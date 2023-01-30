@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom'
-import ls from '../../lib/localStorage'
 import { useSelector } from 'react-redux'
 import { userTokenSelector } from '../../store/user/userSelectors'
 

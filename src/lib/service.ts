@@ -26,6 +26,6 @@ export async function getUserDetails(props) {
   const res = await axios.get(URL_USER, {
     headers: { Authorization: `bearer ${token}` },
   })
-  store.dispatch(updateUser({ data: res.data, token }))
+  if (res.status === 200) store.dispatch(updateUser({ data: res.data, token }))
   return res
 }

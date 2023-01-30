@@ -16,15 +16,17 @@ type PropTypes = {
   setShowLogin: (p: boolean) => void
 }
 export default function Login(props: PropTypes) {
-  const mutation = useMutation(loginUser)
-  const navigate = useNavigate()
   const dispatch = useDispatch()
-
-  if (mutation.isSuccess) {
-    dispatch(updateUser(mutation.data.data))
-    props.setShowLogin(false)
-    navigate('/dashboard')
-  }
+  const navigate = useNavigate()
+  const mutation = useMutation(loginUser, {
+    onSuccess: async (data) => {
+      dispatch(updateUser(data.data))
+    },
+    onSettled: async () => {
+      props.setShowLogin(false)
+      navigate('/dashboard')
+    },
+  })
 
   return (
     <div data-testid="login-view">
