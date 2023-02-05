@@ -69,14 +69,15 @@ export default function RegisterBookForm(props: PropTypes) {
                         </div>
                     </div>
                     <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                        <Button template="submit" type="submit">
-                            Save
-                        </Button>
+
                         <Button
-                            template="submit"
+                            template="secondary"
                             clickHandler={props.clickHandlerCancel}
                         >
                             Cancel
+                        </Button>
+                        <Button className="ml-5" template="submit" type="submit">
+                            Save
                         </Button>
                     </div>
                 </div>

@@ -23,9 +23,6 @@ export default function BookList(props) {
                 <div className="text-lg font-bold text-gray-900">
                     Book Title
                 </div>
-                <div className="text-lg font-bold text-gray-900">
-                    Difficulty
-                </div>
             </div>
             {props.list.map((story, i) => (
                 <div
@@ -34,15 +31,15 @@ export default function BookList(props) {
                         i & 1 ? 'bg-white' : 'bg-gray-50'
                     }`}
                 >
-                    <div className="text-sm font-medium text-gray-500">
-                        {story.title}{' '}
+                    <div className="text-base font-medium text-gray-800 items-center flex">
+                        {story.title}
                     </div>
                     <div className="mt-1 text-sm text-gray-900 sm:mt-0">
-                        {story.difficulty}
+
                     </div>
                     <div className="mt-1 flex justify-end text-sm text-gray-900 sm:mt-0">
                         <Button
-                            template="primary"
+                            template="secondary"
                             clickHandler={() => {
                                 dispatch(addBook(story))
                                 navigate('/reading')
@@ -51,8 +48,9 @@ export default function BookList(props) {
                             Read
                         </Button>
                         <Button
-                            template="delete"
+                            template="icon"
                             svg="delete"
+                            className="ml-2"
                             clickHandler={() => {
                                 mutation.mutate(`?bookId=${story.id}`)
                             }}

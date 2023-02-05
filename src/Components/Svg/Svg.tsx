@@ -1,5 +1,5 @@
 type PropTypes = {
-    type: 'close'
+    type: 'close' | 'delete'
 }
 
 const svg = {

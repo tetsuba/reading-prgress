@@ -56,7 +56,7 @@ export default function NavLinksRightDesktop() {
                             <>
                                 <Button
                                     clickHandler={() => setShowLogin(true)}
-                                    className={classNames}
+                                    template="secondary"
                                 >
                                     Log in
                                 </Button>

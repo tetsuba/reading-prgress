@@ -27,11 +27,14 @@ export default function Login(props: PropTypes) {
             navigate('/dashboard')
         }
     })
-
+//'
+//
+//
     return (
         <div data-testid="login-view">
             <Button
-                template="buttonClose"
+                template="icon"
+                className="absolute ml-auto right-2.5 top-3 p-1.5"
                 dataTestid="modal-close"
                 type="button"
                 svg="close"
@@ -90,7 +93,7 @@ export default function Login(props: PropTypes) {
                     >
                         {getErrorMessage(mutation.error)}
                     </ErrorMessage>
-                    <Button type="submit" template="submit">
+                    <Button className="w-full" type="submit" template="primary">
                         Login to your account
                     </Button>
                     <div className="text-sm font-medium text-gray-500 dark:text-gray-300">

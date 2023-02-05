@@ -42,9 +42,8 @@ const Home = () => {
                             </P>
                             <div className="mt-8 flex gap-x-4 sm:justify-center">
                                 <Button
-                                    template='none'
+                                    template='primary'
                                     clickHandler={() => setShowLogin(true)}
-                                    className="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700"
                                 >
                                     Log in{' '}
                                     <span
@@ -56,9 +55,9 @@ const Home = () => {
                                 </Button>
 
                                 <Button
-                                    template='none'
+                                    template='secondary'
                                     clickHandler={() => navigate('/register')}
-                                    className="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                                    >
                                     Register{' '}
                                     <span
                                         className="text-indigo-200"

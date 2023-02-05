@@ -17,7 +17,7 @@ export default function Register() {
         <>
             <Header text="Register" />
             <main>
-                <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl py-6 sm:px-6 lg:px-8">
                     <div className="px-4 py-6 sm:px-0">
                         <div className="rounded-lg border-4 border-dashed border-gray-200">
                             <div className="sm:container">
@@ -84,9 +84,13 @@ export default function Register() {
                                                 {getErrorMessage(mutation.error)}
                                             </ErrorMessage>
 
-                                            <Button type="submit" template="submit">
-                                                Register
-                                            </Button>
+                                            <div className="flex justify-end">
+                                                <Button
+                                                    type="submit"
+                                                    template="primary">
+                                                    Register
+                                                </Button>
+                                            </div>
                                         </form>
                                     )}
                                 </div>
