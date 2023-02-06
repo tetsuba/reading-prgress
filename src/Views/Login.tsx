@@ -27,14 +27,11 @@ export default function Login(props: PropTypes) {
             navigate('/dashboard')
         }
     })
-//'
-//
-//
     return (
         <div data-testid="login-view">
             <Button
                 template="icon"
-                className="absolute ml-auto right-2.5 top-3 p-1.5"
+                className="absolute right-2.5 top-3 ml-auto p-1.5 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
                 dataTestid="modal-close"
                 type="button"
                 svg="close"

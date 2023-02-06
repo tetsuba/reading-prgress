@@ -1,13 +1,16 @@
+import { useSelector } from 'react-redux'
+import { useMutation, useQueryClient } from 'react-query'
+import { registerBook } from '../../lib/service'
+import { userIdSelector } from '../../store/user/userSelectors'
+import { mutateRegisterBookData } from '../../lib/utils'
+
+// COMPONENTS
 import Input from '../../Components/Form/Input'
 import Label from '../../Components/Form/Label'
 import Textarea from '../../Components/Form/Textarea'
 import Select from '../../Components/Form/Select'
 import Button from '../../Components/Button/Button'
 import H3 from '../../Components/H3/H3'
-import { useMutation, useQueryClient } from 'react-query'
-import { registerBook } from '../../lib/service'
-import { useDispatch, useSelector } from 'react-redux'
-import { userIdSelector } from '../../store/user/userSelectors'
 
 type PropTypes = {
     clickHandlerCancel: () => void
@@ -16,11 +19,9 @@ type PropTypes = {
 export default function RegisterBookForm(props: PropTypes) {
     const userId = useSelector(userIdSelector)
     const queryClient = useQueryClient()
-    // const dispatch = useDispatch()
     const mutation = useMutation(registerBook, {
         onSuccess: async (data) => {
             queryClient.setQueryData(['books', userId], data)
-            // dispatch(updateUser(data.data))
         },
         onSettled: async () => {
             props.clickHandlerCancel()
@@ -34,12 +35,9 @@ export default function RegisterBookForm(props: PropTypes) {
                 className="space-y-6"
                 onSubmit={(event) => {
                     event.preventDefault()
-                    mutation.mutate({
-                        userId,
-                        difficulty: event.target.difficulty.value,
-                        title: event.target.title.value,
-                        story: event.target.story.value
-                    })
+                    mutation.mutate(
+                        mutateRegisterBookData(event.target, userId)
+                    )
                 }}
             >
                 <div className="shadow sm:overflow-hidden sm:rounded-md">
@@ -69,14 +67,17 @@ export default function RegisterBookForm(props: PropTypes) {
                         </div>
                     </div>
                     <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
-
                         <Button
                             template="secondary"
                             clickHandler={props.clickHandlerCancel}
                         >
                             Cancel
                         </Button>
-                        <Button className="ml-5" template="submit" type="submit">
+                        <Button
+                            className="ml-5"
+                            template="primary"
+                            type="submit"
+                        >
                             Save
                         </Button>
                     </div>

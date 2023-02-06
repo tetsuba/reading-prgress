@@ -8,7 +8,7 @@ import Input from '../Components/Form/Input'
 import Button from '../Components/Button/Button'
 import H3 from '../Components/H3/H3'
 import ErrorMessage from '../Components/Form/ErrorMessage'
-import Header from "../Components/Header/Header";
+import Header from '../Components/Header/Header'
 
 export default function Register() {
     const mutation = useMutation(registerUser)
@@ -23,12 +23,17 @@ export default function Register() {
                             <div className="sm:container">
                                 <div className="px-6 py-6">
                                     {mutation.isLoading && (
-                                        <p data-testid="loading-user">Registering user...</p>
+                                        <p data-testid="loading-user">
+                                            Registering user...
+                                        </p>
                                     )}
                                     {mutation.isSuccess && (
                                         <div data-testid="success-message">
                                             <p>Registration Completed.</p>
-                                            <p>Please click on the log in button...</p>
+                                            <p>
+                                                Please click on the log in
+                                                button...
+                                            </p>
                                         </div>
                                     )}
 
@@ -38,14 +43,17 @@ export default function Register() {
                                             className="space-y-6"
                                             onSubmit={(event) => {
                                                 event.preventDefault()
-                                                const queryString = formDataToQueryString(
-                                                    event.target
-                                                )
+                                                const queryString =
+                                                    formDataToQueryString(
+                                                        event.target
+                                                    )
                                                 mutation.mutate(queryString)
                                             }}
                                         >
                                             <div>
-                                                <Label htmlFor="firstName">First Name:</Label>
+                                                <Label htmlFor="firstName">
+                                                    First Name:
+                                                </Label>
                                                 <Input
                                                     type="text"
                                                     name="firstName"
@@ -53,7 +61,9 @@ export default function Register() {
                                                 />
                                             </div>
                                             <div>
-                                                <Label htmlFor="lastName">Last Name:</Label>
+                                                <Label htmlFor="lastName">
+                                                    Last Name:
+                                                </Label>
                                                 <Input
                                                     type="text"
                                                     name="lastName"
@@ -61,7 +71,9 @@ export default function Register() {
                                                 />
                                             </div>
                                             <div>
-                                                <Label htmlFor="email">Your email:</Label>
+                                                <Label htmlFor="email">
+                                                    Your email:
+                                                </Label>
                                                 <Input
                                                     type="email"
                                                     name="email"
@@ -69,7 +81,9 @@ export default function Register() {
                                                 />
                                             </div>
                                             <div>
-                                                <Label htmlFor="password">Your password:</Label>
+                                                <Label htmlFor="password">
+                                                    Your password:
+                                                </Label>
                                                 <Input
                                                     type="password"
                                                     name="password"
@@ -81,13 +95,16 @@ export default function Register() {
                                                 show={mutation.isError}
                                                 className="mt-1 block"
                                             >
-                                                {getErrorMessage(mutation.error)}
+                                                {getErrorMessage(
+                                                    mutation.error
+                                                )}
                                             </ErrorMessage>
 
                                             <div className="flex justify-end">
                                                 <Button
                                                     type="submit"
-                                                    template="primary">
+                                                    template="primary"
+                                                >
                                                     Register
                                                 </Button>
                                             </div>
@@ -100,7 +117,5 @@ export default function Register() {
                 </div>
             </main>
         </>
-
-
     )
 }

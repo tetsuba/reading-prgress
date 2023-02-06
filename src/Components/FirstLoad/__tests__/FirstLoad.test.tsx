@@ -51,6 +51,7 @@ describe('FirstLoad', () => {
         spyGet.mockImplementation(() => 'Bearer token')
         // @ts-ignore
         axios.get.mockResolvedValueOnce({
+            status: 200,
             data: {
                 data: {
                     firstName: 'firstName',

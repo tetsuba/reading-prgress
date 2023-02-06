@@ -29,7 +29,8 @@ type SpeechTypes = {
 const Speech = ({ story }: SpeechTypes) => {
     const [wordList, setWordList] = useState(createWordList(story))
 
-    speechToText.onresult = (event) => {
+    // TODO: fix types any
+    speechToText.onresult = (event: any) => {
         const { transcript } = event.results[event.results.length - 1][0]
         console.log('[RESULT]: ', transcript)
         const speech = transcript

@@ -12,6 +12,8 @@ export default function Books() {
     const userId = useSelector(userIdSelector)
     const { data, isSuccess } = useQuery(['books', userId], getBooks)
     const [display, setDisplay] = useState('list') // list | add | edit | view
+    console.log(data)
+
     return (
         <div>
             <Header text="Books" />

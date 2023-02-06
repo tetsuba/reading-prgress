@@ -1,10 +1,3 @@
-function characterToUpperCase(character: string): string {
-    return character.toUpperCase()
-}
-export function capitaliseFirstLetter(text: string): string {
-    return text.replace(/./, characterToUpperCase)
-}
-
 // TODO: fix types
 export function formDataToQueryString(target: any): string {
     const formData: { [k: string]: string } = {
@@ -27,11 +20,6 @@ export function formDataToObject(target: any): { [p: string]: string } {
     }
 }
 
-type ErrorMessageTypes = {
-    response: { data: { error: string } }
-    message: string
-}
-
 // TODO: fix types
 export function getErrorMessage(error: any): string {
     if (
@@ -47,4 +35,14 @@ export function getErrorMessage(error: any): string {
 
 export function delay(time: number) {
     return new Promise((resolve) => setTimeout(() => resolve('success'), time))
+}
+
+// TODO: fix types
+export function mutateRegisterBookData(target: any, userId: string) {
+    return {
+        userId,
+        difficulty: target.difficulty.value,
+        title: target.title.value,
+        story: target.story.value
+    }
 }

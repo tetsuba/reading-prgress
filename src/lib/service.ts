@@ -23,13 +23,15 @@ export async function loginUser(json: { [k: string]: string }) {
     })
 }
 
-export async function getUserDetails(props) {
+// TODO: fix types
+export async function getUserDetails(props: any) {
     const [_key, token] = props.queryKey
     const res = await axios.get(URL_USER, {
         headers: { Authorization: `bearer ${token}` }
     })
-    if (res.status === 200)
+    if (res.status === 200) {
         store.dispatch(updateUser({ data: res.data, token }))
+    }
     return res
 }
 
@@ -43,7 +45,10 @@ export async function registerBook(json: { [k: string]: string }) {
     })
 }
 
-export async function getBooks(props) {
+type GetBookPropTypes = {
+    queryKey: string[]
+}
+export async function getBooks(props: GetBookPropTypes) {
     const token = ls.get()
     const [_key, userId] = props.queryKey
     return await axios.get(`${URL_BOOK}?userId=${userId}`, {

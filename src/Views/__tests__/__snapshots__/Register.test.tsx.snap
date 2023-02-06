@@ -2,89 +2,115 @@
 
 exports[`Register > should render 1`] = `
 <DocumentFragment>
-  <div
-    class="sm:container"
+  <header
+    class="bg-white shadow"
   >
     <div
-      class="px-6 py-6"
+      class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8"
     >
-      <h3
-        class="text-xl font-medium text-gray-900 dark:text-white mb-3"
+      <h1
+        class="text-3xl font-bold tracking-tight text-gray-900"
       >
         Register
-      </h3>
-      <form
-        class="space-y-6"
-        data-testid="register-form"
-      >
-        <div>
-          <label
-            class="text-sm font-medium text-gray-900 dark:text-white "
-            for="firstName"
-          >
-            First Name:
-          </label>
-          <input
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-            name="firstName"
-            placeholder="first name"
-            required=""
-            type="text"
-          />
-        </div>
-        <div>
-          <label
-            class="text-sm font-medium text-gray-900 dark:text-white "
-            for="lastName"
-          >
-            Last Name:
-          </label>
-          <input
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-            name="lastName"
-            placeholder="last name"
-            required=""
-            type="text"
-          />
-        </div>
-        <div>
-          <label
-            class="text-sm font-medium text-gray-900 dark:text-white "
-            for="email"
-          >
-            Your email:
-          </label>
-          <input
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-            name="email"
-            placeholder="name@company.com"
-            required=""
-            type="email"
-          />
-        </div>
-        <div>
-          <label
-            class="text-sm font-medium text-gray-900 dark:text-white "
-            for="password"
-          >
-            Your password:
-          </label>
-          <input
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-            name="password"
-            placeholder="••••••••"
-            required=""
-            type="password"
-          />
-        </div>
-        <button
-          class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "
-          type="submit"
-        >
-          Register
-        </button>
-      </form>
+      </h1>
     </div>
-  </div>
+  </header>
+  <main>
+    <div
+      class="mx-auto max-w-2xl py-6 sm:px-6 lg:px-8"
+    >
+      <div
+        class="px-4 py-6 sm:px-0"
+      >
+        <div
+          class="rounded-lg border-4 border-dashed border-gray-200"
+        >
+          <div
+            class="sm:container"
+          >
+            <div
+              class="px-6 py-6"
+            >
+              <form
+                class="space-y-6"
+                data-testid="register-form"
+              >
+                <div>
+                  <label
+                    class="text-sm font-medium text-gray-900 dark:text-white "
+                    for="firstName"
+                  >
+                    First Name:
+                  </label>
+                  <input
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    name="firstName"
+                    placeholder="first name"
+                    required=""
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="text-sm font-medium text-gray-900 dark:text-white "
+                    for="lastName"
+                  >
+                    Last Name:
+                  </label>
+                  <input
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    name="lastName"
+                    placeholder="last name"
+                    required=""
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="text-sm font-medium text-gray-900 dark:text-white "
+                    for="email"
+                  >
+                    Your email:
+                  </label>
+                  <input
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    name="email"
+                    placeholder="name@company.com"
+                    required=""
+                    type="email"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="text-sm font-medium text-gray-900 dark:text-white "
+                    for="password"
+                  >
+                    Your password:
+                  </label>
+                  <input
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    name="password"
+                    placeholder="••••••••"
+                    required=""
+                    type="password"
+                  />
+                </div>
+                <div
+                  class="flex justify-end"
+                >
+                  <button
+                    class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 "
+                    type="submit"
+                  >
+                    Register
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </DocumentFragment>
 `;

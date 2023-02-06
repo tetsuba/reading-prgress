@@ -1,19 +1,18 @@
-import Svg from '../Svg/Svg'
-import { capitaliseFirstLetter } from '../../lib/utils'
+import Svg, { SvgTypes } from '../Svg/Svg'
 
 type ChildrenTypes = string | JSX.Element
+type ButtonTemplateTypes = 'icon' | 'primary' | 'none' | 'secondary' | 'warning'
 
 type PropTypes = {
     children?: ChildrenTypes | ChildrenTypes[]
     clickHandler?: () => void
     id?: string
     type?: 'button' | 'submit' | 'reset'
-    svg?: 'close' | 'delete'
+    svg?: SvgTypes
     className?: string
     dataTestid?: string
-    template: 'icon' | 'primary' | 'none' | 'secondary' | 'warning'
+    template: ButtonTemplateTypes
 }
-
 
 const defaultStyles = 'rounded-lg font-medium text-base text-center px-5 py-2.5'
 
@@ -22,7 +21,7 @@ const buttonClasses: { [k: string]: string } = {
     primary: `${defaultStyles} text-white bg-blue-700 hover:bg-blue-800`,
     secondary: `${defaultStyles} text-gray bg-gray-200 hover:bg-gray-300`,
     warning: `${defaultStyles} text-white bg-red-700 hover:bg-red-800`,
-    icon: 'bg-transparent inline-flex items-center rounded-lg text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white'
+    icon: 'bg-transparent inline-flex items-center rounded-lg text-sm text-gray-400'
 }
 
 export default function Button(props: PropTypes) {

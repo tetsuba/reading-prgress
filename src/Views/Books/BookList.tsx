@@ -4,9 +4,19 @@ import { deleteBook } from '../../lib/service'
 import { useDispatch, useSelector } from 'react-redux'
 import { userIdSelector } from '../../store/user/userSelectors'
 import { addBook } from '../../store/book/bookSlice'
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
-export default function BookList(props) {
+type BookTypes = {
+    story: string
+    title: string
+    id: number
+}
+
+type PropTypes = {
+    list: BookTypes[]
+}
+
+export default function BookList(props: PropTypes) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const userId = useSelector(userIdSelector)
@@ -18,41 +28,41 @@ export default function BookList(props) {
     })
 
     return (
-        <div>
+        <div data-testid="book-list">
             <div className="rounded-t-lg bg-gray-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <div className="text-lg font-bold text-gray-900">
                     Book Title
                 </div>
             </div>
-            {props.list.map((story, i) => (
+            {props.list.map((book, i) => (
                 <div
                     key={`book-list-${i}`}
                     className={`px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 ${
                         i & 1 ? 'bg-white' : 'bg-gray-50'
                     }`}
                 >
-                    <div className="text-base font-medium text-gray-800 items-center flex">
-                        {story.title}
+                    <div className="flex items-center text-base font-medium text-gray-800">
+                        {book.title}
                     </div>
-                    <div className="mt-1 text-sm text-gray-900 sm:mt-0">
-
-                    </div>
+                    <div className="mt-1 text-sm text-gray-900 sm:mt-0"></div>
                     <div className="mt-1 flex justify-end text-sm text-gray-900 sm:mt-0">
                         <Button
+                            dataTestid="book-list-read"
                             template="secondary"
                             clickHandler={() => {
-                                dispatch(addBook(story))
+                                dispatch(addBook(book))
                                 navigate('/reading')
                             }}
                         >
                             Read
                         </Button>
                         <Button
+                            dataTestid="book-list-delete"
                             template="icon"
                             svg="delete"
-                            className="ml-2"
+                            className="ml-2 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
                             clickHandler={() => {
-                                mutation.mutate(`?bookId=${story.id}`)
+                                mutation.mutate(`?bookId=${book.id}`)
                             }}
                         />
                     </div>

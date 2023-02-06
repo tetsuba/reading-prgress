@@ -8,14 +8,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { userTokenSelector } from '../../store/user/userSelectors'
 import { resetUserToInitialState } from '../../store/user/userSlice'
 
-const classNames =
-    'inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20'
-
 function getClasses({ isActive }: { isActive: boolean }) {
     return isActive
         ? 'block px-4 py-2 text-sm text-gray-700 bg-gray-100'
         : 'block px-4 py-2 text-sm text-gray-700'
 }
+
 export default function NavLinksRightDesktop() {
     const dispatch = useDispatch()
     const userToken = useSelector(userTokenSelector)
@@ -29,29 +27,15 @@ export default function NavLinksRightDesktop() {
                     <div>
                         {userToken ? (
                             <Button
+                                template="icon"
+                                svg="user"
                                 clickHandler={() => setShowMenu(!showMenu)}
                                 type="button"
-                                className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                className="rounded-full bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                                 id="user-menu-button"
                                 aria-expanded="false"
                                 aria-haspopup="true"
-                            >
-                                <span className="sr-only">Open user menu</span>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={1.5}
-                                    stroke="currentColor"
-                                    className="h-8 w-8 stroke-white"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
-                                    />
-                                </svg>
-                            </Button>
+                            />
                         ) : (
                             <>
                                 <Button
@@ -83,13 +67,14 @@ export default function NavLinksRightDesktop() {
                                 Settings
                             </NavLink>
                             <Button
+                                template="none"
                                 clickHandler={() => {
                                     setShowMenu(!showMenu)
                                     dispatch(resetUserToInitialState())
                                     ls.remove()
                                     navigate('/')
                                 }}
-                                className="block px-4 py-2 text-sm text-gray-700"
+                                className="block w-full bg-white px-4 py-2 text-left text-sm text-gray-700 hover:border-white"
                             >
                                 Sign out
                             </Button>
