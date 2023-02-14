@@ -1,15 +1,19 @@
 // @ts-ignore
 const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition
+
+console.log('SpeechRecognition')
 // @ts-ignore
-const SpeechGrammarList = window.SpeechGrammarList || webkitSpeechGrammarList
+// const SpeechGrammarList = window.SpeechGrammarList || webkitSpeechGrammarList
 // const SpeechRecognitionEvent = window.SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
 
 // const colors = [ 'aqua', 'azure', 'beige', 'bisque', 'black', 'blue', 'brown', 'chocolate', 'coral', /* … */ ];
 // const grammar = `#JSGF V1.0; grammar colors; public <color> = ${colors.join(' | ')};`
 
-const speechToText = (function (SpeechGrammarList, SpeechRecognition) {
+const speechToText = (function (SpeechRecognition) {
     // const speechRecognitionList = new SpeechGrammarList();
     const recognition = new SpeechRecognition()
+
+    console.log('recognition')
 
     // speechRecognitionList.addFromString(grammar, 1);
     // recognition.grammars = speechRecognitionList;
@@ -34,6 +38,6 @@ const speechToText = (function (SpeechGrammarList, SpeechRecognition) {
     return function () {
         return recognition
     }
-})(SpeechGrammarList, SpeechRecognition)
+})(SpeechRecognition)
 
 export default speechToText()

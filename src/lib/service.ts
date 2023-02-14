@@ -3,7 +3,11 @@ import store from '../store/store'
 import { updateUser } from '../store/user/userSlice'
 import ls from './localStorage'
 
-const BASE_URL = 'http://localhost:3001/api/reading/'
+/* c8 ignore next 2 */
+const origin =
+    location.port === '5173' ? 'http://localhost:3001' : location.origin
+
+const BASE_URL = `${origin}/api/reading/`
 // export const BASE_URL = 'http://18.132.193.58:3001/api/reading/'
 
 const URL_REGISTER = BASE_URL + 'user/register?'
@@ -63,6 +67,16 @@ export async function deleteBook(query: string) {
     const token = ls.get()
     return await axios.delete(`${URL_BOOK}/delete${query}`, {
         headers: {
+            Authorization: `bearer ${token}`
+        }
+    })
+}
+
+export async function updateBook(json: { id: number; history: string }) {
+    const token = ls.get()
+    return await axios.patch(`${URL_BOOK}/update`, JSON.stringify(json), {
+        headers: {
+            'Content-Type': 'application/json',
             Authorization: `bearer ${token}`
         }
     })

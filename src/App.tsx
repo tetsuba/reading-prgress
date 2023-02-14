@@ -1,4 +1,3 @@
-import './style.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
@@ -10,7 +9,7 @@ import FirstLoad from './Components/FirstLoad/FirstLoad'
 
 // VIEWS
 import Home from './Views/Home'
-import Reading from './Views/Reading'
+import Reading from './Views/Reading/Reading'
 import Register from './Views/Register'
 import Dashboard from './Views/Dashboard'
 import Profile from './Views/Profile'

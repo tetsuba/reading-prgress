@@ -44,13 +44,6 @@ export default function RegisterBookForm(props: PropTypes) {
                     <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                         <div className="grid grid-cols-3 gap-6">
                             <div className="col-span-3 sm:col-span-2">
-                                <Label htmlFor="difficulty">Difficulty</Label>
-                                <Select name="difficulty" />
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-3 gap-6">
-                            <div className="col-span-3 sm:col-span-2">
                                 <Label htmlFor="title">Book Title</Label>
                                 <Input name="title" type="text" />
                             </div>

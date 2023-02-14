@@ -1,15 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { parseBookHistory } from '../../lib/utils'
+
+export type HistoryTypes = {
+    date: string
+    words: string[]
+}
 
 export interface BookTypes {
     bookId: string
-    difficulty: string
+    history: HistoryTypes[] | []
     story: string
     title: string
 }
 
 const initialState = {
     bookId: '',
-    difficulty: '',
+    history: [],
     story: '',
     title: ''
 } as BookTypes
@@ -20,15 +26,18 @@ export const bookSlice = createSlice({
     reducers: {
         addBook: (state, action) => {
             state.bookId = action.payload.id
-            state.difficulty = action.payload.difficulty
+            state.history = parseBookHistory(action.payload.history)
             state.story = action.payload.story
             state.title = action.payload.title
+        },
+        updateBookHistory: (state, action) => {
+            state.history = action.payload
         },
         resetBookToInitialState: () => initialState
     }
 })
 
 // Action creators are generated for each case reducer function
-export const { addBook } = bookSlice.actions
+export const { addBook, updateBookHistory } = bookSlice.actions
 
 export default bookSlice.reducer

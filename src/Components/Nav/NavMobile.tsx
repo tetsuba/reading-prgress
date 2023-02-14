@@ -19,7 +19,10 @@ export default function NavMobil() {
                         </a>
                     </div>
                     <div className="flex">
-                        <Button className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                        <Button
+                            template="none"
+                            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                        >
                             Close menu
                         </Button>
                     </div>

@@ -1,5 +1,5 @@
 # Reading Tracker
-An application to track the progress of a reader.
+An application to track the progress of a young reader.
 
 
 ## Tech stack

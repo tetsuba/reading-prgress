@@ -9,6 +9,7 @@ import { userTokenSelector } from '../../store/user/userSelectors'
 import { resetUserToInitialState } from '../../store/user/userSlice'
 
 function getClasses({ isActive }: { isActive: boolean }) {
+    console.log('isActive', isActive)
     return isActive
         ? 'block px-4 py-2 text-sm text-gray-700 bg-gray-100'
         : 'block px-4 py-2 text-sm text-gray-700'
@@ -16,10 +17,11 @@ function getClasses({ isActive }: { isActive: boolean }) {
 
 export default function NavLinksRightDesktop() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const userToken = useSelector(userTokenSelector)
     const [showMenu, setShowMenu] = useState(false)
     const [showLogin, setShowLogin] = useState(false)
-    const navigate = useNavigate()
+
     return (
         <div className="hidden md:block">
             <div className="ml-4 flex items-center md:ml-6">
@@ -27,6 +29,7 @@ export default function NavLinksRightDesktop() {
                     <div>
                         {userToken ? (
                             <Button
+                                dataTestid="user-menu-button"
                                 template="icon"
                                 svg="user"
                                 clickHandler={() => setShowMenu(!showMenu)}
@@ -55,6 +58,7 @@ export default function NavLinksRightDesktop() {
 
                     {showMenu && (
                         <div
+                            data-testid="user-menu"
                             className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu"
                             aria-orientation="vertical"

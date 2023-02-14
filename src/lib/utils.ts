@@ -1,4 +1,4 @@
-// TODO: fix types
+// TODO: fix target types
 export function formDataToQueryString(target: any): string {
     const formData: { [k: string]: string } = {
         firstName: target.firstName.value,
@@ -12,7 +12,7 @@ export function formDataToQueryString(target: any): string {
         .join('&')
 }
 
-// TODO: fix types
+// TODO: fix target types
 export function formDataToObject(target: any): { [p: string]: string } {
     return {
         username: target.email.value,
@@ -20,7 +20,7 @@ export function formDataToObject(target: any): { [p: string]: string } {
     }
 }
 
-// TODO: fix types
+// TODO: fix error types
 export function getErrorMessage(error: any): string {
     if (
         error &&
@@ -29,7 +29,7 @@ export function getErrorMessage(error: any): string {
         error.response.data.error
     )
         return error.response.data.error
-    if (error && error.message) return error.message
+    // if (error && error.message) return error.message
     return ''
 }
 
@@ -37,12 +37,15 @@ export function delay(time: number) {
     return new Promise((resolve) => setTimeout(() => resolve('success'), time))
 }
 
-// TODO: fix types
+// TODO: fix target types
 export function mutateRegisterBookData(target: any, userId: string) {
     return {
         userId,
-        difficulty: target.difficulty.value,
         title: target.title.value,
         story: target.story.value
     }
+}
+
+export function parseBookHistory(history: string | null) {
+    return history ? JSON.parse(history) : []
 }

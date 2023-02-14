@@ -13,11 +13,6 @@ import {
 } from '../../vitest-setup'
 
 describe('Home', () => {
-    beforeAll(() => {
-        const portal = document.createElement('div')
-        portal.setAttribute('id', 'modal')
-        document.body.appendChild(portal)
-    })
     describe('@Render', () => {
         test('should render first load', () => {
             const { asFragment } = render(

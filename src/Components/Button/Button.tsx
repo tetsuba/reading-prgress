@@ -12,11 +12,12 @@ type PropTypes = {
     className?: string
     dataTestid?: string
     template: ButtonTemplateTypes
+    title?: string
 }
 
 const defaultStyles = 'rounded-lg font-medium text-base text-center px-5 py-2.5'
 
-const buttonClasses: { [k: string]: string } = {
+export const buttonClasses: { [k: string]: string } = {
     none: '',
     primary: `${defaultStyles} text-white bg-blue-700 hover:bg-blue-800`,
     secondary: `${defaultStyles} text-gray bg-gray-200 hover:bg-gray-300`,
@@ -33,6 +34,7 @@ export default function Button(props: PropTypes) {
 
     return (
         <button
+            title={props.title}
             data-testid={props.dataTestid}
             onClick={props.clickHandler}
             className={`${buttonClassNames} ${classNames}`}

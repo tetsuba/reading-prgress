@@ -13,6 +13,7 @@
     "test:cov": "vitest run --coverage",
     "typecheck": "vitest typecheck"
   },
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "axios": "^1.2.3",
