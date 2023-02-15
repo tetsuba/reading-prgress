@@ -46,9 +46,7 @@ export function WrapperWith_Store_Query_Router(props: PropTypes) {
     return (
         <Provider store={store}>
             <QueryClientProvider client={queryClient}>
-                <MemoryRouter
-                    initialEntries={[props.pathname]}
-                >
+                <MemoryRouter initialEntries={[props.pathname]}>
                     {props.children}
                 </MemoryRouter>
             </QueryClientProvider>
