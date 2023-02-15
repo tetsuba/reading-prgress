@@ -1,9 +1,84 @@
 // Vitest Snapshot v1
 
-exports[`Home > should render 1`] = `
+exports[`Home > @Render > should render first load 1`] = `
 <DocumentFragment>
-  <h1>
-    This is the home page
-  </h1>
+  <main>
+    <div
+      class="relative px-6 lg:px-8"
+    >
+      <div
+        class="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40"
+      >
+        <div>
+          <div
+            class="hidden sm:mb-8 sm:flex sm:justify-center"
+          >
+            <div
+              class="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+            >
+              <span
+                class="text-gray-600"
+              >
+                Decodable Reading Books For Children
+                <a
+                  class="pl-1 font-semibold text-indigo-600"
+                  href="/"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="absolute inset-0"
+                  />
+                  Read more
+                  <span
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                </a>
+              </span>
+            </div>
+          </div>
+          <div>
+            <h1
+              class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl "
+            >
+              Data to improve reading
+            </h1>
+            <h1
+              class="mt-6 text-lg leading-8 text-gray-600 sm:text-center "
+            >
+              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+            </h1>
+            <div
+              class="mt-8 flex gap-x-4 sm:justify-center"
+            >
+              <button
+                class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 "
+              >
+                Log in 
+                <span
+                  aria-hidden="true"
+                  class="text-indigo-200"
+                >
+                  →
+                </span>
+              </button>
+              <button
+                class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-gray bg-gray-200 hover:bg-gray-300 "
+              >
+                Register 
+                <span
+                  aria-hidden="true"
+                  class="text-indigo-200"
+                >
+                  →
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </DocumentFragment>
 `;

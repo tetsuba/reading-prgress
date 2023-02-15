@@ -1,5 +1,5 @@
 # Reading Tracker
-An application to track the progress of a reader.
+An application to track the progress of a young reader.
 
 
 ## Tech stack
@@ -8,6 +8,10 @@ An application to track the progress of a reader.
  - [Typescript]("https://www.typescriptlang.org/")
  - [Eslint]("https://eslint.org/")
  - [Prettier]("https://prettier.io/")
+ - Tailwind
+ - react-query
+ - Redux
+ - React Router
 
 ## Testing
  - [Vitest]("https://vitest.dev/")
@@ -17,3 +21,4 @@ An application to track the progress of a reader.
 
 ## Other Tech
  - [Speech Recognition]("https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition#instance_methods")
+
