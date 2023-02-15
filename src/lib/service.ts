@@ -2,13 +2,16 @@ import axios from 'axios'
 import store from '../store/store'
 import { updateUser } from '../store/user/userSlice'
 import ls from './localStorage'
-
+let origin
 /* c8 ignore next 2 */
-const origin =
-    location.port === '5173' ? 'http://localhost:3001' : location.origin
+if (import.meta.env.DEV) {
+    origin =
+        location.port === '5173' ? 'http://localhost:3001' : location.origin
+} else {
+    origin = 'http://18.132.193.58:3001'
+}
 
 const BASE_URL = `${origin}/api/reading/`
-// export const BASE_URL = 'http://18.132.193.58:3001/api/reading/'
 
 const URL_REGISTER = BASE_URL + 'user/register?'
 const URL_LOGIN = BASE_URL + 'user/login'
