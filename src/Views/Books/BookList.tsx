@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { userIdSelector } from '../../store/user/userSelectors'
 import { addBook } from '../../store/book/bookSlice'
 import { useNavigate } from 'react-router-dom'
+import Modal from '../../Components/Modal/Modal'
+import { useState } from 'react'
+import Confirmation from '../../Components/Modal/Confirmation'
 
 type BookTypes = {
     story: string
@@ -19,6 +22,7 @@ type PropTypes = {
 export default function BookList(props: PropTypes) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [book, setBook] = useState<null | BookTypes>(null)
     const userId = useSelector(userIdSelector)
     const queryClient = useQueryClient()
     const mutation = useMutation(deleteBook, {
@@ -62,12 +66,24 @@ export default function BookList(props: PropTypes) {
                             svg="delete"
                             className="ml-2 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
                             clickHandler={() => {
-                                mutation.mutate(`?bookId=${book.id}`)
+                                setBook(book)
                             }}
                         />
                     </div>
                 </div>
             ))}
+            {book && (
+                <Modal>
+                    <Confirmation
+                        bookTile={book.title}
+                        clickHandlerCancel={() => setBook(null)}
+                        clickHandlerDelete={() => {
+                            mutation.mutate(`?bookId=${book.id}`)
+                            setBook(null)
+                        }}
+                    />
+                </Modal>
+            )}
         </div>
     )
 }

@@ -44,11 +44,11 @@ exports[`Home > @Render > should render first load 1`] = `
             >
               Data to improve reading
             </h1>
-            <h1
-              class="mt-6 text-lg leading-8 text-gray-600 sm:text-center "
+            <p
+              class="mt-6 text-lg leading-8 text-gray-600 sm:text-center"
             >
               Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
-            </h1>
+            </p>
             <div
               class="mt-8 flex gap-x-4 sm:justify-center"
             >

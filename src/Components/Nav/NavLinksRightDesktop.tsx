@@ -9,7 +9,6 @@ import { userTokenSelector } from '../../store/user/userSelectors'
 import { resetUserToInitialState } from '../../store/user/userSlice'
 
 function getClasses({ isActive }: { isActive: boolean }) {
-    console.log('isActive', isActive)
     return isActive
         ? 'block px-4 py-2 text-sm text-gray-700 bg-gray-100'
         : 'block px-4 py-2 text-sm text-gray-700'

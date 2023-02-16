@@ -25,7 +25,6 @@ export default function Speech(props: PropTypes) {
 
     // TODO: fix types any
     speechToText.onresult = (event: any) => {
-        console.log('onresult', event, event.results.length)
         const { transcript } = event.results[event.results.length - 1][0]
         const speech = transcript.toLowerCase().split(' ')
         setSpeech(transcript)

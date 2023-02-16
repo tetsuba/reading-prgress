@@ -1,7 +1,6 @@
 // @ts-ignore
 const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition
 
-console.log('SpeechRecognition')
 // @ts-ignore
 // const SpeechGrammarList = window.SpeechGrammarList || webkitSpeechGrammarList
 // const SpeechRecognitionEvent = window.SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
@@ -12,8 +11,6 @@ console.log('SpeechRecognition')
 const speechToText = (function (SpeechRecognition) {
     // const speechRecognitionList = new SpeechGrammarList();
     const recognition = new SpeechRecognition()
-
-    console.log('recognition')
 
     // speechRecognitionList.addFromString(grammar, 1);
     // recognition.grammars = speechRecognitionList;

@@ -92,6 +92,10 @@ describe('Books View', () => {
             expect(screen.getAllByText(/title/)).toHaveLength(3)
         )
         fireEvent.click(screen.getAllByTestId('book-list-delete')[0])
+        expect(screen.getByTestId('modal-confirmation'))
+        fireEvent.click(screen.getByTestId('cancel-button'))
+        fireEvent.click(screen.getAllByTestId('book-list-delete')[0])
+        fireEvent.click(screen.getByTestId('delete-button'))
         await waitFor(() =>
             expect(screen.getAllByText(/title/)).toHaveLength(2)
         )
