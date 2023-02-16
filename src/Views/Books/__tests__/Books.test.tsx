@@ -19,8 +19,18 @@ vi.mock('react-router-dom', () => ({
 
 const mockData = {
     data: [
-        { title: 'title 1', story: 'story 1', id: 1 },
-        { title: 'title 2', story: 'story 2', id: 2 }
+        {
+            title: 'title 1',
+            story: 'story 1',
+            id: 1,
+            history: '[{"date":"16/02/2023","words":[]}]'
+        },
+        {
+            title: 'title 2',
+            story: 'story 2',
+            id: 2,
+            history: '[{"date":"16/02/2023","words":["this"]}]'
+        }
     ]
 }
 
