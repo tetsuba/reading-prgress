@@ -36,9 +36,9 @@ export function allWordsAreCorrect(story: WordType[][], count: number) {
 export function removeSpecialCharacters(word: string): string {
     return word
         .toLowerCase()
-        .replace(/\W$/, '')
-        .replace(/\W$/, '')
         .replace(/^\W/, '')
+        .replace(/\W$/, '')
+        .replace(/\W$/, '')
 }
 
 export function updateSentence(

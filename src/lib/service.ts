@@ -3,7 +3,7 @@ import store from '../store/store'
 import { updateUser } from '../store/user/userSlice'
 import ls from './localStorage'
 let origin
-/* c8 ignore next 2 */
+/* c8 ignore next 6 */
 if (import.meta.env.DEV) {
     origin =
         location.port === '5173' ? 'http://localhost:3001' : location.origin
