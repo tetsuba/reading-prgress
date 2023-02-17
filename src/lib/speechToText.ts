@@ -1,19 +1,8 @@
 // @ts-ignore
 const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition
 
-// @ts-ignore
-// const SpeechGrammarList = window.SpeechGrammarList || webkitSpeechGrammarList
-// const SpeechRecognitionEvent = window.SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
-
-// const colors = [ 'aqua', 'azure', 'beige', 'bisque', 'black', 'blue', 'brown', 'chocolate', 'coral', /* … */ ];
-// const grammar = `#JSGF V1.0; grammar colors; public <color> = ${colors.join(' | ')};`
-
 const speechToText = (function (SpeechRecognition) {
-    // const speechRecognitionList = new SpeechGrammarList();
     const recognition = new SpeechRecognition()
-
-    // speechRecognitionList.addFromString(grammar, 1);
-    // recognition.grammars = speechRecognitionList;
     recognition.continuous = true
     recognition.lang = 'en-US'
     recognition.interimResults = true // This triggers the onResults a lot faster
