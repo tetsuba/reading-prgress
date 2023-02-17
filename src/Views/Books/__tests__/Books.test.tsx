@@ -19,8 +19,18 @@ vi.mock('react-router-dom', () => ({
 
 const mockData = {
     data: [
-        { title: 'title 1', story: 'story 1', id: 1 },
-        { title: 'title 2', story: 'story 2', id: 2 }
+        {
+            title: 'title 1',
+            story: 'story 1',
+            id: 1,
+            history: '[{"date":"16/02/2023","words":[]}]'
+        },
+        {
+            title: 'title 2',
+            story: 'story 2',
+            id: 2,
+            history: '[{"date":"16/02/2023","words":["this"]}]'
+        }
     ]
 }
 
@@ -92,24 +102,42 @@ describe('Books View', () => {
             expect(screen.getAllByText(/title/)).toHaveLength(3)
         )
         fireEvent.click(screen.getAllByTestId('book-list-delete')[0])
+        expect(screen.getByTestId('modal-confirmation'))
+        fireEvent.click(screen.getByTestId('cancel-button'))
+        fireEvent.click(screen.getAllByTestId('book-list-delete')[0])
+        fireEvent.click(screen.getByTestId('delete-button'))
         await waitFor(() =>
             expect(screen.getAllByText(/title/)).toHaveLength(2)
         )
     })
     test('clicking on read a book', async () => {
         // @ts-ignore
-        axios.get.mockResolvedValueOnce(mockDataNewBook)
-        // @ts-ignore
-        axios.delete.mockResolvedValueOnce(mockData)
+        axios.get.mockResolvedValueOnce(mockData)
         const { asFragment } = render(
             <WrapperWith_Store_Query_Router pathname={'/books'}>
                 <Books />
             </WrapperWith_Store_Query_Router>
         )
         await waitFor(() =>
-            expect(screen.getAllByText(/title/)).toHaveLength(3)
+            expect(screen.getAllByText(/title/)).toHaveLength(2)
         )
         fireEvent.click(screen.getAllByTestId('book-list-read')[0])
         await waitFor(() => expect(mockNavigate).toHaveBeenCalled())
+    })
+    test('will search for a book title', async () => {
+        // @ts-ignore
+        axios.get.mockResolvedValueOnce(mockData)
+        const { asFragment } = render(
+            <WrapperWith_Store_Query_Router pathname={'/books'}>
+                <Books />
+            </WrapperWith_Store_Query_Router>
+        )
+        await waitFor(() =>
+            expect(screen.getAllByText(/title/)).toHaveLength(2)
+        )
+        fireEvent.change(screen.getByTestId('search'), {
+            target: { value: 'title 2' }
+        })
+        expect(screen.getAllByText(/title/)).toHaveLength(1)
     })
 })

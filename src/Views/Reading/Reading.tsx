@@ -37,15 +37,12 @@ export default function Reading() {
     // SERVICES
     const mutation = useMutation(updateBook, {
         onSuccess: async (data) => {
-            console.log('onSuccess', data)
-            console.log('book.bookId', book.bookId)
             queryClient.setQueryData(['books', userId], data)
             const history = data.data
                 .filter(({ id }: { id: number }) => id === book.bookId)
                 .map(({ history }: { history: string }) =>
                     parseBookHistory(history)
                 )
-            console.log(history[0])
             dispatch(updateBookHistory(history[0]))
         },
         onSettled() {
@@ -56,7 +53,6 @@ export default function Reading() {
     const completed = story.length <= count
 
     if (story.length && completed) {
-        console.log('should not be here')
         setStory(buildStoryStructure(book.story))
         setCount(0)
         const history = book.history.concat([

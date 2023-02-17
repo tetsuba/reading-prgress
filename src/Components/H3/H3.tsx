@@ -1,6 +1,6 @@
 type PropTypes = {
     children: string
-    className: string
+    className?: string
 }
 export default function H3(props: PropTypes) {
     return (

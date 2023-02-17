@@ -32,7 +32,7 @@ export default function Modal(props: PropTypes) {
     }, [])
 
     return createPortal(
-        <div className="relative h-full w-full max-w-xl md:h-auto">
+        <div className="relative m-auto h-full max-w-xl md:h-auto">
             <div className="relative rounded-lg bg-white shadow dark:bg-gray-700">
                 {props.children}
             </div>

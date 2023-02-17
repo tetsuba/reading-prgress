@@ -4,6 +4,8 @@ type PropTypes = {
     placeholder?: string
     id?: string
     value?: string
+    onChangeHandler?: (value: string) => void
+    dataTestId?: string
 }
 
 const sharedClasses =
@@ -20,6 +22,12 @@ const input_classes: { [k: string]: string } = {
 export default function Input(props: PropTypes) {
     return (
         <input
+            data-testid={props.dataTestId || ''}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                if (props.onChangeHandler) {
+                    props.onChangeHandler(e.target.value)
+                }
+            }}
             className={input_classes[props.type]}
             id={props.id}
             name={props.name}

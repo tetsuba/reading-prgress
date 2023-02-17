@@ -3,7 +3,7 @@ import store from '../store/store'
 import { updateUser } from '../store/user/userSlice'
 import ls from './localStorage'
 let origin
-/* c8 ignore next 2 */
+/* c8 ignore next 6 */
 if (import.meta.env.DEV) {
     origin =
         location.port === '5173' ? 'http://localhost:3001' : location.origin
@@ -78,6 +78,16 @@ export async function deleteBook(query: string) {
 export async function updateBook(json: { id: number; history: string }) {
     const token = ls.get()
     return await axios.patch(`${URL_BOOK}/update`, JSON.stringify(json), {
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `bearer ${token}`
+        }
+    })
+}
+export async function getWords(props: GetBookPropTypes) {
+    const token = ls.get()
+    const [_key, userId] = props.queryKey
+    return await axios.get(`${URL_BOOK}/words?userId=${userId}`, {
         headers: {
             'Content-Type': 'application/json',
             Authorization: `bearer ${token}`
