@@ -40,9 +40,18 @@ exports[`Books View > will render a list of books 1`] = `
               class="rounded-t-lg bg-gray-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
             >
               <div
-                class="text-lg font-bold text-gray-900"
+                class="flex items-center text-lg font-bold text-gray-900"
               >
                 Book Title
+              </div>
+              <div>
+                <input
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  data-testid="search"
+                  placeholder="Search"
+                  required=""
+                  type="text"
+                />
               </div>
             </div>
             <div
@@ -55,7 +64,7 @@ exports[`Books View > will render a list of books 1`] = `
                   class="mr-6 text-green-500"
                 >
                   <svg
-                    class="w-6 h-6"
+                    class="h-6 w-6"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="1.5"
@@ -88,7 +97,7 @@ exports[`Books View > will render a list of books 1`] = `
                   data-testid="book-list-delete"
                 >
                   <svg
-                    class="w-6 h-6"
+                    class="h-6 w-6"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="1.5"
@@ -114,7 +123,7 @@ exports[`Books View > will render a list of books 1`] = `
                   class="mr-6 text-red-500"
                 >
                   <svg
-                    class="w-6 h-6"
+                    class="h-6 w-6"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="1.5"
@@ -147,7 +156,7 @@ exports[`Books View > will render a list of books 1`] = `
                   data-testid="book-list-delete"
                 >
                   <svg
-                    class="w-6 h-6"
+                    class="h-6 w-6"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="1.5"

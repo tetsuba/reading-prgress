@@ -112,18 +112,30 @@ describe('Books View', () => {
     })
     test('clicking on read a book', async () => {
         // @ts-ignore
-        axios.get.mockResolvedValueOnce(mockDataNewBook)
-        // @ts-ignore
-        axios.delete.mockResolvedValueOnce(mockData)
+        axios.get.mockResolvedValueOnce(mockData)
         const { asFragment } = render(
             <WrapperWith_Store_Query_Router pathname={'/books'}>
                 <Books />
             </WrapperWith_Store_Query_Router>
         )
         await waitFor(() =>
-            expect(screen.getAllByText(/title/)).toHaveLength(3)
+            expect(screen.getAllByText(/title/)).toHaveLength(2)
         )
         fireEvent.click(screen.getAllByTestId('book-list-read')[0])
         await waitFor(() => expect(mockNavigate).toHaveBeenCalled())
+    })
+    test('will search for a book title', async () => {
+        // @ts-ignore
+        axios.get.mockResolvedValueOnce(mockData)
+        const { asFragment } = render(
+            <WrapperWith_Store_Query_Router pathname={'/books'}>
+                <Books />
+            </WrapperWith_Store_Query_Router>
+        )
+        await waitFor(() =>
+            expect(screen.getAllByText(/title/)).toHaveLength(2)
+        )
+        fireEvent.change(screen.getByTestId('search'), {target: {value: 'title 2'}})
+        expect(screen.getAllByText(/title/)).toHaveLength(1)
     })
 })

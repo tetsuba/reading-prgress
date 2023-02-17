@@ -27,6 +27,7 @@ export default function BookList(props: PropTypes) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [book, setBook] = useState<null | BookTypes>(null)
+    const [search, setSearch] = useState('')
     const userId = useSelector(userIdSelector)
     const queryClient = useQueryClient()
     const mutation = useMutation(deleteBook, {
@@ -38,11 +39,21 @@ export default function BookList(props: PropTypes) {
     return (
         <div data-testid="book-list">
             <div className="rounded-t-lg bg-gray-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <div className="text-lg font-bold text-gray-900">
+                <div className="flex items-center text-lg font-bold text-gray-900">
                     Book Title
                 </div>
+                <div>
+                    <Input
+                        dataTestId="search"
+                        value={search}
+                        onChangeHandler={setSearch}
+                        type="text"
+                        placeholder="Search" />
+                </div>
             </div>
-            {props.list.map((book, i) => {
+            {props.list
+                .filter((book) => book.title.toLowerCase().startsWith(search.toLowerCase()))
+                .map((book, i) => {
                 const bookStatusColour = getBookStatusColour(book.history)
                 return (
                     <div
