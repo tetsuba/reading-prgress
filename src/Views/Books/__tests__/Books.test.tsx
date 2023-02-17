@@ -135,7 +135,9 @@ describe('Books View', () => {
         await waitFor(() =>
             expect(screen.getAllByText(/title/)).toHaveLength(2)
         )
-        fireEvent.change(screen.getByTestId('search'), {target: {value: 'title 2'}})
+        fireEvent.change(screen.getByTestId('search'), {
+            target: { value: 'title 2' }
+        })
         expect(screen.getAllByText(/title/)).toHaveLength(1)
     })
 })

@@ -11,7 +11,7 @@ import FirstLoad from './Components/FirstLoad/FirstLoad'
 import Home from './Views/Home'
 import Reading from './Views/Reading/Reading'
 import Register from './Views/Register'
-import Dashboard from './Views/Dashboard'
+import Dashboard from './Views/Dashboard/Dashboard'
 import Profile from './Views/Profile'
 import Books from './Views/Books/Books'
 

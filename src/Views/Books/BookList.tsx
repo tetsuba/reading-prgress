@@ -48,51 +48,54 @@ export default function BookList(props: PropTypes) {
                         value={search}
                         onChangeHandler={setSearch}
                         type="text"
-                        placeholder="Search" />
+                        placeholder="Search"
+                    />
                 </div>
             </div>
             {props.list
-                .filter((book) => book.title.toLowerCase().startsWith(search.toLowerCase()))
-                .map((book, i) => {
-                const bookStatusColour = getBookStatusColour(book.history)
-                return (
-                    <div
-                        key={`book-list-${i}`}
-                        className={`px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 ${
-                            i & 1 ? 'bg-white' : 'bg-gray-50'
-                        }`}
-                    >
-                        <div className="flex items-center text-base font-medium text-gray-800">
-                            <span className={`mr-6 ${bookStatusColour}`}>
-                                <Svg type="bookmark" />
-                            </span>{' '}
-                            {book.title}
-                        </div>
-                        <div className="mt-1 text-sm text-gray-900 sm:mt-0"></div>
-                        <div className="mt-1 flex justify-end text-sm text-gray-900 sm:mt-0">
-                            <Button
-                                dataTestid="book-list-read"
-                                template="secondary"
-                                clickHandler={() => {
-                                    dispatch(addBook(book))
-                                    navigate('/reading')
-                                }}
-                            >
-                                Read
-                            </Button>
-                            <Button
-                                dataTestid="book-list-delete"
-                                template="icon"
-                                svg="delete"
-                                className="ml-2 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-                                clickHandler={() => {
-                                    setBook(book)
-                                }}
-                            />
-                        </div>
-                    </div>
+                .filter((book) =>
+                    book.title.toLowerCase().startsWith(search.toLowerCase())
                 )
-            })}
+                .map((book, i) => {
+                    const bookStatusColour = getBookStatusColour(book.history)
+                    return (
+                        <div
+                            key={`book-list-${i}`}
+                            className={`px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 ${
+                                i & 1 ? 'bg-white' : 'bg-gray-50'
+                            }`}
+                        >
+                            <div className="flex items-center text-base font-medium text-gray-800">
+                                <span className={`mr-6 ${bookStatusColour}`}>
+                                    <Svg type="bookmark" />
+                                </span>{' '}
+                                {book.title}
+                            </div>
+                            <div className="mt-1 text-sm text-gray-900 sm:mt-0"></div>
+                            <div className="mt-1 flex justify-end text-sm text-gray-900 sm:mt-0">
+                                <Button
+                                    dataTestid="book-list-read"
+                                    template="secondary"
+                                    clickHandler={() => {
+                                        dispatch(addBook(book))
+                                        navigate('/reading')
+                                    }}
+                                >
+                                    Read
+                                </Button>
+                                <Button
+                                    dataTestid="book-list-delete"
+                                    template="icon"
+                                    svg="delete"
+                                    className="ml-2 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+                                    clickHandler={() => {
+                                        setBook(book)
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    )
+                })}
             {book && (
                 <Modal>
                     <Confirmation

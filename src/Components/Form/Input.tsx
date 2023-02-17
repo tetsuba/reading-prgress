@@ -1,5 +1,3 @@
-import React from "react";
-
 type PropTypes = {
     type: 'email' | 'password' | 'checkbox' | 'text'
     name?: string
