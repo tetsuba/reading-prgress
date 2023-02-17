@@ -4,7 +4,6 @@ import Button from '../Button/Button'
 import { WordTypes } from '../../Views/Reading/Sentence'
 import {
     allWordsAreCorrect,
-    STATUS,
     updateSentence
 } from '../../Views/Reading/reading-utils'
 
