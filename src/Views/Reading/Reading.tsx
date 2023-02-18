@@ -38,6 +38,7 @@ export default function Reading() {
     const mutation = useMutation(updateBook, {
         onSuccess: async (data) => {
             queryClient.setQueryData(['books', userId], data)
+            await queryClient.invalidateQueries(['words'])
             const history = data.data
                 .filter(({ id }: { id: number }) => id === book.bookId)
                 .map(({ history }: { history: string }) =>

@@ -3,30 +3,33 @@ export type WordHeatMapTypes = {
     index: number
 }
 
-function maxNumber(num1: number, num2: number, max: number): number {
-    const result = num1 * num2
-    if (result < max) {
-        return result
+function getHeatMap(index: number) {
+    if (index < 2) {
+        return {number: '', bg: 'border-gray-100', text: 'text-gray-900'}
+    } else if (index < 5) {
+        return {number: 'bg-red-100', bg: 'border-gray-100 bg-red-50', text: 'text-gray-900'}
+    } else if (index < 10) {
+        return {number: 'bg-red-300', bg: 'border-gray-100 bg-red-100', text: 'text-gray-800'}
+    } else if (index < 15) {
+        return {number: 'bg-red-400', bg: 'border-gray-200 bg-red-100', text: 'text-gray-700'}
+    } else if (index < 20) {
+        return {number: 'bg-red-500', bg: 'border-gray-300 bg-red-200', text: 'text-gray-600'}
     } else {
-        return max
+        return {number: 'bg-black', bg: 'border-gray-300 bg-red-500', text: 'text-white'}
     }
 }
 
 export default function WordHeatMap(props: WordHeatMapTypes) {
-    const heatMapBG = `
-        bg-red-${maxNumber(props.index, 10, 900)} 
-        border-gray-${maxNumber(props.index, 10, 500)}
-    `
-    const heatMapNumber = `bg-red-${maxNumber(props.index, 50, 900)}`
+    const heatMap = getHeatMap(props.index)
 
     return (
         <span
             data-testid="heat-map-word"
-            className={`mr-4 rounded border-2 p-3 ${heatMapBG}`}
+            className={`m-6 rounded border-2 p-3 ${heatMap.bg}`}
         >
-            <span className="font-bold text-gray-900">{props.word}</span>
+            <span className={`font-bold text-gray-900 ${heatMap.text}`}>{props.word}</span>
             <span
-                className={`ml-4 rounded-full py-1 px-3 text-white ${heatMapNumber}`}
+                className={`ml-4 rounded-full py-1 px-3 text-white ${heatMap.number}`}
             >
                 {props.index}
             </span>
