@@ -15,8 +15,8 @@ export default function Profile() {
                                             Profile
                                         </h3>
                                         <p className="mt-1 text-sm text-gray-600">
-                                            This information will not be displayed
-                                            publicly.
+                                            This information will not be
+                                            displayed publicly.
                                         </p>
                                     </div>
                                 </div>

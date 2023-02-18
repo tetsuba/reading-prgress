@@ -3,7 +3,7 @@
 exports[`WordHeatMap > word index is 1 1`] = `
 <DocumentFragment>
   <span
-    class="m-6 rounded border-2 p-3 border-gray-100"
+    class="m-6 rounded-2xl border-2 p-3 border-gray-100"
     data-testid="heat-map-word"
   >
     <span
@@ -23,7 +23,7 @@ exports[`WordHeatMap > word index is 1 1`] = `
 exports[`WordHeatMap > word index is 2 1`] = `
 <DocumentFragment>
   <span
-    class="m-6 rounded border-2 p-3 border-gray-100 bg-red-50"
+    class="m-6 rounded-2xl border-2 p-3 border-gray-100 bg-red-50"
     data-testid="heat-map-word"
   >
     <span
@@ -43,7 +43,7 @@ exports[`WordHeatMap > word index is 2 1`] = `
 exports[`WordHeatMap > word index is 5 1`] = `
 <DocumentFragment>
   <span
-    class="m-6 rounded border-2 p-3 border-gray-100 bg-red-100"
+    class="m-6 rounded-2xl border-2 p-3 border-gray-100 bg-red-100"
     data-testid="heat-map-word"
   >
     <span
@@ -63,7 +63,7 @@ exports[`WordHeatMap > word index is 5 1`] = `
 exports[`WordHeatMap > word index is 10 1`] = `
 <DocumentFragment>
   <span
-    class="m-6 rounded border-2 p-3 border-gray-200 bg-red-100"
+    class="m-6 rounded-2xl border-2 p-3 border-gray-200 bg-red-100"
     data-testid="heat-map-word"
   >
     <span
@@ -83,7 +83,7 @@ exports[`WordHeatMap > word index is 10 1`] = `
 exports[`WordHeatMap > word index is 15 1`] = `
 <DocumentFragment>
   <span
-    class="m-6 rounded border-2 p-3 border-gray-300 bg-red-200"
+    class="m-6 rounded-2xl border-2 p-3 border-gray-300 bg-red-200"
     data-testid="heat-map-word"
   >
     <span
@@ -103,7 +103,7 @@ exports[`WordHeatMap > word index is 15 1`] = `
 exports[`WordHeatMap > word index is 20 1`] = `
 <DocumentFragment>
   <span
-    class="m-6 rounded border-2 p-3 border-gray-300 bg-red-500"
+    class="m-6 rounded-2xl border-2 p-3 border-gray-300 bg-red-500"
     data-testid="heat-map-word"
   >
     <span
