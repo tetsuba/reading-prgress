@@ -25,7 +25,7 @@ export default function WordHeatMap(props: WordHeatMapTypes) {
     return (
         <span
             data-testid="heat-map-word"
-            className={`m-6 rounded border-2 p-3 ${heatMap.bg}`}
+            className={`m-6 rounded-2xl border-2 p-3 ${heatMap.bg}`}
         >
             <span className={`font-bold text-gray-900 ${heatMap.text}`}>{props.word}</span>
             <span
