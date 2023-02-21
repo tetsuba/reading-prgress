@@ -43,6 +43,9 @@ export default function NavLinksLeftDesktop() {
                             <NavLink className={getClasses} to="reading">
                                 Reading
                             </NavLink>
+                            <NavLink className={getClasses} to="sight-words">
+                                Sight Words
+                            </NavLink>
                         </>
                     ) : (
                         <>

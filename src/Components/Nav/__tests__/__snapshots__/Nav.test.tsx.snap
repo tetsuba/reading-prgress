@@ -63,6 +63,12 @@ exports[`Nav > authenticated > clicking on the user menu button 1`] = `
                   >
                     Reading
                   </a>
+                  <a
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    href="/sight-words"
+                  >
+                    Sight Words
+                  </a>
                 </div>
               </div>
             </div>

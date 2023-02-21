@@ -17,6 +17,7 @@ const URL_REGISTER = BASE_URL + 'user/register?'
 const URL_LOGIN = BASE_URL + 'user/login'
 const URL_USER = BASE_URL + 'user'
 const URL_BOOK = BASE_URL + 'book'
+const URL_SIGHT_WORDS = BASE_URL + 'sightWords'
 
 export async function registerUser(queryString: string) {
     return await axios.post(URL_REGISTER + queryString)
@@ -88,6 +89,17 @@ export async function getWords(props: GetBookPropTypes) {
     const token = ls.get()
     const [_key, userId] = props.queryKey
     return await axios.get(`${URL_BOOK}/words?userId=${userId}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `bearer ${token}`
+        }
+    })
+}
+
+export async function getSightWords(props: GetBookPropTypes) {
+    const token = ls.get()
+    const [_key, userId] = props.queryKey
+    return await axios.get(`${URL_SIGHT_WORDS}?userId=${userId}`, {
         headers: {
             'Content-Type': 'application/json',
             Authorization: `bearer ${token}`

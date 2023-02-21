@@ -14,6 +14,7 @@ import Register from './Views/Register'
 import Dashboard from './Views/Dashboard/Dashboard'
 import Profile from './Views/Profile'
 import Books from './Views/Books/Books'
+import SightWords from './Views/SightWords/SightWords'
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -67,6 +68,14 @@ function App() {
                                     element={
                                         <ProtectedRoute>
                                             <Books />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/sight-words"
+                                    element={
+                                        <ProtectedRoute>
+                                            <SightWords />
                                         </ProtectedRoute>
                                     }
                                 />
