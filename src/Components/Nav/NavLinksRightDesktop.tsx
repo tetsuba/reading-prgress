@@ -47,7 +47,7 @@ export default function NavLinksRightDesktop() {
                                     Log in
                                 </Button>
                                 {showLogin && showLogin && (
-                                    <Modal>
+                                    <Modal className="max-w-xl">
                                         <Login setShowLogin={setShowLogin} />
                                     </Modal>
                                 )}

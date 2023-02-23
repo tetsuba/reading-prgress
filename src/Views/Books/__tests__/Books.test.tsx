@@ -17,28 +17,62 @@ vi.mock('react-router-dom', () => ({
     useNavigate: () => mockNavigate
 }))
 
+const booksMock = [
+    {
+        title: 'titleBook 1',
+        story: 'story 1',
+        id: 1,
+        history: '[{"date":"16/02/2023","words":[]}]'
+    },
+    {
+        title: 'titleBook 2',
+        story: 'story 2',
+        id: 2,
+        history: '[{"date":"16/02/2023","words":["this"]}]'
+    }
+]
+
 const mockData = {
     data: [
         {
-            title: 'title 1',
-            story: 'story 1',
-            id: 1,
-            history: '[{"date":"16/02/2023","words":[]}]'
+            id: '001',
+            title: 'title collection',
+            description: 'description',
+            books: booksMock
         },
         {
-            title: 'title 2',
-            story: 'story 2',
-            id: 2,
-            history: '[{"date":"16/02/2023","words":["this"]}]'
+            id: '002',
+            title: 'title collection',
+            description: 'description',
+            books: booksMock
         }
+
     ]
 }
 
 const mockDataNewBook = {
     data: [
-        { title: 'title 1', story: 'story 1', id: 1 },
-        { title: 'title 2', story: 'story 2', id: 2 },
-        { title: 'title 3', story: 'story 3', id: 3 }
+        {
+            id: '001',
+            title: 'title',
+            description: 'description',
+            books: [
+                ...booksMock,
+                {
+                    title: 'titleBook 3',
+                    story: 'story 3',
+                    id: 2,
+                    history: null
+                }
+            ]
+        },
+        {
+            id: '002',
+            title: 'title',
+            description: 'description',
+            books: booksMock
+        }
+
     ]
 }
 
@@ -51,7 +85,7 @@ const mockEventTarget = {
 }
 
 describe('Books View', () => {
-    test('will render a list of books', async () => {
+    test('will render a list of collections', async () => {
         // @ts-ignore
         axios.get.mockResolvedValue(mockData)
         const { asFragment } = render(
@@ -59,8 +93,22 @@ describe('Books View', () => {
                 <Books />
             </WrapperWith_Store_Query_Router>
         )
-        await waitFor(() => expect(screen.getByTestId('book-list')))
+        await waitFor(() => expect(screen.getByTestId('collection-list')))
         expect(asFragment()).toMatchSnapshot()
+    })
+    test('opening and closing a collection', async () => {
+        // @ts-ignore
+        axios.get.mockResolvedValue(mockData)
+        const { asFragment } = render(
+            <WrapperWith_Store_Query_Router pathname={'/books'}>
+                <Books />
+            </WrapperWith_Store_Query_Router>
+        )
+        await waitFor(() => expect(screen.getByTestId('collection-list')))
+        fireEvent.click(screen.getAllByTestId('collection-button')[0])
+        expect(screen.queryByTestId('book-list')).not.toBeNull()
+        fireEvent.click(screen.getByTestId('back-button'))
+        expect(screen.queryByTestId('book-list')).toBeNull()
     })
     test('adding a new book', async () => {
         // @ts-ignore
@@ -72,21 +120,18 @@ describe('Books View', () => {
                 <Books />
             </WrapperWith_Store_Query_Router>
         )
-        await waitFor(() =>
-            expect(screen.getAllByText(/title/)).toHaveLength(2)
-        )
-        fireEvent.click(screen.getByText('Add New Book'))
-        await waitFor(() => expect(screen.getByTestId('register-book-form')))
+        await waitFor(() => expect(screen.getByTestId('collection-list')))
+        fireEvent.click(screen.getAllByTestId('collection-button')[0])
+        fireEvent.click(screen.getByText('Add Book'))
+        expect(screen.getByTestId('register-book-form'))
         fireEvent.submit(
             screen.getByTestId('register-book-form'),
             mockEventTarget
         )
-        waitForElementToBeRemoved(() =>
+        await waitForElementToBeRemoved(() =>
             expect(screen.getByTestId('register-book-form'))
         )
-        await waitFor(() =>
-            expect(screen.getAllByText(/title/)).toHaveLength(3)
-        )
+        await waitFor(() => expect(screen.getAllByText(/titleBook/)).toHaveLength(3))
     })
     test('deleting a book', async () => {
         // @ts-ignore
@@ -98,16 +143,15 @@ describe('Books View', () => {
                 <Books />
             </WrapperWith_Store_Query_Router>
         )
-        await waitFor(() =>
-            expect(screen.getAllByText(/title/)).toHaveLength(3)
-        )
+        await waitFor(() => expect(screen.getByTestId('collection-list')))
+        fireEvent.click(screen.getAllByTestId('collection-button')[0])
         fireEvent.click(screen.getAllByTestId('book-list-delete')[0])
         expect(screen.getByTestId('modal-confirmation'))
         fireEvent.click(screen.getByTestId('cancel-button'))
         fireEvent.click(screen.getAllByTestId('book-list-delete')[0])
         fireEvent.click(screen.getByTestId('delete-button'))
         await waitFor(() =>
-            expect(screen.getAllByText(/title/)).toHaveLength(2)
+            expect(screen.getAllByText(/titleBook/)).toHaveLength(2)
         )
     })
     test('clicking on read a book', async () => {
@@ -118,9 +162,8 @@ describe('Books View', () => {
                 <Books />
             </WrapperWith_Store_Query_Router>
         )
-        await waitFor(() =>
-            expect(screen.getAllByText(/title/)).toHaveLength(2)
-        )
+        await waitFor(() => expect(screen.getByTestId('collection-list')))
+        fireEvent.click(screen.getAllByTestId('collection-button')[0])
         fireEvent.click(screen.getAllByTestId('book-list-read')[0])
         await waitFor(() => expect(mockNavigate).toHaveBeenCalled())
     })
@@ -132,12 +175,11 @@ describe('Books View', () => {
                 <Books />
             </WrapperWith_Store_Query_Router>
         )
-        await waitFor(() =>
-            expect(screen.getAllByText(/title/)).toHaveLength(2)
-        )
+        await waitFor(() => expect(screen.getByTestId('collection-list')))
+        fireEvent.click(screen.getAllByTestId('collection-button')[0])
         fireEvent.change(screen.getByTestId('search'), {
-            target: { value: 'title 2' }
+            target: { value: 'titleBook 2' }
         })
-        expect(screen.getAllByText(/title/)).toHaveLength(1)
+        expect(screen.getAllByText(/titleBook/)).toHaveLength(1)
     })
 })

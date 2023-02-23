@@ -28,8 +28,8 @@ export default function RegisterBookForm(props: PropTypes) {
         }
     })
     return (
-        <div className="mt-5 md:col-span-2 md:mt-0">
-            <H3 className="mb-3">Add new book</H3>
+        <div className="p-10">
+            <H3 className="mb-3 w-800">Add new book</H3>
             <form
                 data-testid="register-book-form"
                 className="space-y-6"
@@ -40,10 +40,10 @@ export default function RegisterBookForm(props: PropTypes) {
                     )
                 }}
             >
-                <div className="shadow sm:overflow-hidden sm:rounded-md">
+                <div className="">
                     <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
-                        <div className="grid grid-cols-3 gap-6">
-                            <div className="col-span-3 sm:col-span-2">
+                        <div className="gap-6">
+                            <div className="">
                                 <Label htmlFor="title">Book Title</Label>
                                 <Input name="title" type="text" />
                             </div>
@@ -59,7 +59,7 @@ export default function RegisterBookForm(props: PropTypes) {
                             />
                         </div>
                     </div>
-                    <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                    <div className="px-4 py-3 text-right">
                         <Button
                             template="secondary"
                             clickHandler={props.clickHandlerCancel}

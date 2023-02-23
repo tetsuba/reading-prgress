@@ -11,6 +11,7 @@ function createModalHTML(): HTMLDivElement {
 
 type PropTypes = {
     children: JSX.Element
+    className?: string
 }
 
 export default function Modal(props: PropTypes) {
@@ -32,7 +33,7 @@ export default function Modal(props: PropTypes) {
     }, [])
 
     return createPortal(
-        <div className="relative m-auto h-full max-w-xl md:h-auto">
+        <div className={`relative m-auto h-full  md:h-auto w-9/12 ${props.className}`}>
             <div className="relative rounded-lg bg-white shadow dark:bg-gray-700">
                 {props.children}
             </div>

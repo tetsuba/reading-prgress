@@ -25,8 +25,15 @@ export const bookSlice = createSlice({
     initialState,
     reducers: {
         addBook: (state, action) => {
+            const history = action.payload.history
+                ? typeof action.payload.history === 'string'
+                    ? parseBookHistory(action.payload.history)
+                    : action.payload.history
+                : []
+
+
             state.bookId = action.payload.id
-            state.history = parseBookHistory(action.payload.history)
+            state.history = history
             state.story = action.payload.story
             state.title = action.payload.title
         },
