@@ -1,8 +1,6 @@
 export function getBookStatusColour(history: string | null) {
     if (history) {
-        const data = typeof history === 'string'
-            ? JSON.parse(history)
-            : history
+        const data = typeof history === 'string' ? JSON.parse(history) : history
 
         const words = data[data.length - 1].words
         if (words.length) {

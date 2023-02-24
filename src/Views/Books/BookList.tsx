@@ -14,9 +14,9 @@ import Modal from '../../Components/Modal/Modal'
 import Confirmation from '../../Components/Modal/Confirmation'
 import Svg from '../../Components/Svg/Svg'
 import Input from '../../Components/Form/Input'
-import AddBook from "./AddBook";
+import AddBook from './AddBook'
 
-type BookTypes = {
+export type BookTypes = {
     story: string
     title: string
     id: number
@@ -28,6 +28,7 @@ type PropTypes = {
     title: string
     clickHandlerBack: () => void
     delete: boolean
+    libId: string
 }
 
 export default function BookList(props: PropTypes) {
@@ -47,19 +48,21 @@ export default function BookList(props: PropTypes) {
         <div data-testid="book-list">
             <div className="flex justify-end">
                 <Button
-                    className="flex mb-6 mr-6"
+                    className="mb-6 mr-6 flex"
                     dataTestid="back-button"
                     template="primary"
                     clickHandler={props.clickHandlerBack}
                 >
-                    <Svg type="back" /><span className="ml-2">Back</span>
+                    <Svg type="back" />
+                    <span className="ml-2">Back</span>
                 </Button>
             </div>
             <div className="rounded-t-lg bg-gray-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <div className="flex items-center text-lg font-bold text-gray-900">
                     <span className={`mr-6`}>
                         <Svg type="library" />
-                    </span>{ props.title }
+                    </span>
+                    {props.title}
                 </div>
                 <div>
                     <Input
@@ -70,8 +73,8 @@ export default function BookList(props: PropTypes) {
                         placeholder="Search"
                     />
                 </div>
-                <div className="flex justify-end items-center text-lg font-bold text-gray-900">
-                    { props.delete && <AddBook />}
+                <div className="flex items-center justify-end text-lg font-bold text-gray-900">
+                    {props.delete && <AddBook />}
                 </div>
             </div>
             {props.list
@@ -99,25 +102,28 @@ export default function BookList(props: PropTypes) {
                                     dataTestid="book-list-read"
                                     template="secondary"
                                     clickHandler={() => {
-                                        dispatch(addBook(book))
+                                        dispatch(
+                                            addBook({
+                                                book,
+                                                libId: props.libId
+                                            })
+                                        )
                                         navigate('/reading')
                                     }}
                                 >
                                     Read
                                 </Button>
-                                {
-                                    props.delete && (
-                                        <Button
-                                            dataTestid="book-list-delete"
-                                            template="icon"
-                                            svg="delete"
-                                            className="ml-2 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-                                            clickHandler={() => {
-                                                setBook(book)
-                                            }}
-                                        />
-                                    )
-                                }
+                                {props.delete && (
+                                    <Button
+                                        dataTestid="book-list-delete"
+                                        template="icon"
+                                        svg="delete"
+                                        className="ml-2 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+                                        clickHandler={() => {
+                                            setBook(book)
+                                        }}
+                                    />
+                                )}
                             </div>
                         </div>
                     )

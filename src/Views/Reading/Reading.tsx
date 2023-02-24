@@ -1,16 +1,10 @@
 import { useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-    buildStoryStructure,
-    STATUS,
-    getShortDate,
-    getReadingMistakes
-} from './reading-utils'
-import { parseBookHistory } from '../../lib/utils'
+import { buildStoryStructure, STATUS, updateHistory } from './reading-utils'
 
 // SERVICE
-import { updateBook } from '../../lib/service'
+import { updateTracker } from '../../lib/service'
 
 // STORE
 import { updateBookHistory } from '../../store/book/bookSlice'
@@ -35,16 +29,18 @@ export default function Reading() {
     const [count, setCount] = useState(0)
     const [showHistory, setShowHistory] = useState(false)
     // SERVICES
-    const mutation = useMutation(updateBook, {
+    const mutation = useMutation(updateTracker, {
         onSuccess: async (data) => {
             queryClient.setQueryData(['books', userId], data)
             await queryClient.invalidateQueries(['words'])
-            const history = data.data
-                .filter(({ id }: { id: number }) => id === book.bookId)
-                .map(({ history }: { history: string }) =>
-                    parseBookHistory(history)
-                )
-            dispatch(updateBookHistory(history[0]))
+            const collection = data.data.filter(
+                ({ id }: { id: number }) => id === book.libId
+            )
+
+            const books = collection[0].books.filter(
+                ({ id }: { id: number }) => id === book.bookId
+            )
+            dispatch(updateBookHistory(books[0].history))
         },
         onSettled() {
             setShowHistory(true)
@@ -56,16 +52,12 @@ export default function Reading() {
     if (story.length && completed) {
         setStory(buildStoryStructure(book.story))
         setCount(0)
-        const history = book.history.concat([
-            {
-                date: getShortDate(),
-                words: getReadingMistakes(story)
-            }
-        ])
-
+        const history = updateHistory(book.history, story)
         const data = {
-            id: book.bookId,
-            history: JSON.stringify(history)
+            userId,
+            bookId: book.bookId,
+            libId: book.libId,
+            history: history
         }
         mutation.mutate(data)
     }

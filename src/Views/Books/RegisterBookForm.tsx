@@ -29,7 +29,7 @@ export default function RegisterBookForm(props: PropTypes) {
     })
     return (
         <div className="p-10">
-            <H3 className="mb-3 w-800">Add new book</H3>
+            <H3 className="w-800 mb-3">Add new book</H3>
             <form
                 data-testid="register-book-form"
                 className="space-y-6"

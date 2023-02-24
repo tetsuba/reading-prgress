@@ -36,7 +36,7 @@ exports[`Books View > will render a list of collections 1`] = `
                   class="mr-6"
                 >
                   <svg
-                    class="w-6 h-6"
+                    class="h-6 w-6"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="1.5"
@@ -64,7 +64,7 @@ exports[`Books View > will render a list of collections 1`] = `
                     class="ml-2"
                   >
                     <svg
-                      class="w-6 h-6"
+                      class="h-6 w-6"
                       fill="none"
                       stroke="currentColor"
                       stroke-width="1.5"
@@ -96,7 +96,7 @@ exports[`Books View > will render a list of collections 1`] = `
                   class="mr-6"
                 >
                   <svg
-                    class="w-6 h-6"
+                    class="h-6 w-6"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="1.5"
@@ -124,7 +124,7 @@ exports[`Books View > will render a list of collections 1`] = `
                     class="ml-2"
                   >
                     <svg
-                      class="w-6 h-6"
+                      class="h-6 w-6"
                       fill="none"
                       stroke="currentColor"
                       stroke-width="1.5"

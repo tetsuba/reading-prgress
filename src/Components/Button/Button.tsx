@@ -1,7 +1,13 @@
 import Svg, { SvgTypes } from '../Svg/Svg'
 
 type ChildrenTypes = string | JSX.Element
-type ButtonTemplateTypes = 'icon' | 'primary' | 'none' | 'secondary' | 'warning' | 'tertiary'
+type ButtonTemplateTypes =
+    | 'icon'
+    | 'primary'
+    | 'none'
+    | 'secondary'
+    | 'warning'
+    | 'tertiary'
 
 type PropTypes = {
     children?: ChildrenTypes | ChildrenTypes[]

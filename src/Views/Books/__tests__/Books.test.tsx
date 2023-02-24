@@ -46,7 +46,6 @@ const mockData = {
             description: 'description',
             books: booksMock
         }
-
     ]
 }
 
@@ -72,7 +71,6 @@ const mockDataNewBook = {
             description: 'description',
             books: booksMock
         }
-
     ]
 }
 
@@ -131,7 +129,9 @@ describe('Books View', () => {
         await waitForElementToBeRemoved(() =>
             expect(screen.getByTestId('register-book-form'))
         )
-        await waitFor(() => expect(screen.getAllByText(/titleBook/)).toHaveLength(3))
+        await waitFor(() =>
+            expect(screen.getAllByText(/titleBook/)).toHaveLength(3)
+        )
     })
     test('deleting a book', async () => {
         // @ts-ignore

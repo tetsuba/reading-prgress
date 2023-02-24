@@ -2,7 +2,7 @@ import { render, screen, waitFor, act, fireEvent } from '@testing-library/react'
 import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
 import Reading from '../Reading'
 import store from '../../../store/store'
-import { addBook } from '../../../store/book/bookSlice'
+import { addBook, updateBookHistory } from '../../../store/book/bookSlice'
 import axios from 'axios'
 vi.mock('axios')
 
@@ -12,10 +12,13 @@ const mockHistory = [
 ]
 
 const mockBookData = {
-    title: 'mock title',
-    story: 'This is a story. There is, a& story. Their is a story.',
-    id: 1,
-    history: JSON.stringify(mockHistory)
+    book: {
+        title: 'mock title',
+        story: 'This is a story. There is, a& story. Their is a story.',
+        id: 1,
+        history: mockHistory
+    },
+    libId: '002'
 }
 
 describe('Reading', () => {
@@ -40,7 +43,7 @@ describe('Reading', () => {
             })
             test('should render 3 sentences and a title', async () => {
                 await waitFor(() =>
-                    expect(screen.getByText(`Book: ${mockBookData.title}`))
+                    expect(screen.getByText(`Book: ${mockBookData.book.title}`))
                 )
                 expect(screen.queryAllByTestId('sentence-block')).toHaveLength(
                     3
@@ -59,7 +62,7 @@ describe('Reading', () => {
                     expect.stringContaining('border-green-500')
                 )
             })
-            test('clicking on the show history button', () => {
+            test('clicking on the show history button', async () => {
                 expect(screen.queryAllByTestId('sentence-block')).toHaveLength(
                     3
                 )
@@ -100,8 +103,17 @@ describe('Reading', () => {
                 const mockResponse = {
                     data: [
                         {
-                            ...mockBookData,
-                            history: JSON.stringify(mockHistoryResponse)
+                            id: '001',
+                            books: []
+                        },
+                        {
+                            id: '002',
+                            books: [
+                                {
+                                    ...mockBookData.book,
+                                    history: mockHistoryResponse
+                                }
+                            ]
                         }
                     ]
                 }

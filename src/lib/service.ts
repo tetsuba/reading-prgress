@@ -2,6 +2,7 @@ import axios from 'axios'
 import store from '../store/store'
 import { updateUser } from '../store/user/userSlice'
 import ls from './localStorage'
+import { HistoryTypes } from '../store/book/bookSlice'
 let origin
 /* c8 ignore next 6 */
 if (import.meta.env.DEV) {
@@ -18,6 +19,7 @@ const URL_LOGIN = BASE_URL + 'user/login'
 const URL_USER = BASE_URL + 'user'
 const URL_BOOK = BASE_URL + 'book'
 const URL_SIGHT_WORDS = BASE_URL + 'sightWords'
+const URL_TRACKER = BASE_URL + 'tracker'
 
 export async function registerUser(queryString: string) {
     return await axios.post(URL_REGISTER + queryString)
@@ -100,6 +102,22 @@ export async function getSightWords(props: GetBookPropTypes) {
     const token = ls.get()
     const [_key, userId] = props.queryKey
     return await axios.get(`${URL_SIGHT_WORDS}?userId=${userId}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `bearer ${token}`
+        }
+    })
+}
+
+export async function updateTracker(json: {
+    userId: number
+    libId: string
+    bookId: number
+    history: HistoryTypes[]
+}) {
+    console.log('updateTracker:', json)
+    const token = ls.get()
+    return await axios.patch(`${URL_TRACKER}/update`, JSON.stringify(json), {
         headers: {
             'Content-Type': 'application/json',
             Authorization: `bearer ${token}`
