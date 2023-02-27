@@ -2,6 +2,9 @@ import Svg from '../../Components/Svg/Svg'
 import Button from '../../Components/Button/Button'
 import BookList, { BookTypes } from './BookList'
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { viewBooksSelector } from '../../store/view/viewSelectors'
+import { updateViewBookCollection } from '../../store/view/viewSlice'
 
 type CollectionTypes = {
     id: string
@@ -15,15 +18,14 @@ type PropTypes = {
 }
 
 export default function BookCollectionList(props: PropTypes) {
-    const [showCollections, setShowCollections] = useState(true)
-    const [bookCollection, setBookCollection] =
-        useState<CollectionTypes | null>(null)
+    const dispatch = useDispatch()
+    const viewBooks = useSelector(viewBooksSelector)
 
     useEffect(() => {
-        if (bookCollection) {
+        if (viewBooks.collection) {
             props.collections.forEach((collection) => {
-                if (collection.id === bookCollection.id) {
-                    setBookCollection(collection)
+                if (collection.id === viewBooks.collection.id) {
+                    dispatch(updateViewBookCollection(collection))
                 }
             })
         }
@@ -31,7 +33,7 @@ export default function BookCollectionList(props: PropTypes) {
 
     return (
         <div data-testid="collection-list">
-            {showCollections &&
+            {!viewBooks.collection &&
                 props.collections.map((collection, i: number) => (
                     <div
                         key={`book-list-${i}`}
@@ -51,8 +53,9 @@ export default function BookCollectionList(props: PropTypes) {
                                 dataTestid="collection-button"
                                 template="secondary"
                                 clickHandler={() => {
-                                    setShowCollections(false)
-                                    setBookCollection(collection)
+                                    dispatch(
+                                        updateViewBookCollection(collection)
+                                    )
                                 }}
                             >
                                 View Books
@@ -64,13 +67,15 @@ export default function BookCollectionList(props: PropTypes) {
                     </div>
                 ))}
 
-            {!showCollections && bookCollection && (
+            {viewBooks.collection && (
                 <BookList
-                    libId={bookCollection.id}
-                    title={bookCollection.title}
-                    list={bookCollection.books}
-                    clickHandlerBack={() => setShowCollections(true)}
-                    delete={bookCollection.id === '001'}
+                    libId={viewBooks.collection.id}
+                    title={viewBooks.collection.title}
+                    list={viewBooks.collection.books}
+                    clickHandlerBack={() =>
+                        dispatch(updateViewBookCollection(null))
+                    }
+                    delete={viewBooks.collection.id === '001'}
                 />
             )}
         </div>

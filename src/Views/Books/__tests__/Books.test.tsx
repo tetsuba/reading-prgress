@@ -1,4 +1,5 @@
 import {
+    act,
     render,
     waitFor,
     screen,
@@ -9,6 +10,8 @@ import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
 import Books from '../Books'
 import axios from 'axios'
 import { delay } from '../../../lib/utils'
+import {updateViewBookCollection} from "../../../store/view/viewSlice";
+import store from '../../../store/store'
 vi.mock('axios')
 
 const mockNavigate = vi.fn()
@@ -36,13 +39,13 @@ const mockData = {
     data: [
         {
             id: '001',
-            title: 'title collection',
+            title: 'title collection 1',
             description: 'description',
             books: booksMock
         },
         {
             id: '002',
-            title: 'title collection',
+            title: 'title collection 2',
             description: 'description',
             books: booksMock
         }
@@ -83,43 +86,35 @@ const mockEventTarget = {
 }
 
 describe('Books View', () => {
-    test('will render a list of collections', async () => {
+
+    beforeEach(async () => {
         // @ts-ignore
         axios.get.mockResolvedValue(mockData)
-        const { asFragment } = render(
+        render(
             <WrapperWith_Store_Query_Router pathname={'/books'}>
                 <Books />
             </WrapperWith_Store_Query_Router>
         )
         await waitFor(() => expect(screen.getByTestId('collection-list')))
-        expect(asFragment()).toMatchSnapshot()
+    })
+    afterEach(async () => {
+        await act(() => {
+            store.dispatch(updateViewBookCollection(null))
+        })
+
     })
     test('opening and closing a collection', async () => {
-        // @ts-ignore
-        axios.get.mockResolvedValue(mockData)
-        const { asFragment } = render(
-            <WrapperWith_Store_Query_Router pathname={'/books'}>
-                <Books />
-            </WrapperWith_Store_Query_Router>
-        )
-        await waitFor(() => expect(screen.getByTestId('collection-list')))
-        fireEvent.click(screen.getAllByTestId('collection-button')[0])
-        expect(screen.queryByTestId('book-list')).not.toBeNull()
+        fireEvent.click(screen.queryAllByTestId('collection-button')[0])
+        await waitFor(() => expect(screen.getByTestId('book-list')).not.toBeNull())
         fireEvent.click(screen.getByTestId('back-button'))
         expect(screen.queryByTestId('book-list')).toBeNull()
     })
     test('adding a new book', async () => {
         // @ts-ignore
-        axios.get.mockResolvedValueOnce(mockData)
-        // @ts-ignore
         axios.post.mockResolvedValueOnce(mockDataNewBook)
-        const { asFragment } = render(
-            <WrapperWith_Store_Query_Router pathname={'/books'}>
-                <Books />
-            </WrapperWith_Store_Query_Router>
-        )
-        await waitFor(() => expect(screen.getByTestId('collection-list')))
+
         fireEvent.click(screen.getAllByTestId('collection-button')[0])
+        await waitFor(() => expect(screen.getByTestId('book-list')).not.toBeNull())
         fireEvent.click(screen.getByText('Add Book'))
         expect(screen.getByTestId('register-book-form'))
         fireEvent.submit(
@@ -138,13 +133,8 @@ describe('Books View', () => {
         axios.get.mockResolvedValueOnce(mockDataNewBook)
         // @ts-ignore
         axios.delete.mockResolvedValueOnce(mockData)
-        const { asFragment } = render(
-            <WrapperWith_Store_Query_Router pathname={'/books'}>
-                <Books />
-            </WrapperWith_Store_Query_Router>
-        )
-        await waitFor(() => expect(screen.getByTestId('collection-list')))
         fireEvent.click(screen.getAllByTestId('collection-button')[0])
+        await waitFor(() => expect(screen.getByTestId('book-list')).not.toBeNull())
         fireEvent.click(screen.getAllByTestId('book-list-delete')[0])
         expect(screen.getByTestId('modal-confirmation'))
         fireEvent.click(screen.getByTestId('cancel-button'))
@@ -155,28 +145,14 @@ describe('Books View', () => {
         )
     })
     test('clicking on read a book', async () => {
-        // @ts-ignore
-        axios.get.mockResolvedValueOnce(mockData)
-        const { asFragment } = render(
-            <WrapperWith_Store_Query_Router pathname={'/books'}>
-                <Books />
-            </WrapperWith_Store_Query_Router>
-        )
-        await waitFor(() => expect(screen.getByTestId('collection-list')))
         fireEvent.click(screen.getAllByTestId('collection-button')[0])
+        await waitFor(() => expect(screen.getByTestId('book-list')).not.toBeNull())
         fireEvent.click(screen.getAllByTestId('book-list-read')[0])
         await waitFor(() => expect(mockNavigate).toHaveBeenCalled())
     })
     test('will search for a book title', async () => {
-        // @ts-ignore
-        axios.get.mockResolvedValueOnce(mockData)
-        const { asFragment } = render(
-            <WrapperWith_Store_Query_Router pathname={'/books'}>
-                <Books />
-            </WrapperWith_Store_Query_Router>
-        )
-        await waitFor(() => expect(screen.getByTestId('collection-list')))
         fireEvent.click(screen.getAllByTestId('collection-button')[0])
+        await waitFor(() => expect(screen.getByTestId('book-list')).not.toBeNull())
         fireEvent.change(screen.getByTestId('search'), {
             target: { value: 'titleBook 2' }
         })

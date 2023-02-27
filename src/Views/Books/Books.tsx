@@ -12,7 +12,6 @@ import BookCollectionList from './BookCollectionList'
 export default function Books() {
     const userId = useSelector(userIdSelector)
     const { data, isSuccess } = useQuery(['books', userId], getBooks)
-    console.log('Books: ', data)
 
     return (
         <div>
