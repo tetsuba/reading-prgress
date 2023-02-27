@@ -90,7 +90,7 @@ export async function updateBook(json: { id: number; history: string }) {
 export async function getWords(props: GetBookPropTypes) {
     const token = ls.get()
     const [_key, userId] = props.queryKey
-    return await axios.get(`${URL_BOOK}/words?userId=${userId}`, {
+    return await axios.get(`${URL_TRACKER}/words?userId=${userId}`, {
         headers: {
             'Content-Type': 'application/json',
             Authorization: `bearer ${token}`
