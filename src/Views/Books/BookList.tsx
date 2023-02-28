@@ -1,18 +1,22 @@
 import { useMutation, useQueryClient } from 'react-query'
-import Button from '../../Components/Button/Button'
-import { deleteBook } from '../../lib/service'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+
+import { deleteBook } from '../../lib/service'
 import { userIdSelector } from '../../store/user/userSelectors'
 import { addBook } from '../../store/book/bookSlice'
-import { useNavigate } from 'react-router-dom'
-import Modal from '../../Components/Modal/Modal'
-import { useState } from 'react'
-import Confirmation from '../../Components/Modal/Confirmation'
 import { getBookStatusColour } from './book-utils'
+
+// COMPONENTS
+import Button from '../../Components/Button/Button'
+import Modal from '../../Components/Modal/Modal'
+import Confirmation from '../../Components/Modal/Confirmation'
 import Svg from '../../Components/Svg/Svg'
 import Input from '../../Components/Form/Input'
+import AddBook from './AddBook'
 
-type BookTypes = {
+export type BookTypes = {
     story: string
     title: string
     id: number
@@ -21,6 +25,10 @@ type BookTypes = {
 
 type PropTypes = {
     list: BookTypes[]
+    title: string
+    clickHandlerBack: () => void
+    delete: boolean
+    libId: string
 }
 
 export default function BookList(props: PropTypes) {
@@ -38,9 +46,23 @@ export default function BookList(props: PropTypes) {
 
     return (
         <div data-testid="book-list">
+            <div className="flex justify-end">
+                <Button
+                    className="mb-6 mr-6 flex"
+                    dataTestid="back-button"
+                    template="primary"
+                    clickHandler={props.clickHandlerBack}
+                >
+                    <Svg type="back" />
+                    <span className="ml-2">Back</span>
+                </Button>
+            </div>
             <div className="rounded-t-lg bg-gray-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <div className="flex items-center text-lg font-bold text-gray-900">
-                    Book Title
+                    <span className={`mr-6`}>
+                        <Svg type="library" />
+                    </span>
+                    {props.title}
                 </div>
                 <div>
                     <Input
@@ -50,6 +72,9 @@ export default function BookList(props: PropTypes) {
                         type="text"
                         placeholder="Search"
                     />
+                </div>
+                <div className="flex items-center justify-end text-lg font-bold text-gray-900">
+                    {props.delete && <AddBook />}
                 </div>
             </div>
             {props.list
@@ -77,27 +102,34 @@ export default function BookList(props: PropTypes) {
                                     dataTestid="book-list-read"
                                     template="secondary"
                                     clickHandler={() => {
-                                        dispatch(addBook(book))
+                                        dispatch(
+                                            addBook({
+                                                book,
+                                                libId: props.libId
+                                            })
+                                        )
                                         navigate('/reading')
                                     }}
                                 >
                                     Read
                                 </Button>
-                                <Button
-                                    dataTestid="book-list-delete"
-                                    template="icon"
-                                    svg="delete"
-                                    className="ml-2 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-                                    clickHandler={() => {
-                                        setBook(book)
-                                    }}
-                                />
+                                {props.delete && (
+                                    <Button
+                                        dataTestid="book-list-delete"
+                                        template="icon"
+                                        svg="delete"
+                                        className="ml-2 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+                                        clickHandler={() => {
+                                            setBook(book)
+                                        }}
+                                    />
+                                )}
                             </div>
                         </div>
                     )
                 })}
             {book && (
-                <Modal>
+                <Modal className="max-w-md">
                     <Confirmation
                         bookTile={book.title}
                         clickHandlerCancel={() => setBook(null)}

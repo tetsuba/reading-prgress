@@ -1,4 +1,5 @@
 import { WordTypes } from './Sentence'
+import { HistoryTypes } from '../../store/book/bookSlice'
 
 export const STATUS = {
     CORRECT: 'green',
@@ -70,4 +71,21 @@ export function getReadingMistakes(story: WordType[][]): string[] | [] {
 
 export function getShortDate(): string {
     return new Date().toLocaleDateString('en-UK')
+}
+
+export function updateHistory(
+    history: HistoryTypes[] | null,
+    story: WordType[][]
+) {
+    const newHistory = [
+        {
+            date: getShortDate(),
+            words: getReadingMistakes(story)
+        }
+    ]
+    if (history) {
+        return history.concat(newHistory)
+    }
+    // TODO: Investigate if this is required
+    return newHistory
 }

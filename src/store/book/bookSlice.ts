@@ -8,6 +8,7 @@ export type HistoryTypes = {
 
 export interface BookTypes {
     bookId: string
+    libId: string
     history: HistoryTypes[] | []
     story: string
     title: string
@@ -15,6 +16,7 @@ export interface BookTypes {
 
 const initialState = {
     bookId: '',
+    libId: '',
     history: [],
     story: '',
     title: ''
@@ -25,10 +27,18 @@ export const bookSlice = createSlice({
     initialState,
     reducers: {
         addBook: (state, action) => {
-            state.bookId = action.payload.id
-            state.history = parseBookHistory(action.payload.history)
-            state.story = action.payload.story
-            state.title = action.payload.title
+            const { book, libId } = action.payload
+            const history = book.history
+                ? typeof book.history === 'string'
+                    ? parseBookHistory(book.history)
+                    : book.history
+                : []
+
+            state.bookId = book.id
+            state.history = history
+            state.story = book.story
+            state.title = book.title
+            state.libId = libId
         },
         updateBookHistory: (state, action) => {
             state.history = action.payload

@@ -12,10 +12,13 @@ const mockHistory = [
 ]
 
 const mockBookData = {
-    title: 'mock title',
-    story: 'This is a story. There is, a& story. Their is a story.',
-    id: 1,
-    history: JSON.stringify(mockHistory)
+    book: {
+        title: 'mock title',
+        story: 'This is a story. There is, a& story. Their is a story.',
+        id: 1,
+        history: mockHistory
+    },
+    libId: '002'
 }
 
 describe('Reading', () => {
@@ -27,7 +30,6 @@ describe('Reading', () => {
                 </WrapperWith_Store_Query_Router>
             )
             expect(screen.queryAllByTestId('sentence-block')).toHaveLength(0)
-            expect(screen.getByText('Book:'))
         })
         describe('dispatched with book data', () => {
             beforeEach(() => {
@@ -40,7 +42,7 @@ describe('Reading', () => {
             })
             test('should render 3 sentences and a title', async () => {
                 await waitFor(() =>
-                    expect(screen.getByText(`Book: ${mockBookData.title}`))
+                    expect(screen.getByText(`${mockBookData.book.title}`))
                 )
                 expect(screen.queryAllByTestId('sentence-block')).toHaveLength(
                     3
@@ -59,7 +61,7 @@ describe('Reading', () => {
                     expect.stringContaining('border-green-500')
                 )
             })
-            test('clicking on the show history button', () => {
+            test('clicking on the show history button', async () => {
                 expect(screen.queryAllByTestId('sentence-block')).toHaveLength(
                     3
                 )
@@ -100,8 +102,17 @@ describe('Reading', () => {
                 const mockResponse = {
                     data: [
                         {
-                            ...mockBookData,
-                            history: JSON.stringify(mockHistoryResponse)
+                            id: '001',
+                            books: []
+                        },
+                        {
+                            id: '002',
+                            books: [
+                                {
+                                    ...mockBookData.book,
+                                    history: mockHistoryResponse
+                                }
+                            ]
                         }
                     ]
                 }
@@ -113,6 +124,8 @@ describe('Reading', () => {
                     ).toHaveLength(3)
                 )
                 fireEvent.click(screen.getByText('This'))
+                fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+                fireEvent.click(screen.getByTestId('sentence-back-button'))
                 fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
                 fireEvent.click(screen.queryAllByTestId('sentence-complete')[1])
                 fireEvent.click(screen.queryAllByTestId('sentence-complete')[2])
@@ -127,7 +140,7 @@ describe('Reading', () => {
                     ).toHaveLength(3)
                 )
                 expect(screen.getByText('100% Completed'))
-                fireEvent.click(screen.getByText('Try again'))
+                fireEvent.click(screen.getByTestId('history-back-button'))
                 await waitFor(() =>
                     expect(
                         screen.queryAllByTestId('sentence-block')

@@ -6,7 +6,7 @@ exports[`Dashboard > should render a list of words 1`] = `
     class="bg-white shadow"
   >
     <div
-      class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8"
+      class="mx-auto flex max-w-7xl justify-between py-6 px-4 sm:px-6 lg:px-8"
     >
       <h1
         class="text-3xl font-bold tracking-tight text-gray-900"
@@ -22,95 +22,107 @@ exports[`Dashboard > should render a list of words 1`] = `
       <div
         class="px-4 py-6 sm:px-0"
       >
+        <h3
+          class="text-xl font-medium text-gray-900 dark:text-white mt-10 rounded-t-lg bg-gray-200 p-2"
+        >
+          Words read incorrectly
+        </h3>
         <div
-          class="min-h-96 inline-flex flex-wrap items-center justify-center rounded-lg border-4 border-dashed border-gray-200 p-2"
+          class="min-h-96 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-4 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
+          data-testid="heat-map"
         >
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-100"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(255, 248.625, 248.625);"
           >
             <span
-              class="font-bold text-gray-900 text-gray-900"
+              class="font-bold text-gray-900"
             >
               this
             </span>
-            <span
-              class="ml-4 rounded-full py-1 px-3 text-white "
-            >
-              1
-            </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-100 bg-red-100"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(255, 223.125, 223.125);"
           >
             <span
-              class="font-bold text-gray-900 text-gray-800"
+              class="font-bold text-gray-900"
             >
               that
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white bg-red-300"
+              class="ml-4 rounded-full py-1 px-3 text-white"
+              style="background-color: rgb(223.125, 223.125, 223.125);"
             >
               5
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-200 bg-red-100"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(255, 191.25, 191.25);"
           >
             <span
-              class="font-bold text-gray-900 text-gray-700"
+              class="font-bold text-gray-900"
             >
               would
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white bg-red-400"
+              class="ml-4 rounded-full py-1 px-3 text-white"
+              style="background-color: rgb(191.25, 191.25, 191.25);"
             >
               10
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-300 bg-red-200"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(255, 159.375, 159.375);"
           >
             <span
-              class="font-bold text-gray-900 text-gray-600"
+              class="font-bold text-gray-900"
             >
               dog
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white bg-red-500"
+              class="ml-4 rounded-full py-1 px-3 text-white"
+              style="background-color: rgb(159.375, 159.375, 159.375);"
             >
               15
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-300 bg-red-500"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(255, 127.5, 127.5);"
           >
             <span
-              class="font-bold text-gray-900 text-white"
+              class="font-bold text-gray-900"
             >
               right
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white bg-black"
+              class="ml-4 rounded-full py-1 px-3 text-white"
+              style="background-color: rgb(127.5, 127.5, 127.5);"
             >
               20
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-300 bg-red-500"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(255, 0, 0);"
           >
             <span
-              class="font-bold text-gray-900 text-white"
+              class="font-bold text-white"
             >
               live
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white bg-black"
+              class="ml-4 rounded-full py-1 px-3 text-white"
+              style="background-color: rgb(0, 0, 0);"
             >
               40
             </span>

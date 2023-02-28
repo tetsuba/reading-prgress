@@ -17,15 +17,15 @@ export default function History(props: PropTypes) {
             <div className="flex justify-between">
                 <H3 className="mb-8">{`I read this book ${props.history.length} times`}</H3>
                 <div>
-                    <Button clickHandler={props.restart} template="secondary">
-                        Try again
-                    </Button>
-                    <Link
-                        className={`ml-5 inline-block ${buttonClasses.primary}`}
-                        to="/books"
-                    >
-                        Finished
-                    </Link>
+                    <Button
+                        dataTestid="history-back-button"
+                        title="Back"
+                        svg="back"
+                        template="icon"
+                        type="button"
+                        className={`mb-3 p-2 text-blue-500 hover:border-white hover:bg-gray-100 hover:text-blue-600 focus:outline-none`}
+                        clickHandler={props.restart}
+                    />
                 </div>
             </div>
 
