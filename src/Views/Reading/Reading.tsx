@@ -75,7 +75,7 @@ export default function Reading() {
                     clickHandler={() => navigate('/books')}
                 >
                     <Svg type="back" />
-                    <span className="ml-2">Back</span>
+                    <span className="ml-2">Back to books</span>
                 </Button>
             </Header>
             <main>
@@ -92,23 +92,39 @@ export default function Reading() {
                         )}
                         {!showHistory && book.story && (
                             <>
-                                <div className="flex place-content-between">
+                                <div className="flex justify-end">
+                                    {count >= 1 && (
+                                        <Button
+                                            dataTestid="sentence-back-button"
+                                            title="Back"
+                                            svg="back"
+                                            template="icon"
+                                            type="button"
+                                            className={`mb-3 p-2 hover:border-white hover:bg-gray-100 hover:text-gray-900 focus:outline-none`}
+                                            clickHandler={() =>
+                                                setCount(count - 1)
+                                            }
+                                        />
+                                    )}
+                                    {count < 1 && (
+                                        <Button
+                                            dataTestid="history-button"
+                                            title="View History"
+                                            svg="history"
+                                            template="icon"
+                                            type="button"
+                                            className={`mb-3 p-2 hover:border-white hover:bg-gray-100 hover:text-gray-900 focus:outline-none`}
+                                            clickHandler={() =>
+                                                setShowHistory(true)
+                                            }
+                                        />
+                                    )}
+
                                     <Speech
                                         story={story}
                                         count={count}
                                         setCount={setCount}
                                         setStory={setStory}
-                                    />
-                                    <Button
-                                        dataTestid="history-button"
-                                        title="View History"
-                                        svg="history"
-                                        template="icon"
-                                        type="button"
-                                        className={`mb-3 p-2 hover:border-white hover:bg-gray-100 hover:text-gray-900 focus:outline-none`}
-                                        clickHandler={() =>
-                                            setShowHistory(true)
-                                        }
                                     />
                                 </div>
 

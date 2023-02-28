@@ -42,8 +42,8 @@ export default function Speech(props: PropTypes) {
     }
 
     return (
-        <div className="mb-3 flex w-full place-content-between">
-            <span className="place-self-start pl-8">{speech}</span>
+        <div className="mb-3 flex place-content-between">
+            <span className="place-self-start">{speech}</span>
             <Button
                 dataTestid="speech-button"
                 svg="mic"

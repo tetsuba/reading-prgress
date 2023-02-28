@@ -125,6 +125,8 @@ describe('Reading', () => {
                 )
                 fireEvent.click(screen.getByText('This'))
                 fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+                fireEvent.click(screen.getByTestId('sentence-back-button'))
+                fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
                 fireEvent.click(screen.queryAllByTestId('sentence-complete')[1])
                 fireEvent.click(screen.queryAllByTestId('sentence-complete')[2])
                 await waitFor(() =>
@@ -138,7 +140,7 @@ describe('Reading', () => {
                     ).toHaveLength(3)
                 )
                 expect(screen.getByText('100% Completed'))
-                fireEvent.click(screen.getByText('Try again'))
+                fireEvent.click(screen.getByTestId('history-back-button'))
                 await waitFor(() =>
                     expect(
                         screen.queryAllByTestId('sentence-block')
