@@ -1,9 +1,15 @@
 import { render } from '@testing-library/react'
 import WordHeatMap from '../WordHeatMap'
+import { HeatMapColors } from '../HeatMap'
 
 describe('WordHeatMap', () => {
-    test.each([1, 2, 5, 10, 15, 20])('word index is %i', (index) => {
-        const { asFragment } = render(<WordHeatMap word="heat" index={index} />)
-        expect(asFragment()).toMatchSnapshot()
-    })
+    test.each(['red', 'blue', 'green', 'none'])(
+        'word color is %s',
+        (color: any) => {
+            const { asFragment } = render(
+                <WordHeatMap max={5} word="heat" index={5} color={color} />
+            )
+            expect(asFragment()).toMatchSnapshot()
+        }
+    )
 })

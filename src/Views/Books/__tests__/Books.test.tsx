@@ -10,7 +10,7 @@ import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
 import Books from '../Books'
 import axios from 'axios'
 import { delay } from '../../../lib/utils'
-import {updateViewBookCollection} from "../../../store/view/viewSlice";
+import { updateViewBookCollection } from '../../../store/view/viewSlice'
 import store from '../../../store/store'
 vi.mock('axios')
 
@@ -86,7 +86,6 @@ const mockEventTarget = {
 }
 
 describe('Books View', () => {
-
     beforeEach(async () => {
         // @ts-ignore
         axios.get.mockResolvedValue(mockData)
@@ -101,11 +100,12 @@ describe('Books View', () => {
         await act(() => {
             store.dispatch(updateViewBookCollection(null))
         })
-
     })
     test('opening and closing a collection', async () => {
         fireEvent.click(screen.queryAllByTestId('collection-button')[0])
-        await waitFor(() => expect(screen.getByTestId('book-list')).not.toBeNull())
+        await waitFor(() =>
+            expect(screen.getByTestId('book-list')).not.toBeNull()
+        )
         fireEvent.click(screen.getByTestId('back-button'))
         expect(screen.queryByTestId('book-list')).toBeNull()
     })
@@ -114,7 +114,9 @@ describe('Books View', () => {
         axios.post.mockResolvedValueOnce(mockDataNewBook)
 
         fireEvent.click(screen.getAllByTestId('collection-button')[0])
-        await waitFor(() => expect(screen.getByTestId('book-list')).not.toBeNull())
+        await waitFor(() =>
+            expect(screen.getByTestId('book-list')).not.toBeNull()
+        )
         fireEvent.click(screen.getByText('Add Book'))
         expect(screen.getByTestId('register-book-form'))
         fireEvent.submit(
@@ -134,7 +136,9 @@ describe('Books View', () => {
         // @ts-ignore
         axios.delete.mockResolvedValueOnce(mockData)
         fireEvent.click(screen.getAllByTestId('collection-button')[0])
-        await waitFor(() => expect(screen.getByTestId('book-list')).not.toBeNull())
+        await waitFor(() =>
+            expect(screen.getByTestId('book-list')).not.toBeNull()
+        )
         fireEvent.click(screen.getAllByTestId('book-list-delete')[0])
         expect(screen.getByTestId('modal-confirmation'))
         fireEvent.click(screen.getByTestId('cancel-button'))
@@ -146,13 +150,17 @@ describe('Books View', () => {
     })
     test('clicking on read a book', async () => {
         fireEvent.click(screen.getAllByTestId('collection-button')[0])
-        await waitFor(() => expect(screen.getByTestId('book-list')).not.toBeNull())
+        await waitFor(() =>
+            expect(screen.getByTestId('book-list')).not.toBeNull()
+        )
         fireEvent.click(screen.getAllByTestId('book-list-read')[0])
         await waitFor(() => expect(mockNavigate).toHaveBeenCalled())
     })
     test('will search for a book title', async () => {
         fireEvent.click(screen.getAllByTestId('collection-button')[0])
-        await waitFor(() => expect(screen.getByTestId('book-list')).not.toBeNull())
+        await waitFor(() =>
+            expect(screen.getByTestId('book-list')).not.toBeNull()
+        )
         fireEvent.change(screen.getByTestId('search'), {
             target: { value: 'titleBook 2' }
         })

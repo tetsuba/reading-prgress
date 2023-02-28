@@ -41,31 +41,29 @@ exports[`SightWords > will render groups of sight words 1`] = `
           data-testid="heat-map"
         >
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-100"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(255, 204, 204);"
           >
             <span
-              class="font-bold text-gray-900 text-gray-900"
+              class="font-bold text-gray-900"
             >
               this
             </span>
-            <span
-              class="ml-4 rounded-full py-1 px-3 text-white "
-            >
-              1
-            </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-100 bg-red-100"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(255, 0, 0);"
           >
             <span
-              class="font-bold text-gray-900 text-gray-800"
+              class="font-bold text-white"
             >
               that
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white bg-red-300"
+              class="ml-4 rounded-full py-1 px-3 text-white"
+              style="background-color: rgb(0, 0, 0);"
             >
               5
             </span>
@@ -81,46 +79,46 @@ exports[`SightWords > will render groups of sight words 1`] = `
           data-testid="heat-map"
         >
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-100"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(229.5, 242.25, 255);"
           >
             <span
-              class="font-bold text-gray-900 text-gray-900"
+              class="font-bold text-gray-900"
             >
               this
             </span>
-            <span
-              class="ml-4 rounded-full py-1 px-3 text-white "
-            >
-              1
-            </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-100 bg-red-100"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(127.5, 191.25, 255);"
           >
             <span
-              class="font-bold text-gray-900 text-gray-800"
+              class="font-bold text-gray-900"
             >
               that
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white bg-red-300"
+              class="ml-4 rounded-full py-1 px-3 text-white"
+              style="background-color: rgb(127.5, 127.5, 127.5);"
             >
               5
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-200 bg-red-100"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(0, 127.5, 255);"
           >
             <span
-              class="font-bold text-gray-900 text-gray-700"
+              class="font-bold text-white"
             >
               would
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white bg-red-400"
+              class="ml-4 rounded-full py-1 px-3 text-white"
+              style="background-color: rgb(0, 0, 0);"
             >
               10
             </span>
@@ -136,61 +134,63 @@ exports[`SightWords > will render groups of sight words 1`] = `
           data-testid="heat-map"
         >
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-100"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(238, 249.33333333333334, 238);"
           >
             <span
-              class="font-bold text-gray-900 text-gray-900"
+              class="font-bold text-gray-900"
             >
               this
             </span>
-            <span
-              class="ml-4 rounded-full py-1 px-3 text-white "
-            >
-              1
-            </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-100 bg-red-100"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(170, 226.66666666666666, 170);"
           >
             <span
-              class="font-bold text-gray-900 text-gray-800"
+              class="font-bold text-gray-900"
             >
               that
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white bg-red-300"
+              class="ml-4 rounded-full py-1 px-3 text-white"
+              style="background-color: rgb(170, 170, 170);"
             >
               5
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-200 bg-red-100"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(85, 198.33333333333334, 85);"
           >
             <span
-              class="font-bold text-gray-900 text-gray-700"
+              class="font-bold text-white"
             >
               would
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white bg-red-400"
+              class="ml-4 rounded-full py-1 px-3 text-white"
+              style="background-color: rgb(85, 85, 85);"
             >
               10
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-300 bg-red-200"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(0, 170, 0);"
           >
             <span
-              class="font-bold text-gray-900 text-gray-600"
+              class="font-bold text-white"
             >
               dog
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white bg-red-500"
+              class="ml-4 rounded-full py-1 px-3 text-white"
+              style="background-color: rgb(0, 0, 0);"
             >
               15
             </span>
@@ -206,31 +206,35 @@ exports[`SightWords > will render groups of sight words 1`] = `
           data-testid="heat-map"
         >
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-300 bg-red-500"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(230, 230, 230);"
           >
             <span
-              class="font-bold text-gray-900 text-white"
+              class="font-bold text-gray-900"
             >
               right
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white bg-black"
+              class="ml-4 rounded-full py-1 px-3 text-white"
+              style="background-color: rgb(127.5, 127.5, 127.5);"
             >
               20
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3 border-gray-300 bg-red-500"
+            class="m-6 rounded-2xl border-2 p-3"
             data-testid="heat-map-word"
+            style="background-color: rgb(230, 230, 230);"
           >
             <span
-              class="font-bold text-gray-900 text-white"
+              class="font-bold text-gray-900"
             >
               live
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white bg-black"
+              class="ml-4 rounded-full py-1 px-3 text-white"
+              style="background-color: rgb(0, 0, 0);"
             >
               40
             </span>

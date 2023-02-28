@@ -32,24 +32,28 @@ export default function SightWords() {
                         {isSuccess && (
                             <>
                                 <HeatMap
+                                    color="red"
                                     words={data.data.sightWordsReadWrong}
                                     search={search}
                                 >
                                     Sight Words Read Incorrectly
                                 </HeatMap>
                                 <HeatMap
+                                    color="blue"
                                     words={data.data.sightWordsReadInBooks}
                                     search={search}
                                 >
                                     Sight Words Read In Books
                                 </HeatMap>
                                 <HeatMap
+                                    color="green"
                                     words={data.data.sightWordsFromBooks}
                                     search={search}
                                 >
                                     Sight Words In Books
                                 </HeatMap>
                                 <HeatMap
+                                    color="none"
                                     words={data.data.sightWordsNotInBooks}
                                     search={search}
                                 >

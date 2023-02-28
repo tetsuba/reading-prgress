@@ -1,5 +1,7 @@
-import WordHeatMap, { WordHeatMapTypes } from './WordHeatMap'
+import WordHeatMap from './WordHeatMap'
 import H3 from '../H3/H3'
+
+export type HeatMapColors = 'red' | 'blue' | 'green' | 'none'
 
 type WordTypes = {
     word: string
@@ -10,17 +12,25 @@ type PropTypes = {
     words: WordTypes[]
     search: string
     children: string
+    color: HeatMapColors
 }
 
 export default function HeatMap(props: PropTypes) {
+    const max = props.words.reduce(
+        (max, word) => (max > word.index ? max : word.index),
+        0
+    )
+
     function sightWords(words: WordTypes) {
         const regEx = new RegExp(props.search.toLowerCase(), 'g')
         return regEx.test(words.word.toLowerCase())
     }
 
-    function heatMap(words: WordHeatMapTypes, i: number) {
+    function heatMap(words: WordTypes, i: number) {
         return (
             <WordHeatMap
+                color={props.color}
+                max={max}
                 key={`word-${i}`}
                 word={words.word}
                 index={words.index}

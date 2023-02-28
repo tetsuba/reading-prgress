@@ -73,7 +73,10 @@ export function getShortDate(): string {
     return new Date().toLocaleDateString('en-UK')
 }
 
-export function updateHistory(history: HistoryTypes[], story: WordType[][]) {
+export function updateHistory(
+    history: HistoryTypes[] | null,
+    story: WordType[][]
+) {
     const newHistory = [
         {
             date: getShortDate(),
