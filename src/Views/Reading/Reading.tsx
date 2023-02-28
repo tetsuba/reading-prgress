@@ -17,8 +17,11 @@ import Sentence from './Sentence'
 import History from './History'
 import Speech from '../../Components/Speech/Speech'
 import Header from '../../Components/Header/Header'
+import Svg from '../../Components/Svg/Svg'
+import { useNavigate } from 'react-router-dom'
 
 export default function Reading() {
+    const navigate = useNavigate()
     const queryClient = useQueryClient()
     const dispatch = useDispatch()
     // SELECTORS
@@ -64,7 +67,17 @@ export default function Reading() {
 
     return (
         <>
-            <Header text={`Book: ${book.title}`} />
+            <Header text={`${book.title}`}>
+                <Button
+                    className="flex"
+                    dataTestid="back-button"
+                    template="secondary"
+                    clickHandler={() => navigate('/books')}
+                >
+                    <Svg type="back" />
+                    <span className="ml-2">Back</span>
+                </Button>
+            </Header>
             <main>
                 <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
                     <div className="px-4 py-6 sm:px-0">

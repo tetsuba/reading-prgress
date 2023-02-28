@@ -2,7 +2,7 @@ import { render, screen, waitFor, act, fireEvent } from '@testing-library/react'
 import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
 import Reading from '../Reading'
 import store from '../../../store/store'
-import { addBook, updateBookHistory } from '../../../store/book/bookSlice'
+import { addBook } from '../../../store/book/bookSlice'
 import axios from 'axios'
 vi.mock('axios')
 
@@ -30,7 +30,6 @@ describe('Reading', () => {
                 </WrapperWith_Store_Query_Router>
             )
             expect(screen.queryAllByTestId('sentence-block')).toHaveLength(0)
-            expect(screen.getByText('Book:'))
         })
         describe('dispatched with book data', () => {
             beforeEach(() => {
@@ -43,7 +42,7 @@ describe('Reading', () => {
             })
             test('should render 3 sentences and a title', async () => {
                 await waitFor(() =>
-                    expect(screen.getByText(`Book: ${mockBookData.book.title}`))
+                    expect(screen.getByText(`${mockBookData.book.title}`))
                 )
                 expect(screen.queryAllByTestId('sentence-block')).toHaveLength(
                     3
