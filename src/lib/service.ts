@@ -115,7 +115,6 @@ export async function updateTracker(json: {
     bookId: number
     history: HistoryTypes[]
 }) {
-    console.log('updateTracker:', json)
     const token = ls.get()
     return await axios.patch(`${URL_TRACKER}/update`, JSON.stringify(json), {
         headers: {
