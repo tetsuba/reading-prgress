@@ -1,6 +1,11 @@
 import Header from '../Components/Header/Header'
+import Input from '../Components/Form/Input'
+import Label from '../Components/Form/Label'
+import { useSelector } from 'react-redux'
+import { userSelector } from '../store/user/userSelectors'
 
 export default function Profile() {
+    const userProfile = useSelector(userSelector)
     return (
         <>
             <Header text="Profile" />
@@ -21,74 +26,46 @@ export default function Profile() {
                                     </div>
                                 </div>
                                 <div className="mt-5 md:col-span-2 md:mt-0">
-                                    <form action="#" method="POST">
-                                        <div className="shadow sm:overflow-hidden sm:rounded-md">
-                                            <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
-                                                <div className="grid grid-cols-3 gap-6">
-                                                    <div className="col-span-3 sm:col-span-2">
-                                                        <div className="mt-1 flex rounded-md shadow-sm">
-                                                            <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
-                                                                First Name:
-                                                            </span>
-                                                            <input
-                                                                type="text"
-                                                                name="company-website"
-                                                                id="company-website"
-                                                                className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                                                placeholder="Bob"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="grid grid-cols-3 gap-6">
-                                                    <div className="col-span-3 sm:col-span-2">
-                                                        <div className="mt-1 flex rounded-md shadow-sm">
-                                                            <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
-                                                                Last Name:
-                                                            </span>
-                                                            <input
-                                                                type="text"
-                                                                name="company-website"
-                                                                id="company-website"
-                                                                className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                                                placeholder="Bob"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="grid grid-cols-3 gap-6">
-                                                    <div className="col-span-3 sm:col-span-2">
-                                                        <div className="mt-1 flex rounded-md shadow-sm">
-                                                            <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
-                                                                Email
-                                                            </span>
-                                                            <input
-                                                                type="text"
-                                                                name="company-website"
-                                                                id="company-website"
-                                                                className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                                                placeholder="Bob"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="grid grid-cols-3 gap-6">
-                                                    <div className="col-span-3 sm:col-span-2">
-                                                        <div className="mt-1 flex rounded-md shadow-sm">
-                                                            <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
-                                                                Password
-                                                            </span>
-                                                            <input
-                                                                type="text"
-                                                                name="company-website"
-                                                                id="company-website"
-                                                                className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                                                placeholder="Bob"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <form
+                                        data-testid="register-form"
+                                        className="space-y-6"
+                                    >
+                                        <div>
+                                            <Label htmlFor="firstName">
+                                                First Name:
+                                            </Label>
+                                            <Input
+                                                type="text"
+                                                name="firstName"
+                                                placeholder={
+                                                    userProfile.firstname
+                                                }
+                                                readonly
+                                            />
+                                        </div>
+                                        <div>
+                                            <Label htmlFor="lastName">
+                                                Last Name:
+                                            </Label>
+                                            <Input
+                                                type="text"
+                                                name="lastName"
+                                                placeholder={
+                                                    userProfile.lastname
+                                                }
+                                                readonly
+                                            />
+                                        </div>
+                                        <div>
+                                            <Label htmlFor="email">
+                                                Your email:
+                                            </Label>
+                                            <Input
+                                                type="email"
+                                                name="email"
+                                                placeholder={userProfile.email}
+                                                readonly
+                                            />
                                         </div>
                                     </form>
                                 </div>
