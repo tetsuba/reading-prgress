@@ -15,6 +15,7 @@ import Dashboard from './Views/Dashboard/Dashboard'
 import Profile from './Views/Profile'
 import Books from './Views/Books/Books'
 import SightWords from './Views/SightWords/SightWords'
+import Footer from './Components/Footer/Footer'
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -81,6 +82,7 @@ function App() {
                                 />
                             </Routes>
                         </FirstLoad>
+                        <Footer />
                     </BrowserRouter>
                 </QueryClientProvider>
             </Provider>
