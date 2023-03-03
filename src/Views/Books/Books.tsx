@@ -1,9 +1,10 @@
-import Header from '../../Components/Header/Header'
-
 import { useQuery } from 'react-query'
 import { useSelector } from 'react-redux'
 import { userIdSelector } from '../../store/user/userSelectors'
 import { getBooks } from '../../lib/service'
+
+// COMPONENTS
+import Header from '../../Components/Header/Header'
 import BookCollectionList from './BookCollectionList'
 
 export default function Books() {

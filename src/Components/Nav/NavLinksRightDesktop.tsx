@@ -34,13 +34,13 @@ export default function NavLinksRightDesktop() {
                                 clickHandler={() => setShowMenu(!showMenu)}
                                 type="button"
                                 className="rounded-full bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                                id="user-menu-button"
                                 aria-expanded="false"
                                 aria-haspopup="true"
                             />
                         ) : (
                             <>
                                 <Button
+                                    type="button"
                                     clickHandler={() => setShowLogin(true)}
                                     template="secondary"
                                 >
@@ -70,6 +70,7 @@ export default function NavLinksRightDesktop() {
                                 Settings
                             </NavLink>
                             <Button
+                                type="button"
                                 template="none"
                                 clickHandler={() => {
                                     setShowMenu(!showMenu)

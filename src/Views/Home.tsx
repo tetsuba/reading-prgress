@@ -42,6 +42,7 @@ const Home = () => {
                             </P>
                             <div className="mt-8 flex gap-x-4 sm:justify-center">
                                 <Button
+                                    type="button"
                                     template="primary"
                                     clickHandler={() => setShowLogin(true)}
                                 >
@@ -55,6 +56,7 @@ const Home = () => {
                                 </Button>
 
                                 <Button
+                                    type="button"
                                     template="secondary"
                                     clickHandler={() => navigate('/register')}
                                 >

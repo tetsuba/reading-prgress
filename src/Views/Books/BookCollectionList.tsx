@@ -1,7 +1,7 @@
 import Svg from '../../Components/Svg/Svg'
 import Button from '../../Components/Button/Button'
 import BookList, { BookTypes } from './BookList'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { viewBooksSelector } from '../../store/view/viewSelectors'
 import { updateViewBookCollection } from '../../store/view/viewSlice'
@@ -45,10 +45,11 @@ export default function BookCollectionList(props: PropTypes) {
                             <span className={`mr-6`}>
                                 <Svg type="library" />
                             </span>{' '}
-                            {collection.title}
+                            {collection.title} ({collection.books.length})
                         </div>
                         <div className="mt-1 flex justify-end text-sm text-gray-900 sm:mt-0">
                             <Button
+                                type="button"
                                 className="flex"
                                 dataTestid="collection-button"
                                 template="secondary"

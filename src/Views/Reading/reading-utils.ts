@@ -1,5 +1,6 @@
 import { WordTypes } from './Sentence'
-import { HistoryTypes } from '../../store/book/bookSlice'
+import { BookTypes, HistoryTypes } from '../../store/book/bookSlice'
+import { CollectionTypes } from '../../store/view/viewSlice'
 
 export const STATUS = {
     CORRECT: 'green',
@@ -88,4 +89,35 @@ export function updateHistory(
     }
     // TODO: Investigate if this is required
     return newHistory
+}
+
+export function findBookHistory(
+    collections: CollectionTypes[],
+    book: BookTypes
+) {
+    // @ts-ignore
+    return collections
+        .find(({ id }) => id === book.libId)
+        .books.find(({ id }) => id === book.bookId).history
+}
+
+export function isReadingCompleted(
+    story: WordType[][],
+    count: number
+): boolean {
+    return !!story.length && story.length <= count
+}
+
+export function prepareTrackerData(
+    userId: number,
+    book: BookTypes,
+    story: WordType[][]
+) {
+    const history = updateHistory(book.history, story)
+    return {
+        userId,
+        bookId: book.bookId,
+        libId: book.libId,
+        history: history
+    }
 }

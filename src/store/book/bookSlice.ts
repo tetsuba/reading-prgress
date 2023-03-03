@@ -7,7 +7,7 @@ export type HistoryTypes = {
 }
 
 export interface BookTypes {
-    bookId: string
+    bookId: number
     libId: string
     history: HistoryTypes[] | []
     story: string
@@ -15,7 +15,7 @@ export interface BookTypes {
 }
 
 const initialState = {
-    bookId: '',
+    bookId: 0,
     libId: '',
     history: [],
     story: '',
