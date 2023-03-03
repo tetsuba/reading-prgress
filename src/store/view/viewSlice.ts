@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { BookTypes } from '../../Views/Books/BookList'
 
-type CollectionTypes = {
+export type CollectionTypes = {
     id: string
     title: string
     description: string
@@ -10,7 +10,6 @@ type CollectionTypes = {
 
 type BooksViewTypes = {
     collection: CollectionTypes | null
-    viewCollection: boolean
 }
 
 export interface ViewTypes {
@@ -19,8 +18,7 @@ export interface ViewTypes {
 
 const initialState = {
     books: {
-        collection: null,
-        viewCollection: true
+        collection: null
     }
 } as ViewTypes
 

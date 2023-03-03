@@ -1,7 +1,14 @@
 import { useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux'
-import { buildStoryStructure, STATUS, updateHistory } from './reading-utils'
+import {
+    buildStoryStructure,
+    findBookHistory,
+    isReadingCompleted,
+    prepareTrackerData,
+    STATUS,
+    updateHistory
+} from './reading-utils'
 
 // SERVICE
 import { updateTracker } from '../../lib/service'
@@ -19,6 +26,7 @@ import Speech from '../../Components/Speech/Speech'
 import Header from '../../Components/Header/Header'
 import Svg from '../../Components/Svg/Svg'
 import { useNavigate } from 'react-router-dom'
+import ScrollTo from '../../Components/ScrollTo/ScrollTo'
 
 export default function Reading() {
     const navigate = useNavigate()
@@ -36,39 +44,26 @@ export default function Reading() {
         onSuccess: async (data) => {
             queryClient.setQueryData(['books', userId], data)
             await queryClient.invalidateQueries(['words'])
-            const collection = data.data.filter(
-                ({ id }: { id: number }) => id === book.libId
-            )
-
-            const books = collection[0].books.filter(
-                ({ id }: { id: number }) => id === book.bookId
-            )
-            dispatch(updateBookHistory(books[0].history))
+            const history = findBookHistory(data.data, book)
+            dispatch(updateBookHistory(history))
         },
         onSettled() {
             setShowHistory(true)
         }
     })
 
-    const completed = story.length <= count
-
-    if (story.length && completed) {
+    if (isReadingCompleted(story, count)) {
         setStory(buildStoryStructure(book.story))
         setCount(0)
-        const history = updateHistory(book.history, story)
-        const data = {
-            userId,
-            bookId: book.bookId,
-            libId: book.libId,
-            history: history
-        }
-        mutation.mutate(data)
+        mutation.mutate(prepareTrackerData(userId, book, story))
     }
 
     return (
         <>
+            <ScrollTo top={0} />
             <Header text={`${book.title}`}>
                 <Button
+                    type="button"
                     className="flex"
                     dataTestid="back-button"
                     template="secondary"
@@ -93,6 +88,12 @@ export default function Reading() {
                         {!showHistory && book.story && (
                             <>
                                 <div className="flex justify-end">
+                                    <Speech
+                                        story={story}
+                                        count={count}
+                                        setCount={setCount}
+                                        setStory={setStory}
+                                    />
                                     {count >= 1 && (
                                         <Button
                                             dataTestid="sentence-back-button"
@@ -119,13 +120,6 @@ export default function Reading() {
                                             }
                                         />
                                     )}
-
-                                    <Speech
-                                        story={story}
-                                        count={count}
-                                        setCount={setCount}
-                                        setStory={setStory}
-                                    />
                                 </div>
 
                                 {story.map((sentence, index) => {

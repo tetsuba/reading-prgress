@@ -5,14 +5,26 @@ import Dashboard from '../Dashboard'
 vi.mock('axios')
 
 const mockData = {
-    data: [
-        { word: 'this', index: 1 },
-        { word: 'that', index: 5 },
-        { word: 'would', index: 10 },
-        { word: 'dog', index: 15 },
-        { word: 'right', index: 20 },
-        { word: 'live', index: 40 }
-    ]
+    data: {
+        lastBookRead: [
+            { date: '12/12/2023', title: 'The Perfect Pet', words: [] },
+            { date: '12/12/2023', title: 'Double Trouble', words: ['there'] }
+        ],
+        readIncorrectly: {
+            oneWeekAgo: [
+                { word: 'this', index: 1 },
+                { word: 'that', index: 5 }
+            ],
+            oneMonthAgo: [
+                { word: 'would', index: 10 },
+                { word: 'dog', index: 15 }
+            ],
+            history: [
+                { word: 'right', index: 20 },
+                { word: 'live', index: 40 }
+            ]
+        }
+    }
 }
 
 describe('Dashboard', () => {

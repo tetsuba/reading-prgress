@@ -1,7 +1,7 @@
 import Svg, { SvgTypes } from '../Svg/Svg'
 
 type ChildrenTypes = string | JSX.Element
-type ButtonTemplateTypes =
+export type ButtonTemplateTypes =
     | 'icon'
     | 'primary'
     | 'none'
@@ -12,8 +12,7 @@ type ButtonTemplateTypes =
 type PropTypes = {
     children?: ChildrenTypes | ChildrenTypes[]
     clickHandler?: () => void
-    id?: string
-    type?: 'button' | 'submit' | 'reset'
+    type: 'button' | 'submit' | 'reset'
     svg?: SvgTypes
     className?: string
     dataTestid?: string
@@ -34,9 +33,6 @@ export const buttonClasses: { [k: string]: string } = {
 
 export default function Button(props: PropTypes) {
     const buttonClassNames = buttonClasses[props.template]
-        ? buttonClasses[props.template]
-        : ''
-
     const classNames = props.className ? props.className : ''
 
     return (
@@ -45,7 +41,6 @@ export default function Button(props: PropTypes) {
             data-testid={props.dataTestid}
             onClick={props.clickHandler}
             className={`${buttonClassNames} ${classNames}`}
-            id={props.id}
             type={props.type}
         >
             {props.svg ? <Svg type={props.svg} /> : props.children}
