@@ -19,6 +19,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "types": [
+      "vitest/globals"
+    ],
     "emitDeclarationOnly": false,
     "incremental": true,
     "tsBuildInfoFile": "/Users/tetsuba/Sites/Tetsuba/reading-progress/node_modules/vitest/dist/tsconfig.tmp.tsbuildinfo"
