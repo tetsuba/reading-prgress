@@ -20,6 +20,7 @@ export default function Word(props: PropTypes) {
     }
     return (
         <Button
+            type="button"
             template="none"
             className={`mr-5 inline-block cursor-pointer border-b-2 transition-all duration-300 ${border}`}
             key={`button--${props.index}`}

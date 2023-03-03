@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "lint": "eslint \"src/**/*.{js,ts,tsx}\" --quiet",
+    "pretest": "npm run format && npm run lint",
     "test": "vitest",
     "test:cov": "vitest run --coverage",
     "typecheck": "vitest typecheck"

@@ -61,6 +61,7 @@ export default function RegisterBookForm(props: PropTypes) {
                     </div>
                     <div className="px-4 py-3 text-right">
                         <Button
+                            type="button"
                             template="secondary"
                             clickHandler={props.clickHandlerCancel}
                         >

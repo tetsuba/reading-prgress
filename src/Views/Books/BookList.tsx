@@ -48,6 +48,7 @@ export default function BookList(props: PropTypes) {
         <div data-testid="book-list">
             <div className="flex justify-end">
                 <Button
+                    type="button"
                     className="mb-6 mr-6 flex"
                     dataTestid="back-button"
                     template="primary"
@@ -99,6 +100,7 @@ export default function BookList(props: PropTypes) {
                             <div className="mt-1 text-sm text-gray-900 sm:mt-0"></div>
                             <div className="mt-1 flex justify-end text-sm text-gray-900 sm:mt-0">
                                 <Button
+                                    type="button"
                                     dataTestid="book-list-read"
                                     template="secondary"
                                     clickHandler={() => {
@@ -115,6 +117,7 @@ export default function BookList(props: PropTypes) {
                                 </Button>
                                 {props.delete && (
                                     <Button
+                                        type="button"
                                         dataTestid="book-list-delete"
                                         template="icon"
                                         svg="delete"
