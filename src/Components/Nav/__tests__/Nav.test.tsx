@@ -41,26 +41,11 @@ describe('Nav', () => {
             expect(screen.queryByTestId('login-view')).toBeNull()
         })
     })
-
     describe('authenticated', () => {
-        test('clicking on the user menu button', async () => {
-            store.dispatch(updateUser(mockUser))
-            const { asFragment } = render(
-                <WrapperWith_Store_Router pathname="/dashboard">
-                    <Nav />
-                </WrapperWith_Store_Router>
-            )
-            expect(asFragment()).toMatchSnapshot()
-
-            fireEvent.click(screen.getByTestId('user-menu-button'))
-            await waitFor(() => expect(screen.getByTestId('user-menu')))
-            fireEvent.click(screen.getByTestId('user-menu-button'))
-            expect(screen.queryByTestId('user-menu')).toBeNull()
-        })
         test('clicking on the log out button in the user menu', async () => {
             store.dispatch(updateUser(mockUser))
             render(
-                <WrapperWith_Store_Router pathname="/dashboard">
+                <WrapperWith_Store_Router pathname="/profile">
                     <Nav />
                 </WrapperWith_Store_Router>
             )

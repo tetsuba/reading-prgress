@@ -6,6 +6,7 @@ type PropTypes = {
     value?: string
     onChangeHandler?: (value: string) => void
     dataTestId?: string
+    readonly?: boolean
 }
 
 const sharedClasses =
@@ -34,6 +35,7 @@ export default function Input(props: PropTypes) {
             placeholder={props.placeholder}
             required
             type={props.type}
+            readOnly={props.readonly}
         />
     )
 }
