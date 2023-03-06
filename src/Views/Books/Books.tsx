@@ -10,7 +10,6 @@ import BookCollectionList from './BookCollectionList'
 export default function Books() {
     const userId = useSelector(userIdSelector)
     const { data, isSuccess } = useQuery(['books', userId], getBooks)
-
     return (
         <div>
             <Header text="Books" />

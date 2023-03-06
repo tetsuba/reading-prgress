@@ -45,7 +45,3 @@ export function mutateRegisterBookData(target: any, userId: string) {
         story: target.story.value
     }
 }
-
-export function parseBookHistory(history: string | null) {
-    return history ? JSON.parse(history) : []
-}

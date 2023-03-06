@@ -78,15 +78,15 @@ export async function deleteBook(query: string) {
     })
 }
 
-export async function updateBook(json: { id: number; history: string }) {
-    const token = ls.get()
-    return await axios.patch(`${URL_BOOK}/update`, JSON.stringify(json), {
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `bearer ${token}`
-        }
-    })
-}
+// export async function updateBook(json: { id: number; history: string }) {
+//     const token = ls.get()
+//     return await axios.patch(`${URL_BOOK}/update`, JSON.stringify(json), {
+//         headers: {
+//             'Content-Type': 'application/json',
+//             Authorization: `bearer ${token}`
+//         }
+//     })
+// }
 export async function getWords(props: GetBookPropTypes) {
     const token = ls.get()
     const [_key, userId] = props.queryKey
