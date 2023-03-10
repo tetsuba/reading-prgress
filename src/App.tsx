@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { Provider } from 'react-redux'
+import {Provider} from 'react-redux'
 import store from './store/store'
 
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
