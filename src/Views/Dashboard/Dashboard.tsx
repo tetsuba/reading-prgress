@@ -7,6 +7,7 @@ import { getWords } from '../../lib/service'
 import Header from '../../Components/Header/Header'
 import HeatMap from '../../Components/HeatMap/HeatMap'
 import Banner from '../../Components/Banner/Banner'
+import Loading from '../../Components/Loading/Loading'
 
 type LastBookReadTypes = {
     words: string[]
@@ -16,9 +17,13 @@ type LastBookReadTypes = {
 
 export default function Dashboard() {
     const userId = useSelector(userIdSelector)
-    const { data, isSuccess } = useQuery(['words', userId], getWords)
+    const { data, isSuccess, isLoading } = useQuery(['words', userId], getWords)
     const getColor = (book: LastBookReadTypes) =>
         book.words.length ? 'red' : 'green'
+
+    if (isLoading) {
+        return <Loading />
+    }
     return (
         <>
             <Header text="Dashboard" />

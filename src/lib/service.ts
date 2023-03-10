@@ -1,9 +1,9 @@
 import axios from 'axios'
 import store from '../store/store'
-import {updateUser} from '../store/user/userSlice'
+import { updateUser } from '../store/user/userSlice'
 import ls from './localStorage'
 import { HistoryTypes } from '../store/book/bookSlice'
-import {toggleViewGlobalExpired} from "../store/view/viewSlice";
+import { toggleViewGlobalExpired } from '../store/view/viewSlice'
 
 let origin
 /* c8 ignore next 6 */
@@ -24,17 +24,20 @@ const URL_SIGHT_WORDS = BASE_URL + 'sightWords'
 const URL_TRACKER = BASE_URL + 'tracker'
 const URL_TRACKER_WORDS = URL_TRACKER + '/words'
 
-axios.interceptors.response.use(function (response) {
-    return response;
-}, function (error) {
-    if (error.response.status === 401) {
-        // Unauthorized
-        store.dispatch(toggleViewGlobalExpired(true))
+axios.interceptors.response.use(
+    function (response) {
+        return response
+    },
+    function (error) {
+        if (error.response.status === 401) {
+            // Unauthorized
+            store.dispatch(toggleViewGlobalExpired(true))
+        }
+        // Any status codes that falls outside the range of 2xx cause this function to trigger
+        // Do something with response error
+        return Promise.reject(error)
     }
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
-    return Promise.reject(error);
-});
+)
 
 export async function registerUser(queryString: string) {
     return await axios.post(URL_REGISTER + queryString)
@@ -100,8 +103,6 @@ export async function registerBook(json: { [k: string]: string | undefined }) {
     })
 }
 
-
-
 export async function deleteBook(query: string) {
     const token = ls.get()
     return await axios.delete(`${URL_BOOK}/delete${query}`, {
@@ -110,8 +111,6 @@ export async function deleteBook(query: string) {
         }
     })
 }
-
-
 
 export async function updateTracker(json: {
     userId: number

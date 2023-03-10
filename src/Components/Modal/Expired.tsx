@@ -1,5 +1,5 @@
-import {useDispatch} from "react-redux"
-import {resetUserToInitialState} from "../../store/user/userSlice"
+import { useDispatch } from 'react-redux'
+import { resetUserToInitialState } from '../../store/user/userSlice'
 import ls from '../../lib/localStorage'
 
 // COMPONENTS
@@ -7,7 +7,7 @@ import Svg from '../Svg/Svg'
 import H3 from '../H3/H3'
 import P from '../P/P'
 import Button from '../Button/Button'
-import {toggleViewGlobalExpired} from "../../store/view/viewSlice";
+import { toggleViewGlobalExpired } from '../../store/view/viewSlice'
 
 export default function Expired() {
     const dispatch = useDispatch()
@@ -25,8 +25,8 @@ export default function Expired() {
                         <H3>Session Expired</H3>
                         <div className="mt-2">
                             <P className="text-sm text-gray-500">
-                                Your session has expired. Please log back in
-                                to gain access to your account.
+                                Your session has expired. Please log back in to
+                                gain access to your account.
                             </P>
                         </div>
                     </div>

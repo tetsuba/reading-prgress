@@ -1,11 +1,18 @@
-import {render, screen, waitFor, act, fireEvent, waitForElementToBeRemoved} from '@testing-library/react'
+import {
+    render,
+    screen,
+    waitFor,
+    act,
+    fireEvent,
+    waitForElementToBeRemoved
+} from '@testing-library/react'
 import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
 import FirstLoad from '../FirstLoad'
 import { Routes, Route } from 'react-router-dom'
 import localStorage from '../../../lib/localStorage'
 import axios from 'axios'
-import store from "../../../store/store";
-import {toggleViewGlobalExpired} from "../../../store/view/viewSlice";
+import store from '../../../store/store'
+import { toggleViewGlobalExpired } from '../../../store/view/viewSlice'
 
 vi.mock('axios')
 
@@ -128,6 +135,8 @@ describe('FirstLoad', () => {
 
         await waitFor(() => expect(screen.getByTestId('modal-expired')))
         fireEvent.click(screen.getByTestId('expired-button'))
-        await waitFor(() => expect(screen.queryByTestId('modal-expired')).toBeNull())
+        await waitFor(() =>
+            expect(screen.queryByTestId('modal-expired')).toBeNull()
+        )
     })
 })

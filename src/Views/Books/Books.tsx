@@ -6,10 +6,15 @@ import { getBooks } from '../../lib/service'
 // COMPONENTS
 import Header from '../../Components/Header/Header'
 import BookCollectionList from './BookCollectionList'
+import Loading from '../../Components/Loading/Loading'
 
 export default function Books() {
     const userId = useSelector(userIdSelector)
-    const { data, isSuccess } = useQuery(['books', userId], getBooks)
+    const { data, isSuccess, isLoading } = useQuery(['books', userId], getBooks)
+
+    if (isLoading) {
+        return <Loading />
+    }
     return (
         <div>
             <Header text="Books" />

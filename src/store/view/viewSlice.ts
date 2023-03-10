@@ -44,6 +44,7 @@ export const viewSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { updateViewBookCollection, toggleViewGlobalExpired } = viewSlice.actions
+export const { updateViewBookCollection, toggleViewGlobalExpired } =
+    viewSlice.actions
 
 export default viewSlice.reducer

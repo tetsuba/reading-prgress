@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import store from './store/store'
 
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
@@ -16,6 +16,7 @@ import Profile from './Views/Profile'
 import Books from './Views/Books/Books'
 import SightWords from './Views/SightWords/SightWords'
 import Footer from './Components/Footer/Footer'
+import Settings from './Views/Settings'
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -77,6 +78,14 @@ function App() {
                                     element={
                                         <ProtectedRoute>
                                             <SightWords />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/settings"
+                                    element={
+                                        <ProtectedRoute>
+                                            <Settings />
                                         </ProtectedRoute>
                                     }
                                 />

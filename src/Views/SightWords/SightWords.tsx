@@ -8,12 +8,19 @@ import { getSightWords } from '../../lib/service'
 import Header from '../../Components/Header/Header'
 import Input from '../../Components/Form/Input'
 import HeatMap from '../../Components/HeatMap/HeatMap'
+import Loading from '../../Components/Loading/Loading'
 
 export default function SightWords() {
     const userId = useSelector(userIdSelector)
     const [search, setSearch] = useState('')
-    const { data, isSuccess } = useQuery(['sightWords', userId], getSightWords)
+    const { data, isSuccess, isLoading } = useQuery(
+        ['sightWords', userId],
+        getSightWords
+    )
 
+    if (isLoading) {
+        return <Loading />
+    }
     return (
         <>
             <Header text="Sight Words" />
