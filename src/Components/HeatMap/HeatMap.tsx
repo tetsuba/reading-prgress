@@ -15,10 +15,7 @@ type PropTypes = {
     color: HeatMapColors
 }
 export default function HeatMap(props: PropTypes) {
-
-    const max = props.words
-        .map(({index}) => index)
-        .sort((a, b) => b - a)[0]
+    const max = props.words.map(({ index }) => index).sort((a, b) => b - a)[0]
 
     function sightWords(words: WordTypes) {
         const regEx = new RegExp(props.search.toLowerCase(), 'g')

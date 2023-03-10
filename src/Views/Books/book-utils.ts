@@ -1,4 +1,4 @@
-import {HistoryTypes} from "../../store/book/bookSlice";
+import { HistoryTypes } from '../../store/book/bookSlice'
 
 export function getBookStatusColour(history: HistoryTypes[] | null) {
     if (history) {

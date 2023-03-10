@@ -65,7 +65,7 @@ describe('reading-utils', () => {
         })
 
         test('with no history', () => {
-            expect(updateHistory(null, story)).toHaveLength(1)
+            expect(updateHistory([], story)).toHaveLength(1)
         })
     })
 })

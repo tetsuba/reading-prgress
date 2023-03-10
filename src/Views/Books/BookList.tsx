@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 import { deleteBook } from '../../lib/service'
 import { userIdSelector } from '../../store/user/userSelectors'
-import {addBook, HistoryTypes} from '../../store/book/bookSlice'
+import { addBook, HistoryTypes } from '../../store/book/bookSlice'
 import { getBookStatusColour } from './book-utils'
 
 // COMPONENTS

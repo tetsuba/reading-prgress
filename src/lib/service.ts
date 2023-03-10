@@ -25,7 +25,7 @@ export async function registerUser(queryString: string) {
     return await axios.post(URL_REGISTER + queryString)
 }
 
-export async function loginUser(json: { [k: string]: string }) {
+export async function loginUser(json: { [k: string]: string | undefined }) {
     return await axios.post(URL_LOGIN, JSON.stringify(json), {
         headers: {
             'Content-Type': 'application/json'
@@ -33,8 +33,11 @@ export async function loginUser(json: { [k: string]: string }) {
     })
 }
 
-// TODO: fix types
-export async function getUserDetails(props: any) {
+type GetUserDetailsTypes = {
+    queryKey: (string | null)[]
+}
+
+export async function getUserDetails(props: GetUserDetailsTypes) {
     const [_key, token] = props.queryKey
     const res = await axios.get(URL_USER, {
         headers: { Authorization: `bearer ${token}` }
@@ -45,7 +48,7 @@ export async function getUserDetails(props: any) {
     return res
 }
 
-export async function registerBook(json: { [k: string]: string }) {
+export async function registerBook(json: { [k: string]: string | undefined }) {
     const token = ls.get()
     return await axios.post(`${URL_BOOK}/register`, JSON.stringify(json), {
         headers: {

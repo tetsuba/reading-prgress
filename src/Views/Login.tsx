@@ -88,7 +88,7 @@ export default function Login(props: PropTypes) {
                         show={mutation.isError}
                         className="mt-1 block"
                     >
-                        {getErrorMessage(mutation.error)}
+                        {getErrorMessage(mutation.error as Error)}
                     </ErrorMessage>
                     <Button className="w-full" type="submit" template="primary">
                         Login to your account

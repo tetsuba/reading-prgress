@@ -74,21 +74,14 @@ export function getShortDate(): string {
     return new Date().toLocaleDateString('en-UK')
 }
 
-export function updateHistory(
-    history: HistoryTypes[] | null,
-    story: WordType[][]
-) {
+export function updateHistory(history: HistoryTypes[], story: WordType[][]) {
     const newHistory = [
         {
             date: getShortDate(),
             words: getReadingMistakes(story)
         }
     ]
-    if (history) {
-        return history.concat(newHistory)
-    }
-    // TODO: Investigate if this is required
-    return newHistory
+    return history.concat(newHistory)
 }
 
 export function findBookHistory(

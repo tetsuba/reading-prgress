@@ -2,7 +2,7 @@ import Header from '../Components/Header/Header'
 import Input from '../Components/Form/Input'
 import Label from '../Components/Form/Label'
 import { useSelector } from 'react-redux'
-import {userSelector} from '../store/user/userSelectors'
+import { userSelector } from '../store/user/userSelectors'
 
 export default function Profile() {
     const userProfile = useSelector(userSelector)

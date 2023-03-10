@@ -6,8 +6,7 @@ import {
     findBookHistory,
     isReadingCompleted,
     prepareTrackerData,
-    STATUS,
-    updateHistory
+    STATUS
 } from './reading-utils'
 
 // SERVICE
