@@ -16,6 +16,8 @@ import Profile from './Views/Profile'
 import Books from './Views/Books/Books'
 import SightWords from './Views/SightWords/SightWords'
 import Footer from './Components/Footer/Footer'
+import Settings from './Views/Settings'
+import PageNotFound from './Views/PageNotFound'
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -80,6 +82,15 @@ function App() {
                                         </ProtectedRoute>
                                     }
                                 />
+                                <Route
+                                    path="/settings"
+                                    element={
+                                        <ProtectedRoute>
+                                            <Settings />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route path="*" element={<PageNotFound />} />
                             </Routes>
                         </FirstLoad>
                         <Footer />

@@ -1,8 +1,8 @@
-export function getBookStatusColour(history: string | null) {
-    if (history) {
-        const data = typeof history === 'string' ? JSON.parse(history) : history
+import { HistoryTypes } from '../../store/book/bookSlice'
 
-        const words = data[data.length - 1].words
+export function getBookStatusColour(history: HistoryTypes[] | null) {
+    if (history) {
+        const words = history[history.length - 1].words
         if (words.length) {
             return `text-red-500`
         }

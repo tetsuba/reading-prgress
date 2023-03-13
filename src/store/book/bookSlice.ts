@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { parseBookHistory } from '../../lib/utils'
 
 export type HistoryTypes = {
     date: string
@@ -28,14 +27,8 @@ export const bookSlice = createSlice({
     reducers: {
         addBook: (state, action) => {
             const { book, libId } = action.payload
-            const history = book.history
-                ? typeof book.history === 'string'
-                    ? parseBookHistory(book.history)
-                    : book.history
-                : []
-
             state.bookId = book.id
-            state.history = history
+            state.history = book.history || []
             state.story = book.story
             state.title = book.title
             state.libId = libId

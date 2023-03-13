@@ -41,13 +41,14 @@ export default function BookCollectionList(props: PropTypes) {
                             i & 1 ? 'bg-white' : 'bg-gray-50'
                         }`}
                     >
-                        <div className="flex items-center text-base font-medium text-gray-800">
+                        <div className="flex items-center">
                             <span className={`mr-6`}>
                                 <Svg type="library" />
                             </span>{' '}
-                            {collection.title} ({collection.books.length})
+                            <span className="font-medium text-gray-800">{collection.title} ({collection.books.length})</span>
+
                         </div>
-                        <div className="mt-1 flex justify-end text-sm text-gray-900 sm:mt-0">
+                        <div className="flex justify-end">
                             <Button
                                 type="button"
                                 className="flex"

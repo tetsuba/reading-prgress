@@ -8,7 +8,6 @@ import { mutateRegisterBookData } from '../../lib/utils'
 import Input from '../../Components/Form/Input'
 import Label from '../../Components/Form/Label'
 import Textarea from '../../Components/Form/Textarea'
-import Select from '../../Components/Form/Select'
 import Button from '../../Components/Button/Button'
 import H3 from '../../Components/H3/H3'
 
@@ -35,9 +34,8 @@ export default function RegisterBookForm(props: PropTypes) {
                 className="space-y-6"
                 onSubmit={(event) => {
                     event.preventDefault()
-                    mutation.mutate(
-                        mutateRegisterBookData(event.target, userId)
-                    )
+                    const data = mutateRegisterBookData(event.target, userId)
+                    mutation.mutate(data)
                 }}
             >
                 <div className="">

@@ -1,8 +1,6 @@
 import H3 from '../../Components/H3/H3'
 import Button from '../../Components/Button/Button'
 import { WordTypes } from './Sentence'
-import { Link } from 'react-router-dom'
-import { buttonClasses } from '../../Components/Button/Button'
 import { HistoryTypes } from '../../store/book/bookSlice'
 
 type PropTypes = {

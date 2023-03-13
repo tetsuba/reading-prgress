@@ -1,6 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit'
 
-const stateUser = (state: any) => state.user
-export const userSelector = createSelector(stateUser, (user) => user)
-export const userTokenSelector = createSelector(stateUser, (user) => user.token)
-export const userIdSelector = createSelector(stateUser, (user) => user.id)
+export const userSelector = (state: any) => state.user
+export const userTokenSelector = createSelector(
+    userSelector,
+    (user) => user.token
+)
+export const userIdSelector = createSelector(userSelector, (user) => user.id)

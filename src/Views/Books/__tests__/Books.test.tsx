@@ -25,13 +25,13 @@ const booksMock = [
         title: 'titleBook 1',
         story: 'story 1',
         id: 1,
-        history: '[{"date":"16/02/2023","words":[]}]'
+        history: null
     },
     {
         title: 'titleBook 2',
         story: 'story 2',
         id: 2,
-        history: '[{"date":"16/02/2023","words":["this"]}]'
+        history: [{ date: '16/02/2023', words: ['this'] }]
     }
 ]
 

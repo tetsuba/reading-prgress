@@ -6,13 +6,17 @@ import { getBooks } from '../../lib/service'
 // COMPONENTS
 import Header from '../../Components/Header/Header'
 import BookCollectionList from './BookCollectionList'
+import Loading from '../../Components/Loading/Loading'
 
 export default function Books() {
     const userId = useSelector(userIdSelector)
-    const { data, isSuccess } = useQuery(['books', userId], getBooks)
+    const { data, isSuccess, isLoading } = useQuery(['books', userId], getBooks)
 
+    if (isLoading) {
+        return <Loading />
+    }
     return (
-        <div>
+        <>
             <Header text="Books" />
             <main>
                 <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
@@ -23,6 +27,6 @@ export default function Books() {
                     </div>
                 </div>
             </main>
-        </div>
+        </>
     )
 }

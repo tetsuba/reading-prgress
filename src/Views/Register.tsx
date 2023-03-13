@@ -96,7 +96,7 @@ export default function Register() {
                                                 className="mt-1 block"
                                             >
                                                 {getErrorMessage(
-                                                    mutation.error
+                                                    mutation.error as Error
                                                 )}
                                             </ErrorMessage>
 

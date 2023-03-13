@@ -1,9 +1,18 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import {
+    render,
+    screen,
+    waitFor,
+    act,
+    fireEvent,
+    waitForElementToBeRemoved
+} from '@testing-library/react'
 import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
 import FirstLoad from '../FirstLoad'
 import { Routes, Route } from 'react-router-dom'
 import localStorage from '../../../lib/localStorage'
 import axios from 'axios'
+import store from '../../../store/store'
+import { toggleViewGlobalExpired } from '../../../store/view/viewSlice'
 
 vi.mock('axios')
 
@@ -42,7 +51,7 @@ describe('FirstLoad', () => {
             </WrapperWith_Store_Query_Router>
         )
 
-        expect(spyGet).toHaveBeenCalledTimes(1)
+        expect(spyGet).toHaveBeenCalledTimes(2)
         await waitFor(() => expect(axios.get).toHaveBeenCalled())
         await waitFor(() => expect(screen.getByText('Loading...')))
         await waitFor(() => expect(spyRemove).toHaveBeenCalledTimes(1))
@@ -94,5 +103,40 @@ describe('FirstLoad', () => {
 
         await waitFor(() => expect(axios).not.toHaveBeenCalled())
         await waitFor(() => expect(screen.getByText('Dash Mock')))
+    })
+    test('Session is expired', async () => {
+        // @ts-ignore
+        axios.get.mockResolvedValueOnce({
+            status: 200,
+            data: {
+                data: {
+                    firstName: 'firstName',
+                    lastName: 'lastName',
+                    email: 'email',
+                    id: 'id'
+                }
+            }
+        })
+
+        render(
+            <WrapperWith_Store_Query_Router pathname="/dash">
+                <FirstLoad>
+                    <Routes>
+                        <Route path="/" element={<HomeMock />} />
+                        <Route path="/dash" element={<DashMock />} />
+                    </Routes>
+                </FirstLoad>
+            </WrapperWith_Store_Query_Router>
+        )
+
+        await act(() => {
+            store.dispatch(toggleViewGlobalExpired(true))
+        })
+
+        await waitFor(() => expect(screen.getByTestId('modal-expired')))
+        fireEvent.click(screen.getByTestId('expired-button'))
+        await waitFor(() =>
+            expect(screen.queryByTestId('modal-expired')).toBeNull()
+        )
     })
 })
