@@ -63,8 +63,9 @@ export default function BookList(props: PropTypes) {
                     <span className={`mr-6`}>
                         <Svg type="library" />
                     </span>
-                    <span className="text-lg font-bold text-gray-900">{props.title}</span>
-
+                    <span className="text-lg font-bold text-gray-900">
+                        {props.title}
+                    </span>
                 </div>
                 <div>
                     <Input
@@ -96,7 +97,9 @@ export default function BookList(props: PropTypes) {
                                 <span className={`mr-6 ${bookStatusColour}`}>
                                     <Svg type="bookmark" />
                                 </span>
-                                <span className="font-medium text-gray-800">{book.title}</span>
+                                <span className="font-medium text-gray-800">
+                                    {book.title}
+                                </span>
                             </div>
                             <div className=""></div>
                             <div className="flex justify-end">

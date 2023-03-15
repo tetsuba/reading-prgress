@@ -45,8 +45,9 @@ export default function BookCollectionList(props: PropTypes) {
                             <span className={`mr-6`}>
                                 <Svg type="library" />
                             </span>{' '}
-                            <span className="font-medium text-gray-800">{collection.title} ({collection.books.length})</span>
-
+                            <span className="font-medium text-gray-800">
+                                {collection.title} ({collection.books.length})
+                            </span>
                         </div>
                         <div className="flex justify-end">
                             <Button
