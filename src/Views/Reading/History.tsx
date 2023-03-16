@@ -1,11 +1,11 @@
 import H3 from '../../Components/H3/H3'
 import Button from '../../Components/Button/Button'
 import { WordTypes } from './Sentence'
-import { HistoryTypes } from '../../store/book/bookSlice'
+import { ApiBookHistoryTypes } from '../../lib/service-types'
 
 type PropTypes = {
     story: WordTypes[][]
-    history: HistoryTypes[] | []
+    history: ApiBookHistoryTypes[] | []
     restart: () => void
 }
 

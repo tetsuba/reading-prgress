@@ -1,9 +1,11 @@
 import { fireEvent, render, screen, waitFor, act } from '@testing-library/react'
+import { Mocked } from 'vitest'
 import { WrapperWith_Store_Query_Router } from '../../vitest-setup'
 import Login from '../Login'
 
 import axios from 'axios'
 vi.mock('axios')
+const mockedAxios = axios as Mocked<typeof axios>
 
 /* Note:
  * This was mocked to stop a warning message from being displayed
@@ -38,8 +40,7 @@ describe('Login', () => {
             }
         }
 
-        // @ts-ignore
-        axios.post.mockRejectedValueOnce(AXIOS_ERROR)
+        mockedAxios.post.mockRejectedValueOnce(AXIOS_ERROR)
 
         const eventTarget = {
             target: {
@@ -65,8 +66,7 @@ describe('Login', () => {
         await waitFor(() => expect(screen.getByTestId('error-message')))
     })
     test('should return success with correct login details', async () => {
-        // @ts-ignore
-        axios.post.mockResolvedValue({
+        mockedAxios.post.mockResolvedValue({
             data: {
                 data: {
                     firstName: 'firstName',

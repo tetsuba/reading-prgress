@@ -19,10 +19,10 @@ export default function Login(props: PropTypes) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const mutation = useMutation(loginUser, {
-        onSuccess: async (data) => {
+        onSuccess: (data) => {
             dispatch(updateUser(data.data))
         },
-        onSettled: async () => {
+        onSettled: () => {
             props.setShowLogin(false)
             navigate('/dashboard')
         }

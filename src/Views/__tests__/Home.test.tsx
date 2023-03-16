@@ -43,7 +43,7 @@ describe('Home', () => {
             expect(screen.queryByTestId('login-view')).toBeNull()
         })
 
-        test('clicking on the registration button', async () => {
+        test('clicking on the registration button', () => {
             render(
                 <WrapperWithRouter pathname="/">
                     <Home />

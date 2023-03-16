@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 import { deleteBook } from '../../lib/service'
 import { userIdSelector } from '../../store/user/userSelectors'
-import { addBook, HistoryTypes } from '../../store/book/bookSlice'
+import { addBook } from '../../store/book/bookSlice'
 import { getBookStatusColour } from './book-utils'
 
 // COMPONENTS
@@ -15,16 +15,10 @@ import Confirmation from '../../Components/Modal/Confirmation'
 import Svg from '../../Components/Svg/Svg'
 import Input from '../../Components/Form/Input'
 import AddBook from './AddBook'
-
-export type BookTypes = {
-    story: string
-    title: string
-    id: number
-    history: HistoryTypes[]
-}
+import { ApiBookHistoryTypes, ApiBookTypes } from '../../lib/service-types'
 
 type PropTypes = {
-    list: BookTypes[]
+    list: ApiBookTypes[]
     title: string
     clickHandlerBack: () => void
     delete: boolean
@@ -34,12 +28,12 @@ type PropTypes = {
 export default function BookList(props: PropTypes) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [book, setBook] = useState<null | BookTypes>(null)
+    const [book, setBook] = useState<null | ApiBookTypes>(null)
     const [search, setSearch] = useState('')
     const userId = useSelector(userIdSelector)
     const queryClient = useQueryClient()
     const mutation = useMutation(deleteBook, {
-        onSuccess: async (data) => {
+        onSuccess: (data) => {
             queryClient.setQueryData(['books', userId], data)
         }
     })

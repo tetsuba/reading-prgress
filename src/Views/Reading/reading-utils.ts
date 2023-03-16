@@ -1,6 +1,6 @@
 import { WordTypes } from './Sentence'
-import { BookTypes, HistoryTypes } from '../../store/book/bookSlice'
-import { CollectionTypes } from '../../store/view/viewSlice'
+import { StateBookHistoryTypes, StateBookTypes } from '../../store/store-types'
+import { ApiCollectionTypes } from '../../lib/service-types'
 
 export const STATUS = {
     CORRECT: 'green',
@@ -74,7 +74,10 @@ export function getShortDate(): string {
     return new Date().toLocaleDateString('en-UK')
 }
 
-export function updateHistory(history: HistoryTypes[], story: WordType[][]) {
+export function updateHistory(
+    history: StateBookHistoryTypes[],
+    story: WordType[][]
+) {
     const newHistory = [
         {
             date: getShortDate(),
@@ -85,8 +88,8 @@ export function updateHistory(history: HistoryTypes[], story: WordType[][]) {
 }
 
 export function findBookHistory(
-    collections: CollectionTypes[],
-    book: BookTypes
+    collections: ApiCollectionTypes[],
+    book: StateBookTypes
 ) {
     // @ts-ignore
     return collections
@@ -103,7 +106,7 @@ export function isReadingCompleted(
 
 export function prepareTrackerData(
     userId: number,
-    book: BookTypes,
+    book: StateBookTypes,
     story: WordType[][]
 ) {
     const history = updateHistory(book.history, story)

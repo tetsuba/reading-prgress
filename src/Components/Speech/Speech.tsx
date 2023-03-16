@@ -8,7 +8,7 @@ import {
 } from '../../Views/Reading/reading-utils'
 
 type PropTypes = {
-    story: any
+    story: WordTypes[][]
     count: number
     setCount: (count: number) => void
     setStory: (story: WordTypes[][]) => void
@@ -22,23 +22,31 @@ export default function Speech(props: PropTypes) {
     const [micOn, setMicOn] = useState(false)
     const [speech, setSpeech] = useState('')
 
-    // TODO: fix types any
-    speechToText.onresult = (event: any) => {
-        const { transcript } = event.results[event.results.length - 1][0]
-        const speech = transcript.toLowerCase().split(' ')
-        setSpeech(transcript)
-
-        story[count] = updateSentence(story, count, speech)
-        setStory([...story])
-        if (allWordsAreCorrect(story, count)) {
-            setCount(count + 1)
-        }
+    function stop() {
+        speechToText && speechToText.stop()
     }
-    speechToText.onend = (event: any) => {
-        setMicOn(false)
-        setSpeech('')
-        speechToText.stop()
-        console.log('[End]')
+
+    function start() {
+        speechToText && speechToText.start()
+    }
+
+    if (speechToText) {
+        speechToText.onresult = (event: SpeechRecognitionEvent) => {
+            const { transcript } = event.results[event.results.length - 1][0]
+            const speech = transcript.toLowerCase().split(' ')
+            setSpeech(transcript)
+
+            story[count] = updateSentence(story, count, speech)
+            setStory([...story])
+            if (allWordsAreCorrect(story, count)) {
+                setCount(count + 1)
+            }
+        }
+        speechToText.onend = (event) => {
+            setMicOn(false)
+            setSpeech('')
+            stop()
+        }
     }
 
     return (
@@ -54,7 +62,7 @@ export default function Speech(props: PropTypes) {
                 } p-2 hover:border-white hover:bg-gray-100 focus:outline-none`}
                 clickHandler={() => {
                     setMicOn(!micOn)
-                    micOn ? speechToText.stop() : speechToText.start()
+                    micOn ? stop() : start()
                 }}
             />
         </div>

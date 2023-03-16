@@ -1,25 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { BookTypes } from '../../Views/Books/BookList'
-
-export type CollectionTypes = {
-    id: string
-    title: string
-    description: string
-    books: BookTypes[]
-}
-
-type BooksViewTypes = {
-    collection: CollectionTypes | null
-}
-
-type GlobalViewTypes = {
-    expired: boolean
-}
-
-export interface ViewTypes {
-    books: BooksViewTypes
-    global: GlobalViewTypes
-}
+import { ActionTypes, StateViewTypes } from '../store-types'
+import { ApiCollectionTypes } from '../../lib/service-types'
 
 const initialState = {
     books: {
@@ -28,16 +9,26 @@ const initialState = {
     global: {
         expired: false
     }
-} as ViewTypes
+} as StateViewTypes
+
+interface UpdateViewBooksCollectionActionTypes extends ActionTypes {
+    payload: ApiCollectionTypes | null
+}
 
 export const viewSlice = createSlice({
     name: 'view',
     initialState,
     reducers: {
-        updateViewBookCollection: (state, action) => {
+        updateViewBookCollection: (
+            state,
+            action: UpdateViewBooksCollectionActionTypes
+        ) => {
             state.books.collection = action.payload
         },
-        toggleViewGlobalExpired: (state, action) => {
+        toggleViewGlobalExpired: (
+            state,
+            action: ActionTypes & { payload: boolean }
+        ) => {
             state.global.expired = action.payload
         }
     }

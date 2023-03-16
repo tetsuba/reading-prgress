@@ -21,6 +21,7 @@
   "references": [{ "path": "./tsconfig.node.json" }],
   "files": [
     "./node_modules/tesseract.js/src/index.d.ts",
-    "node_modules/vitest/globals.d.ts"
+    "node_modules/vitest/globals.d.ts",
+    "node_modules/@types/dom-speech-recognition/index.d.ts"
   ]
 }
