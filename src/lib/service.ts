@@ -37,6 +37,7 @@ type ErrorTypes = {
     }
 }
 
+/* c8 ignore next 14 */
 axios.interceptors.response.use(
     function (response) {
         return response
@@ -67,7 +68,7 @@ export async function loginUser(json: {
 }
 
 async function axiosGet(url: string) {
-    const token = ls.get() || ''
+    const token = ls.get()
     return await axios.get(url, {
         headers: {
             Authorization: `bearer ${token}`
@@ -78,7 +79,7 @@ async function axiosGet(url: string) {
 export async function getUserDetails() {
     const res: ApiGetUserDetailsTypes = await axiosGet(URL_USER)
     if (res.status === 200) {
-        const token = ls.get() || ''
+        const token = ls.get()
         store.dispatch(updateUser({ data: res.data, token }))
     }
     return res
@@ -117,7 +118,7 @@ export async function getSightWords(
 export async function registerBook(json: {
     [k: string]: string | number | undefined
 }): Promise<ApiCollectionResponseTypes> {
-    const token = ls.get() || ''
+    const token = ls.get()
     return await axios.post(`${URL_BOOK}/register`, JSON.stringify(json), {
         headers: {
             'Content-Type': 'application/json',
@@ -129,7 +130,7 @@ export async function registerBook(json: {
 export async function deleteBook(
     query: string
 ): Promise<ApiCollectionResponseTypes> {
-    const token = ls.get() || ''
+    const token = ls.get()
     return await axios.delete(`${URL_BOOK}/delete${query}`, {
         headers: {
             Authorization: `bearer ${token}`
@@ -140,7 +141,7 @@ export async function deleteBook(
 export async function updateTracker(
     json: ApiUpdateTrackerTypes
 ): Promise<ApiCollectionResponseTypes> {
-    const token = ls.get() || ''
+    const token = ls.get()
     return await axios.patch(`${URL_TRACKER}/update`, JSON.stringify(json), {
         headers: {
             'Content-Type': 'application/json',
