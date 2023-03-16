@@ -101,7 +101,7 @@ describe('FirstLoad', () => {
         await waitFor(() => expect(screen.getByText('Dash Mock')))
     })
     test('Bearer token not available', async () => {
-        spyGet.mockImplementation(() => null)
+        spyGet.mockImplementation(() => '')
 
         render(
             <WrapperWith_Store_Query_Router pathname="/dash">
