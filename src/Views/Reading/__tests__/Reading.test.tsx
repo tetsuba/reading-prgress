@@ -1,21 +1,25 @@
 import { render, screen, waitFor, act, fireEvent } from '@testing-library/react'
 import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
+import { Mocked } from 'vitest'
 import Reading from '../Reading'
 import store from '../../../store/store'
-import { addBook } from '../../../store/book/bookSlice'
+import { addBook, AddBookPayloadTypes } from '../../../store/book/bookSlice'
+
 import axios from 'axios'
 vi.mock('axios')
+const mockedAxios = axios as Mocked<typeof axios>
 
 const mockHistory = [
     { date: '12/12/12', words: ['This', 'There', 'Their'] },
     { date: '13/12/12', words: ['This', 'story'] }
 ]
 
-const mockBookData = {
+const mockBookData: AddBookPayloadTypes = {
     book: {
         title: 'mock title',
         story: 'This is a story. There is, a& story. Their is a story.',
         id: 1,
+        userId: 2,
         history: mockHistory
     },
     libId: '002'
@@ -61,7 +65,7 @@ describe('Reading', () => {
                     expect.stringContaining('border-green-500')
                 )
             })
-            test('clicking on the show history button', async () => {
+            test('clicking on the show history button', () => {
                 expect(screen.queryAllByTestId('sentence-block')).toHaveLength(
                     3
                 )
@@ -116,8 +120,7 @@ describe('Reading', () => {
                         }
                     ]
                 }
-                // @ts-ignore
-                axios.patch.mockResolvedValueOnce(mockResponse)
+                mockedAxios.patch.mockResolvedValueOnce(mockResponse)
                 await waitFor(() =>
                     expect(
                         screen.queryAllByTestId('sentence-block')
@@ -152,7 +155,7 @@ describe('Reading', () => {
                     ).toHaveLength(0)
                 )
             })
-            test('clicking on the speech button and completing and not completing a sentence', async () => {
+            test('clicking on the speech button and completing and not completing a sentence', () => {
                 fireEvent.click(screen.getByTestId('speech-button'))
                 expect(
                     screen.getByTestId('speech-button').getAttribute('class')

@@ -38,7 +38,7 @@ export default function Profile() {
                                                 type="text"
                                                 name="firstName"
                                                 placeholder={
-                                                    userProfile.firstname
+                                                    userProfile.firstName
                                                 }
                                                 readonly
                                             />
@@ -51,7 +51,7 @@ export default function Profile() {
                                                 type="text"
                                                 name="lastName"
                                                 placeholder={
-                                                    userProfile.lastname
+                                                    userProfile.lastName
                                                 }
                                                 readonly
                                             />

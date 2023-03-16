@@ -1,8 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react'
-import axios from 'axios'
+import { Mocked } from 'vitest'
 import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
 import Dashboard from '../Dashboard'
+
+import axios from 'axios'
 vi.mock('axios')
+const mockedAxios = axios as Mocked<typeof axios>
 
 const mockData = {
     data: {
@@ -29,8 +32,7 @@ const mockData = {
 
 describe('Dashboard', () => {
     test('should render a list of words', async () => {
-        // @ts-ignore
-        axios.get.mockResolvedValue(mockData)
+        mockedAxios.get.mockResolvedValue(mockData)
         const { asFragment } = render(
             <WrapperWith_Store_Query_Router pathname={'/dashboard'}>
                 <Dashboard />

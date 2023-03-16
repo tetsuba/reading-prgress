@@ -1,6 +1,6 @@
-import { HistoryTypes } from '../../store/book/bookSlice'
+import { ApiBookHistoryTypes } from '../../lib/service-types'
 
-export function getBookStatusColour(history: HistoryTypes[] | null) {
+export function getBookStatusColour(history: ApiBookHistoryTypes[] | null) {
     if (history) {
         const words = history[history.length - 1].words
         if (words.length) {

@@ -1,5 +1,5 @@
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
-import PageNotFound from "../PageNotFound";
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import PageNotFound from '../PageNotFound'
 
 const mockNavigate = vi.fn()
 vi.mock('react-router-dom', async () => {

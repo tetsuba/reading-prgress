@@ -2,7 +2,7 @@ type ValueType = {
     value: string
 }
 
-interface RegistrationFormTypes extends EventTarget {
+export interface RegistrationFormTypes extends EventTarget {
     firstName?: ValueType
     lastName?: ValueType
     email?: ValueType
@@ -10,15 +10,15 @@ interface RegistrationFormTypes extends EventTarget {
 }
 
 export function formDataToQueryString(target: RegistrationFormTypes): string {
-    const formData: { [key: string]: string | undefined } = {
-        firstName: target.firstName?.value,
-        lastName: target.lastName?.value,
-        email: target.email?.value,
-        password: target.password?.value
+    const formData: { [key: string]: string } = {
+        firstName: target.firstName ? target.firstName.value : '',
+        lastName: target.lastName ? target.lastName.value : '',
+        email: target.email ? target.email.value : '',
+        password: target.password ? target.password.value : ''
     }
 
     return Object.keys(formData)
-        .map((key) => key + '=' + formData[key])
+        .map((key) => `${key}=${formData[key]}`)
         .join('&')
 }
 
@@ -63,8 +63,8 @@ interface StoryFormTypes extends EventTarget {
 }
 export function mutateRegisterBookData(
     target: StoryFormTypes,
-    userId: string
-): { [key: string]: string | undefined } {
+    userId: number
+): { [key: string]: number | string | undefined } {
     return {
         userId,
         title: target.title?.value,

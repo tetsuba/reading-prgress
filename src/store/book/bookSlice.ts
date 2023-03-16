@@ -1,17 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-
-export type HistoryTypes = {
-    date: string
-    words: string[]
-}
-
-export interface BookTypes {
-    bookId: number
-    libId: string
-    history: HistoryTypes[] | []
-    story: string
-    title: string
-}
+import {
+    ActionTypes,
+    StateBookTypes,
+    StateBookHistoryTypes
+} from '../store-types'
+import { ApiBookTypes, ApiCollectionTypes } from '../../lib/service-types'
 
 const initialState = {
     bookId: 0,
@@ -19,13 +12,26 @@ const initialState = {
     history: [],
     story: '',
     title: ''
-} as BookTypes
+} as StateBookTypes
+
+export type AddBookPayloadTypes = {
+    book: ApiBookTypes
+    libId: ApiCollectionTypes['id']
+}
+
+interface AddBookActionTypes extends ActionTypes {
+    payload: AddBookPayloadTypes
+}
+
+interface UpdateBookHistoryActionTypes extends ActionTypes {
+    payload: StateBookHistoryTypes[]
+}
 
 export const bookSlice = createSlice({
     name: 'book',
     initialState,
     reducers: {
-        addBook: (state, action) => {
+        addBook: (state, action: AddBookActionTypes) => {
             const { book, libId } = action.payload
             state.bookId = book.id
             state.history = book.history || []
@@ -33,7 +39,7 @@ export const bookSlice = createSlice({
             state.title = book.title
             state.libId = libId
         },
-        updateBookHistory: (state, action) => {
+        updateBookHistory: (state, action: UpdateBookHistoryActionTypes) => {
             state.history = action.payload
         },
         resetBookToInitialState: () => initialState

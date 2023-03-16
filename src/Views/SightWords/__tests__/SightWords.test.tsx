@@ -1,8 +1,12 @@
-import axios from 'axios'
 import { render, screen, waitFor } from '@testing-library/react'
 import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
+import { Mocked } from 'vitest'
+
 import SiteWords from '../SightWords'
+
+import axios from 'axios'
 vi.mock('axios')
+const mockedAxios = axios as Mocked<typeof axios>
 
 const mockData = {
     data: {
@@ -30,8 +34,7 @@ const mockData = {
 
 describe('SightWords', () => {
     test('will render groups of sight words', async () => {
-        // @ts-ignore
-        axios.get.mockResolvedValue(mockData)
+        mockedAxios.get.mockResolvedValue(mockData)
         const { asFragment } = render(
             <WrapperWith_Store_Query_Router pathname={'/site-words'}>
                 <SiteWords />

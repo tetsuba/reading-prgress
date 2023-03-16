@@ -19,10 +19,10 @@ export default function RegisterBookForm(props: PropTypes) {
     const userId = useSelector(userIdSelector)
     const queryClient = useQueryClient()
     const mutation = useMutation(registerBook, {
-        onSuccess: async (data) => {
+        onSuccess: (data) => {
             queryClient.setQueryData(['books', userId], data)
         },
-        onSettled: async () => {
+        onSettled: () => {
             props.clickHandlerCancel()
         }
     })

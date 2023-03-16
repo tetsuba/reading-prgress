@@ -3,8 +3,8 @@ export default {
     save: function (value: string): void {
         localStorage.setItem(AUTH_KEY, value)
     },
-    get: function (): string | null {
-        return localStorage.getItem(AUTH_KEY)
+    get: function (): string {
+        return localStorage.getItem(AUTH_KEY) || ''
     },
     remove: function (): void {
         localStorage.removeItem(AUTH_KEY)

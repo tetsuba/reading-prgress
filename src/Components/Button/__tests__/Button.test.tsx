@@ -1,10 +1,17 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import Button from '../Button'
+import Button, { ButtonTemplateTypes } from '../Button'
 
 describe('Button', () => {
-    test.each(['none', 'primary', 'secondary', 'tertiary', 'warning'])(
+    const buttonTemplates: ButtonTemplateTypes[] = [
+        'none',
+        'primary',
+        'secondary',
+        'tertiary',
+        'warning'
+    ]
+    test.each(buttonTemplates)(
         'should render %s button',
-        (template: any) => {
+        (template: ButtonTemplateTypes) => {
             const { asFragment } = render(
                 <Button type="button" template={template}>
                     {template}

@@ -1,3 +1,4 @@
+import { Mocked } from 'vitest'
 import {
     act,
     render,
@@ -8,11 +9,13 @@ import {
 } from '@testing-library/react'
 import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
 import Books from '../Books'
-import axios from 'axios'
 import { delay } from '../../../lib/utils'
 import { updateViewBookCollection } from '../../../store/view/viewSlice'
 import store from '../../../store/store'
+
+import axios from 'axios'
 vi.mock('axios')
+const mockedAxios = axios as Mocked<typeof axios>
 
 const mockNavigate = vi.fn()
 vi.mock('react-router-dom', () => ({
@@ -88,7 +91,7 @@ const mockEventTarget = {
 describe('Books View', () => {
     beforeEach(async () => {
         // @ts-ignore
-        axios.get.mockResolvedValue(mockData)
+        mockedAxios.get.mockResolvedValue(mockData)
         render(
             <WrapperWith_Store_Query_Router pathname={'/books'}>
                 <Books />
@@ -96,8 +99,8 @@ describe('Books View', () => {
         )
         await waitFor(() => expect(screen.getByTestId('collection-list')))
     })
-    afterEach(async () => {
-        await act(() => {
+    afterEach(() => {
+        act(() => {
             store.dispatch(updateViewBookCollection(null))
         })
     })
@@ -110,8 +113,7 @@ describe('Books View', () => {
         expect(screen.queryByTestId('book-list')).toBeNull()
     })
     test('adding a new book', async () => {
-        // @ts-ignore
-        axios.post.mockResolvedValueOnce(mockDataNewBook)
+        mockedAxios.post.mockResolvedValueOnce(mockDataNewBook)
 
         fireEvent.click(screen.getAllByTestId('collection-button')[0])
         await waitFor(() =>
@@ -128,24 +130,6 @@ describe('Books View', () => {
         )
         await waitFor(() =>
             expect(screen.getAllByText(/titleBook/)).toHaveLength(3)
-        )
-    })
-    test('deleting a book', async () => {
-        // @ts-ignore
-        axios.get.mockResolvedValueOnce(mockDataNewBook)
-        // @ts-ignore
-        axios.delete.mockResolvedValueOnce(mockData)
-        fireEvent.click(screen.getAllByTestId('collection-button')[0])
-        await waitFor(() =>
-            expect(screen.getByTestId('book-list')).not.toBeNull()
-        )
-        fireEvent.click(screen.getAllByTestId('book-list-delete')[0])
-        expect(screen.getByTestId('modal-confirmation'))
-        fireEvent.click(screen.getByTestId('cancel-button'))
-        fireEvent.click(screen.getAllByTestId('book-list-delete')[0])
-        fireEvent.click(screen.getByTestId('delete-button'))
-        await waitFor(() =>
-            expect(screen.getAllByText(/titleBook/)).toHaveLength(2)
         )
     })
     test('clicking on read a book', async () => {
@@ -165,5 +149,21 @@ describe('Books View', () => {
             target: { value: 'titleBook 2' }
         })
         expect(screen.getAllByText(/titleBook/)).toHaveLength(1)
+    })
+    test('deleting a book', async () => {
+        mockedAxios.get.mockResolvedValueOnce(mockDataNewBook)
+        mockedAxios.delete.mockResolvedValueOnce(mockData)
+        fireEvent.click(screen.getAllByTestId('collection-button')[0])
+        await waitFor(() =>
+            expect(screen.getByTestId('book-list')).not.toBeNull()
+        )
+        fireEvent.click(screen.getAllByTestId('book-list-delete')[0])
+        expect(screen.getByTestId('modal-confirmation'))
+        fireEvent.click(screen.getByTestId('cancel-button'))
+        fireEvent.click(screen.getAllByTestId('book-list-delete')[0])
+        fireEvent.click(screen.getByTestId('delete-button'))
+        await waitFor(() =>
+            expect(screen.getAllByText(/titleBook/)).toHaveLength(2)
+        )
     })
 })

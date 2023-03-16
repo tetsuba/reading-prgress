@@ -1,20 +1,14 @@
 import Svg from '../../Components/Svg/Svg'
 import Button from '../../Components/Button/Button'
-import BookList, { BookTypes } from './BookList'
+import BookList from './BookList'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { viewBooksSelector } from '../../store/view/viewSelectors'
 import { updateViewBookCollection } from '../../store/view/viewSlice'
-
-type CollectionTypes = {
-    id: string
-    title: string
-    description: string
-    books: BookTypes[]
-}
+import { ApiCollectionTypes } from '../../lib/service-types'
 
 type PropTypes = {
-    collections: CollectionTypes[]
+    collections: ApiCollectionTypes[]
 }
 
 export default function BookCollectionList(props: PropTypes) {
@@ -24,7 +18,10 @@ export default function BookCollectionList(props: PropTypes) {
     useEffect(() => {
         if (viewBooks.collection) {
             props.collections.forEach((collection) => {
-                if (collection.id === viewBooks.collection.id) {
+                if (
+                    viewBooks.collection &&
+                    collection.id === viewBooks.collection.id
+                ) {
                     dispatch(updateViewBookCollection(collection))
                 }
             })
@@ -45,8 +42,9 @@ export default function BookCollectionList(props: PropTypes) {
                             <span className={`mr-6`}>
                                 <Svg type="library" />
                             </span>{' '}
-                            <span className="font-medium text-gray-800">{collection.title} ({collection.books.length})</span>
-
+                            <span className="font-medium text-gray-800">
+                                {collection.title} ({collection.books.length})
+                            </span>
                         </div>
                         <div className="flex justify-end">
                             <Button

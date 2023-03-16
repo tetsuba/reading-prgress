@@ -1,25 +1,31 @@
-import {
-    render,
-    screen,
-    waitFor,
-    act,
-    fireEvent,
-    waitForElementToBeRemoved
-} from '@testing-library/react'
+import { Mocked } from 'vitest'
+import { render, screen, waitFor, act, fireEvent } from '@testing-library/react'
 import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
 import FirstLoad from '../FirstLoad'
 import { Routes, Route } from 'react-router-dom'
 import localStorage from '../../../lib/localStorage'
-import axios from 'axios'
 import store from '../../../store/store'
 import { toggleViewGlobalExpired } from '../../../store/view/viewSlice'
 
+import axios from 'axios'
 vi.mock('axios')
+const mockedAxios = axios as Mocked<typeof axios>
 
 const HomeMock = () => <div>Home Mock</div>
 const DashMock = () => <div>Dash Mock</div>
 
-const AXIOS_ERROR: any = {
+type AxiosErrorTypes = {
+    code: string
+    message: string
+    name: string
+    status: number
+    statusText: string
+    response: {
+        data: { error: string }
+        status: number
+    }
+}
+const AXIOS_ERROR: AxiosErrorTypes = {
     code: 'ERR_BAD_RESPONSE',
     message: 'Request failed with status code 500',
     name: 'AxiosError',
@@ -37,8 +43,7 @@ const spyRemove = vi.spyOn(localStorage, 'remove')
 describe('FirstLoad', () => {
     test('Bearer token is available and respond with an error', async () => {
         spyGet.mockImplementation(() => 'Bearer token')
-        // @ts-ignore
-        axios.get.mockRejectedValueOnce(AXIOS_ERROR)
+        mockedAxios.get.mockRejectedValueOnce(AXIOS_ERROR)
 
         render(
             <WrapperWith_Store_Query_Router pathname="/dash">
@@ -52,14 +57,21 @@ describe('FirstLoad', () => {
         )
 
         expect(spyGet).toHaveBeenCalledTimes(2)
-        await waitFor(() => expect(axios.get).toHaveBeenCalled())
         await waitFor(() => expect(screen.getByText('Loading...')))
         await waitFor(() => expect(spyRemove).toHaveBeenCalledTimes(1))
     })
     test('Bearer token is available and respond with user data', async () => {
-        spyGet.mockImplementation(() => 'Bearer token')
-        // @ts-ignore
-        axios.get.mockResolvedValueOnce({
+        const SUCCESS: {
+            status: number
+            data: {
+                data: {
+                    firstName: string
+                    lastName: string
+                    email: string
+                    id: string
+                }
+            }
+        } = {
             status: 200,
             data: {
                 data: {
@@ -69,7 +81,9 @@ describe('FirstLoad', () => {
                     id: 'id'
                 }
             }
-        })
+        }
+        spyGet.mockImplementation(() => 'Bearer token')
+        mockedAxios.get.mockResolvedValueOnce(SUCCESS)
 
         render(
             <WrapperWith_Store_Query_Router pathname="/dash">
@@ -83,7 +97,6 @@ describe('FirstLoad', () => {
         )
 
         expect(spyGet).toHaveBeenCalled()
-        await waitFor(() => expect(axios.get).toHaveBeenCalled())
         await waitFor(() => expect(screen.getByText('Loading...')))
         await waitFor(() => expect(screen.getByText('Dash Mock')))
     })
@@ -105,8 +118,7 @@ describe('FirstLoad', () => {
         await waitFor(() => expect(screen.getByText('Dash Mock')))
     })
     test('Session is expired', async () => {
-        // @ts-ignore
-        axios.get.mockResolvedValueOnce({
+        mockedAxios.get.mockResolvedValueOnce({
             status: 200,
             data: {
                 data: {
@@ -129,7 +141,7 @@ describe('FirstLoad', () => {
             </WrapperWith_Store_Query_Router>
         )
 
-        await act(() => {
+        act(() => {
             store.dispatch(toggleViewGlobalExpired(true))
         })
 

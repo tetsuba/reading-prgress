@@ -1,9 +1,12 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { Mocked } from 'vitest'
 import Register from '../Register'
 import { WrapperWithQuery } from '../../vitest-setup'
-import axios from 'axios'
 import { delay } from '../../lib/utils'
+
+import axios from 'axios'
 vi.mock('axios')
+const mockedAxios = axios as Mocked<typeof axios>
 
 describe('Register', () => {
     test('should render', () => {
@@ -15,8 +18,7 @@ describe('Register', () => {
         expect(asFragment()).toMatchSnapshot()
     })
     test('should return success', async () => {
-        // @ts-ignore
-        axios.post.mockResolvedValue(delay(10))
+        mockedAxios.post.mockResolvedValue(delay(10))
 
         const eventTarget = {
             target: {
@@ -36,12 +38,12 @@ describe('Register', () => {
             fireEvent.submit(screen.getByTestId('register-form'), eventTarget)
         })
 
-        await expect(screen.findByTestId('loading-user'))
+        expect(screen.findByTestId('loading-user'))
         await waitFor(() => expect(screen.getByTestId('success-message')))
     })
     test('should return an error', async () => {
-        // @ts-ignore
-        axios.post.mockRejectedValueOnce({ error: { message: 'error' } })
+        const ERROR = { error: { message: 'error' } }
+        mockedAxios.post.mockRejectedValueOnce(ERROR)
 
         const eventTarget = {
             target: {

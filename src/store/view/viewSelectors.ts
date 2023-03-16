@@ -1,13 +1,13 @@
 import { createSelector } from '@reduxjs/toolkit'
+import { StateTypes, StateViewTypes } from '../store-types'
 
-const stateView = (state: any) => state.view
+const stateView = (state: StateTypes) => state.view
 
-export const viewBooksSelector = createSelector(stateView, (view) => view.books)
-export const viewGlobalSelector = createSelector(
+export const viewBooksSelector = createSelector(
     stateView,
-    (view) => view.global
+    (view: StateViewTypes) => view.books
 )
 export const viewGlobalExpiredSelector = createSelector(
-    viewGlobalSelector,
-    (global) => global.expired
+    stateView,
+    (view: StateViewTypes) => view.global.expired
 )
