@@ -31,15 +31,7 @@ export default function Confirmation(props: PropTypes) {
                     </div>
                 </div>
             </div>
-            <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                <Button
-                    dataTestid="delete-button"
-                    template="warning"
-                    type="button"
-                    clickHandler={() => props.clickHandlerDelete()}
-                >
-                    Delete
-                </Button>
+            <div className="flex justify-end bg-gray-50 px-4 py-3 sm:px-6">
                 <Button
                     dataTestid="cancel-button"
                     template="secondary"
@@ -48,6 +40,14 @@ export default function Confirmation(props: PropTypes) {
                     clickHandler={() => props.clickHandlerCancel()}
                 >
                     Cancel
+                </Button>
+                <Button
+                    dataTestid="delete-button"
+                    template="warning"
+                    type="button"
+                    clickHandler={() => props.clickHandlerDelete()}
+                >
+                    Delete
                 </Button>
             </div>
         </div>

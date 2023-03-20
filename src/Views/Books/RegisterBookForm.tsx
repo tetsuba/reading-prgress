@@ -27,7 +27,7 @@ export default function RegisterBookForm(props: PropTypes) {
         }
     })
     return (
-        <div className="p-10">
+        <div className="p-4 md:p-8">
             <H3 className="w-800 mb-3">Add new book</H3>
             <form
                 data-testid="register-book-form"
@@ -39,7 +39,7 @@ export default function RegisterBookForm(props: PropTypes) {
                 }}
             >
                 <div className="">
-                    <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+                    <div className="space-y-6 bg-white py-5">
                         <div className="gap-6">
                             <div className="">
                                 <Label htmlFor="title">Book Title</Label>
@@ -52,12 +52,12 @@ export default function RegisterBookForm(props: PropTypes) {
                             <Textarea
                                 id="about"
                                 name="story"
-                                rows={10}
+                                rows={8}
                                 placeholder="Story Here."
                             />
                         </div>
                     </div>
-                    <div className="px-4 py-3 text-right">
+                    <div className="py-3 text-right">
                         <Button
                             type="button"
                             template="secondary"

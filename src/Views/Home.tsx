@@ -74,7 +74,7 @@ const Home = () => {
                 </div>
             </div>
             {showLogin && (
-                <Modal className="max-w-xl">
+                <Modal className="md:max-w-xl">
                     <Login setShowLogin={setShowLogin} />
                 </Modal>
             )}
