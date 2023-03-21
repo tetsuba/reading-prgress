@@ -48,13 +48,13 @@ export default function WordHeatMap(props: WordHeatMapTypes) {
         <span
             style={getBackGroundStyles()}
             data-testid="heat-map-word"
-            className={`m-6 rounded-2xl border-2 p-3`}
+            className={`m-2 md:m-5 rounded-2xl border-2 p-3`}
         >
             <span className={`font-bold ${getTextStyles()}`}>{props.word}</span>
             {showBadge && (
                 <span
                     style={numberHeatMap}
-                    className={`ml-4 rounded-full py-1 px-3 text-white`}
+                    className={`ml-1 md:ml-3 rounded-full py-1 px-2 text-white`}
                 >
                     {props.index}
                 </span>
