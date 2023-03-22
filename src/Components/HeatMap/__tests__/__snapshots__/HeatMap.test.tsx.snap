@@ -3,16 +3,16 @@
 exports[`HeatMap > should render a word heatmap 1`] = `
 <DocumentFragment>
   <h3
-    class="text-xl font-medium text-gray-900 dark:text-white mt-10 rounded-t-lg bg-gray-200 p-2"
+    class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 rounded-t-lg bg-gray-200 p-2"
   >
     Test Header
   </h3>
   <div
-    class="min-h-96 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-4 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
+    class="min-h-96 md:border-3 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-2 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
     data-testid="heat-map"
   >
     <span
-      class="m-6 rounded-2xl border-2 p-3"
+      class="m-2 rounded-2xl border-2 p-3 md:m-5"
       data-testid="heat-map-word"
       style="background-color: rgb(255, 204, 204);"
     >
@@ -23,7 +23,7 @@ exports[`HeatMap > should render a word heatmap 1`] = `
       </span>
     </span>
     <span
-      class="m-6 rounded-2xl border-2 p-3"
+      class="m-2 rounded-2xl border-2 p-3 md:m-5"
       data-testid="heat-map-word"
       style="background-color: rgb(255, 0, 0);"
     >
@@ -33,7 +33,7 @@ exports[`HeatMap > should render a word heatmap 1`] = `
         then
       </span>
       <span
-        class="ml-4 rounded-full py-1 px-3 text-white"
+        class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
         style="background-color: rgb(0, 0, 0);"
       >
         5

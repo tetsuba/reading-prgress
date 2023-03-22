@@ -24,23 +24,23 @@ export default function Modal(props: PropTypes) {
         const modalRoot = document.getElementById('modal')
         if (elRef.current && modalRoot) {
             modalRoot.appendChild(elRef.current)
+            document.body.style.overflow = 'hidden'
         }
         return () => {
             if (elRef.current && modalRoot) {
                 modalRoot.removeChild(elRef.current)
+                document.body.style.overflow = 'visible'
             }
         }
     }, [])
 
     return createPortal(
         <div
-            className={`relative m-auto w-full md:h-auto md:w-9/12 ${
+            className={`relative m-auto w-full rounded-lg bg-white shadow dark:bg-gray-700 md:h-auto md:w-9/12 ${
                 props.className || ''
             }`}
         >
-            <div className="relative rounded-lg bg-white shadow dark:bg-gray-700">
-                {props.children}
-            </div>
+            {props.children}
         </div>,
         elRef.current
     )

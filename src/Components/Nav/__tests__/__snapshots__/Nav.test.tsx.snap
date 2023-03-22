@@ -3,77 +3,73 @@
 exports[`Nav > not authenticated > clicking on the login button 1`] = `
 <DocumentFragment>
   <div
-    class="isolate bg-white"
+    class="isolate h-16 md:h-auto"
   >
-    <div
-      class="lg"
+    <nav
+      class="fixed w-full bg-gray-800 md:relative"
     >
-      <nav
-        class="bg-gray-800"
+      <div
+        class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
       >
         <div
-          class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+          class="flex h-16 justify-between"
         >
           <div
-            class="flex h-16 justify-between"
+            class="flex items-center"
           >
             <div
-              class="flex items-center"
+              class="flex-shrink-0"
             >
-              <div
-                class="flex-shrink-0"
+              <svg
+                class="h-6 w-6 stroke-white"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  class="h-6 w-6 stroke-white"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-              <div
-                class="hidden md:block"
-              >
-                <div
-                  class="ml-10 flex items-baseline space-x-4"
-                >
-                  <a
-                    aria-current="page"
-                    class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                    href="/"
-                  >
-                    Home
-                  </a>
-                  <a
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    href="/register"
-                  >
-                    Register
-                  </a>
-                </div>
-              </div>
+                <path
+                  d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </div>
             <div
-              class=""
+              class="hidden md:block"
             >
-              <button
-                class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-gray bg-gray-200 hover:bg-gray-300 mt-2"
-                type="button"
+              <div
+                class="ml-10 flex items-baseline space-x-4"
               >
-                Log in
-              </button>
+                <a
+                  aria-current="page"
+                  class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="/"
+                >
+                  Home
+                </a>
+                <a
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="/register"
+                >
+                  Register
+                </a>
+              </div>
             </div>
           </div>
+          <div
+            class="flex items-center"
+          >
+            <button
+              class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-gray bg-gray-200 hover:bg-gray-300 mt-2"
+              type="button"
+            >
+              Log in
+            </button>
+          </div>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   </div>
 </DocumentFragment>
 `;

@@ -13,7 +13,7 @@ export default function NavLinksRightDesktop() {
     const [showLogin, setShowLogin] = useState(false)
 
     return (
-        <div className="">
+        <div className="flex items-center">
             {userToken ? (
                 <NavMenu />
             ) : (

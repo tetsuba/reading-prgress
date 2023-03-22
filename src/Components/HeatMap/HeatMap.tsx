@@ -41,7 +41,7 @@ export default function HeatMap(props: PropTypes) {
             </H3>
             <div
                 data-testid="heat-map"
-                className="min-h-96 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-2 md:border-3 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
+                className="min-h-96 md:border-3 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-2 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
             >
                 {props.words.filter(sightWords).map(heatMap)}
             </div>
