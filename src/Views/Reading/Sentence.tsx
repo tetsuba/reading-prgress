@@ -23,14 +23,14 @@ export default function Sentence(props: PropTypes) {
     return (
         <div
             data-testid="sentence-block"
-            className={`${active} ${completed} min-h-96 relative mb-8 rounded-lg border-4 border-dashed border-gray-200 p-6 text-2xl transition-all duration-1000`}
+            className={`${active} ${completed} min-h-96 relative mb-8 border-y-2 border-dashed border-gray-200 p-4 text-2xl transition-all duration-1000 md:rounded-lg md:border-x-2 md:p-6`}
         >
             <Button
                 dataTestid="sentence-complete"
                 template="icon"
                 type="button"
                 svg="check-badge"
-                className="absolute right-1 bottom-1 hover:text-green-500"
+                className="absolute right-2 bottom-1 hover:text-green-500"
                 clickHandler={props.sentenceClickHandler}
             />
             {props.sentence.map(({ word, status }, wordIndex) => {

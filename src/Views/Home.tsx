@@ -35,10 +35,11 @@ const Home = () => {
                         <div>
                             <H1>Data to improve reading</H1>
                             <P className="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
-                                Anim aute id magna aliqua ad ad non deserunt
-                                sunt. Qui irure qui lorem cupidatat commodo.
-                                Elit sunt amet fugiat veniam occaecat fugiat
-                                aliqua.
+                                Reading Tracker helps to identify the weaknesses
+                                of a child learning to read. It will help
+                                identify which phonetics the reader is
+                                struggling with and which sight words it cannot
+                                read.
                             </P>
                             <div className="mt-8 flex gap-x-4 sm:justify-center">
                                 <Button

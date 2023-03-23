@@ -14,10 +14,10 @@ export default function AddBook() {
                 template="tertiary"
                 clickHandler={() => setShowModal(true)}
             >
-                <span className="mr-2">
+                <span className="md:mr-2">
                     <Svg type="plus" />
                 </span>
-                Add Book
+                <span className="hidden md:block">Add Book</span>
             </Button>
             {showModal && (
                 <Modal className="">

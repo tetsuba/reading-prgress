@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom'
 function createModalHTML(): HTMLDivElement {
     const ele = document.createElement('div')
     const classes =
-        'inset-0 h-modal h-full fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-auto bg-gray-900 bg-opacity-70 dark:bg-opacity-80 flex justify-center'
+        'z-50 inset-0 h-modal h-full fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-auto bg-gray-900 bg-opacity-70 dark:bg-opacity-80 flex justify-center'
     ele.setAttribute('class', classes)
     return ele
 }

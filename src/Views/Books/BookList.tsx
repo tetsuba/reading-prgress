@@ -40,10 +40,10 @@ export default function BookList(props: PropTypes) {
 
     return (
         <div data-testid="book-list">
-            <div className="flex justify-end">
+            <div className="flex justify-end px-4 sm:px-6">
                 <Button
                     type="button"
-                    className="mb-6 mr-6 flex"
+                    className="mb-6 flex"
                     dataTestid="back-button"
                     template="primary"
                     clickHandler={props.clickHandlerBack}
@@ -52,16 +52,16 @@ export default function BookList(props: PropTypes) {
                     <span className="ml-2">Back</span>
                 </Button>
             </div>
-            <div className="rounded-t-lg bg-gray-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div className="flex justify-between bg-gray-200 px-4 py-5 sm:gap-4 sm:px-6 md:rounded-t-lg">
                 <div className="flex items-center">
-                    <span className={`mr-6`}>
+                    <span className="mr-2 md:mr-6">
                         <Svg type="library" />
                     </span>
-                    <span className="text-lg font-bold text-gray-900">
+                    <span className="hidden text-lg font-bold text-gray-900 md:block">
                         {props.title}
                     </span>
                 </div>
-                <div>
+                <div className="grow">
                     <Input
                         dataTestId="search"
                         value={search}
@@ -70,7 +70,7 @@ export default function BookList(props: PropTypes) {
                         placeholder="Search"
                     />
                 </div>
-                <div className="flex items-center justify-end">
+                <div className=" ml-2 flex items-center justify-end">
                     {props.delete && <AddBook />}
                 </div>
             </div>
@@ -83,7 +83,7 @@ export default function BookList(props: PropTypes) {
                     return (
                         <div
                             key={`book-list-${i}`}
-                            className={`px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 ${
+                            className={`flex justify-between px-4 py-5 sm:gap-4 sm:px-6 ${
                                 i & 1 ? 'bg-white' : 'bg-gray-50'
                             }`}
                         >
@@ -95,7 +95,6 @@ export default function BookList(props: PropTypes) {
                                     {book.title}
                                 </span>
                             </div>
-                            <div className=""></div>
                             <div className="flex justify-end">
                                 <Button
                                     type="button"

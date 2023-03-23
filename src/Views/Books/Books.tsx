@@ -19,12 +19,10 @@ export default function Books() {
         <>
             <Header text="Books" />
             <main>
-                <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-                    <div className="px-4 py-6 sm:px-0">
-                        {isSuccess && (
-                            <BookCollectionList collections={data.data} />
-                        )}
-                    </div>
+                <div className="mx-auto max-w-7xl py-6 md:px-4">
+                    {isSuccess && (
+                        <BookCollectionList collections={data.data} />
+                    )}
                 </div>
             </main>
         </>
