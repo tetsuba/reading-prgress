@@ -19,7 +19,9 @@ exports[`SightWords > will render groups of sight words 1`] = `
     <div
       class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8"
     >
-      <div>
+      <div
+        class="px-4 md:px-0"
+      >
         <input
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
           data-testid="search"
@@ -32,16 +34,16 @@ exports[`SightWords > will render groups of sight words 1`] = `
         class="px-4 sm:px-0"
       >
         <h3
-          class="text-xl font-medium text-gray-900 dark:text-white mt-10 rounded-t-lg bg-gray-200 p-2"
+          class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 rounded-t-lg bg-gray-200 p-2"
         >
           Sight Words Read Incorrectly
         </h3>
         <div
-          class="min-h-96 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-4 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
+          class="min-h-96 md:border-3 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-2 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
           data-testid="heat-map"
         >
           <span
-            class="m-6 rounded-2xl border-2 p-3"
+            class="m-2 rounded-2xl border-2 p-3 md:m-5"
             data-testid="heat-map-word"
             style="background-color: rgb(255, 204, 204);"
           >
@@ -52,7 +54,7 @@ exports[`SightWords > will render groups of sight words 1`] = `
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3"
+            class="m-2 rounded-2xl border-2 p-3 md:m-5"
             data-testid="heat-map-word"
             style="background-color: rgb(255, 0, 0);"
           >
@@ -62,7 +64,7 @@ exports[`SightWords > will render groups of sight words 1`] = `
               that
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white"
+              class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
               style="background-color: rgb(0, 0, 0);"
             >
               5
@@ -70,16 +72,16 @@ exports[`SightWords > will render groups of sight words 1`] = `
           </span>
         </div>
         <h3
-          class="text-xl font-medium text-gray-900 dark:text-white mt-10 rounded-t-lg bg-gray-200 p-2"
+          class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 rounded-t-lg bg-gray-200 p-2"
         >
           Sight Words Read In Books
         </h3>
         <div
-          class="min-h-96 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-4 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
+          class="min-h-96 md:border-3 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-2 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
           data-testid="heat-map"
         >
           <span
-            class="m-6 rounded-2xl border-2 p-3"
+            class="m-2 rounded-2xl border-2 p-3 md:m-5"
             data-testid="heat-map-word"
             style="background-color: rgb(229.5, 242.25, 255);"
           >
@@ -90,7 +92,7 @@ exports[`SightWords > will render groups of sight words 1`] = `
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3"
+            class="m-2 rounded-2xl border-2 p-3 md:m-5"
             data-testid="heat-map-word"
             style="background-color: rgb(127.5, 191.25, 255);"
           >
@@ -100,14 +102,14 @@ exports[`SightWords > will render groups of sight words 1`] = `
               that
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white"
+              class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
               style="background-color: rgb(127.5, 127.5, 127.5);"
             >
               5
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3"
+            class="m-2 rounded-2xl border-2 p-3 md:m-5"
             data-testid="heat-map-word"
             style="background-color: rgb(0, 127.5, 255);"
           >
@@ -117,7 +119,7 @@ exports[`SightWords > will render groups of sight words 1`] = `
               would
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white"
+              class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
               style="background-color: rgb(0, 0, 0);"
             >
               10
@@ -125,16 +127,16 @@ exports[`SightWords > will render groups of sight words 1`] = `
           </span>
         </div>
         <h3
-          class="text-xl font-medium text-gray-900 dark:text-white mt-10 rounded-t-lg bg-gray-200 p-2"
+          class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 rounded-t-lg bg-gray-200 p-2"
         >
           Sight Words In Books
         </h3>
         <div
-          class="min-h-96 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-4 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
+          class="min-h-96 md:border-3 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-2 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
           data-testid="heat-map"
         >
           <span
-            class="m-6 rounded-2xl border-2 p-3"
+            class="m-2 rounded-2xl border-2 p-3 md:m-5"
             data-testid="heat-map-word"
             style="background-color: rgb(238, 249.33333333333334, 238);"
           >
@@ -145,7 +147,7 @@ exports[`SightWords > will render groups of sight words 1`] = `
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3"
+            class="m-2 rounded-2xl border-2 p-3 md:m-5"
             data-testid="heat-map-word"
             style="background-color: rgb(170, 226.66666666666666, 170);"
           >
@@ -155,14 +157,14 @@ exports[`SightWords > will render groups of sight words 1`] = `
               that
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white"
+              class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
               style="background-color: rgb(170, 170, 170);"
             >
               5
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3"
+            class="m-2 rounded-2xl border-2 p-3 md:m-5"
             data-testid="heat-map-word"
             style="background-color: rgb(85, 198.33333333333334, 85);"
           >
@@ -172,14 +174,14 @@ exports[`SightWords > will render groups of sight words 1`] = `
               would
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white"
+              class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
               style="background-color: rgb(85, 85, 85);"
             >
               10
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3"
+            class="m-2 rounded-2xl border-2 p-3 md:m-5"
             data-testid="heat-map-word"
             style="background-color: rgb(0, 170, 0);"
           >
@@ -189,7 +191,7 @@ exports[`SightWords > will render groups of sight words 1`] = `
               dog
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white"
+              class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
               style="background-color: rgb(0, 0, 0);"
             >
               15
@@ -197,16 +199,16 @@ exports[`SightWords > will render groups of sight words 1`] = `
           </span>
         </div>
         <h3
-          class="text-xl font-medium text-gray-900 dark:text-white mt-10 rounded-t-lg bg-gray-200 p-2"
+          class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 rounded-t-lg bg-gray-200 p-2"
         >
           Sight Words Not Available In Books
         </h3>
         <div
-          class="min-h-96 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-4 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
+          class="min-h-96 md:border-3 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-2 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
           data-testid="heat-map"
         >
           <span
-            class="m-6 rounded-2xl border-2 p-3"
+            class="m-2 rounded-2xl border-2 p-3 md:m-5"
             data-testid="heat-map-word"
             style="background-color: rgb(230, 230, 230);"
           >
@@ -216,14 +218,14 @@ exports[`SightWords > will render groups of sight words 1`] = `
               right
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white"
+              class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
               style="background-color: rgb(127.5, 127.5, 127.5);"
             >
               20
             </span>
           </span>
           <span
-            class="m-6 rounded-2xl border-2 p-3"
+            class="m-2 rounded-2xl border-2 p-3 md:m-5"
             data-testid="heat-map-word"
             style="background-color: rgb(230, 230, 230);"
           >
@@ -233,7 +235,7 @@ exports[`SightWords > will render groups of sight words 1`] = `
               live
             </span>
             <span
-              class="ml-4 rounded-full py-1 px-3 text-white"
+              class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
               style="background-color: rgb(0, 0, 0);"
             >
               40

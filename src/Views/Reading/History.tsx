@@ -12,19 +12,17 @@ type PropTypes = {
 export default function History(props: PropTypes) {
     return (
         <>
-            <div className="flex justify-between">
-                <H3 className="mb-8">{`I read this book ${props.history.length} times`}</H3>
-                <div>
-                    <Button
-                        dataTestid="history-back-button"
-                        title="Back"
-                        svg="back"
-                        template="icon"
-                        type="button"
-                        className={`mb-3 p-2 text-blue-500 hover:border-white hover:bg-gray-100 hover:text-blue-600 focus:outline-none`}
-                        clickHandler={props.restart}
-                    />
-                </div>
+            <div className="mb-4 flex items-center justify-between px-4">
+                <H3 className="">{`I read this book ${props.history.length} times`}</H3>
+                <Button
+                    dataTestid="history-back-button"
+                    title="Back"
+                    svg="back"
+                    template="icon"
+                    type="button"
+                    className={`p-2 text-blue-500 hover:border-white hover:bg-gray-100 hover:text-blue-600 focus:outline-none`}
+                    clickHandler={props.restart}
+                />
             </div>
 
             {props.history
@@ -38,12 +36,12 @@ export default function History(props: PropTypes) {
                             data-testid="history-block"
                             key={`completed-${index}`}
                         >
-                            <div className="flex justify-between">
+                            <div className="flex justify-between px-4 text-sm">
                                 <span>List of words to practice:</span>
                                 <span>Date: {data.date}</span>
                             </div>
                             <div
-                                className={`${textColor} min-h-96 relative mb-8 rounded-lg border-4 border-dashed p-6 text-2xl`}
+                                className={`${textColor} min-h-96 relative mb-8 border-y-2 border-dashed p-4 text-2xl md:rounded-lg md:border-x-2 md:p-6`}
                             >
                                 <span>
                                     {notCompleted ? (

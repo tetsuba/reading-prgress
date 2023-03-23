@@ -14,15 +14,17 @@ export default function Expired() {
     return (
         <div
             data-testid="modal-expired"
-            className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+            className="relative mt-4 transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all"
         >
-            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
-                    <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                        <Svg type="warning" />
+            <div className="bg-white px-4 pb-4">
+                <div className="">
+                    <div className="mt-3 ml-4 flex items-center">
+                        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100">
+                            <Svg type="warning" />
+                        </div>
+                        <H3 className="ml-4">Session Expired</H3>
                     </div>
-                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        <H3>Session Expired</H3>
+                    <div className="mt-3 ml-4">
                         <div className="mt-2">
                             <P className="text-sm text-gray-500">
                                 Your session has expired. Please log back in to
@@ -32,7 +34,7 @@ export default function Expired() {
                     </div>
                 </div>
             </div>
-            <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+            <div className="flex justify-end bg-gray-50 px-4 py-3">
                 <Button
                     dataTestid="expired-button"
                     template="primary"

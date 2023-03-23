@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+
 import {
     WrapperWith_Store_Router,
     WrapperWith_Store_Query_Router
@@ -42,16 +43,42 @@ describe('Nav', () => {
         })
     })
     describe('authenticated', () => {
-        test('clicking on the log out button in the user menu', async () => {
+        test('clicking on the sign out button [desktop]', async () => {
+            store.dispatch(updateUser(mockUser))
+
+            render(
+                <WrapperWith_Store_Router pathname="/profile">
+                    <Nav />
+                </WrapperWith_Store_Router>
+            )
+
+            fireEvent.click(screen.getByTestId('user-menu-button'))
+            fireEvent.click(screen.getByText('Sign out'))
+            expect(screen.queryByTestId('user-menu')).toBeNull()
+            await waitFor(() => expect(mockNavigate).toHaveBeenCalled())
+        })
+        test('clicking on the sign out button [mobile]', async () => {
             store.dispatch(updateUser(mockUser))
             render(
                 <WrapperWith_Store_Router pathname="/profile">
                     <Nav />
                 </WrapperWith_Store_Router>
             )
-            fireEvent.click(screen.getByTestId('user-menu-button'))
-            fireEvent.click(screen.getByText('Sign out'))
-            expect(screen.queryByTestId('user-menu')).toBeNull()
+            fireEvent.click(screen.getByTestId('mobile-menu-button'))
+            fireEvent.click(screen.getByTestId('sign-out-mobile-menu'))
+            await waitFor(() => expect(mockNavigate).toHaveBeenCalled())
+        })
+        test('clicking on a mobile navigation menu link', async () => {
+            store.dispatch(updateUser(mockUser))
+            render(
+                <WrapperWith_Store_Router pathname="/profile">
+                    <Nav />
+                </WrapperWith_Store_Router>
+            )
+            fireEvent.click(screen.getByTestId('mobile-menu-button'))
+            expect(screen.getByTestId('mobile-nav-menu'))
+            fireEvent.click(screen.getAllByTestId('mobile-menu-link')[0])
+            expect(screen.queryByTestId('mobile-nav-menu')).toBeNull()
             await waitFor(() => expect(mockNavigate).toHaveBeenCalled())
         })
     })

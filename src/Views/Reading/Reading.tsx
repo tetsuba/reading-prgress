@@ -63,18 +63,18 @@ export default function Reading() {
             <Header text={`${book.title}`}>
                 <Button
                     type="button"
-                    className="flex"
+                    className="ml-4 flex items-center place-self-start"
                     dataTestid="back-button"
                     template="secondary"
                     clickHandler={() => navigate('/books')}
                 >
                     <Svg type="back" />
-                    <span className="ml-2">Back to books</span>
+                    <span className="ml-2 hidden md:inline">Back to books</span>
                 </Button>
             </Header>
             <main>
-                <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-                    <div className="px-4 py-6 sm:px-0">
+                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div className="py-6 md:px-4">
                         {showHistory && (
                             <History
                                 history={book.history}

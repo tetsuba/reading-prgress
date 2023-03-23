@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { userTokenSelector } from '../../store/user/userSelectors'
 
-export default function NavLinksLeftDesktop() {
+export default function NavLinksLeft() {
     const userToken = useSelector(userTokenSelector)
     const NOT_ACTIVE =
         'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'

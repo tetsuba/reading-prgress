@@ -26,7 +26,7 @@ export default function SightWords() {
             <Header text="Sight Words" />
             <main>
                 <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-                    <div>
+                    <div className="px-4 md:px-0">
                         <Input
                             dataTestId="search"
                             value={search}

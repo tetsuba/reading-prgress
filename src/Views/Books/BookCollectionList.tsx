@@ -34,7 +34,7 @@ export default function BookCollectionList(props: PropTypes) {
                 props.collections.map((collection, i: number) => (
                     <div
                         key={`book-list-${i}`}
-                        className={`px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6 ${
+                        className={`flex justify-between px-4 py-5 sm:gap-4 sm:px-6 ${
                             i & 1 ? 'bg-white' : 'bg-gray-50'
                         }`}
                     >
@@ -58,8 +58,10 @@ export default function BookCollectionList(props: PropTypes) {
                                     )
                                 }}
                             >
-                                View Books
-                                <span className={`ml-2`}>
+                                <span className="hidden md:inline">
+                                    View Books
+                                </span>
+                                <span className="md:ml-2">
                                     <Svg type="eye" />
                                 </span>
                             </Button>
