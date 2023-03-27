@@ -1,5 +1,5 @@
 # Reading Tracker
-An application to track the progress of a young reader.
+Reading Tracker helps to identify the weaknesses of a child learning to read. It will help identify which phonetics the reader is struggling with and which sight words it cannot read.
 
 
 ## Tech stack
