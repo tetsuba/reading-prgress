@@ -16,9 +16,9 @@ let origin
 /* c8 ignore next 6 */
 if (import.meta.env.DEV) {
     origin =
-        location.port === '5173' ? 'http://localhost:3001' : location.origin
+        location.port === '5173' ? '//localhost:3001' : location.origin
 } else {
-    origin = 'http://18.132.193.58:3001'
+    origin = '//api.tetsuba.link'
 }
 
 const BASE_URL = `${origin}/api/reading/`
