@@ -17,7 +17,7 @@ const mockHistory = [
 const mockBookData: AddBookPayloadTypes = {
     book: {
         title: 'mock title',
-        story: 'This is a story. There is, a& story. Their is a story.',
+        story: ['This is a story.', 'There is, a& story.', 'Their is a story.'],
         id: 1,
         userId: 2,
         history: mockHistory

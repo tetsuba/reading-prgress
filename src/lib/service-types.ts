@@ -5,7 +5,7 @@ export type ApiBookHistoryTypes = {
 
 export type ApiBookTypes = {
     id: number
-    story: string
+    story: string | string[]
     title: string
     userId: number
     history: ApiBookHistoryTypes[]

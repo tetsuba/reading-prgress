@@ -15,8 +15,7 @@ import {
 let origin
 /* c8 ignore next 6 */
 if (import.meta.env.DEV) {
-    origin =
-        location.port === '5173' ? '//localhost:3001' : location.origin
+    origin = location.port === '5173' ? '//localhost:3001' : location.origin
 } else {
     origin = '//api.tetsuba.link'
 }
@@ -45,6 +44,7 @@ axios.interceptors.response.use(
     function (error: ErrorTypes) {
         if (error.response.status === 401) {
             // Unauthorized
+            console.log('interceptors [Unauthorized]')
             store.dispatch(toggleViewGlobalExpired(true))
         }
         // Any status codes that falls outside the range of 2xx cause this function to trigger
@@ -116,7 +116,7 @@ export async function getSightWords(
 }
 
 export async function registerBook(json: {
-    [k: string]: string | number | undefined
+    [k: string]: string | number | undefined | string[]
 }): Promise<ApiCollectionResponseTypes> {
     const token = ls.get()
     return await axios.post(`${URL_BOOK}/register`, JSON.stringify(json), {

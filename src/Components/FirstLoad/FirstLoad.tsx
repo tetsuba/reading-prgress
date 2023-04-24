@@ -21,8 +21,8 @@ export default function FirstLoad(props: PropTypes) {
      * the store.user
      * */
     const { isLoading, isError } = useQuery(['user'], getUserDetails, {
-        retry: 1,
-        enabled: !!token
+        retry: false,
+        enabled: !!token && !sessionExpired
     })
 
     if (isLoading) return <Loading />

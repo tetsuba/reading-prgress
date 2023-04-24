@@ -11,9 +11,20 @@ type WordType = {
     word: string
     status: string
 }
-export function buildStoryStructure(story: string): WordType[][] | [] {
-    return story
-        ? story
+export function buildStoryStructure(
+    story: string | string[]
+): WordType[][] | [] {
+    return Array.isArray(story)
+        ? story.map((sentence) =>
+              sentence
+                  .split(' ')
+                  .filter((word) => word !== '')
+                  .map((word) => ({
+                      word: word,
+                      status: ''
+                  }))
+          )
+        : story // TODO: To be removed when story format is finalized.
               .split(/\./g)
               .filter((sentence) => sentence !== '')
               .map((sentence) => sentence.concat('.'))
@@ -26,7 +37,6 @@ export function buildStoryStructure(story: string): WordType[][] | [] {
                           status: ''
                       }))
               )
-        : []
 }
 
 export function allWordsAreCorrect(story: WordType[][], count: number) {
