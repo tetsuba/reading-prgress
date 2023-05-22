@@ -18,7 +18,7 @@ export default function Confirmation(props: PropTypes) {
                 <div className="">
                     <div className="mt-3 ml-4 flex items-center">
                         <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100">
-                            <Svg type="warning" />
+                            <Svg icon="warning" />
                         </div>
                         <H3 className="ml-4">{`${props.bookTile}`}</H3>
                     </div>
@@ -35,19 +35,17 @@ export default function Confirmation(props: PropTypes) {
             </div>
             <div className="flex justify-end bg-gray-50 px-4 py-3">
                 <Button
-                    dataTestid="cancel-button"
+                    data-testid="cancel-button"
                     template="secondary"
-                    type="button"
                     className="mr-5"
-                    clickHandler={() => props.clickHandlerCancel()}
+                    onClick={() => props.clickHandlerCancel()}
                 >
                     Cancel
                 </Button>
                 <Button
-                    dataTestid="delete-button"
+                    data-testid="delete-button"
                     template="warning"
-                    type="button"
-                    clickHandler={() => props.clickHandlerDelete()}
+                    onClick={() => props.clickHandlerDelete()}
                 >
                     Delete
                 </Button>

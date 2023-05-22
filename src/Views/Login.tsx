@@ -6,11 +6,12 @@ import { loginUser } from '../lib/service'
 import { updateUser } from '../store/user/userSlice'
 
 // COMPONENTS
-import Button from '../Components/Button/Button'
 import H3 from '../Components/H3/H3'
 import Label from '../Components/Form/Label'
 import Input from '../Components/Form/Input'
 import ErrorMessage from '../Components/Form/ErrorMessage'
+import Button from '../Components/Button/Button'
+import Svg from '../Components/Svg/Svg'
 
 type PropTypes = {
     setShowLogin: (p: boolean) => void
@@ -27,16 +28,16 @@ export default function Login(props: PropTypes) {
             navigate('/dashboard')
         }
     })
+
     return (
         <div data-testid="login-view">
             <Button
-                template="icon"
-                className="absolute right-2.5 top-3 ml-auto p-1.5 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-                dataTestid="modal-close"
-                type="button"
-                svg="close"
-                clickHandler={() => props.setShowLogin(false)}
-            />
+                template="svgClose"
+                data-testid="modal-close"
+                onClick={() => props.setShowLogin(false)}
+            >
+                <Svg icon="close" />
+            </Button>
             <div className="px-6 py-6 lg:px-8">
                 <H3 className="mb-3">Sign in to our platform</H3>
                 <form
@@ -77,12 +78,16 @@ export default function Login(props: PropTypes) {
                                 Remember me
                             </Label>
                         </div>
-                        <a
-                            href="src/Components/Modal/View#"
-                            className="text-sm text-blue-700 hover:underline dark:text-blue-500"
+                        <Button
+                            template="textLink"
+                            className="ml-1"
+                            onClick={() => {
+                                navigate('/register')
+                                props.setShowLogin(false)
+                            }}
                         >
                             Lost Password?
-                        </a>
+                        </Button>
                     </div>
                     <ErrorMessage
                         show={mutation.isError}
@@ -90,17 +95,21 @@ export default function Login(props: PropTypes) {
                     >
                         {getErrorMessage(mutation.error as Error)}
                     </ErrorMessage>
-                    <Button className="w-full" type="submit" template="primary">
+                    <Button template="primary" className="w-full" type="submit">
                         Login to your account
                     </Button>
                     <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                         Not registered?
-                        <a
-                            href="src/Components/Modal/View#"
-                            className="text-blue-700 hover:underline dark:text-blue-500"
+                        <Button
+                            template="textLink"
+                            className="ml-1"
+                            onClick={() => {
+                                navigate('/register')
+                                props.setShowLogin(false)
+                            }}
                         >
                             Create account
-                        </a>
+                        </Button>
                     </div>
                 </form>
             </div>

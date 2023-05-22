@@ -6,7 +6,6 @@ import { formDataToQueryString, getErrorMessage } from '../lib/utils'
 import Label from '../Components/Form/Label'
 import Input from '../Components/Form/Input'
 import Button from '../Components/Button/Button'
-import H3 from '../Components/H3/H3'
 import ErrorMessage from '../Components/Form/ErrorMessage'
 import Header from '../Components/Header/Header'
 
@@ -102,8 +101,8 @@ export default function Register() {
 
                                             <div className="flex justify-end">
                                                 <Button
-                                                    type="submit"
                                                     template="primary"
+                                                    type="submit"
                                                 >
                                                     Register
                                                 </Button>

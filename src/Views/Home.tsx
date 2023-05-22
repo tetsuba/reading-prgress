@@ -2,9 +2,10 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Modal from '../Components/Modal/Modal'
 import Login from './Login'
-import Button from '../Components/Button/Button'
 import H1 from '../Components/H1/H1'
 import P from '../Components/P/P'
+import Button from '../Components/Button/Button'
+import Svg from '../Components/Svg/Svg'
 
 const Home = () => {
     const navigate = useNavigate()
@@ -43,31 +44,20 @@ const Home = () => {
                             </P>
                             <div className="mt-8 flex gap-x-4 sm:justify-center">
                                 <Button
-                                    type="button"
+                                    className="flex items-center"
+                                    onClick={() => setShowLogin(true)}
                                     template="primary"
-                                    clickHandler={() => setShowLogin(true)}
                                 >
                                     Log in{' '}
-                                    <span
-                                        className="text-indigo-200"
-                                        aria-hidden="true"
-                                    >
-                                        &rarr;
-                                    </span>
+                                    <Svg icon="arrowRight" className="ml-1" />
                                 </Button>
-
                                 <Button
-                                    type="button"
+                                    className="flex items-center"
+                                    onClick={() => navigate('/register')}
                                     template="secondary"
-                                    clickHandler={() => navigate('/register')}
                                 >
                                     Register{' '}
-                                    <span
-                                        className="text-indigo-200"
-                                        aria-hidden="true"
-                                    >
-                                        &rarr;
-                                    </span>
+                                    <Svg icon="arrowRight" className="ml-1" />
                                 </Button>
                             </div>
                         </div>

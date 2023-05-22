@@ -1,5 +1,6 @@
 import Button from '../../Components/Button/Button'
 import Word from './Word'
+import Svg from '../../Components/Svg/Svg'
 
 export type WordTypes = {
     word: string
@@ -26,20 +27,20 @@ export default function Sentence(props: PropTypes) {
             className={`${active} ${completed} min-h-96 relative mb-8 border-y-2 border-dashed border-gray-200 p-4 text-2xl transition-all duration-1000 md:rounded-lg md:border-x-2 md:p-6`}
         >
             <Button
-                dataTestid="sentence-complete"
-                template="icon"
-                type="button"
-                svg="check-badge"
+                data-testid="sentence-complete"
+                template="svg"
                 className="absolute right-2 bottom-1 hover:text-green-500"
-                clickHandler={props.sentenceClickHandler}
-            />
+                onClick={props.sentenceClickHandler}
+            >
+                <Svg icon="check-badge" />
+            </Button>
             {props.sentence.map(({ word, status }, wordIndex) => {
                 return (
                     <Word
                         key={`word-${word}-${wordIndex}`}
                         index={wordIndex}
                         status={status}
-                        clickHandler={() => {
+                        onClick={() => {
                             props.wordClickHandler &&
                                 props.wordClickHandler(status, wordIndex)
                         }}

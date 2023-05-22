@@ -42,20 +42,19 @@ export default function BookList(props: PropTypes) {
         <div data-testid="book-list">
             <div className="flex justify-end px-4 sm:px-6">
                 <Button
-                    type="button"
                     className="mb-6 flex"
-                    dataTestid="back-button"
+                    data-testid="back-button"
                     template="primary"
-                    clickHandler={props.clickHandlerBack}
+                    onClick={props.clickHandlerBack}
                 >
-                    <Svg type="back" />
+                    <Svg icon="back" />
                     <span className="ml-2">Back</span>
                 </Button>
             </div>
             <div className="flex justify-between bg-gray-200 px-4 py-5 sm:gap-4 sm:px-6 md:rounded-t-lg">
                 <div className="flex items-center">
                     <span className="mr-2 md:mr-6">
-                        <Svg type="library" />
+                        <Svg icon="library" />
                     </span>
                     <span className="hidden text-lg font-bold text-gray-900 md:block">
                         {props.title}
@@ -89,7 +88,7 @@ export default function BookList(props: PropTypes) {
                         >
                             <div className="flex items-center">
                                 <span className={`mr-6 ${bookStatusColour}`}>
-                                    <Svg type="bookmark" />
+                                    <Svg icon="bookmark" />
                                 </span>
                                 <span className="font-medium text-gray-800">
                                     {book.title}
@@ -97,10 +96,9 @@ export default function BookList(props: PropTypes) {
                             </div>
                             <div className="flex justify-end">
                                 <Button
-                                    type="button"
-                                    dataTestid="book-list-read"
+                                    data-testid="book-list-read"
                                     template="secondary"
-                                    clickHandler={() => {
+                                    onClick={() => {
                                         dispatch(
                                             addBook({
                                                 book,
@@ -114,15 +112,15 @@ export default function BookList(props: PropTypes) {
                                 </Button>
                                 {props.delete && (
                                     <Button
-                                        type="button"
-                                        dataTestid="book-list-delete"
-                                        template="icon"
-                                        svg="delete"
-                                        className="ml-2 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-                                        clickHandler={() => {
+                                        data-testid="book-list-delete"
+                                        template="svgDelete"
+                                        className="ml-2"
+                                        onClick={() => {
                                             setBook(book)
                                         }}
-                                    />
+                                    >
+                                        <Svg icon="delete" />
+                                    </Button>
                                 )}
                             </div>
                         </div>

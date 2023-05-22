@@ -104,6 +104,7 @@ exports[`Register > should render 1`] = `
                 >
                   <button
                     class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 "
+                    template="primary"
                     type="submit"
                   >
                     Register

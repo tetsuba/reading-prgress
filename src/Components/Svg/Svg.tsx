@@ -1,4 +1,4 @@
-export type SvgTypes =
+export type SvgIconTypes =
     | 'close'
     | 'delete'
     | 'user'
@@ -13,13 +13,16 @@ export type SvgTypes =
     | 'plus'
     | 'thumb'
     | 'menu'
+    | 'arrowRight'
 
 type PropTypes = {
-    type: SvgTypes
+    icon: SvgIconTypes
+    className?: string
 }
 
 export default function Svg(props: PropTypes) {
-    switch (props.type) {
+    const { className = '' } = props
+    switch (props.icon) {
         case 'close':
             return (
                 <svg
@@ -27,7 +30,7 @@ export default function Svg(props: PropTypes) {
                     className="h-5 w-5"
                     fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 20 20"
                 >
                     <path
                         fillRule="evenodd"
@@ -179,9 +182,9 @@ export default function Svg(props: PropTypes) {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    strokeWidth={1.5}
+                    strokeWidth={1}
                     stroke="currentColor"
-                    className="h-6 w-6"
+                    className={`h-5 w-5 ${className}`}
                 >
                     <path
                         strokeLinecap="round"
@@ -220,7 +223,7 @@ export default function Svg(props: PropTypes) {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="h-6 w-6"
+                    className={`h-5 w-5 ${className}`}
                 >
                     <path
                         strokeLinecap="round"
@@ -260,6 +263,23 @@ export default function Svg(props: PropTypes) {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                    />
+                </svg>
+            )
+        case 'arrowRight':
+            return (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2.5}
+                    stroke="currentColor"
+                    className={`h-4 w-4 ${className}`}
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
                     />
                 </svg>
             )

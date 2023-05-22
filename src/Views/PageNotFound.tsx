@@ -15,10 +15,9 @@ export default function PageNotFound() {
                 </p>
                 <div className="mt-10 flex items-center justify-center gap-x-6">
                     <Button
-                        dataTestid="go-back-button"
-                        type="button"
+                        data-testid="go-back-button"
                         template="primary"
-                        clickHandler={() => navigate(-1)}
+                        onClick={() => navigate(-1)}
                     >
                         Go back
                     </Button>

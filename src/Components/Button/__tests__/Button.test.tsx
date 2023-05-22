@@ -1,35 +1,31 @@
-import { fireEvent, render, screen } from '@testing-library/react'
-import Button, { ButtonTemplateTypes } from '../Button'
+import { render } from '@testing-library/react'
+import Button from '../Button'
+import { TailwindTemplateTypes } from '../buttonClasses.tailwind'
+import Svg from '../../Svg/Svg'
 
 describe('Button', () => {
-    const buttonTemplates: ButtonTemplateTypes[] = [
-        'none',
+    const buttonTemplates: TailwindTemplateTypes[] = [
         'primary',
         'secondary',
         'tertiary',
-        'warning'
+        'warning',
+        'svgClose',
+        'textLink'
     ]
     test.each(buttonTemplates)(
         'should render %s button',
-        (template: ButtonTemplateTypes) => {
+        (template: TailwindTemplateTypes) => {
             const { asFragment } = render(
-                <Button type="button" template={template}>
-                    {template}
-                </Button>
+                <Button template={template}>{template}</Button>
             )
             expect(asFragment()).toMatchSnapshot()
         }
     )
     test('should render an icon button', () => {
         const { asFragment } = render(
-            <Button
-                title="title"
-                data-testid="test"
-                className="m-2"
-                type="button"
-                template="icon"
-                svg="warning"
-            />
+            <Button template="svgClose">
+                <Svg icon="close"></Svg>
+            </Button>
         )
         expect(asFragment()).toMatchSnapshot()
     })

@@ -62,13 +62,12 @@ export default function Reading() {
             <ScrollTo top={0} />
             <Header text={`${book.title}`}>
                 <Button
-                    type="button"
                     className="ml-4 flex items-center place-self-start"
-                    dataTestid="back-button"
+                    data-testid="back-button"
                     template="secondary"
-                    clickHandler={() => navigate('/books')}
+                    onClick={() => navigate('/books')}
                 >
-                    <Svg type="back" />
+                    <Svg icon="back" />
                     <span className="ml-2 hidden md:inline">Back to books</span>
                 </Button>
             </Header>
@@ -95,29 +94,23 @@ export default function Reading() {
                                     />
                                     {count >= 1 && (
                                         <Button
-                                            dataTestid="sentence-back-button"
-                                            title="Back"
-                                            svg="back"
-                                            template="icon"
-                                            type="button"
-                                            className={`mb-3 p-2 hover:border-white hover:bg-gray-100 hover:text-gray-900 focus:outline-none`}
-                                            clickHandler={() =>
-                                                setCount(count - 1)
-                                            }
-                                        />
+                                            data-testid="sentence-back-button"
+                                            template="svg"
+                                            className={`mb-3 p-2 hover:bg-gray-100`}
+                                            onClick={() => setCount(count - 1)}
+                                        >
+                                            <Svg icon="back" />
+                                        </Button>
                                     )}
                                     {count < 1 && (
                                         <Button
-                                            dataTestid="history-button"
-                                            title="View History"
-                                            svg="history"
-                                            template="icon"
-                                            type="button"
+                                            data-testid="history-button"
+                                            template="svg"
                                             className={`mb-3 p-2 hover:border-white hover:bg-gray-100 hover:text-gray-900 focus:outline-none`}
-                                            clickHandler={() =>
-                                                setShowHistory(true)
-                                            }
-                                        />
+                                            onClick={() => setShowHistory(true)}
+                                        >
+                                            <Svg icon="history" />
+                                        </Button>
                                     )}
                                 </div>
 

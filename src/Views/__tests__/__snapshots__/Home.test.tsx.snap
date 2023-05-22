@@ -53,28 +53,44 @@ exports[`Home > @Render > should render first load 1`] = `
               class="mt-8 flex gap-x-4 sm:justify-center"
             >
               <button
-                class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 "
-                type="button"
+                class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 flex items-center"
+                template="primary"
               >
                 Log in 
-                <span
-                  aria-hidden="true"
-                  class="text-indigo-200"
+                <svg
+                  class="h-4 w-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  →
-                </span>
+                  <path
+                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
               </button>
               <button
-                class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-gray bg-gray-200 hover:bg-gray-300 "
-                type="button"
+                class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-gray bg-gray-200 hover:bg-gray-300 flex items-center"
+                template="secondary"
               >
                 Register 
-                <span
-                  aria-hidden="true"
-                  class="text-indigo-200"
+                <svg
+                  class="h-4 w-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  →
-                </span>
+                  <path
+                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
               </button>
             </div>
           </div>

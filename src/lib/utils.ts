@@ -65,9 +65,7 @@ export function mutateRegisterBookData(
     target: StoryFormTypes,
     userId: number
 ): { [key: string]: number | string | undefined | string[] } {
-    const story = target.story?.value
-        .split(/\n/)
-        .filter(word => word)
+    const story = target.story?.value.split(/\n/).filter((word) => word)
     return {
         userId,
         title: target.title?.value,

@@ -61,7 +61,7 @@ export default function RegisterBookForm(props: PropTypes) {
                         <Button
                             type="button"
                             template="secondary"
-                            clickHandler={props.clickHandlerCancel}
+                            onClick={props.clickHandlerCancel}
                         >
                             Cancel
                         </Button>

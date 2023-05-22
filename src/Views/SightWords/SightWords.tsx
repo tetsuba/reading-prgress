@@ -28,7 +28,7 @@ export default function SightWords() {
                 <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
                     <div className="px-4 md:px-0">
                         <Input
-                            dataTestId="search"
+                            data-testid="search"
                             value={search}
                             onChangeHandler={setSearch}
                             type="text"

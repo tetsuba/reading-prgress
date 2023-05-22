@@ -6,15 +6,15 @@ exports[`Login > should render 1`] = `
     data-testid="login-view"
   >
     <button
-      class="bg-transparent inline-flex items-center rounded-lg text-sm text-gray-400 absolute right-2.5 top-3 ml-auto p-1.5 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+      class="bg-transparent inline-flex items-center rounded-lg text-sm text-gray-400 absolute right-2.5 top-3 ml-auto p-1.5 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white "
       data-testid="modal-close"
-      type="button"
+      template="svgClose"
     >
       <svg
         aria-hidden="true"
         class="h-5 w-5"
         fill="currentColor"
-        viewBox="0 0 24 24"
+        viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -92,15 +92,16 @@ exports[`Login > should render 1`] = `
               Remember me
             </label>
           </div>
-          <a
-            class="text-sm text-blue-700 hover:underline dark:text-blue-500"
-            href="src/Components/Modal/View#"
+          <button
+            class="text-blue-700 hover:underline dark:text-blue-500 ml-1"
+            template="textLink"
           >
             Lost Password?
-          </a>
+          </button>
         </div>
         <button
           class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 w-full"
+          template="primary"
           type="submit"
         >
           Login to your account
@@ -109,12 +110,12 @@ exports[`Login > should render 1`] = `
           class="text-sm font-medium text-gray-500 dark:text-gray-300"
         >
           Not registered?
-          <a
-            class="text-blue-700 hover:underline dark:text-blue-500"
-            href="src/Components/Modal/View#"
+          <button
+            class="text-blue-700 hover:underline dark:text-blue-500 ml-1"
+            template="textLink"
           >
             Create account
-          </a>
+          </button>
         </div>
       </form>
     </div>

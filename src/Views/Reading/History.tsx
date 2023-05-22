@@ -2,6 +2,7 @@ import H3 from '../../Components/H3/H3'
 import Button from '../../Components/Button/Button'
 import { WordTypes } from './Sentence'
 import { ApiBookHistoryTypes } from '../../lib/service-types'
+import Svg from '../../Components/Svg/Svg'
 
 type PropTypes = {
     story: WordTypes[][]
@@ -15,14 +16,13 @@ export default function History(props: PropTypes) {
             <div className="mb-4 flex items-center justify-between px-4">
                 <H3 className="">{`I read this book ${props.history.length} times`}</H3>
                 <Button
-                    dataTestid="history-back-button"
-                    title="Back"
-                    svg="back"
-                    template="icon"
-                    type="button"
-                    className={`p-2 text-blue-500 hover:border-white hover:bg-gray-100 hover:text-blue-600 focus:outline-none`}
-                    clickHandler={props.restart}
-                />
+                    data-testid="history-back-button"
+                    template="svg"
+                    className={`p-2 text-blue-500 hover:bg-gray-100`}
+                    onClick={props.restart}
+                >
+                    <Svg icon="back" />
+                </Button>
             </div>
 
             {props.history

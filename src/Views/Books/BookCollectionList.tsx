@@ -40,7 +40,7 @@ export default function BookCollectionList(props: PropTypes) {
                     >
                         <div className="flex items-center">
                             <span className={`mr-6`}>
-                                <Svg type="library" />
+                                <Svg icon="library" />
                             </span>{' '}
                             <span className="font-medium text-gray-800">
                                 {collection.title} ({collection.books.length})
@@ -48,11 +48,10 @@ export default function BookCollectionList(props: PropTypes) {
                         </div>
                         <div className="flex justify-end">
                             <Button
-                                type="button"
-                                className="flex"
-                                dataTestid="collection-button"
+                                className="flex items-center"
+                                data-testid="collection-button"
                                 template="secondary"
-                                clickHandler={() => {
+                                onClick={() => {
                                     dispatch(
                                         updateViewBookCollection(collection)
                                     )
@@ -61,9 +60,7 @@ export default function BookCollectionList(props: PropTypes) {
                                 <span className="hidden md:inline">
                                     View Books
                                 </span>
-                                <span className="md:ml-2">
-                                    <Svg type="eye" />
-                                </span>
+                                <Svg icon="eye" className="md:ml-2" />
                             </Button>
                         </div>
                     </div>

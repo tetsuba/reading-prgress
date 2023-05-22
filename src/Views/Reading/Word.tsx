@@ -3,7 +3,7 @@ import Button from '../../Components/Button/Button'
 type PropTypes = {
     children: string
     status: string
-    clickHandler: () => void
+    onClick: () => void
     index: number
 }
 export default function Word(props: PropTypes) {
@@ -20,11 +20,10 @@ export default function Word(props: PropTypes) {
     }
     return (
         <Button
-            type="button"
-            template="none"
-            className={`mr-5 inline-block cursor-pointer border-b-2 transition-all duration-300 ${border}`}
+            template="readingWord"
+            className={`${border}`}
             key={`button--${props.index}`}
-            clickHandler={props.clickHandler}
+            onClick={props.onClick}
         >
             {props.children}
         </Button>

@@ -5,8 +5,8 @@ import { userTokenSelector } from '../../store/user/userSelectors'
 // COMPONENTS
 import Modal from '../Modal/Modal'
 import Login from '../../Views/Login'
-import Button from '../Button/Button'
 import NavMenu from './NavMenu'
+import Button from '../Button/Button'
 
 export default function NavLinksRight() {
     const userToken = useSelector(userTokenSelector)
@@ -19,10 +19,8 @@ export default function NavLinksRight() {
             ) : (
                 <>
                     <Button
-                        className=""
-                        type="button"
-                        clickHandler={() => setShowLogin(true)}
                         template="secondary"
+                        onClick={() => setShowLogin(true)}
                     >
                         Log in
                     </Button>

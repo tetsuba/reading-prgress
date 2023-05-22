@@ -4,7 +4,7 @@ import Svg from '../Svg'
 describe('SVG', () => {
     test('No icons found', () => {
         // @ts-ignore
-        render(<Svg type="" />)
+        render(<Svg icon="" />)
         expect(screen.getByText('No icon found'))
     })
 })

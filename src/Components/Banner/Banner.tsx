@@ -1,4 +1,4 @@
-import Svg, { SvgTypes } from '../Svg/Svg'
+import Svg, { SvgIconTypes } from '../Svg/Svg'
 
 type PropTypes = {
     children: any
@@ -7,7 +7,7 @@ type PropTypes = {
 }
 
 type ColorTypes = { [k: string]: string }
-type IconTypes = { [k: string]: SvgTypes }
+type IconTypes = { [k: string]: SvgIconTypes }
 export default function Banner(props: PropTypes) {
     const color: ColorTypes = {
         green: 'border-green-500 bg-green-50',
@@ -26,7 +26,7 @@ export default function Banner(props: PropTypes) {
         >
             {props.children}{' '}
             <span>
-                <Svg type={icon[props.color]} />
+                <Svg icon={icon[props.color]} />
             </span>
         </div>
     )
