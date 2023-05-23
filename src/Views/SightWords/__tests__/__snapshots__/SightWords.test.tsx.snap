@@ -23,16 +23,13 @@ exports[`SightWords > will render groups of sight words 1`] = `
         class="px-4 md:px-0"
       >
         <input
-          class="undefined "
+          class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
           data-testid="search"
           defaultvalue=""
           placeholder="Search"
+          template="text"
           type="text"
         />
-      </div>
-      <div
-        class="px-4 sm:px-0"
-      >
         <h3
           class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 rounded-t-lg bg-gray-200 p-2"
         >

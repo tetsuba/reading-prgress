@@ -24,7 +24,7 @@ export default function NavLinksRight() {
                     >
                         Log in
                     </Button>
-                    {showLogin && showLogin && (
+                    {showLogin && (
                         <Modal className="max-w-xl">
                             <Login setShowLogin={setShowLogin} />
                         </Modal>

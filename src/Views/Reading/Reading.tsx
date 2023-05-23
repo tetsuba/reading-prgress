@@ -26,6 +26,7 @@ import Header from '../../Components/Header/Header'
 import Svg from '../../Components/Svg/Svg'
 import { useNavigate } from 'react-router-dom'
 import ScrollTo from '../../Components/ScrollTo/ScrollTo'
+import Main from '../../Components/Main/Main'
 
 export default function Reading() {
     const navigate = useNavigate()
@@ -71,77 +72,75 @@ export default function Reading() {
                     <span className="ml-2 hidden md:inline">Back to books</span>
                 </Button>
             </Header>
-            <main>
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="py-6 md:px-4">
-                        {showHistory && (
-                            <History
-                                history={book.history}
-                                story={story}
-                                restart={() => {
-                                    setShowHistory(false)
-                                }}
-                            />
-                        )}
-                        {!showHistory && book.story && (
-                            <>
-                                <div className="flex justify-end">
-                                    <Speech
-                                        story={story}
-                                        count={count}
-                                        setCount={setCount}
-                                        setStory={setStory}
-                                    />
-                                    {count >= 1 && (
-                                        <Button
-                                            data-testid="sentence-back-button"
-                                            template="svg"
-                                            className={`mb-3 p-2 hover:bg-gray-100`}
-                                            onClick={() => setCount(count - 1)}
-                                        >
-                                            <Svg icon="back" />
-                                        </Button>
-                                    )}
-                                    {count < 1 && (
-                                        <Button
-                                            data-testid="history-button"
-                                            template="svg"
-                                            className={`mb-3 p-2 hover:border-white hover:bg-gray-100 hover:text-gray-900 focus:outline-none`}
-                                            onClick={() => setShowHistory(true)}
-                                        >
-                                            <Svg icon="history" />
-                                        </Button>
-                                    )}
-                                </div>
+            <Main>
+                <>
+                    {showHistory && (
+                        <History
+                            history={book.history}
+                            story={story}
+                            restart={() => {
+                                setShowHistory(false)
+                            }}
+                        />
+                    )}
+                    {!showHistory && book.story && (
+                        <>
+                            <div className="flex justify-end">
+                                <Speech
+                                    story={story}
+                                    count={count}
+                                    setCount={setCount}
+                                    setStory={setStory}
+                                />
+                                {count >= 1 && (
+                                    <Button
+                                        data-testid="sentence-back-button"
+                                        template="svg"
+                                        className={`mb-3 p-2 hover:bg-gray-100`}
+                                        onClick={() => setCount(count - 1)}
+                                    >
+                                        <Svg icon="back" />
+                                    </Button>
+                                )}
+                                {count < 1 && (
+                                    <Button
+                                        data-testid="history-button"
+                                        template="svg"
+                                        className={`mb-3 p-2 hover:border-white hover:bg-gray-100 hover:text-gray-900 focus:outline-none`}
+                                        onClick={() => setShowHistory(true)}
+                                    >
+                                        <Svg icon="history" />
+                                    </Button>
+                                )}
+                            </div>
 
-                                {story.map((sentence, index) => {
-                                    return (
-                                        <Sentence
-                                            key={`sentence-${index}`}
-                                            sentence={sentence}
-                                            count={count}
-                                            index={index}
-                                            sentenceClickHandler={() =>
-                                                setCount(count + 1)
-                                            }
-                                            wordClickHandler={(
-                                                status,
-                                                wordIndex
-                                            ) => {
-                                                story[count][wordIndex].status =
-                                                    status === STATUS.WRONG
-                                                        ? STATUS.CORRECT
-                                                        : STATUS.WRONG
-                                                setStory([...story])
-                                            }}
-                                        />
-                                    )
-                                })}
-                            </>
-                        )}
-                    </div>
-                </div>
-            </main>
+                            {story.map((sentence, index) => {
+                                return (
+                                    <Sentence
+                                        key={`sentence-${index}`}
+                                        sentence={sentence}
+                                        count={count}
+                                        index={index}
+                                        sentenceClickHandler={() =>
+                                            setCount(count + 1)
+                                        }
+                                        wordClickHandler={(
+                                            status,
+                                            wordIndex
+                                        ) => {
+                                            story[count][wordIndex].status =
+                                                status === STATUS.WRONG
+                                                    ? STATUS.CORRECT
+                                                    : STATUS.WRONG
+                                            setStory([...story])
+                                        }}
+                                    />
+                                )
+                            })}
+                        </>
+                    )}
+                </>
+            </Main>
         </>
     )
 }

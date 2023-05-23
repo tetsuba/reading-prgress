@@ -8,6 +8,7 @@ import Header from '../../Components/Header/Header'
 import HeatMap from '../../Components/HeatMap/HeatMap'
 import Banner from '../../Components/Banner/Banner'
 import Loading from '../../Components/Loading/Loading'
+import Main from '../../Components/Main/Main'
 
 type LastBookReadTypes = {
     words: string[]
@@ -28,56 +29,48 @@ export default function Dashboard() {
     return (
         <>
             <Header text="Dashboard" />
-            <main>
-                <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-                    <div className="px-4 sm:px-0">
-                        {isSuccess && (
-                            <>
-                                <div>
-                                    {data.data.lastBookRead.map(
-                                        (
-                                            book: LastBookReadTypes,
-                                            i: number
-                                        ) => (
-                                            <Banner
-                                                key={`banner-${i}`}
-                                                className="mt-4"
-                                                color={getColor(book)}
-                                            >
-                                                [{book.date}] {book.title}{' '}
-                                            </Banner>
-                                        )
-                                    )}
-                                </div>
-                                <HeatMap
-                                    color="red"
-                                    words={data.data.readIncorrectly.oneWeekAgo}
-                                    search={''}
-                                >
-                                    Words read incorrectly (In the last week)
-                                </HeatMap>
-                                <HeatMap
-                                    color="red"
-                                    words={
-                                        data.data.readIncorrectly.oneMonthAgo
-                                    }
-                                    search={''}
-                                >
-                                    Words read incorrectly (In the last month)
-                                </HeatMap>
-                                <HeatMap
-                                    color="red"
-                                    words={data.data.readIncorrectly.history}
-                                    search={''}
-                                >
-                                    Words read incorrectly (More than a month
-                                    ago)
-                                </HeatMap>
-                            </>
-                        )}
-                    </div>
-                </div>
-            </main>
+            <Main>
+                <>
+                    {isSuccess && (
+                        <>
+                            <div>
+                                {data.data.lastBookRead.map(
+                                    (book: LastBookReadTypes, i: number) => (
+                                        <Banner
+                                            key={`banner-${i}`}
+                                            className="mt-4"
+                                            color={getColor(book)}
+                                        >
+                                            [{book.date}] {book.title}{' '}
+                                        </Banner>
+                                    )
+                                )}
+                            </div>
+                            <HeatMap
+                                color="red"
+                                words={data.data.readIncorrectly.oneWeekAgo}
+                                search={''}
+                            >
+                                Words read incorrectly (In the last week)
+                            </HeatMap>
+                            <HeatMap
+                                color="red"
+                                words={data.data.readIncorrectly.oneMonthAgo}
+                                search={''}
+                            >
+                                Words read incorrectly (In the last month)
+                            </HeatMap>
+                            <HeatMap
+                                color="red"
+                                words={data.data.readIncorrectly.history}
+                                search={''}
+                            >
+                                Words read incorrectly (More than a month ago)
+                            </HeatMap>
+                        </>
+                    )}
+                </>
+            </Main>
         </>
     )
 }

@@ -7,6 +7,7 @@ import { getBooks } from '../../lib/service'
 import Header from '../../Components/Header/Header'
 import BookCollectionList from './BookCollectionList'
 import Loading from '../../Components/Loading/Loading'
+import Main from "../../Components/Main/Main";
 
 export default function Books() {
     const userId = useSelector(userIdSelector)
@@ -18,13 +19,13 @@ export default function Books() {
     return (
         <>
             <Header text="Books" />
-            <main>
-                <div className="mx-auto max-w-7xl py-6 md:px-4">
+            <Main>
+                <>
                     {isSuccess && (
                         <BookCollectionList collections={data.data} />
                     )}
-                </div>
-            </main>
+                </>
+            </Main>
         </>
     )
 }
