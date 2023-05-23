@@ -15,7 +15,7 @@ import Confirmation from '../../Components/Modal/Confirmation'
 import Svg from '../../Components/Svg/Svg'
 import Input from '../../Components/Form/Input'
 import AddBook from './AddBook'
-import { ApiBookHistoryTypes, ApiBookTypes } from '../../lib/service-types'
+import { ApiBookTypes } from '../../lib/service-types'
 
 type PropTypes = {
     list: ApiBookTypes[]
@@ -62,9 +62,10 @@ export default function BookList(props: PropTypes) {
                 </div>
                 <div className="grow">
                     <Input
-                        dataTestId="search"
+                        template="text"
+                        data-testid="search"
                         value={search}
-                        onChangeHandler={setSearch}
+                        onChange={(e) => setSearch(e.target.value)}
                         type="text"
                         placeholder="Search"
                     />

@@ -54,6 +54,7 @@ export default function Register() {
                                                     First Name:
                                                 </Label>
                                                 <Input
+                                                    template="text"
                                                     type="text"
                                                     name="firstName"
                                                     placeholder="first name"
@@ -64,6 +65,7 @@ export default function Register() {
                                                     Last Name:
                                                 </Label>
                                                 <Input
+                                                    template="text"
                                                     type="text"
                                                     name="lastName"
                                                     placeholder="last name"
@@ -74,6 +76,7 @@ export default function Register() {
                                                     Your email:
                                                 </Label>
                                                 <Input
+                                                    template="text"
                                                     type="email"
                                                     name="email"
                                                     placeholder="name@company.com"
@@ -84,6 +87,7 @@ export default function Register() {
                                                     Your password:
                                                 </Label>
                                                 <Input
+                                                    template="text"
                                                     type="password"
                                                     name="password"
                                                     placeholder="••••••••"

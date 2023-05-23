@@ -52,6 +52,7 @@ export default function Login(props: PropTypes) {
                     <div>
                         <Label htmlFor="email">Your email</Label>
                         <Input
+                            template="text"
                             type="email"
                             name="email"
                             placeholder="name@company.com"
@@ -60,6 +61,7 @@ export default function Login(props: PropTypes) {
                     <div>
                         <Label htmlFor="password">Your password</Label>
                         <Input
+                            template="text"
                             type="password"
                             name="password"
                             placeholder="••••••••"
@@ -69,6 +71,7 @@ export default function Login(props: PropTypes) {
                         <div className="flex items-start">
                             <div className="flex h-5 items-center">
                                 <Input
+                                    template="checkbox"
                                     type="checkbox"
                                     id="remember-me"
                                     value=""

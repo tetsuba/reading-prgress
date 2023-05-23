@@ -43,11 +43,10 @@ exports[`Register > should render 1`] = `
                     First Name:
                   </label>
                   <input
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    data-testid=""
+                    class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
                     name="firstName"
                     placeholder="first name"
-                    required=""
+                    template="text"
                     type="text"
                   />
                 </div>
@@ -59,11 +58,10 @@ exports[`Register > should render 1`] = `
                     Last Name:
                   </label>
                   <input
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    data-testid=""
+                    class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
                     name="lastName"
                     placeholder="last name"
-                    required=""
+                    template="text"
                     type="text"
                   />
                 </div>
@@ -75,11 +73,10 @@ exports[`Register > should render 1`] = `
                     Your email:
                   </label>
                   <input
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    data-testid=""
+                    class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
                     name="email"
                     placeholder="name@company.com"
-                    required=""
+                    template="text"
                     type="email"
                   />
                 </div>
@@ -91,11 +88,10 @@ exports[`Register > should render 1`] = `
                     Your password:
                   </label>
                   <input
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    data-testid=""
+                    class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
                     name="password"
                     placeholder="••••••••"
-                    required=""
+                    template="text"
                     type="password"
                   />
                 </div>

@@ -43,13 +43,18 @@ export default function RegisterBookForm(props: PropTypes) {
                         <div className="gap-6">
                             <div className="">
                                 <Label htmlFor="title">Book Title</Label>
-                                <Input name="title" type="text" />
+                                <Input
+                                    template="text"
+                                    name="title"
+                                    type="text"
+                                />
                             </div>
                         </div>
 
                         <div>
                             <Label htmlFor="story">Story</Label>
                             <Textarea
+                                template="textarea"
                                 id="about"
                                 name="story"
                                 rows={8}
