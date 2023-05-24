@@ -17,9 +17,8 @@ export default function Register() {
         <>
             <Header text="Register" />
             <Main>
-                <div className="rounded-lg border-4 border-dashed border-gray-200">
-                    <div className="sm:container">
-                        <div className="px-6 py-6">
+                <div className="mx-auto max-w-3xl rounded-lg sm:border-4 border-dashed border-gray-200">
+                    <div className="sm:p-6">
                             {mutation.isLoading && (
                                 <p data-testid="loading-user">
                                     Registering user...
@@ -97,8 +96,9 @@ export default function Register() {
                                         )}
                                     </ErrorMessage>
 
-                                    <div className="flex justify-end">
+                                    <div className="flex sm:justify-end">
                                         <Button
+                                            className="w-full sm:w-fit"
                                             template="primary"
                                             type="submit"
                                         >
@@ -108,7 +108,6 @@ export default function Register() {
                                 </form>
                             )}
                         </div>
-                    </div>
                 </div>
             </Main>
         </>
