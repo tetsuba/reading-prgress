@@ -3,6 +3,7 @@ import Button from '../../Components/Button/Button'
 import { WordTypes } from './Sentence'
 import { ApiBookHistoryTypes } from '../../lib/service-types'
 import Svg from '../../Components/Svg/Svg'
+import TAILWIND_CLASSES from "../../shared.tailwind";
 
 type PropTypes = {
     story: WordTypes[][]
@@ -41,7 +42,7 @@ export default function History(props: PropTypes) {
                                 <span>Date: {data.date}</span>
                             </div>
                             <div
-                                className={`${textColor} min-h-96 relative mb-8 border-y-2 border-dashed p-4 text-2xl md:rounded-lg md:border-x-2 md:p-6`}
+                                className={`${textColor} ${TAILWIND_CLASSES.historyBorder}`}
                             >
                                 <span>
                                     {notCompleted ? (

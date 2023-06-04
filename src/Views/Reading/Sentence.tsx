@@ -1,6 +1,7 @@
 import Button from '../../Components/Button/Button'
 import Word from './Word'
 import Svg from '../../Components/Svg/Svg'
+import TAILWIND_CLASSES from "../../shared.tailwind";
 
 export type WordTypes = {
     word: string
@@ -24,7 +25,7 @@ export default function Sentence(props: PropTypes) {
     return (
         <div
             data-testid="sentence-block"
-            className={`${active} ${completed} min-h-96 relative mb-8 border-y-2 border-dashed border-gray-200 p-4 text-2xl transition-all duration-1000 md:rounded-lg md:border-x-2 md:p-6`}
+            className={`${active} ${completed} ${TAILWIND_CLASSES.sentenceBorder} relative`}
         >
             <Button
                 data-testid="sentence-complete"

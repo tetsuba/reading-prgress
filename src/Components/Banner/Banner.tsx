@@ -20,7 +20,7 @@ export default function Banner(props: PropTypes) {
 
     return (
         <div
-            className={`flex justify-between rounded-xl border-2 p-4 ${
+            className={`flex justify-between md:rounded-xl border-y-2 md:border-x-2 p-4 ${
                 props.className
             } ${color[props.color]}`}
         >

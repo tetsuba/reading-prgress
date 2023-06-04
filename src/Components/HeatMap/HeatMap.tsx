@@ -1,5 +1,6 @@
 import WordHeatMap from './WordHeatMap'
 import H3 from '../H3/H3'
+import TAILWIND_CLASSES from "../../shared.tailwind";
 
 export type HeatMapColors = 'red' | 'blue' | 'green' | 'none'
 
@@ -36,12 +37,12 @@ export default function HeatMap(props: PropTypes) {
 
     return (
         <>
-            <H3 className="mt-10 rounded-t-lg bg-gray-200 p-2">
+            <H3 className="mt-10 md:rounded-t-lg bg-gray-200 p-2">
                 {props.children}
             </H3>
             <div
                 data-testid="heat-map"
-                className="min-h-96 md:border-3 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-2 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
+                className={`${TAILWIND_CLASSES.heatmapBorder} shadow-md inline-flex w-full flex-wrap items-center justify-center`}
             >
                 {props.words.filter(sightWords).map(heatMap)}
             </div>
