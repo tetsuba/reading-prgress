@@ -4,37 +4,42 @@ exports[`Home > @Render > should render first load 1`] = `
 <DocumentFragment>
   <main>
     <div
-      class="relative px-6 lg:px-8"
+      class="px-6 lg:px-8"
     >
       <div
-        class="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40"
+        class="mx-auto max-w-3xl py-10 sm:py-40"
       >
         <div
-          class="hidden sm:mb-8 sm:flex sm:justify-center"
+          class="mb-8 hidden justify-center sm:flex "
         >
           <div
-            class="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+            class="rounded-full py-1.5 px-4 text-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20"
           >
             <span
               class="text-gray-600"
             >
               Decodable Reading Books For Children
-              <a
-                class="pl-1 font-semibold text-indigo-600"
-                href="/"
-              >
-                <span
-                  aria-hidden="true"
-                  class="absolute inset-0"
-                />
-                Read more
-                <span
-                  aria-hidden="true"
-                >
-                  →
-                </span>
-              </a>
             </span>
+            <a
+              class="pl-1 font-semibold text-indigo-600"
+              href="/"
+            >
+              Read more 
+              <svg
+                class="h-4 w-4 inline-block"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
           </div>
         </div>
         <div>

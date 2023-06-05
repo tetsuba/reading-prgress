@@ -1,6 +1,6 @@
 import { WordTypes } from './Sentence'
 import { StateBookHistoryTypes, StateBookTypes } from '../../store/store-types'
-import { ApiCollectionTypes } from '../../lib/service-types'
+import {ApiBookHistoryTypes, ApiCollectionTypes} from '../../lib/service-types'
 
 export const STATUS = {
     CORRECT: 'green',
@@ -127,3 +127,18 @@ export function prepareTrackerData(
         history: history
     }
 }
+
+export function wordsFound(data: ApiBookHistoryTypes) {
+    return data.words.length > 0
+}
+
+function isCompleted(completed: (a: ApiBookHistoryTypes) => boolean) {
+    return function wordsReadIncorrectly(data: ApiBookHistoryTypes) {
+        return completed(data)
+            ? data.words.toString().replace(/,/g, ', ')
+            : '100% Completed'
+    }
+}
+
+export const wordsReadIncorrectly = isCompleted(wordsFound)
+

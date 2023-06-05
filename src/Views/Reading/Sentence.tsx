@@ -1,7 +1,7 @@
 import Button from '../../Components/Button/Button'
 import Word from './Word'
 import Svg from '../../Components/Svg/Svg'
-import TAILWIND_CLASSES from "../../shared.tailwind";
+import TAILWIND_CLASSES from '../../shared.tailwind'
 
 export type WordTypes = {
     word: string

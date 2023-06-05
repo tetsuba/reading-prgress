@@ -7,7 +7,7 @@ import { getBooks } from '../../lib/service'
 import Header from '../../Components/Header/Header'
 import BookCollectionList from './BookCollectionList'
 import Loading from '../../Components/Loading/Loading'
-import Main from "../../Components/Main/Main";
+import Main from '../../Components/Main/Main'
 
 export default function Books() {
     const userId = useSelector(userIdSelector)

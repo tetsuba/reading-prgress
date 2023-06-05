@@ -3,12 +3,12 @@
 exports[`HeatMap > should render a word heatmap 1`] = `
 <DocumentFragment>
   <h3
-    class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 rounded-t-lg bg-gray-200 p-2"
+    class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
   >
     Test Header
   </h3>
   <div
-    class="min-h-96 md:border-3 inline-flex w-full flex-wrap items-center justify-center rounded-b-lg border-2 border-t-0 border-dashed border-gray-200 p-2 shadow-md"
+    class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
     data-testid="heat-map"
   >
     <span

@@ -3,7 +3,8 @@ import Button from '../../Components/Button/Button'
 import { WordTypes } from './Sentence'
 import { ApiBookHistoryTypes } from '../../lib/service-types'
 import Svg from '../../Components/Svg/Svg'
-import TAILWIND_CLASSES from "../../shared.tailwind";
+import TAILWIND_CLASSES from '../../shared.tailwind'
+import {wordsFound, wordsReadIncorrectly} from './reading-utils'
 
 type PropTypes = {
     story: WordTypes[][]
@@ -28,10 +29,8 @@ export default function History(props: PropTypes) {
 
             {props.history
                 .map((data, index) => {
-                    const notCompleted = data.words.length > 0
-                    const textColor = notCompleted
-                        ? 'text-red-500 border-gray-200'
-                        : 'text-green-500 border-green-500'
+                    const status = wordsFound(data)
+
                     return (
                         <div
                             data-testid="history-block"
@@ -42,16 +41,16 @@ export default function History(props: PropTypes) {
                                 <span>Date: {data.date}</span>
                             </div>
                             <div
-                                className={`${textColor} ${TAILWIND_CLASSES.historyBorder}`}
+                                className={`${TAILWIND_CLASSES.getHistoryBorder(
+                                    status
+                                )}`}
                             >
-                                <span>
-                                    {notCompleted ? (
-                                        data.words
-                                            .toString()
-                                            .replace(/,/g, ', ')
-                                    ) : (
-                                        <>100% Completed</>
-                                    )}
+                                <span
+                                    className={`${TAILWIND_CLASSES.getHistoryFontColor(
+                                        status
+                                    )}`}
+                                >
+                                    {wordsReadIncorrectly(data)}
                                 </span>
                             </div>
                         </div>
