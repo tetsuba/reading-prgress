@@ -1,6 +1,9 @@
 import { WordTypes } from './Sentence'
 import { StateBookHistoryTypes, StateBookTypes } from '../../store/store-types'
-import {ApiBookHistoryTypes, ApiCollectionTypes} from '../../lib/service-types'
+import {
+    ApiBookHistoryTypes,
+    ApiCollectionTypes
+} from '../../lib/service-types'
 
 export const STATUS = {
     CORRECT: 'green',
@@ -141,4 +144,3 @@ function isCompleted(completed: (a: ApiBookHistoryTypes) => boolean) {
 }
 
 export const wordsReadIncorrectly = isCompleted(wordsFound)
-

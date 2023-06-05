@@ -2,6 +2,7 @@ import Button from '../../Components/Button/Button'
 import Word from './Word'
 import Svg from '../../Components/Svg/Svg'
 import TAILWIND_CLASSES from '../../shared.tailwind'
+import { SentenceCompleteButton } from './ReadingButtons'
 
 export type WordTypes = {
     word: string
@@ -27,14 +28,7 @@ export default function Sentence(props: PropTypes) {
             data-testid="sentence-block"
             className={`${active} ${completed} ${TAILWIND_CLASSES.sentenceBorder} relative`}
         >
-            <Button
-                data-testid="sentence-complete"
-                template="svg"
-                className="absolute right-2 bottom-1 hover:text-green-500"
-                onClick={props.sentenceClickHandler}
-            >
-                <Svg icon="check-badge" />
-            </Button>
+            <SentenceCompleteButton onClick={props.sentenceClickHandler} />
             {props.sentence.map(({ word, status }, wordIndex) => {
                 return (
                     <Word

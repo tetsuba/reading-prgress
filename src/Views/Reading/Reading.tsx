@@ -18,15 +18,18 @@ import { userIdSelector } from '../../store/user/userSelectors'
 import { bookSelector } from '../../store/book/bookSelectors'
 
 // COMPONENTS
-import Button from '../../Components/Button/Button'
 import Sentence from './Sentence'
 import History from './History'
 import Speech from '../../Components/Speech/Speech'
 import Header from '../../Components/Header/Header'
-import Svg from '../../Components/Svg/Svg'
 import { useNavigate } from 'react-router-dom'
 import ScrollTo from '../../Components/ScrollTo/ScrollTo'
 import Main from '../../Components/Main/Main'
+import {
+    BackToBooksButton,
+    HistoryButton,
+    SentenceBackButton
+} from './ReadingButtons'
 
 export default function Reading() {
     const navigate = useNavigate()
@@ -62,15 +65,7 @@ export default function Reading() {
         <>
             <ScrollTo top={0} />
             <Header text={`${book.title}`}>
-                <Button
-                    className="ml-4 flex items-center place-self-start"
-                    data-testid="back-button"
-                    template="secondary"
-                    onClick={() => navigate('/books')}
-                >
-                    <Svg icon="back" />
-                    <span className="ml-2 hidden md:inline">Back to books</span>
-                </Button>
+                <BackToBooksButton onClick={() => navigate('/books')} />
             </Header>
             <Main>
                 <>
@@ -93,24 +88,14 @@ export default function Reading() {
                                     setStory={setStory}
                                 />
                                 {count >= 1 && (
-                                    <Button
-                                        data-testid="sentence-back-button"
-                                        template="svg"
-                                        className={`mb-3 p-2 hover:bg-gray-100`}
+                                    <SentenceBackButton
                                         onClick={() => setCount(count - 1)}
-                                    >
-                                        <Svg icon="back" />
-                                    </Button>
+                                    />
                                 )}
                                 {count < 1 && (
-                                    <Button
-                                        data-testid="history-button"
-                                        template="svg"
-                                        className={`mb-3 p-2 hover:border-white hover:bg-gray-100 hover:text-gray-900 focus:outline-none`}
+                                    <HistoryButton
                                         onClick={() => setShowHistory(true)}
-                                    >
-                                        <Svg icon="history" />
-                                    </Button>
+                                    />
                                 )}
                             </div>
 
