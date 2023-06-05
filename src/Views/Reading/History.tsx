@@ -11,43 +11,42 @@ type PropTypes = {
     restart: () => void
 }
 
+function HistoryHeader(props: PropTypes) {
+    return (
+        <div className="mb-4 flex items-center justify-between px-4">
+            <H3 className="">{`I read this book ${props.history.length} times`}</H3>
+            <HistoryBackButton onClick={props.restart} />
+        </div>
+    )
+}
+
+function HistoryBlock(props: {data: ApiBookHistoryTypes}) {
+    const status = wordsFound(props.data)
+    return (
+        <div data-testid="history-block">
+            <div className="flex justify-between px-4 text-sm">
+                <span>List of words to practice:</span>
+                <span>Date: {props.data.date}</span>
+            </div>
+            <div className={`${TAILWIND_CLASSES.getHistoryBorder(status)}`}>
+                <span
+                    className={`${TAILWIND_CLASSES.getHistoryFontColor(
+                        status
+                    )}`}
+                >
+                    {wordsReadIncorrectly(props.data)}
+                </span>
+            </div>
+        </div>
+    )
+}
+
 export default function History(props: PropTypes) {
     return (
         <>
-            <div className="mb-4 flex items-center justify-between px-4">
-                <H3 className="">{`I read this book ${props.history.length} times`}</H3>
-                <HistoryBackButton onClick={props.restart} />
-            </div>
-
+            <HistoryHeader {...props} />
             {props.history
-                .map((data, index) => {
-                    const status = wordsFound(data)
-
-                    return (
-                        <div
-                            data-testid="history-block"
-                            key={`completed-${index}`}
-                        >
-                            <div className="flex justify-between px-4 text-sm">
-                                <span>List of words to practice:</span>
-                                <span>Date: {data.date}</span>
-                            </div>
-                            <div
-                                className={`${TAILWIND_CLASSES.getHistoryBorder(
-                                    status
-                                )}`}
-                            >
-                                <span
-                                    className={`${TAILWIND_CLASSES.getHistoryFontColor(
-                                        status
-                                    )}`}
-                                >
-                                    {wordsReadIncorrectly(data)}
-                                </span>
-                            </div>
-                        </div>
-                    )
-                })
+                .map((data, index) => <HistoryBlock data={data} key={`h-block-${index}`} />)
                 .reverse()}
         </>
     )
