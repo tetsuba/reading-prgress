@@ -131,14 +131,18 @@ export function prepareTrackerData(
     }
 }
 
-export function wordsFound(data: ApiBookHistoryTypes) {
-    return data.words.length > 0
+export function wordsFound(data: ApiBookHistoryTypes | undefined) {
+    return data ? data.words.length > 0 : false
 }
 
-function isCompleted(completed: (a: ApiBookHistoryTypes) => boolean) {
-    return function wordsReadIncorrectly(data: ApiBookHistoryTypes) {
+function isCompleted(
+    completed: (a: ApiBookHistoryTypes | undefined) => boolean
+) {
+    return function wordsReadIncorrectly(
+        data: ApiBookHistoryTypes | undefined
+    ) {
         return completed(data)
-            ? data.words.toString().replace(/,/g, ', ')
+            ? data?.words.toString().replace(/,/g, ', ')
             : '100% Completed'
     }
 }

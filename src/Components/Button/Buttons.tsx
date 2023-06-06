@@ -1,5 +1,5 @@
-import Svg from '../../Components/Svg/Svg'
-import Button from '../../Components/Button/Button'
+import Svg from '../Svg/Svg'
+import Button from './Button'
 
 type PropTypes = {
     onClick?: () => void

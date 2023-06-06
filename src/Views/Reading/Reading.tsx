@@ -29,7 +29,9 @@ import {
     BackToBooksButton,
     HistoryButton,
     SentenceBackButton
-} from './ReadingButtons'
+} from '../../Components/Button/Buttons'
+import Display from '../../Dispay/Display'
+import Loop from '../../Components/Loop/Loop'
 
 export default function Reading() {
     const navigate = useNavigate()
@@ -61,6 +63,17 @@ export default function Reading() {
         mutation.mutate(prepareTrackerData(userId, book, story))
     }
 
+    function updateStoryState(
+        status: string | undefined,
+        wordIndex: number | undefined
+    ) {
+        if (status !== undefined && wordIndex !== undefined) {
+            story[count][wordIndex].status =
+                status === STATUS.WRONG ? STATUS.CORRECT : STATUS.WRONG
+            setStory([...story])
+        }
+    }
+
     return (
         <>
             <ScrollTo top={0} />
@@ -68,63 +81,44 @@ export default function Reading() {
                 <BackToBooksButton onClick={() => navigate('/books')} />
             </Header>
             <Main>
-                <>
-                    {showHistory && (
-                        <History
-                            history={book.history}
-                            story={story}
-                            restart={() => {
-                                setShowHistory(false)
-                            }}
-                        />
-                    )}
-                    {!showHistory && book.story && (
-                        <>
-                            <div className="flex justify-end">
-                                <Speech
-                                    story={story}
-                                    count={count}
-                                    setCount={setCount}
-                                    setStory={setStory}
+                <Display value={showHistory}>
+                    <History
+                        history={book.history}
+                        story={story}
+                        restart={() => {
+                            setShowHistory(false)
+                        }}
+                    />
+                </Display>
+                <Display value={!showHistory && !!book.story}>
+                    <>
+                        <div className="flex justify-end">
+                            <Speech
+                                story={story}
+                                count={count}
+                                setCount={setCount}
+                                setStory={setStory}
+                            />
+                            <Display value={count >= 1}>
+                                <SentenceBackButton
+                                    onClick={() => setCount(count - 1)}
                                 />
-                                {count >= 1 && (
-                                    <SentenceBackButton
-                                        onClick={() => setCount(count - 1)}
-                                    />
-                                )}
-                                {count < 1 && (
-                                    <HistoryButton
-                                        onClick={() => setShowHistory(true)}
-                                    />
-                                )}
-                            </div>
-
-                            {story.map((sentence, index) => {
-                                return (
-                                    <Sentence
-                                        key={`sentence-${index}`}
-                                        sentence={sentence}
-                                        count={count}
-                                        index={index}
-                                        sentenceClickHandler={() =>
-                                            setCount(count + 1)
-                                        }
-                                        wordClickHandler={(
-                                            status,
-                                            wordIndex
-                                        ) => {
-                                            story[count][wordIndex].status =
-                                                status === STATUS.WRONG
-                                                    ? STATUS.CORRECT
-                                                    : STATUS.WRONG
-                                            setStory([...story])
-                                        }}
-                                    />
-                                )
-                            })}
-                        </>
-                    )}
-                </>
+                            </Display>
+                            <Display value={count < 1}>
+                                <HistoryButton
+                                    onClick={() => setShowHistory(true)}
+                                />
+                            </Display>
+                        </div>
+                        <Loop array={story}>
+                            <Sentence
+                                count={count}
+                                sentenceClickHandler={() => setCount(count + 1)}
+                                wordClickHandler={updateStoryState}
+                            />
+                        </Loop>
+                    </>
+                </Display>
             </Main>
         </>
     )

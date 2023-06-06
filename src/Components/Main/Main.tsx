@@ -1,5 +1,5 @@
 type PropTypes = {
-    children: JSX.Element
+    children: JSX.Element | JSX.Element[]
 }
 export default function Main(props: PropTypes) {
     return (

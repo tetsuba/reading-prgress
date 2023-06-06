@@ -1,8 +1,7 @@
-import Button from '../../Components/Button/Button'
 import Word from './Word'
-import Svg from '../../Components/Svg/Svg'
 import TAILWIND_CLASSES from '../../shared.tailwind'
-import { SentenceCompleteButton } from './ReadingButtons'
+import { SentenceCompleteButton } from '../../Components/Button/Buttons'
+import Loop from '../../Components/Loop/Loop'
 
 export type WordTypes = {
     word: string
@@ -10,15 +9,19 @@ export type WordTypes = {
 }
 
 type PropTypes = {
-    sentence: WordTypes[]
-    index: number
+    data?: WordTypes[]
+    index?: number
     count: number
-    wordClickHandler?: (status: string, wordIndex: number) => void
-    sentenceClickHandler?: () => void
+    wordClickHandler: (
+        status: string | undefined,
+        wordIndex: number | undefined
+    ) => void
+    sentenceClickHandler: () => void
 }
 
 export default function Sentence(props: PropTypes) {
-    const completed = props.count > props.index ? 'hidden' : ''
+    const index = props.index || 0
+    const completed = props.count > index ? 'hidden' : ''
     const active =
         props.count === props.index
             ? 'text-gray-800 delay-200'
@@ -29,21 +32,9 @@ export default function Sentence(props: PropTypes) {
             className={`${active} ${completed} ${TAILWIND_CLASSES.sentenceBorder} relative`}
         >
             <SentenceCompleteButton onClick={props.sentenceClickHandler} />
-            {props.sentence.map(({ word, status }, wordIndex) => {
-                return (
-                    <Word
-                        key={`word-${word}-${wordIndex}`}
-                        index={wordIndex}
-                        status={status}
-                        onClick={() => {
-                            props.wordClickHandler &&
-                                props.wordClickHandler(status, wordIndex)
-                        }}
-                    >
-                        {word}
-                    </Word>
-                )
-            })}
+            <Loop array={props.data || []}>
+                <Word onClick={props.wordClickHandler} />
+            </Loop>
         </div>
     )
 }
