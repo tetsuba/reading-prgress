@@ -9,6 +9,8 @@ import HeatMap from '../../Components/HeatMap/HeatMap'
 import Banner from '../../Components/Banner/Banner'
 import Loading from '../../Components/Loading/Loading'
 import Main from '../../Components/Main/Main'
+import Display from '../../Dispay/Display'
+import Loop from '../../Components/Loop/Loop'
 
 type LastBookReadTypes = {
     words: string[]
@@ -30,46 +32,34 @@ export default function Dashboard() {
         <>
             <Header text="Dashboard" />
             <Main>
-                <>
-                    {isSuccess && (
-                        <>
-                            <div>
-                                {data.data.lastBookRead.map(
-                                    (book: LastBookReadTypes, i: number) => (
-                                        <Banner
-                                            key={`banner-${i}`}
-                                            className="mt-4"
-                                            color={getColor(book)}
-                                        >
-                                            [{book.date}] {book.title}{' '}
-                                        </Banner>
-                                    )
-                                )}
-                            </div>
-                            <HeatMap
-                                color="red"
-                                words={data.data.readIncorrectly.oneWeekAgo}
-                                search={''}
-                            >
-                                Words read incorrectly (In the last week)
-                            </HeatMap>
-                            <HeatMap
-                                color="red"
-                                words={data.data.readIncorrectly.oneMonthAgo}
-                                search={''}
-                            >
-                                Words read incorrectly (In the last month)
-                            </HeatMap>
-                            <HeatMap
-                                color="red"
-                                words={data.data.readIncorrectly.history}
-                                search={''}
-                            >
-                                Words read incorrectly (More than a month ago)
-                            </HeatMap>
-                        </>
-                    )}
-                </>
+                <Display value={isSuccess}>
+                    <>
+                        <Loop array={data.data.lastBookRead}>
+                            <Banner className="mt-4" />
+                        </Loop>
+                        <HeatMap
+                            color="red"
+                            words={data.data.readIncorrectly.oneWeekAgo}
+                            search={''}
+                        >
+                            Words read incorrectly (In the last week)
+                        </HeatMap>
+                        <HeatMap
+                            color="red"
+                            words={data.data.readIncorrectly.oneMonthAgo}
+                            search={''}
+                        >
+                            Words read incorrectly (In the last month)
+                        </HeatMap>
+                        <HeatMap
+                            color="red"
+                            words={data.data.readIncorrectly.history}
+                            search={''}
+                        >
+                            Words read incorrectly (More than a month ago)
+                        </HeatMap>
+                    </>
+                </Display>
             </Main>
         </>
     )
