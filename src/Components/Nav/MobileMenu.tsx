@@ -5,6 +5,7 @@ import ls from '../../lib/localStorage'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import Svg from '../Svg/Svg'
+import { CloseButton } from '../Button/Buttons'
 
 type PropTypes = {
     closeMenu: () => void
@@ -35,14 +36,10 @@ export default function MobileMenu(props: PropTypes) {
 
     return (
         <div data-testid="mobile-nav-menu" className="flex flex-col pt-10">
-            <Button
-                template="svgClose"
+            <CloseButton
                 className="right-1 top-1.5"
-                data-testid="modal-close"
                 onClick={() => props.closeMenu()}
-            >
-                <Svg icon="close" />
-            </Button>
+            />
             {links.map((link, i) => (
                 <Button
                     data-testid="mobile-menu-link"

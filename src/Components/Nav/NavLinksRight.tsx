@@ -7,6 +7,7 @@ import Modal from '../Modal/Modal'
 import Login from '../../Views/Login'
 import NavMenu from './NavMenu'
 import Button from '../Button/Button'
+import Display from '../Dispay/Display'
 
 export default function NavLinksRight() {
     const userToken = useSelector(userTokenSelector)
@@ -14,9 +15,10 @@ export default function NavLinksRight() {
 
     return (
         <div className="flex items-center">
-            {userToken ? (
+            <Display value={!!userToken}>
                 <NavMenu />
-            ) : (
+            </Display>
+            <Display value={!userToken}>
                 <>
                     <Button
                         template="secondary"
@@ -24,13 +26,13 @@ export default function NavLinksRight() {
                     >
                         Log in
                     </Button>
-                    {showLogin && (
+                    <Display value={showLogin}>
                         <Modal className="max-w-xl">
                             <Login setShowLogin={setShowLogin} />
                         </Modal>
-                    )}
+                    </Display>
                 </>
-            )}
+            </Display>
         </div>
     )
 }

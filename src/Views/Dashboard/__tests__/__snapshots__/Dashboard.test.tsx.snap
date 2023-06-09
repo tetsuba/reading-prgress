@@ -74,7 +74,7 @@ exports[`Dashboard > should render a list of words 1`] = `
         <span
           class="m-2 rounded-2xl border-2 p-3 md:m-5"
           data-testid="heat-map-word"
-          style="background-color: rgb(255, 204, 204);"
+          style="background-color: rgb(255, 255, 255);"
         >
           <span
             class="font-bold text-gray-900"
@@ -85,18 +85,12 @@ exports[`Dashboard > should render a list of words 1`] = `
         <span
           class="m-2 rounded-2xl border-2 p-3 md:m-5"
           data-testid="heat-map-word"
-          style="background-color: rgb(255, 0, 0);"
+          style="background-color: rgb(255, 204, 204);"
         >
           <span
-            class="font-bold text-white"
+            class="font-bold text-gray-900"
           >
             that
-          </span>
-          <span
-            class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
-            style="background-color: rgb(0, 0, 0);"
-          >
-            5
           </span>
         </span>
       </div>
@@ -112,35 +106,23 @@ exports[`Dashboard > should render a list of words 1`] = `
         <span
           class="m-2 rounded-2xl border-2 p-3 md:m-5"
           data-testid="heat-map-word"
-          style="background-color: rgb(255, 85, 85);"
+          style="background-color: rgb(255, 255, 255);"
         >
           <span
-            class="font-bold text-white"
+            class="font-bold text-gray-900"
           >
             would
-          </span>
-          <span
-            class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
-            style="background-color: rgb(85, 85, 85);"
-          >
-            10
           </span>
         </span>
         <span
           class="m-2 rounded-2xl border-2 p-3 md:m-5"
           data-testid="heat-map-word"
-          style="background-color: rgb(255, 0, 0);"
+          style="background-color: rgb(255, 238, 238);"
         >
           <span
-            class="font-bold text-white"
+            class="font-bold text-gray-900"
           >
             dog
-          </span>
-          <span
-            class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
-            style="background-color: rgb(0, 0, 0);"
-          >
-            15
           </span>
         </span>
       </div>
@@ -156,35 +138,23 @@ exports[`Dashboard > should render a list of words 1`] = `
         <span
           class="m-2 rounded-2xl border-2 p-3 md:m-5"
           data-testid="heat-map-word"
-          style="background-color: rgb(255, 127.5, 127.5);"
+          style="background-color: rgb(255, 255, 255);"
         >
           <span
             class="font-bold text-gray-900"
           >
             right
           </span>
-          <span
-            class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
-            style="background-color: rgb(127.5, 127.5, 127.5);"
-          >
-            20
-          </span>
         </span>
         <span
           class="m-2 rounded-2xl border-2 p-3 md:m-5"
           data-testid="heat-map-word"
-          style="background-color: rgb(255, 0, 0);"
+          style="background-color: rgb(255, 248.625, 248.625);"
         >
           <span
-            class="font-bold text-white"
+            class="font-bold text-gray-900"
           >
             live
-          </span>
-          <span
-            class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
-            style="background-color: rgb(0, 0, 0);"
-          >
-            40
           </span>
         </span>
       </div>

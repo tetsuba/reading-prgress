@@ -72,3 +72,7 @@ export function mutateRegisterBookData(
         story
     }
 }
+
+export function isNull<T>(data: T): boolean {
+    return data === null
+}

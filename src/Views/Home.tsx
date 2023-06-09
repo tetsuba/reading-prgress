@@ -6,6 +6,7 @@ import H1 from '../Components/H1/H1'
 import P from '../Components/P/P'
 import Button from '../Components/Button/Button'
 import Svg from '../Components/Svg/Svg'
+import Display from '../Components/Dispay/Display'
 
 const Home = () => {
     const navigate = useNavigate()
@@ -60,11 +61,11 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            {showLogin && (
+            <Display value={showLogin}>
                 <Modal className="md:max-w-xl">
                     <Login setShowLogin={setShowLogin} />
                 </Modal>
-            )}
+            </Display>
         </main>
     )
 }

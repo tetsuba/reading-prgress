@@ -9,7 +9,7 @@ import HeatMap from '../../Components/HeatMap/HeatMap'
 import Banner from '../../Components/Banner/Banner'
 import Loading from '../../Components/Loading/Loading'
 import Main from '../../Components/Main/Main'
-import Display from '../../Dispay/Display'
+import Display from '../../Components/Dispay/Display'
 import Loop from '../../Components/Loop/Loop'
 
 type LastBookReadTypes = {
@@ -34,26 +34,26 @@ export default function Dashboard() {
             <Main>
                 <Display value={isSuccess}>
                     <>
-                        <Loop array={data.data.lastBookRead}>
+                        <Loop array={data?.data.lastBookRead}>
                             <Banner className="mt-4" />
                         </Loop>
                         <HeatMap
                             color="red"
-                            words={data.data.readIncorrectly.oneWeekAgo}
+                            words={data?.data.readIncorrectly.oneWeekAgo}
                             search={''}
                         >
                             Words read incorrectly (In the last week)
                         </HeatMap>
                         <HeatMap
                             color="red"
-                            words={data.data.readIncorrectly.oneMonthAgo}
+                            words={data?.data.readIncorrectly.oneMonthAgo}
                             search={''}
                         >
                             Words read incorrectly (In the last month)
                         </HeatMap>
                         <HeatMap
                             color="red"
-                            words={data.data.readIncorrectly.history}
+                            words={data?.data.readIncorrectly.history}
                             search={''}
                         >
                             Words read incorrectly (More than a month ago)

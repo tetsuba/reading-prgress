@@ -4,6 +4,7 @@ import { resetUserToInitialState } from '../../store/user/userSlice'
 import ls from '../../lib/localStorage'
 import { useDispatch } from 'react-redux'
 import Svg from '../Svg/Svg'
+import { NavSignOutButton } from '../Button/Buttons'
 
 function getClasses({ isActive }: { isActive: boolean }) {
     const defaultStyles = 'block px-4 py-2 text-sm round-xl'
@@ -35,17 +36,13 @@ export default function DesktopNavMenu() {
                 <NavLink className={getClasses} to="/settings">
                     Settings
                 </NavLink>
-                <Button
-                    type="button"
-                    template="desktopNavMenuSignOut"
+                <NavSignOutButton
                     onClick={() => {
                         dispatch(resetUserToInitialState())
                         ls.remove()
                         navigate('/')
                     }}
-                >
-                    Sign out
-                </Button>
+                />
             </div>
         </div>
     )

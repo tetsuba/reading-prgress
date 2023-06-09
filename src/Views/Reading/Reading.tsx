@@ -30,7 +30,7 @@ import {
     HistoryButton,
     SentenceBackButton
 } from '../../Components/Button/Buttons'
-import Display from '../../Dispay/Display'
+import Display from '../../Components/Dispay/Display'
 import Loop from '../../Components/Loop/Loop'
 
 export default function Reading() {

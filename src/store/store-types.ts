@@ -10,7 +10,7 @@ export interface StateBookTypes {
     bookId: number
     libId: string
     history: StateBookHistoryTypes[] | []
-    story: string
+    story: string | string[]
     title: string
 }
 

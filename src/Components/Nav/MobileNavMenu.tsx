@@ -1,23 +1,16 @@
 import { useState } from 'react'
 
-import Button from '../Button/Button'
 import Modal from '../Modal/Modal'
 import MobileMenu from './MobileMenu'
-import Svg from '../Svg/Svg'
+import { MenuButton } from '../Button/Buttons'
+import Display from '../Dispay/Display'
 
 export default function MobileNavMenu() {
     const [showMenu, setShowMenu] = useState(false)
     return (
         <div role="dialog" aria-modal="true" className="h-6 md:hidden">
-            <Button
-                data-testid="mobile-menu-button"
-                template="svg"
-                className=""
-                onClick={() => setShowMenu(true)}
-            >
-                <Svg icon="menu" />
-            </Button>
-            {showMenu && (
+            <MenuButton onClick={() => setShowMenu(true)} />
+            <Display value={showMenu}>
                 <Modal className="h-full">
                     <MobileMenu
                         closeMenu={() => {
@@ -25,7 +18,7 @@ export default function MobileNavMenu() {
                         }}
                     />
                 </Modal>
-            )}
+            </Display>
         </div>
     )
 }

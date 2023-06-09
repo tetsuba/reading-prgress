@@ -12,6 +12,7 @@ import Input from '../Components/Form/Input'
 import ErrorMessage from '../Components/Form/ErrorMessage'
 import Button from '../Components/Button/Button'
 import Svg from '../Components/Svg/Svg'
+import { CloseButton, TextLinkButton } from '../Components/Button/Buttons'
 
 type PropTypes = {
     setShowLogin: (p: boolean) => void
@@ -31,13 +32,7 @@ export default function Login(props: PropTypes) {
 
     return (
         <div data-testid="login-view">
-            <Button
-                template="svgClose"
-                data-testid="modal-close"
-                onClick={() => props.setShowLogin(false)}
-            >
-                <Svg icon="close" />
-            </Button>
+            <CloseButton onClick={() => props.setShowLogin(false)} />
             <div className="px-6 py-6 lg:px-8">
                 <H3 className="mb-3">Sign in to our platform</H3>
                 <form
@@ -81,16 +76,14 @@ export default function Login(props: PropTypes) {
                                 Remember me
                             </Label>
                         </div>
-                        <Button
-                            template="textLink"
-                            className="ml-1"
+                        <TextLinkButton
                             onClick={() => {
                                 navigate('/register')
                                 props.setShowLogin(false)
                             }}
                         >
                             Lost Password?
-                        </Button>
+                        </TextLinkButton>
                     </div>
                     <ErrorMessage
                         show={mutation.isError}
@@ -103,16 +96,14 @@ export default function Login(props: PropTypes) {
                     </Button>
                     <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                         Not registered?
-                        <Button
-                            template="textLink"
-                            className="ml-1"
+                        <TextLinkButton
                             onClick={() => {
                                 navigate('/register')
                                 props.setShowLogin(false)
                             }}
                         >
                             Create account
-                        </Button>
+                        </TextLinkButton>
                     </div>
                 </form>
             </div>

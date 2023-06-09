@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { userTokenSelector } from '../../store/user/userSelectors'
 import Svg from '../Svg/Svg'
+import Display from '../Dispay/Display'
 
 export default function NavLinksLeft() {
     const userToken = useSelector(userTokenSelector)
@@ -17,7 +18,7 @@ export default function NavLinksLeft() {
             <Svg icon="book" />
             <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                    {userToken ? (
+                    <Display value={!!userToken}>
                         <>
                             <NavLink className={getClasses} to="/dashboard">
                                 Dashboard
@@ -32,7 +33,8 @@ export default function NavLinksLeft() {
                                 Sight Words
                             </NavLink>
                         </>
-                    ) : (
+                    </Display>
+                    <Display value={!userToken}>
                         <>
                             <NavLink className={getClasses} to="/">
                                 Home
@@ -41,7 +43,7 @@ export default function NavLinksLeft() {
                                 Register
                             </NavLink>
                         </>
-                    )}
+                    </Display>
                 </div>
             </div>
         </div>

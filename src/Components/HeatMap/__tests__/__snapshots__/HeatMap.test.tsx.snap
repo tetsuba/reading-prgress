@@ -14,7 +14,7 @@ exports[`HeatMap > should render a word heatmap 1`] = `
     <span
       class="m-2 rounded-2xl border-2 p-3 md:m-5"
       data-testid="heat-map-word"
-      style="background-color: rgb(255, 204, 204);"
+      style="background-color: rgb(255, 255, 255);"
     >
       <span
         class="font-bold text-gray-900"
@@ -25,18 +25,12 @@ exports[`HeatMap > should render a word heatmap 1`] = `
     <span
       class="m-2 rounded-2xl border-2 p-3 md:m-5"
       data-testid="heat-map-word"
-      style="background-color: rgb(255, 0, 0);"
+      style="background-color: rgb(255, 204, 204);"
     >
       <span
-        class="font-bold text-white"
+        class="font-bold text-gray-900"
       >
         then
-      </span>
-      <span
-        class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
-        style="background-color: rgb(0, 0, 0);"
-      >
-        5
       </span>
     </span>
   </div>

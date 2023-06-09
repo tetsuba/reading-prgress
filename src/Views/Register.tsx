@@ -9,29 +9,28 @@ import Button from '../Components/Button/Button'
 import ErrorMessage from '../Components/Form/ErrorMessage'
 import Header from '../Components/Header/Header'
 import Main from '../Components/Main/Main'
+import Display from '../Components/Dispay/Display'
 
 export default function Register() {
     const mutation = useMutation(registerUser)
-
     return (
         <>
             <Header text="Register" />
             <Main>
                 <div className="mx-auto max-w-3xl rounded-lg border-dashed border-gray-200 sm:border-4">
                     <div className="sm:p-6">
-                        {mutation.isLoading && (
+                        <Display value={mutation.isLoading}>
                             <p data-testid="loading-user">
                                 Registering user...
                             </p>
-                        )}
-                        {mutation.isSuccess && (
+                        </Display>
+                        <Display value={mutation.isSuccess}>
                             <div data-testid="success-message">
                                 <p>Registration Completed.</p>
                                 <p>Please click on the log in button...</p>
                             </div>
-                        )}
-
-                        {!mutation.isSuccess && (
+                        </Display>
+                        <Display value={mutation.isSuccess !== null}>
                             <form
                                 data-testid="register-form"
                                 className="space-y-6"
@@ -101,7 +100,7 @@ export default function Register() {
                                     </Button>
                                 </div>
                             </form>
-                        )}
+                        </Display>
                     </div>
                 </div>
             </Main>

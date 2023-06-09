@@ -4,7 +4,7 @@ import P from '../P/P'
 import Button from '../Button/Button'
 
 type PropTypes = {
-    bookTile: string
+    bookTitle: string
     clickHandlerCancel: () => void
     clickHandlerDelete: () => void
 }
@@ -20,7 +20,7 @@ export default function Confirmation(props: PropTypes) {
                         <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100">
                             <Svg icon="warning" />
                         </div>
-                        <H3 className="ml-4">{`${props.bookTile}`}</H3>
+                        <H3 className="ml-4">{`${props.bookTitle}`}</H3>
                     </div>
                     <div className="mt-3 ml-4">
                         <div className="mt-2">

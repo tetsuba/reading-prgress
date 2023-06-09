@@ -10,6 +10,7 @@ import Input from '../../Components/Form/Input'
 import HeatMap from '../../Components/HeatMap/HeatMap'
 import Loading from '../../Components/Loading/Loading'
 import Main from '../../Components/Main/Main'
+import Display from '../../Components/Dispay/Display'
 
 export default function SightWords() {
     const userId = useSelector(userIdSelector)
@@ -35,38 +36,38 @@ export default function SightWords() {
                         type="text"
                         placeholder="Search"
                     />
-                    {isSuccess && (
+                    <Display value={isSuccess}>
                         <>
                             <HeatMap
                                 color="red"
-                                words={data.data.sightWordsReadWrong}
+                                words={data?.data.sightWordsReadWrong}
                                 search={search}
                             >
                                 Sight Words Read Incorrectly
                             </HeatMap>
                             <HeatMap
                                 color="blue"
-                                words={data.data.sightWordsReadInBooks}
+                                words={data?.data.sightWordsReadInBooks}
                                 search={search}
                             >
                                 Sight Words Read In Books
                             </HeatMap>
                             <HeatMap
                                 color="green"
-                                words={data.data.sightWordsFromBooks}
+                                words={data?.data.sightWordsFromBooks}
                                 search={search}
                             >
                                 Sight Words In Books
                             </HeatMap>
                             <HeatMap
                                 color="none"
-                                words={data.data.sightWordsNotInBooks}
+                                words={data?.data.sightWordsNotInBooks}
                                 search={search}
                             >
                                 Sight Words Not Available In Books
                             </HeatMap>
                         </>
-                    )}
+                    </Display>
                 </>
             </Main>
         </>
