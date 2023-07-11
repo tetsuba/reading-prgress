@@ -55,7 +55,7 @@ export default function WordHeatMap(props: WordHeatMapTypes) {
             <Display value={showBadge}>
                 <span
                     style={numberHeatMap}
-                    className={`ml-1 rounded-full py-1 px-2 text-white md:ml-3`}
+                    className={`ml-1 rounded-full px-2 py-1 text-white md:ml-3`}
                 >
                     {props.index}
                 </span>

@@ -18,13 +18,13 @@ export default function Expired() {
         >
             <div className="bg-white px-4 pb-4">
                 <div className="">
-                    <div className="mt-3 ml-4 flex items-center">
+                    <div className="ml-4 mt-3 flex items-center">
                         <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100">
                             <Svg icon="warning" />
                         </div>
                         <H3 className="ml-4">Session Expired</H3>
                     </div>
-                    <div className="mt-3 ml-4">
+                    <div className="ml-4 mt-3">
                         <div className="mt-2">
                             <P className="text-sm text-gray-500">
                                 Your session has expired. Please log back in to

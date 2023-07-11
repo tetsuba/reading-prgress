@@ -31,7 +31,10 @@ export default function Login(props: PropTypes) {
 
     return (
         <div data-testid="login-view">
-            <CloseButton className="" onClick={() => props.setShowLogin(false)} />
+            <CloseButton
+                className=""
+                onClick={() => props.setShowLogin(false)}
+            />
             <div className="px-6 py-6 lg:px-8">
                 <H3 className="mb-3">Sign in to our platform</H3>
                 <form

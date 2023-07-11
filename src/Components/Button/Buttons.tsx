@@ -67,7 +67,7 @@ export function SentenceCompleteButton(props: PropTypes) {
         <Button
             data-testid="sentence-complete"
             template="svg"
-            className="absolute right-2 bottom-1 hover:text-green-500"
+            className="absolute bottom-1 right-2 hover:text-green-500"
             {...props}
         >
             <Svg icon="check-badge" />
