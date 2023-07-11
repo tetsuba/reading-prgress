@@ -11,7 +11,6 @@ import Label from '../Components/Form/Label'
 import Input from '../Components/Form/Input'
 import ErrorMessage from '../Components/Form/ErrorMessage'
 import Button from '../Components/Button/Button'
-import Svg from '../Components/Svg/Svg'
 import { CloseButton, TextLinkButton } from '../Components/Button/Buttons'
 
 type PropTypes = {
@@ -32,7 +31,7 @@ export default function Login(props: PropTypes) {
 
     return (
         <div data-testid="login-view">
-            <CloseButton onClick={() => props.setShowLogin(false)} />
+            <CloseButton className="" onClick={() => props.setShowLogin(false)} />
             <div className="px-6 py-6 lg:px-8">
                 <H3 className="mb-3">Sign in to our platform</H3>
                 <form
