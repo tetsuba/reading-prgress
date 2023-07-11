@@ -20,7 +20,7 @@ export default function Expired() {
                 <div className="">
                     <div className="mt-3 ml-4 flex items-center">
                         <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100">
-                            <Svg type="warning" />
+                            <Svg icon="warning" />
                         </div>
                         <H3 className="ml-4">Session Expired</H3>
                     </div>
@@ -36,11 +36,10 @@ export default function Expired() {
             </div>
             <div className="flex justify-end bg-gray-50 px-4 py-3">
                 <Button
-                    dataTestid="expired-button"
+                    data-testid="expired-button"
                     template="primary"
-                    type="button"
                     className="mr-5"
-                    clickHandler={() => {
+                    onClick={() => {
                         ls.remove()
                         dispatch(resetUserToInitialState())
                         dispatch(toggleViewGlobalExpired(false))

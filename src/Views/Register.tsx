@@ -6,116 +6,104 @@ import { formDataToQueryString, getErrorMessage } from '../lib/utils'
 import Label from '../Components/Form/Label'
 import Input from '../Components/Form/Input'
 import Button from '../Components/Button/Button'
-import H3 from '../Components/H3/H3'
 import ErrorMessage from '../Components/Form/ErrorMessage'
 import Header from '../Components/Header/Header'
+import Main from '../Components/Main/Main'
+import Display from '../Components/Dispay/Display'
 
 export default function Register() {
     const mutation = useMutation(registerUser)
-
     return (
         <>
             <Header text="Register" />
-            <main>
-                <div className="mx-auto max-w-2xl py-6 sm:px-6 lg:px-8">
-                    <div className="px-4 py-6 sm:px-0">
-                        <div className="rounded-lg border-4 border-dashed border-gray-200">
-                            <div className="sm:container">
-                                <div className="px-6 py-6">
-                                    {mutation.isLoading && (
-                                        <p data-testid="loading-user">
-                                            Registering user...
-                                        </p>
-                                    )}
-                                    {mutation.isSuccess && (
-                                        <div data-testid="success-message">
-                                            <p>Registration Completed.</p>
-                                            <p>
-                                                Please click on the log in
-                                                button...
-                                            </p>
-                                        </div>
-                                    )}
-
-                                    {!mutation.isSuccess && (
-                                        <form
-                                            data-testid="register-form"
-                                            className="space-y-6"
-                                            onSubmit={(event) => {
-                                                event.preventDefault()
-                                                const queryString =
-                                                    formDataToQueryString(
-                                                        event.target
-                                                    )
-                                                mutation.mutate(queryString)
-                                            }}
-                                        >
-                                            <div>
-                                                <Label htmlFor="firstName">
-                                                    First Name:
-                                                </Label>
-                                                <Input
-                                                    type="text"
-                                                    name="firstName"
-                                                    placeholder="first name"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label htmlFor="lastName">
-                                                    Last Name:
-                                                </Label>
-                                                <Input
-                                                    type="text"
-                                                    name="lastName"
-                                                    placeholder="last name"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label htmlFor="email">
-                                                    Your email:
-                                                </Label>
-                                                <Input
-                                                    type="email"
-                                                    name="email"
-                                                    placeholder="name@company.com"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label htmlFor="password">
-                                                    Your password:
-                                                </Label>
-                                                <Input
-                                                    type="password"
-                                                    name="password"
-                                                    placeholder="••••••••"
-                                                />
-                                            </div>
-
-                                            <ErrorMessage
-                                                show={mutation.isError}
-                                                className="mt-1 block"
-                                            >
-                                                {getErrorMessage(
-                                                    mutation.error as Error
-                                                )}
-                                            </ErrorMessage>
-
-                                            <div className="flex justify-end">
-                                                <Button
-                                                    type="submit"
-                                                    template="primary"
-                                                >
-                                                    Register
-                                                </Button>
-                                            </div>
-                                        </form>
-                                    )}
-                                </div>
+            <Main>
+                <div className="mx-auto max-w-3xl rounded-lg border-dashed border-gray-200 sm:border-4">
+                    <div className="sm:p-6">
+                        <Display value={mutation.isLoading}>
+                            <p data-testid="loading-user">
+                                Registering user...
+                            </p>
+                        </Display>
+                        <Display value={mutation.isSuccess}>
+                            <div data-testid="success-message">
+                                <p>Registration Completed.</p>
+                                <p>Please click on the log in button...</p>
                             </div>
-                        </div>
+                        </Display>
+                        <Display value={mutation.isSuccess !== null}>
+                            <form
+                                data-testid="register-form"
+                                className="space-y-6"
+                                onSubmit={(event) => {
+                                    event.preventDefault()
+                                    const queryString = formDataToQueryString(
+                                        event.target
+                                    )
+                                    mutation.mutate(queryString)
+                                }}
+                            >
+                                <div>
+                                    <Label htmlFor="firstName">
+                                        First Name:
+                                    </Label>
+                                    <Input
+                                        template="text"
+                                        type="text"
+                                        name="firstName"
+                                        placeholder="first name"
+                                    />
+                                </div>
+                                <div>
+                                    <Label htmlFor="lastName">Last Name:</Label>
+                                    <Input
+                                        template="text"
+                                        type="text"
+                                        name="lastName"
+                                        placeholder="last name"
+                                    />
+                                </div>
+                                <div>
+                                    <Label htmlFor="email">Your email:</Label>
+                                    <Input
+                                        template="text"
+                                        type="email"
+                                        name="email"
+                                        placeholder="name@company.com"
+                                    />
+                                </div>
+                                <div>
+                                    <Label htmlFor="password">
+                                        Your password:
+                                    </Label>
+                                    <Input
+                                        template="text"
+                                        type="password"
+                                        name="password"
+                                        placeholder="••••••••"
+                                    />
+                                </div>
+
+                                <ErrorMessage
+                                    show={mutation.isError}
+                                    className="mt-1 block"
+                                >
+                                    {getErrorMessage(mutation.error as Error)}
+                                </ErrorMessage>
+
+                                <div className="flex sm:justify-end">
+                                    <Button
+                                        className="w-full sm:w-fit"
+                                        template="primary"
+                                        type="submit"
+                                    >
+                                        Register
+                                    </Button>
+                                </div>
+                            </form>
+                        </Display>
                     </div>
                 </div>
-            </main>
+            </Main>
         </>
     )
 }

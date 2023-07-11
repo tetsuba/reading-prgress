@@ -18,14 +18,20 @@ import { userIdSelector } from '../../store/user/userSelectors'
 import { bookSelector } from '../../store/book/bookSelectors'
 
 // COMPONENTS
-import Button from '../../Components/Button/Button'
 import Sentence from './Sentence'
 import History from './History'
 import Speech from '../../Components/Speech/Speech'
 import Header from '../../Components/Header/Header'
-import Svg from '../../Components/Svg/Svg'
 import { useNavigate } from 'react-router-dom'
 import ScrollTo from '../../Components/ScrollTo/ScrollTo'
+import Main from '../../Components/Main/Main'
+import {
+    BackToBooksButton,
+    HistoryButton,
+    SentenceBackButton
+} from '../../Components/Button/Buttons'
+import Display from '../../Components/Dispay/Display'
+import Loop from '../../Components/Loop/Loop'
 
 export default function Reading() {
     const navigate = useNavigate()
@@ -57,98 +63,63 @@ export default function Reading() {
         mutation.mutate(prepareTrackerData(userId, book, story))
     }
 
+    function updateStoryState(
+        status: string | undefined,
+        wordIndex: number | undefined
+    ) {
+        if (status !== undefined && wordIndex !== undefined) {
+            story[count][wordIndex].status =
+                status === STATUS.WRONG ? STATUS.CORRECT : STATUS.WRONG
+            setStory([...story])
+        }
+    }
+
     return (
         <>
             <ScrollTo top={0} />
             <Header text={`${book.title}`}>
-                <Button
-                    type="button"
-                    className="ml-4 flex items-center place-self-start"
-                    dataTestid="back-button"
-                    template="secondary"
-                    clickHandler={() => navigate('/books')}
-                >
-                    <Svg type="back" />
-                    <span className="ml-2 hidden md:inline">Back to books</span>
-                </Button>
+                <BackToBooksButton onClick={() => navigate('/books')} />
             </Header>
-            <main>
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="py-6 md:px-4">
-                        {showHistory && (
-                            <History
-                                history={book.history}
+            <Main>
+                <Display value={showHistory}>
+                    <History
+                        history={book.history}
+                        story={story}
+                        restart={() => {
+                            setShowHistory(false)
+                        }}
+                    />
+                </Display>
+                <Display value={!showHistory && !!book.story}>
+                    <>
+                        <div className="flex justify-end">
+                            <Speech
                                 story={story}
-                                restart={() => {
-                                    setShowHistory(false)
-                                }}
+                                count={count}
+                                setCount={setCount}
+                                setStory={setStory}
                             />
-                        )}
-                        {!showHistory && book.story && (
-                            <>
-                                <div className="flex justify-end">
-                                    <Speech
-                                        story={story}
-                                        count={count}
-                                        setCount={setCount}
-                                        setStory={setStory}
-                                    />
-                                    {count >= 1 && (
-                                        <Button
-                                            dataTestid="sentence-back-button"
-                                            title="Back"
-                                            svg="back"
-                                            template="icon"
-                                            type="button"
-                                            className={`mb-3 p-2 hover:border-white hover:bg-gray-100 hover:text-gray-900 focus:outline-none`}
-                                            clickHandler={() =>
-                                                setCount(count - 1)
-                                            }
-                                        />
-                                    )}
-                                    {count < 1 && (
-                                        <Button
-                                            dataTestid="history-button"
-                                            title="View History"
-                                            svg="history"
-                                            template="icon"
-                                            type="button"
-                                            className={`mb-3 p-2 hover:border-white hover:bg-gray-100 hover:text-gray-900 focus:outline-none`}
-                                            clickHandler={() =>
-                                                setShowHistory(true)
-                                            }
-                                        />
-                                    )}
-                                </div>
-
-                                {story.map((sentence, index) => {
-                                    return (
-                                        <Sentence
-                                            key={`sentence-${index}`}
-                                            sentence={sentence}
-                                            count={count}
-                                            index={index}
-                                            sentenceClickHandler={() =>
-                                                setCount(count + 1)
-                                            }
-                                            wordClickHandler={(
-                                                status,
-                                                wordIndex
-                                            ) => {
-                                                story[count][wordIndex].status =
-                                                    status === STATUS.WRONG
-                                                        ? STATUS.CORRECT
-                                                        : STATUS.WRONG
-                                                setStory([...story])
-                                            }}
-                                        />
-                                    )
-                                })}
-                            </>
-                        )}
-                    </div>
-                </div>
-            </main>
+                            <Display value={count >= 1}>
+                                <SentenceBackButton
+                                    onClick={() => setCount(count - 1)}
+                                />
+                            </Display>
+                            <Display value={count < 1}>
+                                <HistoryButton
+                                    onClick={() => setShowHistory(true)}
+                                />
+                            </Display>
+                        </div>
+                        <Loop array={story}>
+                            <Sentence
+                                count={count}
+                                sentenceClickHandler={() => setCount(count + 1)}
+                                wordClickHandler={updateStoryState}
+                            />
+                        </Loop>
+                    </>
+                </Display>
+            </Main>
         </>
     )
 }

@@ -9,14 +9,11 @@ export default function AddBook() {
     return (
         <>
             <Button
-                className="flex"
-                type="button"
+                className="flex items-center"
                 template="tertiary"
-                clickHandler={() => setShowModal(true)}
+                onClick={() => setShowModal(true)}
             >
-                <span className="md:mr-2">
-                    <Svg type="plus" />
-                </span>
+                <Svg icon="plus" className="md:mr-2" />
                 <span className="hidden md:block">Add Book</span>
             </Button>
             {showModal && (

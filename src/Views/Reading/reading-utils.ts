@@ -1,6 +1,9 @@
 import { WordTypes } from './Sentence'
 import { StateBookHistoryTypes, StateBookTypes } from '../../store/store-types'
-import { ApiCollectionTypes } from '../../lib/service-types'
+import {
+    ApiBookHistoryTypes,
+    ApiCollectionTypes
+} from '../../lib/service-types'
 
 export const STATUS = {
     CORRECT: 'green',
@@ -11,9 +14,20 @@ type WordType = {
     word: string
     status: string
 }
-export function buildStoryStructure(story: string): WordType[][] | [] {
-    return story
-        ? story
+export function buildStoryStructure(
+    story: string | string[]
+): WordType[][] | [] {
+    return Array.isArray(story)
+        ? story.map((sentence) =>
+              sentence
+                  .split(' ')
+                  .filter((word) => word !== '')
+                  .map((word) => ({
+                      word: word,
+                      status: ''
+                  }))
+          )
+        : story // TODO: To be removed when story format is finalized.
               .split(/\./g)
               .filter((sentence) => sentence !== '')
               .map((sentence) => sentence.concat('.'))
@@ -26,7 +40,6 @@ export function buildStoryStructure(story: string): WordType[][] | [] {
                           status: ''
                       }))
               )
-        : []
 }
 
 export function allWordsAreCorrect(story: WordType[][], count: number) {
@@ -117,3 +130,21 @@ export function prepareTrackerData(
         history: history
     }
 }
+
+export function wordsFound(data: ApiBookHistoryTypes | undefined) {
+    return data ? data.words.length > 0 : false
+}
+
+function isCompleted(
+    completed: (a: ApiBookHistoryTypes | undefined) => boolean
+) {
+    return function wordsReadIncorrectly(
+        data: ApiBookHistoryTypes | undefined
+    ) {
+        return completed(data)
+            ? data?.words.toString().replace(/,/g, ', ')
+            : '100% Completed'
+    }
+}
+
+export const wordsReadIncorrectly = isCompleted(wordsFound)

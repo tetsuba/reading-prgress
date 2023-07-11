@@ -6,15 +6,15 @@ exports[`Login > should render 1`] = `
     data-testid="login-view"
   >
     <button
-      class="bg-transparent inline-flex items-center rounded-lg text-sm text-gray-400 absolute right-2.5 top-3 ml-auto p-1.5 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+      class="bg-transparent inline-flex items-center rounded-lg text-sm text-gray-400 absolute right-2.5 top-3 ml-auto p-1.5 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white "
       data-testid="modal-close"
-      type="button"
+      template="svgClose"
     >
       <svg
         aria-hidden="true"
         class="h-5 w-5"
         fill="currentColor"
-        viewBox="0 0 24 24"
+        viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -44,11 +44,10 @@ exports[`Login > should render 1`] = `
             Your email
           </label>
           <input
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-            data-testid=""
+            class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
             name="email"
             placeholder="name@company.com"
-            required=""
+            template="text"
             type="email"
           />
         </div>
@@ -60,11 +59,10 @@ exports[`Login > should render 1`] = `
             Your password
           </label>
           <input
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-            data-testid=""
+            class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
             name="password"
             placeholder="••••••••"
-            required=""
+            template="text"
             type="password"
           />
         </div>
@@ -78,11 +76,12 @@ exports[`Login > should render 1`] = `
               class="flex h-5 items-center"
             >
               <input
-                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                data-testid=""
+                class="bg-gray-50 border border-gray-300 w-4 h-4 rounded focus:ring-3 focus:ring-blue-300 "
+                defaultvalue=""
                 id="remember-me"
-                required=""
+                template="checkbox"
                 type="checkbox"
+                value=""
               />
             </div>
             <label
@@ -92,15 +91,16 @@ exports[`Login > should render 1`] = `
               Remember me
             </label>
           </div>
-          <a
-            class="text-sm text-blue-700 hover:underline dark:text-blue-500"
-            href="src/Components/Modal/View#"
+          <button
+            class="text-blue-700 hover:underline dark:text-blue-500 ml-1"
+            template="textLink"
           >
             Lost Password?
-          </a>
+          </button>
         </div>
         <button
           class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 w-full"
+          template="primary"
           type="submit"
         >
           Login to your account
@@ -109,12 +109,12 @@ exports[`Login > should render 1`] = `
           class="text-sm font-medium text-gray-500 dark:text-gray-300"
         >
           Not registered?
-          <a
-            class="text-blue-700 hover:underline dark:text-blue-500"
-            href="src/Components/Modal/View#"
+          <button
+            class="text-blue-700 hover:underline dark:text-blue-500 ml-1"
+            template="textLink"
           >
             Create account
-          </a>
+          </button>
         </div>
       </form>
     </div>

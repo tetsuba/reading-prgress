@@ -38,41 +38,31 @@ export default function RegisterBookForm(props: PropTypes) {
                     mutation.mutate(data)
                 }}
             >
-                <div className="">
-                    <div className="space-y-6 bg-white py-5">
-                        <div className="gap-6">
-                            <div className="">
-                                <Label htmlFor="title">Book Title</Label>
-                                <Input name="title" type="text" />
-                            </div>
-                        </div>
-
-                        <div>
-                            <Label htmlFor="story">Story</Label>
-                            <Textarea
-                                id="about"
-                                name="story"
-                                rows={8}
-                                placeholder="Story Here."
-                            />
-                        </div>
-                    </div>
-                    <div className="py-3 text-right">
-                        <Button
-                            type="button"
-                            template="secondary"
-                            clickHandler={props.clickHandlerCancel}
-                        >
-                            Cancel
-                        </Button>
-                        <Button
-                            className="ml-5"
-                            template="primary"
-                            type="submit"
-                        >
-                            Save
-                        </Button>
-                    </div>
+                <div>
+                    <Label htmlFor="title">Book Title</Label>
+                    <Input template="text" name="title" type="text" />
+                </div>
+                <div>
+                    <Label htmlFor="story">Story</Label>
+                    <Textarea
+                        template="textarea"
+                        id="about"
+                        name="story"
+                        rows={8}
+                        placeholder="Story Here."
+                    />
+                </div>
+                <div className="py-3 text-right">
+                    <Button
+                        type="button"
+                        template="secondary"
+                        onClick={props.clickHandlerCancel}
+                    >
+                        Cancel
+                    </Button>
+                    <Button className="ml-5" template="primary" type="submit">
+                        Save
+                    </Button>
                 </div>
             </form>
         </div>

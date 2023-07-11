@@ -6,6 +6,7 @@ import {
     allWordsAreCorrect,
     updateSentence
 } from '../../Views/Reading/reading-utils'
+import Svg from '../Svg/Svg'
 
 type PropTypes = {
     story: WordTypes[][]
@@ -53,18 +54,19 @@ export default function Speech(props: PropTypes) {
         <div className="mb-3 flex place-content-between">
             <span className="place-self-start">{speech}</span>
             <Button
-                dataTestid="speech-button"
-                svg="mic"
-                template="icon"
+                data-testid="speech-button"
+                template="svg"
                 type="button"
                 className={`${
                     micOn ? MIC_ON : MIC_OFF
                 } p-2 hover:border-white hover:bg-gray-100 focus:outline-none`}
-                clickHandler={() => {
+                onClick={() => {
                     setMicOn(!micOn)
                     micOn ? stop() : start()
                 }}
-            />
+            >
+                <Svg icon="mic" />
+            </Button>
         </div>
     )
 }

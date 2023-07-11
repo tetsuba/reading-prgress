@@ -1,47 +1,23 @@
-import Svg, { SvgTypes } from '../Svg/Svg'
+import getTailWindClasses, {
+    TailwindTemplateTypes
+} from './buttonClasses.tailwind'
 
 type ChildrenTypes = string | JSX.Element
-export type ButtonTemplateTypes =
-    | 'icon'
-    | 'primary'
-    | 'none'
-    | 'secondary'
-    | 'warning'
-    | 'tertiary'
 
 type PropTypes = {
     children?: ChildrenTypes | ChildrenTypes[]
-    clickHandler?: () => void
-    type: 'button' | 'submit' | 'reset'
-    svg?: SvgTypes
+    onClick?: () => void
+    type?: 'button' | 'submit' | 'reset'
     className?: string
-    dataTestid?: string
-    template: ButtonTemplateTypes
-    title?: string
+    template: TailwindTemplateTypes
 }
-
-const defaultStyles = 'rounded-lg font-medium text-base text-center px-5 py-2.5'
-
-export default function Button(props: PropTypes) {
-    const classNames = props.className ? props.className : ''
-    const buttonClasses: { [k: string]: string } = {
-        none: '',
-        primary: `${defaultStyles} text-white bg-blue-700 hover:bg-blue-800`,
-        secondary: `${defaultStyles} text-gray bg-gray-200 hover:bg-gray-300`,
-        tertiary: `${defaultStyles} text-white bg-green-500 hover:bg-green-600`,
-        warning: `${defaultStyles} text-white bg-red-700 hover:bg-red-800`,
-        icon: 'bg-transparent inline-flex items-center rounded-lg text-sm text-gray-400'
-    }
-
+export default function Button(props: PropTypes): JSX.Element {
+    const className = `${getTailWindClasses(props.template)} ${
+        props.className || ''
+    }`
     return (
-        <button
-            title={props.title}
-            data-testid={props.dataTestid}
-            onClick={props.clickHandler}
-            className={`${buttonClasses[props.template]} ${classNames}`}
-            type={props.type}
-        >
-            {props.svg ? <Svg type={props.svg} /> : props.children}
+        <button {...props} className={className}>
+            {props.children}
         </button>
     )
 }

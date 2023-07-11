@@ -9,9 +9,7 @@ exports[`WordHeatMap > word color is blue 1`] = `
   >
     <span
       class="font-bold text-white"
-    >
-      heat
-    </span>
+    />
     <span
       class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
       style="background-color: rgb(-170, -170, -170);"
@@ -31,9 +29,7 @@ exports[`WordHeatMap > word color is green 1`] = `
   >
     <span
       class="font-bold text-white"
-    >
-      heat
-    </span>
+    />
     <span
       class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
       style="background-color: rgb(-170, -170, -170);"
@@ -53,9 +49,7 @@ exports[`WordHeatMap > word color is none 1`] = `
   >
     <span
       class="font-bold text-gray-900"
-    >
-      heat
-    </span>
+    />
     <span
       class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
       style="background-color: rgb(-170, -170, -170);"
@@ -75,9 +69,7 @@ exports[`WordHeatMap > word color is red 1`] = `
   >
     <span
       class="font-bold text-white"
-    >
-      heat
-    </span>
+    />
     <span
       class="ml-1 rounded-full py-1 px-2 text-white md:ml-3"
       style="background-color: rgb(-170, -170, -170);"

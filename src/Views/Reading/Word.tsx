@@ -1,14 +1,16 @@
 import Button from '../../Components/Button/Button'
 
 type PropTypes = {
-    children: string
-    status: string
-    clickHandler: () => void
-    index: number
+    data?: {
+        word: string
+        status: string
+    }
+    onClick: (status: string | undefined, wordIndex: number | undefined) => void
+    index?: number
 }
 export default function Word(props: PropTypes) {
     let border = ''
-    switch (props.status) {
+    switch (props.data?.status) {
         case 'green':
             border = 'border-green-500'
             break
@@ -20,13 +22,11 @@ export default function Word(props: PropTypes) {
     }
     return (
         <Button
-            type="button"
-            template="none"
-            className={`mr-5 inline-block cursor-pointer border-b-2 transition-all duration-300 ${border}`}
-            key={`button--${props.index}`}
-            clickHandler={props.clickHandler}
+            template="readingWord"
+            className={`${border}`}
+            onClick={() => props.onClick(props.data?.status, props.index)}
         >
-            {props.children}
+            {props.data?.word}
         </Button>
     )
 }

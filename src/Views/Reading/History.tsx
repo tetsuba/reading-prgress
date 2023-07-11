@@ -1,7 +1,10 @@
 import H3 from '../../Components/H3/H3'
-import Button from '../../Components/Button/Button'
 import { WordTypes } from './Sentence'
 import { ApiBookHistoryTypes } from '../../lib/service-types'
+import TAILWIND_CLASSES from '../../shared.tailwind'
+import { wordsFound, wordsReadIncorrectly } from './reading-utils'
+import { HistoryBackButton } from '../../Components/Button/Buttons'
+import Loop from '../../Components/Loop/Loop'
 
 type PropTypes = {
     story: WordTypes[][]
@@ -9,54 +12,43 @@ type PropTypes = {
     restart: () => void
 }
 
+function HistoryHeader(props: PropTypes) {
+    return (
+        <div className="mb-4 flex items-center justify-between px-4">
+            <H3 className="">{`I read this book ${props.history.length} times`}</H3>
+            <HistoryBackButton onClick={props.restart} />
+        </div>
+    )
+}
+
+function HistoryBlock(props: { data?: ApiBookHistoryTypes }) {
+    const status = wordsFound(props.data)
+    return (
+        <div data-testid="history-block">
+            <div className="flex justify-between px-4 text-sm">
+                <span>List of words to practice:</span>
+                <span>Date: {props.data?.date}</span>
+            </div>
+            <div className={`${TAILWIND_CLASSES.getHistoryBorder(status)}`}>
+                <span
+                    className={`${TAILWIND_CLASSES.getHistoryFontColor(
+                        status
+                    )}`}
+                >
+                    {wordsReadIncorrectly(props.data)}
+                </span>
+            </div>
+        </div>
+    )
+}
+
 export default function History(props: PropTypes) {
     return (
         <>
-            <div className="mb-4 flex items-center justify-between px-4">
-                <H3 className="">{`I read this book ${props.history.length} times`}</H3>
-                <Button
-                    dataTestid="history-back-button"
-                    title="Back"
-                    svg="back"
-                    template="icon"
-                    type="button"
-                    className={`p-2 text-blue-500 hover:border-white hover:bg-gray-100 hover:text-blue-600 focus:outline-none`}
-                    clickHandler={props.restart}
-                />
-            </div>
-
-            {props.history
-                .map((data, index) => {
-                    const notCompleted = data.words.length > 0
-                    const textColor = notCompleted
-                        ? 'text-red-500 border-gray-200'
-                        : 'text-green-500 border-green-500'
-                    return (
-                        <div
-                            data-testid="history-block"
-                            key={`completed-${index}`}
-                        >
-                            <div className="flex justify-between px-4 text-sm">
-                                <span>List of words to practice:</span>
-                                <span>Date: {data.date}</span>
-                            </div>
-                            <div
-                                className={`${textColor} min-h-96 relative mb-8 border-y-2 border-dashed p-4 text-2xl md:rounded-lg md:border-x-2 md:p-6`}
-                            >
-                                <span>
-                                    {notCompleted ? (
-                                        data.words
-                                            .toString()
-                                            .replace(/,/g, ', ')
-                                    ) : (
-                                        <>100% Completed</>
-                                    )}
-                                </span>
-                            </div>
-                        </div>
-                    )
-                })
-                .reverse()}
+            <HistoryHeader {...props} />
+            <Loop array={props.history}>
+                <HistoryBlock />
+            </Loop>
         </>
     )
 }

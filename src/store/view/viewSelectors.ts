@@ -3,9 +3,9 @@ import { StateTypes, StateViewTypes } from '../store-types'
 
 const stateView = (state: StateTypes) => state.view
 
-export const viewBooksSelector = createSelector(
+export const viewBooksCollectionSelector = createSelector(
     stateView,
-    (view: StateViewTypes) => view.books
+    (view: StateViewTypes) => view.books.collection
 )
 export const viewGlobalExpiredSelector = createSelector(
     stateView,
