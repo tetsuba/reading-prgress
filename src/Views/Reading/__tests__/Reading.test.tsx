@@ -87,9 +87,17 @@ describe('Reading', () => {
                     )
                 })
                 fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
-                await waitFor(() => expect(screen.queryAllByTestId('sentence-block')).toHaveLength(2))
+                await waitFor(() =>
+                    expect(
+                        screen.queryAllByTestId('sentence-block')
+                    ).toHaveLength(2)
+                )
                 fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
-                await waitFor(() => expect(screen.queryAllByTestId('sentence-block')).toHaveLength(1))
+                await waitFor(() =>
+                    expect(
+                        screen.queryAllByTestId('sentence-block')
+                    ).toHaveLength(1)
+                )
             })
             test('completing all sentences', async () => {
                 const mockHistoryResponse = mockHistory.concat([
@@ -119,13 +127,29 @@ describe('Reading', () => {
                     ).toHaveLength(3)
                 )
                 fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
-                await waitFor(() => expect(screen.queryAllByTestId('sentence-block')).toHaveLength(2))
+                await waitFor(() =>
+                    expect(
+                        screen.queryAllByTestId('sentence-block')
+                    ).toHaveLength(2)
+                )
                 fireEvent.click(screen.getByTestId('sentence-back-button'))
-                await waitFor(() => expect(screen.queryAllByTestId('sentence-block')).toHaveLength(3))
+                await waitFor(() =>
+                    expect(
+                        screen.queryAllByTestId('sentence-block')
+                    ).toHaveLength(3)
+                )
                 fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
-                await waitFor(() => expect(screen.queryAllByTestId('sentence-block')).toHaveLength(2))
+                await waitFor(() =>
+                    expect(
+                        screen.queryAllByTestId('sentence-block')
+                    ).toHaveLength(2)
+                )
                 fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
-                await waitFor(() => expect(screen.queryAllByTestId('sentence-block')).toHaveLength(1))
+                await waitFor(() =>
+                    expect(
+                        screen.queryAllByTestId('sentence-block')
+                    ).toHaveLength(1)
+                )
                 fireEvent.click(screen.getByTestId('sentence-complete'))
                 await waitFor(() =>
                     expect(
@@ -150,37 +174,45 @@ describe('Reading', () => {
                     ).toHaveLength(0)
                 )
             })
-            test.todo('clicking on the speech button and completing and not completing a sentence', () => {
-                fireEvent.click(screen.getByTestId('speech-button'))
-                expect(
-                    screen.getByTestId('speech-button').getAttribute('class')
-                ).toEqual(expect.stringContaining('text-green-500'))
+            test.todo(
+                'clicking on the speech button and completing and not completing a sentence',
+                () => {
+                    fireEvent.click(screen.getByTestId('speech-button'))
+                    expect(
+                        screen
+                            .getByTestId('speech-button')
+                            .getAttribute('class')
+                    ).toEqual(expect.stringContaining('text-green-500'))
 
-                expect(screen.getByText('This').getAttribute('class')).toEqual(
-                    expect.stringContaining('border-green-500')
-                )
 
-                const firstSentenceClasses = screen
-                    .queryAllByTestId('sentence-block')[0]
-                    .getAttribute('class')
-                expect(firstSentenceClasses).toEqual(
-                    expect.stringContaining('hidden')
-                )
+                    expect(
+                        screen.getByText('This').getAttribute('class')
+                    ).toEqual(expect.stringContaining('border-green-500'))
 
-                fireEvent.click(screen.getByTestId('speech-button'))
-                expect(
-                    screen.getByTestId('speech-button').getAttribute('class')
-                ).toEqual(expect.stringContaining('text-red-500'))
+                    const firstSentenceClasses = screen
+                        .queryAllByTestId('sentence-block')[0]
+                        .getAttribute('class')
+                    expect(firstSentenceClasses).toEqual(
+                        expect.stringContaining('hidden')
+                    )
 
-                fireEvent.click(screen.getByTestId('speech-button'))
-                const secondSentenceClasses = screen
-                    .queryAllByTestId('sentence-block')[1]
-                    .getAttribute('class')
-                expect(secondSentenceClasses).not.toEqual(
-                    expect.stringContaining('hidden')
-                )
-                fireEvent.click(screen.getByTestId('speech-button'))
-            })
+                    fireEvent.click(screen.getByTestId('speech-button'))
+                    expect(
+                        screen
+                            .getByTestId('speech-button')
+                            .getAttribute('class')
+                    ).toEqual(expect.stringContaining('text-red-500'))
+
+                    fireEvent.click(screen.getByTestId('speech-button'))
+                    const secondSentenceClasses = screen
+                        .queryAllByTestId('sentence-block')[1]
+                        .getAttribute('class')
+                    expect(secondSentenceClasses).not.toEqual(
+                        expect.stringContaining('hidden')
+                    )
+                    fireEvent.click(screen.getByTestId('speech-button'))
+                }
+            )
         })
     })
 })

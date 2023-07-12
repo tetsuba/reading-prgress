@@ -1,7 +1,6 @@
-import {render} from "@testing-library/react";
-import {WrapperWith_Store_Query_Router} from "../../../vitest-setup";
-import CollectionRow from "../CollectionRow";
-
+import { render } from '@testing-library/react'
+import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
+import CollectionRow from '../CollectionRow'
 
 describe('CollectionRow', () => {
     test('props data is undefined', () => {

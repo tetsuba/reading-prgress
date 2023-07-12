@@ -75,8 +75,14 @@ describe('reading-utils', () => {
     })
     describe('buildStoryStructure()', () => {
         const expected = [
-            [{  status: "", word: 'sentence' }, {  status: "", word: 'one.' }],
-            [{  status: "", word: 'sentence' }, {  status: "", word: 'two.' }],
+            [
+                { status: '', word: 'sentence' },
+                { status: '', word: 'one.' }
+            ],
+            [
+                { status: '', word: 'sentence' },
+                { status: '', word: 'two.' }
+            ]
         ]
         test('argument as array', () => {
             const story = ['sentence one.', 'sentence two.']
@@ -89,39 +95,70 @@ describe('reading-utils', () => {
     })
     describe('allWordsAreCorrect()', () => {
         test('all words status are correct', () => {
-            const words = [[{  status: STATUS.CORRECT, word: 'sentence' }, {  status: STATUS.CORRECT, word: 'one.' }]]
+            const words = [
+                [
+                    { status: STATUS.CORRECT, word: 'sentence' },
+                    { status: STATUS.CORRECT, word: 'one.' }
+                ]
+            ]
             expect(allWordsAreCorrect(words, 0)).toBeTruthy()
         })
         test('all words status are not correct', () => {
-            const words = [[{  status: STATUS.CORRECT, word: 'sentence' }, {  status: STATUS.WRONG, word: 'one.' }]]
+            const words = [
+                [
+                    { status: STATUS.CORRECT, word: 'sentence' },
+                    { status: STATUS.WRONG, word: 'one.' }
+                ]
+            ]
             expect(allWordsAreCorrect(words, 0)).toBeFalsy()
         })
         test('all words status are empty string', () => {
-            const words = [[{  status: '', word: 'sentence' }, {  status: '', word: 'one.' }]]
+            const words = [
+                [
+                    { status: '', word: 'sentence' },
+                    { status: '', word: 'one.' }
+                ]
+            ]
             expect(allWordsAreCorrect(words, 0)).toBeFalsy()
         })
     })
     describe('updateSentence()', () => {
         test('speech to match a word', () => {
-            const words = [[{  status: '', word: 'sentence' }, {  status: '', word: 'one.' }]]
+            const words = [
+                [
+                    { status: '', word: 'sentence' },
+                    { status: '', word: 'one.' }
+                ]
+            ]
             const speech = ['one', '']
-            const expected = [{  status: '', word: 'sentence' }, {  status: STATUS.CORRECT, word: 'one.' }]
+            const expected = [
+                { status: '', word: 'sentence' },
+                { status: STATUS.CORRECT, word: 'one.' }
+            ]
             expect(updateSentence(words, 0, speech)).toEqual(expected)
         })
         test('speech not to match a word', () => {
-            const words = [[{  status: '', word: 'sentence' }, {  status: '', word: 'one.' }]]
+            const words = [
+                [
+                    { status: '', word: 'sentence' },
+                    { status: '', word: 'one.' }
+                ]
+            ]
             const speech = ['five', '']
-            const expected = [{  status: '', word: 'sentence' }, {  status: '', word: 'one.' }]
+            const expected = [
+                { status: '', word: 'sentence' },
+                { status: '', word: 'one.' }
+            ]
             expect(updateSentence(words, 0, speech)).toEqual(expected)
         })
     })
     describe('wordsFound()', () => {
         test('should find a word', () => {
-            const data = { date: '', words: ['word']}
+            const data = { date: '', words: ['word'] }
             expect(wordsFound(data)).toBeTruthy()
         })
         test('should not find a word', () => {
-            const data = { date: '', words: []}
+            const data = { date: '', words: [] }
             expect(wordsFound(data)).toBeFalsy()
         })
         test('argument to be undefined', () => {
