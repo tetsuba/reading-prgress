@@ -22,9 +22,6 @@ export default function Dashboard() {
     const userId = useSelector(userIdSelector)
     const { data, isSuccess, isLoading } = useQuery(['words', userId], getWords)
 
-    const getColor = (book: LastBookReadTypes) =>
-        book.words.length ? 'red' : 'green'
-
     if (isLoading) {
         return <Loading />
     }

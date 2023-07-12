@@ -93,12 +93,6 @@ export default function Reading() {
                 <Display value={!showHistory && !!book.story}>
                     <>
                         <div className="flex justify-end">
-                            <Speech
-                                story={story}
-                                count={count}
-                                setCount={setCount}
-                                setStory={setStory}
-                            />
                             <Display value={count >= 1}>
                                 <SentenceBackButton
                                     onClick={() => setCount(count - 1)}
