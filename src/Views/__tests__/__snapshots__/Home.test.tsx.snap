@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Home > @Render > should render first load 1`] = `
 <DocumentFragment>
@@ -13,7 +13,7 @@ exports[`Home > @Render > should render first load 1`] = `
           class="mb-8 hidden justify-center sm:flex "
         >
           <div
-            class="rounded-full py-1.5 px-4 text-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+            class="rounded-full px-4 py-1.5 text-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20"
           >
             <span
               class="text-gray-600"

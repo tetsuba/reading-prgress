@@ -20,6 +20,7 @@ export default function Word(props: PropTypes) {
         default:
             border = 'border-gray-100'
     }
+
     return (
         <Button
             template="readingWord"

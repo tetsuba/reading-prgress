@@ -1,9 +1,9 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`PageNotFound > render page and click on go back button 1`] = `
 <DocumentFragment>
   <main
-    class="grid min-h-full place-items-center bg-white py-24 px-6 sm:py-32 lg:px-8"
+    class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8"
   >
     <div
       class="text-center"
