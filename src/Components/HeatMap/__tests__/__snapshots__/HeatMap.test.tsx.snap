@@ -36,3 +36,5 @@ exports[`HeatMap > should render a word heatmap 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`HeatMap > should render nothing if words undefined 1`] = `<DocumentFragment />`;

@@ -11,9 +11,10 @@ const mockedAxios = axios as Mocked<typeof axios>
  * This was mocked to stop a warning message from being displayed
  * when running the test.
  * */
+const mockNavigate = vi.fn()
 vi.mock('react-router-dom', () => ({
     ...(vi.importActual('react-router-dom') as object),
-    useNavigate: () => vi.fn()
+    useNavigate: () => mockNavigate
 }))
 
 const setShowLoginMock = vi.fn()
@@ -99,5 +100,25 @@ describe('Login', () => {
         })
 
         await waitFor(() => expect(setShowLoginMock).toHaveBeenCalled())
+    })
+    test('should click on the lost password text link', () => {
+        render(
+            <WrapperWith_Store_Query_Router pathname="/">
+                <Login setShowLogin={setShowLoginMock} />
+            </WrapperWith_Store_Query_Router>
+        )
+
+        fireEvent.click(screen.getByText('Lost Password?'))
+        expect(mockNavigate).toHaveBeenCalled()
+    })
+    test('should click on the create and account text link', () => {
+        render(
+            <WrapperWith_Store_Query_Router pathname="/">
+                <Login setShowLogin={setShowLoginMock} />
+            </WrapperWith_Store_Query_Router>
+        )
+
+        fireEvent.click(screen.getByText('Create account'))
+        expect(mockNavigate).toHaveBeenCalled()
     })
 })
