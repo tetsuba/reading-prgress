@@ -80,7 +80,7 @@ export default function Login(props: PropTypes) {
                         </div>
                         <TextLinkButton
                             onClick={() => {
-                                navigate('/register')
+                                navigate('/lostPassword')
                                 props.setShowLogin(false)
                             }}
                         >

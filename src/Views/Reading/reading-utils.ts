@@ -131,7 +131,7 @@ export function prepareTrackerData(
     }
 }
 
-export function wordsFound(data: ApiBookHistoryTypes | undefined) {
+export function wordsFound(data: ApiBookHistoryTypes | undefined): boolean {
     return data ? data.words.length > 0 : false
 }
 
