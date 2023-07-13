@@ -12,6 +12,9 @@ const BUTTON_CLASSES = {
         },
         get WARNING() {
             return `${this.DEFAULT} text-white bg-red-700 hover:bg-red-800`
+        },
+        get DISABLED() {
+            return `${this.DEFAULT} text-gray-400 bg-gray-200`
         }
     },
     TEXT_LINK: 'text-blue-700 hover:underline dark:text-blue-500',
@@ -39,6 +42,9 @@ const BUTTON_CLASSES = {
     },
     get warning() {
         return `${this.FILLED.WARNING}`
+    },
+    get disabled() {
+        return `${this.FILLED.DISABLED}`
     },
     get svgClose() {
         return `${this.SVG.CLOSE} ${this.HOVER.GREY}`
@@ -68,6 +74,7 @@ export type TailwindTemplateTypes =
     | 'secondary'
     | 'tertiary'
     | 'warning'
+    | 'disabled'
     | 'svgClose'
     | 'textLink'
     | 'svgUser'

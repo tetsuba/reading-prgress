@@ -1,4 +1,4 @@
-import { getBookStatusColour } from '../book-utils'
+import {allBooksCompleted, getBookStatusColour} from '../book-utils'
 
 describe('book-utils', () => {
     describe('getBookStatusColour()', () => {
@@ -12,6 +12,24 @@ describe('book-utils', () => {
         test('should return red', () => {
             const history = [{ date: '12/12/2222', words: ['there'] }]
             expect(getBookStatusColour(history)).toEqual('text-red-500')
+        })
+    })
+    describe('allBooksCompleted()', () => {
+        const booksCompleted = [
+            {id: 1, story: [], title: '', userId: 1, history: [{date: '', words: ['word']}, {date: '', words: []}]},
+            {id: 1, story: [], title: '', userId: 1, history: [{date: '', words: []}]},
+            {id: 1, story: [], title: '', userId: 1, history: [{date: '', words: []}]},
+        ]
+        const booksNotCompleted = [
+            {id: 1, story: [], title: '', userId: 1, history: [{date: '', words: ['word']}]},
+            {id: 1, story: [], title: '', userId: 1, history: [{date: '', words: []}]},
+            {id: 1, story: [], title: '', userId: 1, history: [{date: '', words: []}]},
+        ]
+        test('if all books are completed', () => {
+            expect(allBooksCompleted(booksCompleted)).toBeTruthy()
+        })
+        test('if all books are not completed', () => {
+            expect(allBooksCompleted(booksNotCompleted)).toBeFalsy()
         })
     })
 })

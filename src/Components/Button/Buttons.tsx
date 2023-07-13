@@ -88,13 +88,14 @@ export function SentenceBackButton(props: PropTypes) {
     )
 }
 
-export function ViewBooksButton(props: PropTypes) {
+export function ViewBooksButton(props: PropTypes & {inactive: boolean}) {
+    const { inactive, ...rest } = props
     return (
         <Button
             className="flex items-center"
             data-testid="collection-button"
-            template="secondary"
-            {...props}
+            template={`${props.inactive ? 'disabled' : 'secondary'}`}
+            {...rest}
         >
             <span className="hidden md:inline">View Books</span>
             <Svg icon="eye" className="md:ml-2" />
