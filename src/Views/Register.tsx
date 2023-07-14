@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query'
-import { registerUser } from '../lib/service'
 import { formDataToQueryString, getErrorMessage } from '../lib/utils'
+import { registerUser } from '../api/user'
 
 // COMPONENTS
 import Label from '../Components/Form/Label'

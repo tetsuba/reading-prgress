@@ -41,6 +41,9 @@ const spyGet = vi.spyOn(localStorage, 'get')
 const spyRemove = vi.spyOn(localStorage, 'remove')
 
 describe('FirstLoad', () => {
+    afterEach(() => {
+        spyGet.mockReset()
+    })
     test('Bearer token is available and respond with an error', async () => {
         spyGet.mockImplementation(() => 'Bearer token')
         mockedAxios.get.mockRejectedValueOnce(AXIOS_ERROR)

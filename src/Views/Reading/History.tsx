@@ -1,6 +1,6 @@
 import H3 from '../../Components/H3/H3'
 import { WordTypes } from './Sentence'
-import { ApiBookHistoryTypes } from '../../lib/service-types'
+import { ApiBookHistoryTypes } from '../../api/api-types'
 import TAILWIND_CLASSES from '../../shared.tailwind'
 import { wordsFound, wordsReadIncorrectly } from './reading-utils'
 import { HistoryBackButton } from '../../Components/Button/Buttons'

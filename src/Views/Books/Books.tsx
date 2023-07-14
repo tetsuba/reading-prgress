@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux'
 import { userIdSelector } from '../../store/user/userSelectors'
-import { getBooks } from '../../lib/service'
 import { viewBooksCollectionSelector } from '../../store/view/viewSelectors'
+import { getBooks } from '../../api/book'
 
 // COMPONENTS
 import Header from '../../Components/Header/Header'

@@ -1,9 +1,6 @@
 import { WordTypes } from './Sentence'
 import { StateBookHistoryTypes, StateBookTypes } from '../../store/store-types'
-import {
-    ApiBookHistoryTypes,
-    ApiCollectionTypes
-} from '../../lib/service-types'
+import { ApiBookHistoryTypes, ApiCollectionTypes } from '../../api/api-types'
 
 export const STATUS = {
     CORRECT: 'green',

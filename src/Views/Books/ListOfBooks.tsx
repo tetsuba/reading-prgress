@@ -1,11 +1,11 @@
 import { updateViewBookCollection } from '../../store/view/viewSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
-import { ApiBookTypes, ApiCollectionTypes } from '../../lib/service-types'
+import { ApiBookTypes, ApiCollectionTypes } from '../../api/api-types'
 import { userIdSelector } from '../../store/user/userSelectors'
 import { useMutation, useQueryClient } from 'react-query'
-import { deleteBook } from '../../lib/service'
 import { filterBooks } from './book-utils'
+import { deleteBook } from '../../api/book'
 
 // COMPONENTS
 import { BackToCollectionButton } from '../../Components/Button/Buttons'
@@ -82,7 +82,7 @@ export default function ListOfBooks(props: PropTypes) {
                         clickHandlerCancel={() => setBook(null)}
                         clickHandlerDelete={() => {
                             if (book) {
-                                mutation.mutate(`?bookId=${book.id}`)
+                                mutation.mutate(book.id)
                                 setBook(null)
                             }
                         }}

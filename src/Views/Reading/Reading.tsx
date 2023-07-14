@@ -10,7 +10,6 @@ import {
 } from './reading-utils'
 
 // SERVICE
-import { updateTracker } from '../../lib/service'
 
 // STORE
 import { updateBookHistory } from '../../store/book/bookSlice'
@@ -32,6 +31,7 @@ import {
 } from '../../Components/Button/Buttons'
 import Display from '../../Components/Dispay/Display'
 import Loop from '../../Components/Loop/Loop'
+import { updateTracker } from '../../api/tracker'
 
 export default function Reading() {
     const navigate = useNavigate()

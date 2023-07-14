@@ -1,4 +1,4 @@
-import { ApiCollectionTypes } from '../../lib/service-types'
+import { ApiCollectionTypes } from '../../api/api-types'
 import Loop from '../../Components/Loop/Loop'
 import CollectionRow from './CollectionRow'
 

@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux'
 import { useMutation, useQueryClient } from 'react-query'
-import { registerBook } from '../../lib/service'
 import { userIdSelector } from '../../store/user/userSelectors'
 import { mutateRegisterBookData } from '../../lib/utils'
 
@@ -10,6 +9,7 @@ import Label from '../../Components/Form/Label'
 import Textarea from '../../Components/Form/Textarea'
 import Button from '../../Components/Button/Button'
 import H3 from '../../Components/H3/H3'
+import { registerBook } from '../../api/book'
 
 type PropTypes = {
     clickHandlerCancel: () => void

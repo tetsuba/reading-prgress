@@ -2,7 +2,6 @@ import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { formDataToObject, getErrorMessage } from '../lib/utils'
-import { loginUser } from '../lib/service'
 import { updateUser } from '../store/user/userSlice'
 
 // COMPONENTS
@@ -12,6 +11,7 @@ import Input from '../Components/Form/Input'
 import ErrorMessage from '../Components/Form/ErrorMessage'
 import Button from '../Components/Button/Button'
 import { CloseButton, TextLinkButton } from '../Components/Button/Buttons'
+import { loginUser } from '../api/user'
 
 type PropTypes = {
     setShowLogin: (p: boolean) => void

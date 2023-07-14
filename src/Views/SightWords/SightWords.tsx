@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { userIdSelector } from '../../store/user/userSelectors'
 import { useQuery } from 'react-query'
-import { getSightWords } from '../../lib/service'
+import { getSightWords } from '../../api/sightWords'
 
 // COMPONENTS
 import Header from '../../Components/Header/Header'

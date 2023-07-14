@@ -1,4 +1,4 @@
-import {allBooksCompleted, getBookStatusColour} from '../book-utils'
+import { allBooksCompleted, getBookStatusColour } from '../book-utils'
 
 describe('book-utils', () => {
     describe('getBookStatusColour()', () => {
@@ -16,14 +16,53 @@ describe('book-utils', () => {
     })
     describe('allBooksCompleted()', () => {
         const booksCompleted = [
-            {id: 1, story: [], title: '', userId: 1, history: [{date: '', words: ['word']}, {date: '', words: []}]},
-            {id: 1, story: [], title: '', userId: 1, history: [{date: '', words: []}]},
-            {id: 1, story: [], title: '', userId: 1, history: [{date: '', words: []}]},
+            {
+                id: 1,
+                story: [],
+                title: '',
+                userId: 1,
+                history: [
+                    { date: '', words: ['word'] },
+                    { date: '', words: [] }
+                ]
+            },
+            {
+                id: 1,
+                story: [],
+                title: '',
+                userId: 1,
+                history: [{ date: '', words: [] }]
+            },
+            {
+                id: 1,
+                story: [],
+                title: '',
+                userId: 1,
+                history: [{ date: '', words: [] }]
+            }
         ]
         const booksNotCompleted = [
-            {id: 1, story: [], title: '', userId: 1, history: [{date: '', words: ['word']}]},
-            {id: 1, story: [], title: '', userId: 1, history: [{date: '', words: []}]},
-            {id: 1, story: [], title: '', userId: 1, history: [{date: '', words: []}]},
+            {
+                id: 1,
+                story: [],
+                title: '',
+                userId: 1,
+                history: [{ date: '', words: ['word'] }]
+            },
+            {
+                id: 1,
+                story: [],
+                title: '',
+                userId: 1,
+                history: [{ date: '', words: [] }]
+            },
+            {
+                id: 1,
+                story: [],
+                title: '',
+                userId: 1,
+                history: [{ date: '', words: [] }]
+            }
         ]
         test('if all books are completed', () => {
             expect(allBooksCompleted(booksCompleted)).toBeTruthy()

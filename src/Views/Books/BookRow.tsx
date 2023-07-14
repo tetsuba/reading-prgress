@@ -8,7 +8,7 @@ import {
 } from '../../Components/Button/Buttons'
 import { addBook } from '../../store/book/bookSlice'
 import Display from '../../Components/Dispay/Display'
-import { ApiBookTypes } from '../../lib/service-types'
+import { ApiBookTypes } from '../../api/api-types'
 
 type BookPropTypes = {
     data?: ApiBookTypes

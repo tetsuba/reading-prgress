@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
 import { useQuery } from 'react-query'
 import { userIdSelector } from '../../store/user/userSelectors'
-import { getWords } from '../../lib/service'
 
 // COMPONENTS
 import Header from '../../Components/Header/Header'
@@ -11,6 +10,7 @@ import Loading from '../../Components/Loading/Loading'
 import Main from '../../Components/Main/Main'
 import Display from '../../Components/Dispay/Display'
 import Loop from '../../Components/Loop/Loop'
+import { getWords } from '../../api/tracker'
 
 type LastBookReadTypes = {
     words: string[]

@@ -1,3 +1,5 @@
+import { LoginUserTypes, RegisterBookTypes } from '../api/api-types'
+
 type ValueType = {
     value: string
 }
@@ -26,7 +28,7 @@ interface LoginFormTypes extends EventTarget {
     email?: ValueType
     password?: ValueType
 }
-export function formDataToObject(target: LoginFormTypes) {
+export function formDataToObject(target: LoginFormTypes): LoginUserTypes {
     return {
         username: target.email?.value,
         password: target.password?.value
@@ -64,7 +66,7 @@ interface StoryFormTypes extends EventTarget {
 export function mutateRegisterBookData(
     target: StoryFormTypes,
     userId: number
-): { [key: string]: number | string | undefined | string[] } {
+): RegisterBookTypes {
     const story = target.story?.value.split(/\n/).filter((word) => word)
     return {
         userId,

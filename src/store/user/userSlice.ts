@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import ls from '../../lib/localStorage'
 import { ActionTypes, StateUserTypes } from '../store-types'
-import { ApiUserTypes } from '../../lib/service-types'
+import { ApiUserTypes } from '../../api/api-types'
 
 interface UpdateUserActionTypes extends ActionTypes {
     payload: {

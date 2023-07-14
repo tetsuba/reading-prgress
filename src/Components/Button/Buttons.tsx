@@ -1,9 +1,5 @@
 import Svg from '../Svg/Svg'
 import Button from './Button'
-import { updateViewBookCollection } from '../../store/view/viewSlice'
-import { addBook } from '../../store/book/bookSlice'
-import { resetUserToInitialState } from '../../store/user/userSlice'
-import ls from '../../lib/localStorage'
 
 type PropTypes = {
     onClick?: () => void
@@ -88,7 +84,7 @@ export function SentenceBackButton(props: PropTypes) {
     )
 }
 
-export function ViewBooksButton(props: PropTypes & {inactive: boolean}) {
+export function ViewBooksButton(props: PropTypes & { inactive: boolean }) {
     const { inactive, ...rest } = props
     return (
         <Button

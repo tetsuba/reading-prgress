@@ -1,9 +1,9 @@
-import { ApiCollectionTypes } from '../../lib/service-types'
+import { ApiCollectionTypes } from '../../api/api-types'
 import { useDispatch } from 'react-redux'
 import Row from '../../Components/Row/Row'
 import { ViewBooksButton } from '../../Components/Button/Buttons'
 import { updateViewBookCollection } from '../../store/view/viewSlice'
-import {allBooksCompleted} from "./book-utils";
+import { allBooksCompleted } from './book-utils'
 
 type CollectionPropTypes = {
     data?: ApiCollectionTypes | undefined
@@ -21,7 +21,8 @@ export default function CollectionRow(props: CollectionPropTypes) {
 
     return (
         <Row index={index} text={text} iconColor={iconColour} icon="library">
-            <ViewBooksButton inactive={completed}
+            <ViewBooksButton
+                inactive={completed}
                 onClick={() => data && dispatch(updateViewBookCollection(data))}
             />
         </Row>

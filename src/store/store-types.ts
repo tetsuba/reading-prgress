@@ -1,4 +1,5 @@
-import { ApiBookHistoryTypes, ApiCollectionTypes } from '../lib/service-types'
+import { ApiBookHistoryTypes, ApiCollectionTypes } from '../api/api-types'
+import store from './store'
 
 export type ActionTypes = {
     type: string
@@ -40,3 +41,5 @@ export interface StateTypes {
     book: StateBookTypes
     view: StateViewTypes
 }
+
+export type AppDispatch = typeof store.dispatch

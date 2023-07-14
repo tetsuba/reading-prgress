@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ActionTypes, StateViewTypes } from '../store-types'
-import { ApiCollectionTypes } from '../../lib/service-types'
+import { ApiCollectionTypes } from '../../api/api-types'
 
 const initialState = {
     books: {

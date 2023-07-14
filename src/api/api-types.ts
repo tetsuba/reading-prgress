@@ -81,3 +81,28 @@ export type ApiDashboardResponseTypes = {
         }
     }
 }
+
+export type RegisterBookTypes = {
+    userId: number
+    title: string | undefined
+    story: string[] | undefined
+}
+
+export type QueryTypes = {
+    queryKey: (string | number)[]
+}
+
+export type ErrorTypes = {
+    response: {
+        status: number
+    }
+}
+
+export type AuthorizationHeader = {
+    Authorization: string
+}
+
+export type LoginUserTypes = {
+    username: string | undefined
+    password: string | undefined
+}

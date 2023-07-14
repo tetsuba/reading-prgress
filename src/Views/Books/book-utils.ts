@@ -1,4 +1,4 @@
-import { ApiBookHistoryTypes, ApiBookTypes } from '../../lib/service-types'
+import { ApiBookHistoryTypes, ApiBookTypes } from '../../api/api-types'
 
 export function getBookStatusColour(
     history: ApiBookHistoryTypes[] | undefined
@@ -23,16 +23,13 @@ export function filterBooks(books: ApiBookTypes[] | undefined, search: string) {
 }
 
 export function allBooksCompleted(books: ApiBookTypes[] | undefined): boolean {
-    if(books !== undefined) {
-        return books
-            .every(
-                (book) => {
-                    if (book.history !== null) {
-                        return book.history[book.history.length - 1].words.length === 0
-                    }
-                    return false
-                }
-            )
+    if (books !== undefined) {
+        return books.every((book) => {
+            if (book.history !== null) {
+                return book.history[book.history.length - 1].words.length === 0
+            }
+            return false
+        })
     }
     return false
 }
