@@ -184,7 +184,6 @@ describe('Reading', () => {
                             .getAttribute('class')
                     ).toEqual(expect.stringContaining('text-green-500'))
 
-
                     expect(
                         screen.getByText('This').getAttribute('class')
                     ).toEqual(expect.stringContaining('border-green-500'))

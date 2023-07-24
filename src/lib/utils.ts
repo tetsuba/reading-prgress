@@ -78,3 +78,38 @@ export function mutateRegisterBookData(
 export function isNull<T>(data: T): boolean {
     return data === null
 }
+
+export function isEmpty<T>(data: T | T[] | undefined): boolean {
+    if (data === null) {
+        return true
+    }
+
+    if (data === undefined) {
+        return true
+    }
+
+    if (Array.isArray(data) && data.length === 0) {
+        return true
+    }
+
+    return typeof data === 'object' && Object.keys(data).length === 0
+}
+
+
+// @ts-ignore
+export function compose(...func) {
+    return function <T>(args: T) {
+        return func.reduceRight((a, f) => f(a), args)
+    }
+}
+
+export type OrUndefined<type> = type | undefined
+export function defaultTo<A, B, C extends undefined, D>(defaultFunc: () => A, func: (a: B) => D ) {
+    return function (arg: OrUndefined<B>): A | D {
+        return isEmpty(arg) ? defaultFunc() : func(arg as B)
+    }
+}
+
+export function lastEntry<T>(array: T[]): T {
+    return array[array.length - 1]
+}

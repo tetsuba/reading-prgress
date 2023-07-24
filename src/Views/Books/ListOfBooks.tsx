@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { ApiBookTypes, ApiCollectionTypes } from '../../api/api-types'
 import { userIdSelector } from '../../store/user/userSelectors'
 import { useMutation, useQueryClient } from 'react-query'
-import { filterBooks } from './book-utils'
+import { filterBooksByTitle } from './book-utils'
 import { deleteBook } from '../../api/book'
 
 // COMPONENTS
@@ -34,7 +34,7 @@ export default function ListOfBooks(props: PropTypes) {
             queryClient.setQueryData(['books', userId], data)
         }
     })
-    const books = filterBooks(props.collection?.books, search)
+    const books = filterBooksByTitle(props.collection?.books, search)
 
     return (
         <div data-testid="book-list">

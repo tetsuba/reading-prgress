@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getBookStatusColour } from './book-utils'
+import { getIconColorForBookRow } from './book-utils'
 import Row from '../../Components/Row/Row'
 import {
     DeleteBookButton,
@@ -21,13 +21,13 @@ export default function BookRow(props: BookPropTypes) {
     const { data, index, collectionId, deleteBook } = props
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const bookStatusColour = getBookStatusColour(data?.history)
+    const iconColor = getIconColorForBookRow(data?.history)
     return (
         <Row
             index={index || 0}
             text={data?.title}
             icon="bookmark"
-            iconColor={bookStatusColour}
+            iconColor={iconColor}
         >
             <ReadBookButton
                 onClick={() => {
