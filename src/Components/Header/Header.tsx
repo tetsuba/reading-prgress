@@ -1,9 +1,12 @@
+import { memo } from 'react'
+
 type PropTypes = {
     text: string
     children?: JSX.Element
 }
 
-export default function Header(props: PropTypes) {
+export default memo(function Header(props: PropTypes) {
+    console.log('Header')
     return (
         <header className="bg-white shadow">
             <div className="mx-auto flex max-w-7xl justify-between px-4 py-6 sm:px-6 lg:px-8">
@@ -14,4 +17,4 @@ export default function Header(props: PropTypes) {
             </div>
         </header>
     )
-}
+})
