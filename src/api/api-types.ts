@@ -8,7 +8,7 @@ export type ApiBookTypes = {
     story: string | string[]
     title: string
     userId: number
-    history: ApiBookHistoryTypes[]
+    history: ApiBookHistoryTypes[] | null
 }
 
 export type ApiCollectionTypes = {

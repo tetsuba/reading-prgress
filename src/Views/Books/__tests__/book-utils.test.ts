@@ -87,14 +87,27 @@ describe('book-utils', () => {
                 history: [{ date: '', words: [] }]
             }
         ]
+        const booksHistoryNull: ApiBookTypes[] = [
+            {
+                id: 1,
+                story: [],
+                title: '',
+                userId: 1,
+                history: null
+            }
+        ]
+
         test('if all books are completed', () => {
             expect(allBooksCompleted(booksCompleted)).toBeTruthy()
         })
         test('if all books are not completed', () => {
             expect(allBooksCompleted(booksNotCompleted)).toBeFalsy()
         })
-        test('if all books are not completed', () => {
+        test('if arg is undefined', () => {
             expect(allBooksCompleted(undefined)).toBeFalsy()
+        })
+        test('if book history is null', () => {
+            expect(allBooksCompleted(booksHistoryNull)).toBeFalsy()
         })
     })
 })

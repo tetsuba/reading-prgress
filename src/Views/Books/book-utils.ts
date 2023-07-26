@@ -1,8 +1,9 @@
 import { ApiBookHistoryTypes, ApiBookTypes } from '../../api/api-types'
-import { compose, defaultTo, isEmpty, lastEntry } from '../../lib/utils'
+import {compose, defaultTo, ifElse, isEmpty, lastEntry} from '../../lib/utils'
 
 const defaultIconColour = (): string => 'text-gray-300'
 const notCompleted = (): false => false
+const returnFalse = (): false => false
 
 function getColorForIcon(isComplete: boolean): string {
     return isComplete ? 'text-green-500' : 'text-red-500'
@@ -32,8 +33,6 @@ function getPropertyHistory(book: ApiBookTypes) {
     throw new Error('Object is missing word property')
 }
 
-
-// filterBooksByTitle
 function filterBooksByTitle(books: ApiBookTypes[] | undefined, search: string): ApiBookTypes[] | [] {
     return books === undefined
         ? []
@@ -44,13 +43,18 @@ function filterBooksByTitle(books: ApiBookTypes[] | undefined, search: string): 
 
 // COMPOSE
 const getPropertyWordsFromLastEntry = compose(getPropertyWords, lastEntry)
-const bookIsCompleted = compose(isEmpty, getPropertyWordsFromLastEntry, getPropertyHistory)
+const isBookCompleted = compose(isEmpty, getPropertyWordsFromLastEntry, getPropertyHistory)
 const getIconColor = compose(getColorForIcon, isEmpty, getPropertyWordsFromLastEntry)
+const isHistoryNull = compose(isEmpty, getPropertyHistory)
+
+
+// ifElse
+const isBookHistoryCompleted = ifElse(isHistoryNull, returnFalse, isBookCompleted)
 
 // PARTIAL
-const checkEveryBookCompleted = everyBookCompleted(bookIsCompleted)
+const checkEveryBookCompleted = everyBookCompleted(isBookHistoryCompleted)
 
-// DEFAULT TO
+// DefaultTo
 const getIconColorForBookRow =  defaultTo(defaultIconColour, getIconColor)
 const allBooksCompleted = defaultTo(notCompleted, checkEveryBookCompleted)
 

@@ -113,3 +113,15 @@ export function defaultTo<A, B, C extends undefined, D>(defaultFunc: () => A, fu
 export function lastEntry<T>(array: T[]): T {
     return array[array.length - 1]
 }
+
+// @ts-ignore
+export function debugCompose(arg) {
+    console.log('DEBUG: ', arg)
+    return arg
+}
+
+export function ifElse<IF, F1, F2, T>(ifFunction: (a: T) => IF, Option1: (a: T) => F1, Option2: (a: T) => F2) {
+    return (arg: T): F1 | F2 => {
+        return ifFunction(arg) ? Option1(arg) : Option2(arg)
+    }
+}

@@ -32,6 +32,7 @@ import {
 import Display from '../../Components/Dispay/Display'
 import Loop from '../../Components/Loop/Loop'
 import { updateTracker } from '../../api/tracker'
+import {ApiBookHistoryTypes} from "../../api/api-types";
 
 export default function Reading() {
     const navigate = useNavigate()
@@ -50,7 +51,7 @@ export default function Reading() {
             queryClient.setQueryData(['books', userId], data)
             await queryClient.invalidateQueries(['words'])
             const history = findBookHistory(data.data, book)
-            dispatch(updateBookHistory(history))
+            dispatch(updateBookHistory(history as ApiBookHistoryTypes[]))
         },
         onSettled() {
             setShowHistory(true)
