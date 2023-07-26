@@ -12,12 +12,6 @@ import Display from '../../Components/Dispay/Display'
 import Loop from '../../Components/Loop/Loop'
 import { getWords } from '../../api/tracker'
 
-type LastBookReadTypes = {
-    words: string[]
-    date: string
-    title: string
-}
-
 export default function Dashboard() {
     const userId = useSelector(userIdSelector)
     const { data, isSuccess, isLoading } = useQuery(['words', userId], getWords)
