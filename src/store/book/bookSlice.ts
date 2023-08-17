@@ -10,7 +10,7 @@ const initialState = {
     bookId: 0,
     libId: '',
     history: [],
-    story: '',
+    story: [],
     title: ''
 } as StateBookTypes
 

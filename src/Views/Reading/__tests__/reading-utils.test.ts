@@ -1,76 +1,61 @@
 import {
-    getReadingMistakes,
-    removeSpecialCharacters,
+    removeSpecialCharacter,
     getShortDate,
-    updateHistory,
     buildStoryStructure,
     allWordsAreCorrect,
     STATUS,
-    updateSentence,
-    wordsFound
+    transformStoryToTrackerHistory,
+    getHistoryWords,
+    doesHistoryHaveWords,
+    toggleStatus
 } from '../reading-utils'
 
 describe('reading-utils', () => {
-    describe('removeSpecialCharacters()', () => {
-        test('to remove special characters from word', () => {
-            const result = removeSpecialCharacters('"Bob\'s".')
-            expect(result).toEqual("bob's")
+    describe('transformStoryToTrackerHistory()', () => {
+        test('with status red words', () => {
+            const story = [
+                [
+                    { word: 'This', status: '' },
+                    { word: 'is', status: 'red' }
+                ],
+                [
+                    { word: 'Next', status: 'red' },
+                    { word: 'sentence.', status: '' }
+                ]
+            ]
+            const words = transformStoryToTrackerHistory(story)
+                .concat([])
+                .emit()
+
+            console.log(words)
+            expect(words[0]).toHaveProperty('words', ['is', 'next'])
+        })
+        test('with no status red words', () => {
+            const story = [
+                [
+                    { word: 'This', status: '' },
+                    { word: 'is', status: '' }
+                ],
+                [
+                    { word: 'Next', status: '' },
+                    { word: 'sentence.', status: '' }
+                ]
+            ]
+            const words = transformStoryToTrackerHistory(story)
+                .concat([])
+                .emit()
+            expect(words[0]).toHaveProperty('words', [])
         })
     })
-    describe('getReadingMistakes()', () => {
-        test('with no reading mistakes', () => {
-            const sentences = [
-                [
-                    { word: 'this', status: '' },
-                    { word: 'this', status: '' }
-                ],
-                [
-                    { word: 'when', status: '' },
-                    { word: 'where', status: '' }
-                ]
-            ]
-            const result = getReadingMistakes(sentences)
-            expect(result).toEqual([])
-        })
-        test('with reading mistakes', () => {
-            const sentences = [
-                [
-                    { word: 'this', status: 'red' },
-                    { word: 'this', status: '' }
-                ],
-                [
-                    { word: 'when', status: '' },
-                    { word: 'where', status: 'red' }
-                ]
-            ]
-            const result = getReadingMistakes(sentences)
-            expect(result).toEqual(['this', 'where'])
+    describe('removeSpecialCharacter()', () => {
+        test('to remove special characters from word', () => {
+            const result = removeSpecialCharacter('"Bob\'s".')
+            expect(result).toEqual("bob's")
         })
     })
     describe('getShortDate()', () => {
         test('to get a short data format', () => {
             expect(getShortDate()).toMatch(/\d{2}\/\d{2}\/\d{4}/)
-        })
-    })
-    describe('updateHistory()', () => {
-        const story = [
-            [
-                { word: 'this', status: 'red' },
-                { word: 'this', status: '' }
-            ],
-            [
-                { word: 'when', status: '' },
-                { word: 'where', status: 'red' }
-            ]
-        ]
-        const history = [{ date: '12/12/2020', words: ['while'] }]
-
-        test('with history', () => {
-            expect(updateHistory(history, story)).toHaveLength(2)
-        })
-
-        test('with no history', () => {
-            expect(updateHistory([], story)).toHaveLength(1)
         })
     })
     describe('buildStoryStructure()', () => {
@@ -101,7 +86,7 @@ describe('reading-utils', () => {
                     { status: STATUS.CORRECT, word: 'one.' }
                 ]
             ]
-            expect(allWordsAreCorrect(words, 0)).toBeTruthy()
+            expect(allWordsAreCorrect(words[0])).toBeTruthy()
         })
         test('all words status are not correct', () => {
             const words = [
@@ -110,7 +95,7 @@ describe('reading-utils', () => {
                     { status: STATUS.WRONG, word: 'one.' }
                 ]
             ]
-            expect(allWordsAreCorrect(words, 0)).toBeFalsy()
+            expect(allWordsAreCorrect(words[0])).toBeFalsy()
         })
         test('all words status are empty string', () => {
             const words = [
@@ -119,50 +104,24 @@ describe('reading-utils', () => {
                     { status: '', word: 'one.' }
                 ]
             ]
-            expect(allWordsAreCorrect(words, 0)).toBeFalsy()
+            expect(allWordsAreCorrect(words[0])).toBeFalsy()
         })
     })
-    describe('updateSentence()', () => {
-        test('speech to match a word', () => {
-            const words = [
-                [
-                    { status: '', word: 'sentence' },
-                    { status: '', word: 'one.' }
-                ]
-            ]
-            const speech = ['one', '']
-            const expected = [
-                { status: '', word: 'sentence' },
-                { status: STATUS.CORRECT, word: 'one.' }
-            ]
-            expect(updateSentence(words, 0, speech)).toEqual(expected)
+    describe('getHistoryWords()', () => {
+        test('data has a list of words', () => {
+            const data = {
+                data: { date: '', words: ['word', 'something'] }
+            }
+            expect(getHistoryWords(data)).toEqual('word, something')
         })
-        test('speech not to match a word', () => {
-            const words = [
-                [
-                    { status: '', word: 'sentence' },
-                    { status: '', word: 'one.' }
-                ]
-            ]
-            const speech = ['five', '']
-            const expected = [
-                { status: '', word: 'sentence' },
-                { status: '', word: 'one.' }
-            ]
-            expect(updateSentence(words, 0, speech)).toEqual(expected)
+        test('data has a list of no words', () => {
+            const data = {
+                data: { date: '', words: [] }
+            }
+            expect(getHistoryWords(data)).toEqual('100% Completed')
         })
-    })
-    describe('wordsFound()', () => {
-        test('should find a word', () => {
-            const data = { date: '', words: ['word'] }
-            expect(wordsFound(data)).toBeTruthy()
-        })
-        test('should not find a word', () => {
-            const data = { date: '', words: [] }
-            expect(wordsFound(data)).toBeFalsy()
-        })
-        test('argument to be undefined', () => {
-            expect(wordsFound(undefined)).toBeFalsy()
+        test('data is undefined', () => {
+            expect(getHistoryWords(undefined)).toEqual('arg is undefined')
         })
     })
 })

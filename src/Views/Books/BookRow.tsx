@@ -21,7 +21,7 @@ export default function BookRow(props: BookPropTypes) {
     const { data, index, collectionId, deleteBook } = props
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const iconColor = getIconColorForBookRow(data?.history)
+    const iconColor = getIconColorForBookRow(data)
     return (
         <Row
             index={index || 0}

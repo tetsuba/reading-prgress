@@ -1,4 +1,5 @@
 import { LoginUserTypes, RegisterBookTypes } from '../api/api-types'
+import * as R from 'ramda'
 
 type ValueType = {
     value: string
@@ -95,16 +96,11 @@ export function isEmpty<T>(data: T | T[] | undefined): boolean {
     return typeof data === 'object' && Object.keys(data).length === 0
 }
 
-
-// @ts-ignore
-export function compose(...func) {
-    return function <T>(args: T) {
-        return func.reduceRight((a, f) => f(a), args)
-    }
-}
-
 export type OrUndefined<type> = type | undefined
-export function defaultTo<A, B, C extends undefined, D>(defaultFunc: () => A, func: (a: B) => D ) {
+export function defaultTo<A, B, C extends undefined, D>(
+    defaultFunc: () => A,
+    func: (a: B) => D
+) {
     return function (arg: OrUndefined<B>): A | D {
         return isEmpty(arg) ? defaultFunc() : func(arg as B)
     }
@@ -115,13 +111,23 @@ export function lastEntry<T>(array: T[]): T {
 }
 
 // @ts-ignore
-export function debugCompose(arg) {
+export function debugCompose<T>(arg: T): T {
     console.log('DEBUG: ', arg)
     return arg
 }
 
-export function ifElse<IF, F1, F2, T>(ifFunction: (a: T) => IF, Option1: (a: T) => F1, Option2: (a: T) => F2) {
+export function ifElse<IF, F1, F2, T>(
+    ifFunction: (a: T) => IF,
+    Option1: (a: T) => F1,
+    Option2: (a: T) => F2
+) {
     return (arg: T): F1 | F2 => {
         return ifFunction(arg) ? Option1(arg) : Option2(arg)
     }
 }
+
+export function isArray<T>(data: T): boolean {
+    return Array.isArray(data)
+}
+
+export const notUndefined = <T>(v: T): boolean => R.not(R.isNil(v))

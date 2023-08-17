@@ -2,11 +2,9 @@ import { useState } from 'react'
 import speechToText from '../../lib/speechToText'
 import Button from '../Button/Button'
 import { WordTypes } from '../../Views/Reading/Sentence'
-import {
-    allWordsAreCorrect,
-    updateSentence
-} from '../../Views/Reading/reading-utils'
+import { allWordsAreCorrect } from '../../Views/Reading/reading-utils'
 import Svg from '../Svg/Svg'
+import { updateSentence } from './speech-utils'
 
 type PropTypes = {
     story: WordTypes[][]
@@ -39,7 +37,7 @@ export default function Speech(props: PropTypes) {
 
             story[count] = updateSentence(story, count, speech)
             setStory([...story])
-            if (allWordsAreCorrect(story, count)) {
+            if (allWordsAreCorrect(story[count])) {
                 setCount(count + 1)
             }
         }

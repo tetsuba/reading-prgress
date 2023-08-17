@@ -1,3 +1,4 @@
+import * as R from 'ramda'
 import WordHeatMap from './WordHeatMap'
 import H3 from '../H3/H3'
 import TAILWIND_CLASSES from '../../shared.tailwind'
@@ -5,28 +6,35 @@ import Loop from '../Loop/Loop'
 
 export type HeatMapColors = 'red' | 'blue' | 'green' | 'none'
 
-type WordTypes = {
+export type HeatMapWordTypes = {
     word: string
     index: number
 }
 
 type PropTypes = {
-    words: WordTypes[] | undefined
+    words: HeatMapWordTypes[] | undefined
     search: string
     children: string
     color: HeatMapColors
 }
+
+const diff = (a: number, b: number) => b - a
+
+const findMax = R.compose(
+    R.prop(0),
+    (list) => (list as number[]).sort(diff),
+    R.map(R.prop('index'))
+)
+
 export default function HeatMap(props: PropTypes) {
-    function sightWords(words: WordTypes) {
+    function sightWords(words: HeatMapWordTypes) {
         const regEx = new RegExp(props.search.toLowerCase(), 'g')
         return regEx.test(words.word.toLowerCase())
     }
 
-    if (props.words === undefined) {
-        return <></>
-    }
+    if (R.isNil(props.words)) return <></>
+    const max: number = findMax(props.words)
 
-    const max = props.words.map(({ index }) => index).sort((a, b) => b - a)[0]
     return (
         <>
             <H3 className="mt-10 bg-gray-200 p-2 md:rounded-t-lg">

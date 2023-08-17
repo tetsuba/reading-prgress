@@ -1,15 +1,18 @@
 import { useState } from 'react'
+import * as R from 'ramda'
 import { useMutation, useQueryClient } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import {
     buildStoryStructure,
     findBookHistory,
     isReadingCompleted,
-    prepareTrackerData,
-    STATUS
+    toggleStatus,
+    transformStoryToTrackerHistory
 } from './reading-utils'
-
-// SERVICE
+import { updateTracker } from '../../api/tracker'
+import { ApiBookHistoryTypes } from '../../api/api-types'
+import { notUndefined } from '../../lib/utils'
 
 // STORE
 import { updateBookHistory } from '../../store/book/bookSlice'
@@ -19,9 +22,7 @@ import { bookSelector } from '../../store/book/bookSelectors'
 // COMPONENTS
 import Sentence from './Sentence'
 import History from './History'
-import Speech from '../../Components/Speech/Speech'
 import Header from '../../Components/Header/Header'
-import { useNavigate } from 'react-router-dom'
 import ScrollTo from '../../Components/ScrollTo/ScrollTo'
 import Main from '../../Components/Main/Main'
 import {
@@ -31,8 +32,6 @@ import {
 } from '../../Components/Button/Buttons'
 import Display from '../../Components/Dispay/Display'
 import Loop from '../../Components/Loop/Loop'
-import { updateTracker } from '../../api/tracker'
-import {ApiBookHistoryTypes} from "../../api/api-types";
 
 export default function Reading() {
     const navigate = useNavigate()
@@ -51,26 +50,36 @@ export default function Reading() {
             queryClient.setQueryData(['books', userId], data)
             await queryClient.invalidateQueries(['words'])
             const history = findBookHistory(data.data, book)
-            dispatch(updateBookHistory(history as ApiBookHistoryTypes[]))
+            dispatch(updateBookHistory(history))
         },
         onSettled() {
             setShowHistory(true)
         }
     })
 
-    if (isReadingCompleted(story, count)) {
+    if (isReadingCompleted(story.length, count)) {
         setStory(buildStoryStructure(book.story))
         setCount(0)
-        mutation.mutate(prepareTrackerData(userId, book, story))
+
+        const trackerData = {
+            userId,
+            bookId: book.bookId,
+            libId: book.libId,
+            history: transformStoryToTrackerHistory(story)
+                .concat(book.history)
+                .emit()
+        }
+        mutation.mutate(trackerData)
     }
 
     function updateStoryState(
         status: string | undefined,
         wordIndex: number | undefined
     ) {
-        if (status !== undefined && wordIndex !== undefined) {
-            story[count][wordIndex].status =
-                status === STATUS.WRONG ? STATUS.CORRECT : STATUS.WRONG
+        if (notUndefined(status) && notUndefined(wordIndex)) {
+            story[count][wordIndex as number].status = toggleStatus(
+                status as string
+            )
             setStory([...story])
         }
     }
@@ -84,14 +93,14 @@ export default function Reading() {
             <Main>
                 <Display value={showHistory}>
                     <History
-                        history={book.history}
+                        history={R.reverse(book.history)}
                         story={story}
                         restart={() => {
                             setShowHistory(false)
                         }}
                     />
                 </Display>
-                <Display value={!showHistory && !!book.story}>
+                <Display value={R.not(showHistory) && !!book.story}>
                     <>
                         <div className="flex justify-end">
                             <Display value={count >= 1}>

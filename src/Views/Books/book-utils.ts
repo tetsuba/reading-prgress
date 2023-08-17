@@ -1,62 +1,58 @@
-import { ApiBookHistoryTypes, ApiBookTypes } from '../../api/api-types'
-import {compose, defaultTo, ifElse, isEmpty, lastEntry} from '../../lib/utils'
+import { ApiBookTypes, ApiCollectionTypes } from '../../api/api-types'
+import * as R from 'ramda'
+import { isUndefined } from '../../lib/monads'
+import { CollectionPropTypes } from './CollectionRow'
 
-const defaultIconColour = (): string => 'text-gray-300'
-const notCompleted = (): false => false
-const returnFalse = (): false => false
+const returnBoolean = <T>(value: T) => value as boolean
 
-function getColorForIcon(isComplete: boolean): string {
-    return isComplete ? 'text-green-500' : 'text-red-500'
+export const getBooks = R.pathOr([], ['collection', 'books'])
+export const collectionTitle: (v: CollectionPropTypes) => string = R.pathOr(
+    '',
+    ['data', 'title']
+)
+export const numberOfBooks: (v: CollectionPropTypes) => string = R.compose(
+    R.ifElse(R.isEmpty, R.empty, (text: string): string => `(${text})`),
+    R.pathOr('', ['data', 'books', 'length'])
+)
+export function filterBooksByTitle(
+    books: ApiBookTypes[],
+    search: string
+): ApiBookTypes[] | [] {
+    return books.filter((book) =>
+        book.title.toLowerCase().startsWith(search.toLowerCase())
+    )
 }
 
-function getPropertyWords(bookHistory: ApiBookHistoryTypes) {
-    if (typeof bookHistory !== 'object') {
-        throw new Error('argument { bookHistory } is not an object')
-    }
+const defaultText = R.always('text-gray-300')
+const greenText = R.always('text-green-500')
+const redText = R.always('text-red-500')
 
-    if (Object.hasOwn(bookHistory, 'words')) {
-        return bookHistory.words
-    }
-    throw new Error('Object is missing word property')
-}
+const getIconColor = R.compose(
+    R.ifElse(R.isEmpty, greenText, redText),
+    R.prop('words'),
+    R.last
+)
 
-function everyBookCompleted(bookIsCompleted: <T>(args: T) => T) {
-    return function (books: ApiBookTypes[]) {
-        return books.every(bookIsCompleted)
-    }
-}
+export const getIconColorForBookRow = R.compose(
+    R.ifElse(R.isEmpty, defaultText, getIconColor),
+    R.pathOr([], ['history'])
+)
 
-function getPropertyHistory(book: ApiBookTypes) {
-    if (Object.hasOwn(book, 'history')) {
-        return book.history
-    }
-    throw new Error('Object is missing word property')
-}
+const historyWordsEmpty = R.compose(
+    R.isEmpty,
+    R.prop('words'),
+    R.last,
+    R.prop('history')
+)
 
-function filterBooksByTitle(books: ApiBookTypes[] | undefined, search: string): ApiBookTypes[] | [] {
-    return books === undefined
-        ? []
-        : books.filter((book) =>
-            book.title.toLowerCase().startsWith(search.toLowerCase())
-        )
-}
-
-// COMPOSE
-const getPropertyWordsFromLastEntry = compose(getPropertyWords, lastEntry)
-const isBookCompleted = compose(isEmpty, getPropertyWordsFromLastEntry, getPropertyHistory)
-const getIconColor = compose(getColorForIcon, isEmpty, getPropertyWordsFromLastEntry)
-const isHistoryNull = compose(isEmpty, getPropertyHistory)
-
+const historyIsNull = R.compose(R.isNil, R.prop('history'))
 
 // ifElse
-const isBookHistoryCompleted = ifElse(isHistoryNull, returnFalse, isBookCompleted)
+const isBookHistoryCompleted = R.ifElse(historyIsNull, R.F, historyWordsEmpty)
 
-// PARTIAL
-const checkEveryBookCompleted = everyBookCompleted(isBookHistoryCompleted)
+const booksCompleted = (data: ApiCollectionTypes | undefined) =>
+    isUndefined(data)
+        .map(R.all(isBookHistoryCompleted))
+        .fold(R.F, returnBoolean)
 
-// DefaultTo
-const getIconColorForBookRow =  defaultTo(defaultIconColour, getIconColor)
-const allBooksCompleted = defaultTo(notCompleted, checkEveryBookCompleted)
-
-// EXPORT
-export {allBooksCompleted, getIconColorForBookRow, filterBooksByTitle}
+export const allBooksCompleted = R.compose(booksCompleted, R.path(['books']))

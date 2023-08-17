@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux'
 import Row from '../../Components/Row/Row'
 import { ViewBooksButton } from '../../Components/Button/Buttons'
 import { updateViewBookCollection } from '../../store/view/viewSlice'
-import { allBooksCompleted } from './book-utils'
+import { allBooksCompleted, collectionTitle, numberOfBooks } from './book-utils'
 
-type CollectionPropTypes = {
+export type CollectionPropTypes = {
     data?: ApiCollectionTypes | undefined
     index?: number
 }
@@ -13,10 +13,8 @@ type CollectionPropTypes = {
 export default function CollectionRow(props: CollectionPropTypes) {
     const dispatch = useDispatch()
     const { data, index = 0 } = props
-    const text = props.data
-        ? `${props.data.title} (${props.data.books.length})`
-        : ''
-    const completed = allBooksCompleted(data?.books)
+    const text = `${collectionTitle(props)} ${numberOfBooks(props)}`
+    const completed = allBooksCompleted(data)
     const iconColour = completed ? 'text-green-500' : ''
 
     return (

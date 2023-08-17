@@ -98,7 +98,9 @@ exports[`CollectionRow > props data is undefined 1`] = `
       </span>
       <span
         class="font-medium text-gray-800"
-      />
+      >
+         
+      </span>
     </div>
     <div
       class="flex justify-end"

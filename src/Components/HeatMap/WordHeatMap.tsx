@@ -1,21 +1,20 @@
-import { HeatMapColors } from './HeatMap'
-import { WordTypes } from '../../Views/Reading/Sentence'
+import { HeatMapColors, HeatMapWordTypes } from './HeatMap'
 import Display from '../Dispay/Display'
 
 export type WordHeatMapTypes = {
-    data?: WordTypes
+    data?: HeatMapWordTypes
     index?: number
     max: number
     color: HeatMapColors
 }
 
 export default function WordHeatMap(props: WordHeatMapTypes) {
-    const { index = 0, data = { word: '' } } = props
-    const rgb = 255 * (index / props.max)
+    const { data = { word: '', index: 0 } } = props
+    const rgb = 255 * (data.index / props.max)
     const numberHeatMap = {
         backgroundColor: `rgb(${255 - rgb},${255 - rgb},${255 - rgb})`
     }
-    const showBadge = index > 1
+    const showBadge = data.index > 1
 
     function getBackGroundStyles() {
         if (props.color === 'red') {
@@ -42,7 +41,9 @@ export default function WordHeatMap(props: WordHeatMapTypes) {
         if (props.color === 'none') {
             return 'text-gray-900'
         }
-        return (index / props.max) * 100 > 50 ? 'text-white' : 'text-gray-900'
+        return (data.index / props.max) * 100 > 50
+            ? 'text-white'
+            : 'text-gray-900'
     }
 
     return (
@@ -57,7 +58,7 @@ export default function WordHeatMap(props: WordHeatMapTypes) {
                     style={numberHeatMap}
                     className={`ml-1 rounded-full px-2 py-1 text-white md:ml-3`}
                 >
-                    {props.index}
+                    {data.index}
                 </span>
             </Display>
         </span>

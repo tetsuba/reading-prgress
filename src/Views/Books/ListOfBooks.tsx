@@ -1,10 +1,10 @@
 import { updateViewBookCollection } from '../../store/view/viewSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { ApiBookTypes, ApiCollectionTypes } from '../../api/api-types'
 import { userIdSelector } from '../../store/user/userSelectors'
 import { useMutation, useQueryClient } from 'react-query'
-import { filterBooksByTitle } from './book-utils'
+import { filterBooksByTitle, getBooks } from './book-utils'
 import { deleteBook } from '../../api/book'
 
 // COMPONENTS
@@ -34,7 +34,9 @@ export default function ListOfBooks(props: PropTypes) {
             queryClient.setQueryData(['books', userId], data)
         }
     })
-    const books = filterBooksByTitle(props.collection?.books, search)
+
+    const books = useMemo(() => getBooks(props), [props.collection])
+    const filteredBooks = filterBooksByTitle(books, search)
 
     return (
         <div data-testid="book-list">
@@ -69,7 +71,7 @@ export default function ListOfBooks(props: PropTypes) {
                 </div>
             </div>
             <Loop
-                array={books}
+                array={filteredBooks}
                 collectionId={props.collection?.id}
                 deleteBook={setBook}
             >
