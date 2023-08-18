@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux'
+import * as R from 'ramda'
 import { userIdSelector } from '../../store/user/userSelectors'
 import { viewBooksCollectionSelector } from '../../store/view/viewSelectors'
 import { getBooks } from '../../api/book'
@@ -14,7 +15,6 @@ import ListOfCollections from './ListOfCollections'
 import ListOfBooks from './ListOfBooks'
 import { updateViewBookCollection } from '../../store/view/viewSlice'
 import { useEffect } from 'react'
-import { isNull } from '../../lib/utils'
 
 export default function Books() {
     const dispatch = useDispatch()
@@ -40,10 +40,10 @@ export default function Books() {
         <>
             <Header text="Books" />
             <Main>
-                <Display value={isSuccess && isNull(collection)}>
+                <Display value={isSuccess && R.isNil(collection)}>
                     <ListOfCollections collections={data?.data} />
                 </Display>
-                <Display value={!isNull(collection)}>
+                <Display value={R.not(R.isNil(collection))}>
                     <ListOfBooks collection={collection} />
                 </Display>
             </Main>

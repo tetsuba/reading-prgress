@@ -6,14 +6,7 @@ import { CollectionPropTypes } from './CollectionRow'
 const returnBoolean = <T>(value: T) => value as boolean
 
 export const getBooks = R.pathOr([], ['collection', 'books'])
-export const collectionTitle: (v: CollectionPropTypes) => string = R.pathOr(
-    '',
-    ['data', 'title']
-)
-export const numberOfBooks: (v: CollectionPropTypes) => string = R.compose(
-    R.ifElse(R.isEmpty, R.empty, (text: string): string => `(${text})`),
-    R.pathOr('', ['data', 'books', 'length'])
-)
+
 export function filterBooksByTitle(
     books: ApiBookTypes[],
     search: string
@@ -47,12 +40,6 @@ const historyWordsEmpty = R.compose(
 
 const historyIsNull = R.compose(R.isNil, R.prop('history'))
 
-// ifElse
 const isBookHistoryCompleted = R.ifElse(historyIsNull, R.F, historyWordsEmpty)
 
-const booksCompleted = (data: ApiCollectionTypes | undefined) =>
-    isUndefined(data)
-        .map(R.all(isBookHistoryCompleted))
-        .fold(R.F, returnBoolean)
-
-export const allBooksCompleted = R.compose(booksCompleted, R.path(['books']))
+export const allBooksCompleted = R.all(isBookHistoryCompleted)

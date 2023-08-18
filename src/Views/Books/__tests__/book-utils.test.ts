@@ -84,19 +84,13 @@ describe('book-utils', () => {
         ]
 
         test('if all books are completed', () => {
-            const data = { books: booksCompleted }
-            expect(allBooksCompleted(data)).toBeTruthy()
+            expect(allBooksCompleted(booksCompleted)).toBeTruthy()
         })
         test('if all books are not completed', () => {
-            const data = { books: booksNotCompleted }
-            expect(allBooksCompleted(data)).toBeFalsy()
-        })
-        test('if arg is undefined', () => {
-            expect(allBooksCompleted(undefined)).toBeFalsy()
+            expect(allBooksCompleted(booksNotCompleted)).toBeFalsy()
         })
         test('if book history is null', () => {
-            const data = { books: booksHistoryNull }
-            expect(allBooksCompleted(data)).toBeFalsy()
+            expect(allBooksCompleted(booksHistoryNull)).toBeFalsy()
         })
     })
 })

@@ -1,3 +1,4 @@
+import * as R from 'ramda'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getIconColorForBookRow } from './book-utils'
@@ -21,25 +22,28 @@ export default function BookRow(props: BookPropTypes) {
     const { data, index, collectionId, deleteBook } = props
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    if (R.isNil(data) || R.isNil(deleteBook) || R.isNil(collectionId) || R.isNil(index)) {
+        return <>loading...</>
+    }
+
     const iconColor = getIconColorForBookRow(data)
     return (
         <Row
-            index={index || 0}
-            text={data?.title}
+            index={index}
+            text={data.title}
             icon="bookmark"
             iconColor={iconColor}
         >
             <ReadBookButton
                 onClick={() => {
-                    if (data && collectionId) {
-                        dispatch(addBook({ book: data, libId: collectionId }))
-                        navigate('/reading')
-                    }
+                    dispatch(addBook({book: data, libId: collectionId}))
+                    navigate('/reading')
                 }}
             />
-            <Display value={props.collectionId === '001'}>
+            <Display value={collectionId === '001'}>
                 <DeleteBookButton
-                    onClick={() => data && deleteBook && deleteBook(data)}
+                    onClick={() => deleteBook(data)}
                 />
             </Display>
         </Row>

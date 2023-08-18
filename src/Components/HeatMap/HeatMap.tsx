@@ -32,7 +32,7 @@ export default function HeatMap(props: PropTypes) {
         return regEx.test(words.word.toLowerCase())
     }
 
-    if (R.isNil(props.words)) return <></>
+    if (R.isNil(props.words)) return <>loading...</>
     const max: number = findMax(props.words)
 
     return (

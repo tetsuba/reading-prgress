@@ -1,3 +1,4 @@
+import * as R from 'ramda'
 import { updateViewBookCollection } from '../../store/view/viewSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useMemo } from 'react'
@@ -35,6 +36,7 @@ export default function ListOfBooks(props: PropTypes) {
         }
     })
 
+    if (R.isNil(props.collection)) return <>loading...</>
     const books = useMemo(() => getBooks(props), [props.collection])
     const filteredBooks = filterBooksByTitle(books, search)
 
@@ -51,7 +53,7 @@ export default function ListOfBooks(props: PropTypes) {
                         <Svg icon="library" />
                     </span>
                     <span className="hidden text-lg font-bold text-gray-900 md:block">
-                        {props.collection?.title}
+                        {props.collection.title}
                     </span>
                 </div>
                 <div className="grow">
@@ -65,19 +67,19 @@ export default function ListOfBooks(props: PropTypes) {
                     />
                 </div>
                 <div className=" ml-2 flex items-center justify-end">
-                    <Display value={props.collection?.id === '001'}>
+                    <Display value={props.collection.id === '001'}>
                         <AddBook />
                     </Display>
                 </div>
             </div>
             <Loop
                 array={filteredBooks}
-                collectionId={props.collection?.id}
+                collectionId={props.collection.id}
                 deleteBook={setBook}
             >
                 <BookRow />
             </Loop>
-            <Display value={!!book}>
+            <Display value={R.isNotNil(book)}>
                 <Modal className="max-w-md">
                     <Confirmation
                         bookTitle={book ? book.title : ''}
