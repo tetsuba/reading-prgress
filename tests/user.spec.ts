@@ -6,7 +6,7 @@ import {dashboardEmptyData} from "./mockData/dashboard";
 test.describe('User', () => {
     test.describe('Login', () => {
         test.beforeEach(async ({ page }) => {
-            await page.goto('http://localhost:5173/')
+            await page.goto('/')
         })
         test('SUCCESS', async ({ page }) => {
             await setupRoute(page, 'http://localhost:3001/api/reading/user/login', userDetailsLogin)
@@ -94,7 +94,7 @@ test.describe('User', () => {
                 const json = {"success":"User registered!"};
                 await route.fulfill({ json });
             });
-            await page.goto('http://localhost:5173/register')
+            await page.goto('/register')
         })
 
         test('SUCCESS', async ({page}) => {
