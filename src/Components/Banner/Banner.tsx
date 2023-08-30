@@ -16,15 +16,11 @@ type ColorTypes = { [k: string]: string }
 type IconTypes = { [k: string]: SvgIconTypes }
 
 const getColor = R.compose(
-    R.ifElse(
-        R.isEmpty,
-        R.always('green'),
-        R.always('red')
-    ),
-    R.pathOr(false,['data', 'words'])
+    R.ifElse(R.isEmpty, R.always('green'), R.always('red')),
+    R.pathOr(false, ['data', 'words'])
 )
 
-const getDate = R.pathOr('',['data', 'date'])
+const getDate = R.pathOr('', ['data', 'date'])
 const getTitle = R.pathOr('', ['data', 'title'])
 
 export default function Banner(props: PropTypes) {

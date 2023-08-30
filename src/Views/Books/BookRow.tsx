@@ -23,7 +23,12 @@ export default function BookRow(props: BookPropTypes) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    if (R.isNil(data) || R.isNil(deleteBook) || R.isNil(collectionId) || R.isNil(index)) {
+    if (
+        R.isNil(data) ||
+        R.isNil(deleteBook) ||
+        R.isNil(collectionId) ||
+        R.isNil(index)
+    ) {
         return <>loading...</>
     }
 
@@ -37,14 +42,12 @@ export default function BookRow(props: BookPropTypes) {
         >
             <ReadBookButton
                 onClick={() => {
-                    dispatch(addBook({book: data, libId: collectionId}))
+                    dispatch(addBook({ book: data, libId: collectionId }))
                     navigate('/reading')
                 }}
             />
             <Display value={collectionId === '001'}>
-                <DeleteBookButton
-                    onClick={() => deleteBook(data)}
-                />
+                <DeleteBookButton onClick={() => deleteBook(data)} />
             </Display>
         </Row>
     )

@@ -22,12 +22,12 @@ export default function Login(props: PropTypes) {
     const mutation = useMutation(loginUser, {
         onSuccess: (data) => {
             dispatch(updateUser(data.data))
-        },
-        onSettled: () => {
             props.setShowLogin(false)
             navigate('/dashboard')
         }
     })
+
+    console.log('Login: ', mutation)
 
     return (
         <div data-testid="login-view">

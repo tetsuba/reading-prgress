@@ -12,11 +12,15 @@ export type WordHeatMapTypes = {
 const sub255 = R.subtract(255)
 const multi255 = R.multiply(255)
 
-const backgroundBlack = (rgb: number): string => `rgb(${sub255(rgb)}, ${sub255(rgb)}, ${sub255(rgb)})`
-const backgroundRed = (rgb: number): string => `rgb(255, ${sub255(rgb)}, ${sub255(rgb)})`
-const backgroundBlue = (rgb: number): string => `rgb(${sub255(rgb)}, ${sub255(rgb / 2) }, 255)`
-const backgroundGreen = (rgb: number): string => `rgb(${sub255(rgb)}, ${sub255(rgb / 3)}, ${sub255(rgb)})`
-const backgroundNone = (): string => `rgb(230, 230, 230){}`
+const backgroundBlack = (rgb: number): string =>
+    `rgb(${sub255(rgb)}, ${sub255(rgb)}, ${sub255(rgb)})`
+const backgroundRed = (rgb: number): string =>
+    `rgb(255, ${sub255(rgb)}, ${sub255(rgb)})`
+const backgroundBlue = (rgb: number): string =>
+    `rgb(${sub255(rgb)}, ${sub255(rgb / 2)}, 255)`
+const backgroundGreen = (rgb: number): string =>
+    `rgb(${sub255(rgb)}, ${sub255(rgb / 3)}, ${sub255(rgb)})`
+const backgroundNone = (): string => 'rgb(230, 230, 230)'
 
 const backgroundStyles = R.cond([
     [R.equals('red'), () => backgroundRed],
@@ -31,9 +35,7 @@ function getTextStyles(props: WordHeatMapTypes) {
     if (props.color === 'none') {
         return 'text-gray-900'
     }
-    return (data.index / props.max) * 100 > 50
-        ? 'text-white'
-        : 'text-gray-900'
+    return (data.index / props.max) * 100 > 50 ? 'text-white' : 'text-gray-900'
 }
 
 export default function WordHeatMap(props: WordHeatMapTypes) {
@@ -44,14 +46,16 @@ export default function WordHeatMap(props: WordHeatMapTypes) {
 
     return (
         <span
-            style={{backgroundColor: backgroundColor(rgb)}}
+            style={{ backgroundColor: backgroundColor(rgb) }}
             data-testid="heat-map-word"
             className={`m-2 rounded-2xl border-2 p-3 md:m-5`}
         >
-            <span className={`font-bold ${getTextStyles(props)}`}>{data.word}</span>
+            <span className={`font-bold ${getTextStyles(props)}`}>
+                {data.word}
+            </span>
             <Display value={showBadge}>
                 <span
-                    style={{backgroundColor: backgroundBlack(rgb)}}
+                    style={{ backgroundColor: backgroundBlack(rgb) }}
                     className={`ml-1 rounded-full px-2 py-1 text-white md:ml-3`}
                 >
                     {data.index}

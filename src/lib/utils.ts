@@ -45,7 +45,8 @@ interface LoginErrorMessageTypes extends Error {
 }
 
 export function getErrorMessage(error: LoginErrorMessageTypes): string {
-    return R.pathOr('', ['response', 'data', 'error'], error)
+    console.log('getErrorMessage:', error)
+    return R.pathOr('', ['response', 'data', 'stack'], error)
 }
 
 export function delay(time: number) {

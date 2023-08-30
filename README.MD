@@ -15,7 +15,7 @@ It can track sight words a child struggles with and phonetics they have difficul
 ##
 
 #### Tech Stack
- - React
+- React
 - Redux Toolkit
 - Tailwind CSS
 - React Query
@@ -23,6 +23,8 @@ It can track sight words a child struggles with and phonetics they have difficul
 - Vite
 - Vitest
 - Happy DOM
+- Playwright
+- Ramdajs
 
 ##
 #### Getting Started
@@ -40,5 +42,10 @@ npm run dev
 Run tests
 ```
 npm run test
+```
+
+Run e2e tests
+```
+npm run e2e
 ```
 

@@ -1,4 +1,5 @@
 import { useMutation } from 'react-query'
+import * as R from 'ramda'
 import { formDataToQueryString, getErrorMessage } from '../lib/utils'
 import { registerUser } from '../api/user'
 
@@ -30,7 +31,7 @@ export default function Register() {
                                 <p>Please click on the log in button...</p>
                             </div>
                         </Display>
-                        <Display value={mutation.isSuccess !== null}>
+                        <Display value={R.not(mutation.isSuccess)}>
                             <form
                                 data-testid="register-form"
                                 className="space-y-6"

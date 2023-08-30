@@ -15,7 +15,7 @@ export default function CollectionRow(props: CollectionPropTypes) {
     const dispatch = useDispatch()
     const { data, index = 0 } = props
 
-    if(R.isNil(data)) return <>loading...</>
+    if (R.isNil(data)) return <>loading...</>
     const text = `${data.title} (${data.books.length})`
     const completed = allBooksCompleted(data.books)
     const iconColour = completed ? 'text-green-500' : ''

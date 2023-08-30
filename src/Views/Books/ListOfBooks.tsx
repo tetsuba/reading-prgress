@@ -35,9 +35,9 @@ export default function ListOfBooks(props: PropTypes) {
             queryClient.setQueryData(['books', userId], data)
         }
     })
+    const books = useMemo(() => getBooks(props), [props.collection])
 
     if (R.isNil(props.collection)) return <>loading...</>
-    const books = useMemo(() => getBooks(props), [props.collection])
     const filteredBooks = filterBooksByTitle(books, search)
 
     return (

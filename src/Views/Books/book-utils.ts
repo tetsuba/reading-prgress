@@ -2,6 +2,7 @@ import { ApiBookTypes, ApiCollectionTypes } from '../../api/api-types'
 import * as R from 'ramda'
 import { isUndefined } from '../../lib/monads'
 import { CollectionPropTypes } from './CollectionRow'
+import { ifElse, isEmpty } from 'ramda'
 
 const returnBoolean = <T>(value: T) => value as boolean
 
@@ -42,4 +43,8 @@ const historyIsNull = R.compose(R.isNil, R.prop('history'))
 
 const isBookHistoryCompleted = R.ifElse(historyIsNull, R.F, historyWordsEmpty)
 
-export const allBooksCompleted = R.all(isBookHistoryCompleted)
+export const allBooksCompleted = ifElse(
+    isEmpty,
+    R.F,
+    R.all(isBookHistoryCompleted)
+)

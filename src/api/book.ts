@@ -12,7 +12,6 @@ import {
     getBaseUrl
 } from './api-utils'
 
-const AUTH_HEADER: AuthorizationHeader = getAuthHeaders()
 const BASE_URL = getBaseUrl()
 const URL_BOOK = `${BASE_URL}/book`
 const URL_REGISTER = `${URL_BOOK}/register?`
@@ -31,7 +30,7 @@ export async function registerBook(
     return await axios.post(URL_REGISTER, JSON.stringify(json), {
         headers: {
             'Content-Type': 'application/json',
-            ...AUTH_HEADER
+            ...getAuthHeaders()
         }
     })
 }
@@ -40,6 +39,9 @@ export async function deleteBook(
     bookId: number
 ): Promise<ApiCollectionResponseTypes> {
     return await axios.delete(`${URL_DELETE}?bookId=${bookId}`, {
-        headers: AUTH_HEADER
+        headers: {
+            'Content-Type': 'application/json',
+            ...getAuthHeaders()
+        }
     })
 }
