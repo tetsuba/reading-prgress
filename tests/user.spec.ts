@@ -90,14 +90,15 @@ test.describe('User', () => {
 
     test.describe('Register', () => {
         test.beforeEach(async ({page}) => {
+
+        })
+
+        test('SUCCESS', async ({page}) => {
             await page.route('http://localhost:3001/api/reading/user/register?firstName=bob&lastName=bob&email=bob@bob.com&password=123456', async route => {
                 const json = {"success":"User registered!"};
                 await route.fulfill({ json });
             });
             await page.goto('/register')
-        })
-
-        test('SUCCESS', async ({page}) => {
             await expect(page.locator('form')).toBeVisible()
 
             await test.step('fill form', async () => {
@@ -114,6 +115,20 @@ test.describe('User', () => {
             await expect(page.getByText('Registration Completed.')).toBeVisible()
         })
         test('ERROR: by submitting an empty form', async ({page}) => {
+            await page.route('http://localhost:3001/api/reading/user/register?**', async route => {
+                const json = {
+                    "message": "Bad request",
+                    "stack": "data/email must match format \"email\", data/firstName First letter must be a character, data/lastName First letter must be a character",
+                    "status": 400,
+                    "success": false
+                };
+                await route.fulfill({
+                    status: 400,
+                    contentType: 'application/json',
+                    body: JSON.stringify(json)
+                });
+            });
+            await page.goto('/register')
             await test.step('fill form with empty string', async () => {
                 await page.getByPlaceholder('first name').fill('')
                 await page.getByPlaceholder('last name').fill('')
@@ -128,6 +143,20 @@ test.describe('User', () => {
             )
         })
         test('ERROR: by submitting an incorrect email format', async ({page}) => {
+            await page.route('http://localhost:3001/api/reading/user/register?**', async route => {
+                const json = {
+                    "message": "Bad request",
+                    "stack": "SQLITE_CONSTRAINT: UNIQUE constraint failed: user.email",
+                    "status": 400,
+                    "success": false
+                };
+                await route.fulfill({
+                    status: 400,
+                    contentType: 'application/json',
+                    body: JSON.stringify(json)
+                });
+            });
+            await page.goto('/register')
             await test.step('fill form with empty string', async () => {
                 await page.getByPlaceholder('first name').fill('Bob')
                 await page.getByPlaceholder('last name').fill('Bob')
