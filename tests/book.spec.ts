@@ -10,11 +10,11 @@ import {setupRoute, clickOnViewBooks} from "./tests-utils";
 test.describe('Book', () => {
     test.use({storageState: './tests/mockData/localStorage.json'})
     test.beforeEach(async ({page  }) => {
-        await setupRoute(page, 'http://127.0.0.1:3001/api/reading/user', userDetails)
+        await setupRoute(page, '**/reading/user', userDetails)
     })
 
     test('Adding a new book only available in "My Books"', async ({ page }) => {
-        await setupRoute(page, 'http://127.0.0.1:3001/api/reading/book?userId=7', books)
+        await setupRoute(page, '**/reading/book?**', books)
         await page.goto('http://127.0.0.1:5173/books')
         await expect(page.getByRole('heading', { name: 'Books' })).toBeVisible()
 
@@ -41,9 +41,9 @@ test.describe('Book', () => {
     test('Adding and deleting a book', async ({ page }) => {
         const myBooks = R.clone(books)
         myBooks[0].books = [story1]
-        await setupRoute(page, 'http://127.0.0.1:3001/api/reading/book?userId=7', books)
-        await setupRoute(page, 'http://127.0.0.1:3001/api/reading/book/delete?bookId=1', books)
-        await setupRoute(page, 'http://127.0.0.1:3001/api/reading/book/register?', myBooks)
+        await setupRoute(page, 'http://localhost:3001/api/reading/book?userId=7', books)
+        await setupRoute(page, 'http://localhost:3001/api/reading/book/delete?bookId=1', books)
+        await setupRoute(page, 'http://localhost:3001/api/reading/book/register?', myBooks)
         await page.goto('http://127.0.0.1:5173/books')
         await clickOnViewBooks(page, 'My Books')
         await test.step('Add a book', async () => {
