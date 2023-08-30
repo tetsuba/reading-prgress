@@ -15,7 +15,7 @@ test.describe('Book', () => {
 
     test('Adding a new book only available in "My Books"', async ({ page }) => {
         await setupRoute(page, 'http://127.0.0.1:3001/api/reading/book?userId=7', books)
-        await page.goto('/books')
+        await page.goto('http://127.0.0.1:5173/books')
         await expect(page.getByRole('heading', { name: 'Books' })).toBeVisible()
 
         await clickOnViewBooks(page, 'My Books')
@@ -44,7 +44,7 @@ test.describe('Book', () => {
         await setupRoute(page, 'http://127.0.0.1:3001/api/reading/book?userId=7', books)
         await setupRoute(page, 'http://127.0.0.1:3001/api/reading/book/delete?bookId=1', books)
         await setupRoute(page, 'http://127.0.0.1:3001/api/reading/book/register?', myBooks)
-        await page.goto('/books')
+        await page.goto('http://127.0.0.1:5173/books')
         await clickOnViewBooks(page, 'My Books')
         await test.step('Add a book', async () => {
             await page.getByRole('button', { name: 'Add Book' }).click()
