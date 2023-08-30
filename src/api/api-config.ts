@@ -1,6 +1,6 @@
 export default {
     LOCATION: {
         PRODUCTION: '//api.tetsuba.link',
-        DEV: '//localhost:3001'
+        DEV: '//127.0.0.1:3001'
     }
 }

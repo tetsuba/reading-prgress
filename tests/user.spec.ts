@@ -9,8 +9,8 @@ test.describe('User', () => {
             await page.goto('http://127.0.0.1:5173/')
         })
         test('SUCCESS', async ({ page }) => {
-            await setupRoute(page, 'http://localhost:3001/api/reading/user/login', userDetailsLogin)
-            await setupRoute(page, 'http://localhost:3001/api/reading/tracker/words?userId=7', dashboardEmptyData)
+            await setupRoute(page, 'http://127.0.0.1:3001/api/reading/user/login', userDetailsLogin)
+            await setupRoute(page, 'http://127.0.0.1:3001/api/reading/tracker/words?userId=7', dashboardEmptyData)
 
             await test.step('Open login window', async () => {
                 await page
@@ -35,7 +35,7 @@ test.describe('User', () => {
             })
         })
         test('ERROR: incorrect username', async ({ page }) => {
-            await setupRouteError(page, 'http://localhost:3001/api/reading/user/login', userLoginError)
+            await setupRouteError(page, 'http://127.0.0.1:3001/api/reading/user/login', userLoginError)
             await test.step('Open login window', async () => {
                 await page
                     .getByRole('main')
@@ -61,7 +61,7 @@ test.describe('User', () => {
             })
         })
         test('ERROR: incorrect password', async ({ page }) => {
-            await setupRouteError(page, 'http://localhost:3001/api/reading/user/login', userLoginError)
+            await setupRouteError(page, 'http://127.0.0.1:3001/api/reading/user/login', userLoginError)
             await test.step('Open login window', async () => {
                 await page
                     .getByRole('main')
@@ -90,7 +90,7 @@ test.describe('User', () => {
 
     test.describe('Register', () => {
         test.beforeEach(async ({page}) => {
-            await page.route('http://localhost:3001/api/reading/user/register?firstName=bob&lastName=bob&email=bob@bob.com&password=123456', async route => {
+            await page.route('http://127.0.0.1:3001/api/reading/user/register?firstName=bob&lastName=bob&email=bob@bob.com&password=123456', async route => {
                 const json = {"success":"User registered!"};
                 await route.fulfill({ json });
             });

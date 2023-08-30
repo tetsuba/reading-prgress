@@ -13,16 +13,16 @@ async function nextSentence(page: Page) {
 test.describe('Reading', () => {
     test.use({storageState: './tests/mockData/localStorage.json'})
     test.beforeEach(async ({page  }) => {
-        await setupRoute(page, 'http://localhost:3001/api/reading/user', userDetails)
+        await setupRoute(page, 'http://127.0.0.1:3001/api/reading/user', userDetails)
     })
 
     test('Read a book with no mistakes', async ({ page }) => {
-        await setupRoute(page, 'http://localhost:3001/api/reading/book?userId=7', books)
+        await setupRoute(page, 'http://127.0.0.1:3001/api/reading/book?userId=7', books)
         const booksWithHistory = R.clone(books)
         // @ts-ignore
         booksWithHistory[1].books[0].history = [historyNoErrors]
-        await setupRoute(page, 'http://localhost:3001/api/reading/tracker/update?', booksWithHistory)
-        await setupRoute(page, 'http://localhost:3001/api/reading/tracker/words?userId=7', dashboardLastRead)
+        await setupRoute(page, 'http://127.0.0.1:3001/api/reading/tracker/update?', booksWithHistory)
+        await setupRoute(page, 'http://127.0.0.1:3001/api/reading/tracker/words?userId=7', dashboardLastRead)
         await page.goto('http://127.0.0.1:5173/books')
         await clickOnViewBooks(page, 'Very First Reading')
         await page
@@ -57,12 +57,12 @@ test.describe('Reading', () => {
     })
 
     test('Read a book with mistakes', async ({ page }) => {
-        await setupRoute(page, 'http://localhost:3001/api/reading/book?userId=7', books)
+        await setupRoute(page, 'http://127.0.0.1:3001/api/reading/book?userId=7', books)
         const booksWithHistory = R.clone(books)
         // @ts-ignore
         booksWithHistory[1].books[0].history = [historyWithErrors]
-        await setupRoute(page, 'http://localhost:3001/api/reading/tracker/update?', booksWithHistory)
-        await setupRoute(page, 'http://localhost:3001/api/reading/tracker/words?userId=7', dashboardLastReadWithErrors)
+        await setupRoute(page, 'http://127.0.0.1:3001/api/reading/tracker/update?', booksWithHistory)
+        await setupRoute(page, 'http://127.0.0.1:3001/api/reading/tracker/words?userId=7', dashboardLastReadWithErrors)
         await page.goto('http://127.0.0.1:5173/books')
         await clickOnViewBooks(page, 'Very First Reading')
         await page
