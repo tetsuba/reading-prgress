@@ -9,8 +9,8 @@ test.describe('User', () => {
             await page.goto('/')
         })
         test('SUCCESS', async ({ page }) => {
-            await setupRoute(page, 'http://localhost:3001/api/reading/user/login', userDetailsLogin)
-            await setupRoute(page, 'http://localhost:3001/api/reading/tracker/words?userId=7', dashboardEmptyData)
+            await setupRoute(page, '**/api/reading/user/login', userDetailsLogin)
+            await setupRoute(page, '**/api/reading/tracker/words?userId=7', dashboardEmptyData)
 
             await test.step('Open login window', async () => {
                 await page
@@ -28,14 +28,14 @@ test.describe('User', () => {
                     .click()
             })
             await test.step('redirect to dashboard', async () => {
-                await expect(page).toHaveURL('http://localhost:5173/dashboard')
+                await expect(page).toHaveURL('/dashboard')
                 await expect(
                     page.getByRole('heading', { name: 'Dashboard' })
                 ).toBeVisible()
             })
         })
         test('ERROR: incorrect username', async ({ page }) => {
-            await setupRouteError(page, 'http://localhost:3001/api/reading/user/login', userLoginError)
+            await setupRouteError(page, '**/api/reading/user/login', userLoginError)
             await test.step('Open login window', async () => {
                 await page
                     .getByRole('main')
@@ -61,7 +61,7 @@ test.describe('User', () => {
             })
         })
         test('ERROR: incorrect password', async ({ page }) => {
-            await setupRouteError(page, 'http://localhost:3001/api/reading/user/login', userLoginError)
+            await setupRouteError(page, '**/api/reading/user/login', userLoginError)
             await test.step('Open login window', async () => {
                 await page
                     .getByRole('main')
@@ -94,7 +94,7 @@ test.describe('User', () => {
         })
 
         test('SUCCESS', async ({page}) => {
-            await page.route('http://localhost:3001/api/reading/user/register?firstName=bob&lastName=bob&email=bob@bob.com&password=123456', async route => {
+            await page.route('**/api/reading/user/register?firstName=bob&lastName=bob&email=bob@bob.com&password=123456', async route => {
                 const json = {"success":"User registered!"};
                 await route.fulfill({ json });
             });
@@ -115,7 +115,7 @@ test.describe('User', () => {
             await expect(page.getByText('Registration Completed.')).toBeVisible()
         })
         test('ERROR: by submitting an empty form', async ({page}) => {
-            await page.route('http://localhost:3001/api/reading/user/register?**', async route => {
+            await page.route('**/api/reading/user/register?**', async route => {
                 const json = {
                     "message": "Bad request",
                     "stack": "data/email must match format \"email\", data/firstName First letter must be a character, data/lastName First letter must be a character",
@@ -143,7 +143,7 @@ test.describe('User', () => {
             )
         })
         test('ERROR: by submitting an incorrect email format', async ({page}) => {
-            await page.route('http://localhost:3001/api/reading/user/register?**', async route => {
+            await page.route('**/api/reading/user/register?**', async route => {
                 const json = {
                     "message": "Bad request",
                     "stack": "SQLITE_CONSTRAINT: UNIQUE constraint failed: user.email",
