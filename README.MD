@@ -25,6 +25,7 @@ It can track sight words a child struggles with and phonetics they have difficul
 - Happy DOM
 - Playwright
 - Ramdajs
+- Storybook
 
 ##
 #### Getting Started
@@ -49,3 +50,7 @@ Run e2e tests
 npm run e2e
 ```
 
+Run Storybook
+```
+npm run storybook
+```
