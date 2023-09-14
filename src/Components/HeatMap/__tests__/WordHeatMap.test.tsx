@@ -9,7 +9,7 @@ describe('WordHeatMap', () => {
         const { asFragment } = render(
             <WordHeatMap
                 max={3}
-                data={{ word: 'word', status: '' }}
+                data={{ word: 'word', index: 5 }}
                 index={5}
                 color={color}
             />

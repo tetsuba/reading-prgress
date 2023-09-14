@@ -53,7 +53,8 @@ export default function Speech(props: PropTypes) {
             <span className="place-self-start">{speech}</span>
             <Button
                 data-testid="speech-button"
-                template="svg"
+                template="icon"
+                icon="mic"
                 type="button"
                 className={`${
                     micOn ? MIC_ON : MIC_OFF
@@ -62,9 +63,7 @@ export default function Speech(props: PropTypes) {
                     setMicOn(!micOn)
                     micOn ? stop() : start()
                 }}
-            >
-                <Svg icon="mic" />
-            </Button>
+            />
         </div>
     )
 }
