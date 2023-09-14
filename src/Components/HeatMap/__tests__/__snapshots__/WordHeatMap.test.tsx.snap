@@ -5,12 +5,18 @@ exports[`WordHeatMap > word color is blue 1`] = `
   <span
     class="m-2 rounded-2xl border-2 p-3 md:m-5"
     data-testid="heat-map-word"
-    style="background-color: rgb(NaN, NaN, 255);"
+    style="background-color: rgb(-170, 42.5, 255);"
   >
     <span
-      class="font-bold text-gray-900"
+      class="font-bold text-white"
     >
       word
+    </span>
+    <span
+      class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+      style="background-color: rgb(-170, -170, -170);"
+    >
+      5
     </span>
   </span>
 </DocumentFragment>
@@ -21,12 +27,18 @@ exports[`WordHeatMap > word color is green 1`] = `
   <span
     class="m-2 rounded-2xl border-2 p-3 md:m-5"
     data-testid="heat-map-word"
-    style="background-color: rgb(NaN, NaN, NaN);"
+    style="background-color: rgb(-170, 113.33333333333334, -170);"
   >
     <span
-      class="font-bold text-gray-900"
+      class="font-bold text-white"
     >
       word
+    </span>
+    <span
+      class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+      style="background-color: rgb(-170, -170, -170);"
+    >
+      5
     </span>
   </span>
 </DocumentFragment>
@@ -44,6 +56,12 @@ exports[`WordHeatMap > word color is none 1`] = `
     >
       word
     </span>
+    <span
+      class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+      style="background-color: rgb(-170, -170, -170);"
+    >
+      5
+    </span>
   </span>
 </DocumentFragment>
 `;
@@ -53,12 +71,18 @@ exports[`WordHeatMap > word color is red 1`] = `
   <span
     class="m-2 rounded-2xl border-2 p-3 md:m-5"
     data-testid="heat-map-word"
-    style="background-color: rgb(255, NaN, NaN);"
+    style="background-color: rgb(255, -170, -170);"
   >
     <span
-      class="font-bold text-gray-900"
+      class="font-bold text-white"
     >
       word
+    </span>
+    <span
+      class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+      style="background-color: rgb(-170, -170, -170);"
+    >
+      5
     </span>
   </span>
 </DocumentFragment>
