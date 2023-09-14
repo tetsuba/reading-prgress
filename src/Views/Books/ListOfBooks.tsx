@@ -9,7 +9,6 @@ import { filterBooksByTitle, getBooks } from './book-utils'
 import { deleteBook } from '../../api/book'
 
 // COMPONENTS
-import { BackToCollectionButton } from '../../Components/Button/Buttons'
 import Svg from '../../Components/Svg/Svg'
 import Input from '../../Components/Form/Input'
 import Display from '../../Components/Dispay/Display'
@@ -17,7 +16,8 @@ import AddBook from './AddBook'
 import Modal from '../../Components/Modal/Modal'
 import Confirmation from '../../Components/Modal/Confirmation'
 import Loop from '../../Components/Loop/Loop'
-import BookRow from './BookRow'
+import BookRow from '../../Components/Row/BookRow'
+import Button from '../../Components/Button/Button'
 
 type PropTypes = {
     collection: ApiCollectionTypes | null
@@ -43,9 +43,15 @@ export default function ListOfBooks(props: PropTypes) {
     return (
         <div data-testid="book-list">
             <div className="flex justify-end px-4 sm:px-6">
-                <BackToCollectionButton
+                <Button
+                    className="mb-6 flex"
+                    data-testid="back-button"
+                    icon="back"
+                    template="primary"
                     onClick={() => dispatch(updateViewBookCollection(null))}
-                />
+                >
+                    <span className="ml-2">Back</span>
+                </Button>
             </div>
             <div className="flex justify-between bg-gray-200 px-4 py-5 sm:gap-4 sm:px-6 md:rounded-t-lg">
                 <div className="flex items-center">

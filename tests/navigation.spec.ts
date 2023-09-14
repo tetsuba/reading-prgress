@@ -17,7 +17,7 @@ test.describe('Navigation', () => {
         })
         test('Login button secondary', async ({page}) => {
             await page
-                .getByRole('navigation')
+                .getByRole('banner')
                 .getByRole('button', {name: 'Log in'})
                 .click()
             await expect(

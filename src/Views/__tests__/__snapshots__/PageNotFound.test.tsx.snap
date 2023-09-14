@@ -27,9 +27,8 @@ exports[`PageNotFound > render page and click on go back button 1`] = `
         class="mt-10 flex items-center justify-center gap-x-6"
       >
         <button
-          class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 "
+          class="flex items-center rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 "
           data-testid="go-back-button"
-          template="primary"
         >
           Go back
         </button>

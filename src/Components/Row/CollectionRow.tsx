@@ -1,10 +1,10 @@
 import * as R from 'ramda'
 import { ApiCollectionTypes } from '../../api/api-types'
 import { useDispatch } from 'react-redux'
-import Row from '../../Components/Row/Row'
-import { ViewBooksButton } from '../../Components/Button/Buttons'
+import Row from './Row'
 import { updateViewBookCollection } from '../../store/view/viewSlice'
-import { allBooksCompleted } from './book-utils'
+import { allBooksCompleted } from '../../Views/Books/book-utils'
+import Button from '../Button/Button'
 
 export type CollectionPropTypes = {
     data?: ApiCollectionTypes | undefined
@@ -22,10 +22,16 @@ export default function CollectionRow(props: CollectionPropTypes) {
 
     return (
         <Row index={index} text={text} iconColor={iconColour} icon="library">
-            <ViewBooksButton
-                inactive={completed}
+            <Button
+                className="flex items-center"
+                data-testid="collection-button"
+                icon="eye"
+                template={`${completed ? 'disabled' : 'secondary'}`}
                 onClick={() => dispatch(updateViewBookCollection(data))}
-            />
+                right
+            >
+                <span className="mr-1 hidden md:inline">View Books</span>
+            </Button>
         </Row>
     )
 }

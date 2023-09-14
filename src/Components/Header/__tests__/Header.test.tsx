@@ -4,7 +4,7 @@ import {
     WrapperWith_Store_Router,
     WrapperWith_Store_Query_Router
 } from '../../../vitest-setup'
-import Nav from '../Nav'
+import Header from '../Header'
 import store from '../../../store/store'
 import { updateUser } from '../../../store/user/userSlice'
 
@@ -17,7 +17,7 @@ vi.mock('react-router-dom', async () => {
     }
 })
 
-const mockUser = {
+export const mockUser = {
     data: {
         firstName: 'Bob',
         lastName: 'Bob',
@@ -27,12 +27,12 @@ const mockUser = {
     token: 'MockToken'
 }
 
-describe('Nav', () => {
+describe('Header', () => {
     describe('not authenticated', () => {
         test('clicking on the login button', async () => {
             const { asFragment } = render(
                 <WrapperWith_Store_Query_Router pathname="/">
-                    <Nav />
+                    <Header />
                 </WrapperWith_Store_Query_Router>
             )
             expect(asFragment()).toMatchSnapshot()
@@ -48,7 +48,7 @@ describe('Nav', () => {
 
             render(
                 <WrapperWith_Store_Router pathname="/profile">
-                    <Nav />
+                    <Header />
                 </WrapperWith_Store_Router>
             )
 
@@ -61,7 +61,7 @@ describe('Nav', () => {
             store.dispatch(updateUser(mockUser))
             render(
                 <WrapperWith_Store_Router pathname="/profile">
-                    <Nav />
+                    <Header />
                 </WrapperWith_Store_Router>
             )
             fireEvent.click(screen.getByTestId('mobile-menu-button'))
@@ -72,7 +72,7 @@ describe('Nav', () => {
             store.dispatch(updateUser(mockUser))
             render(
                 <WrapperWith_Store_Router pathname="/profile">
-                    <Nav />
+                    <Header />
                 </WrapperWith_Store_Router>
             )
             fireEvent.click(screen.getByTestId('mobile-menu-button'))

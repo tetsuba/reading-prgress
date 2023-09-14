@@ -3,7 +3,7 @@
 exports[`SightWords > will render groups of sight words 1`] = `
 <DocumentFragment>
   <header
-    class="bg-white shadow"
+    class="relative bg-white pt-16 shadow"
   >
     <div
       class="mx-auto flex max-w-7xl justify-between px-4 py-6 sm:px-6 lg:px-8"
@@ -15,227 +15,225 @@ exports[`SightWords > will render groups of sight words 1`] = `
       </h1>
     </div>
   </header>
-  <main>
-    <div
-      class="mx-auto max-w-7xl py-6 md:px-6 lg:px-8"
+  <main
+    class="mx-auto max-w-7xl bg-white py-6 md:px-6 lg:px-8"
+  >
+    <input
+      class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
+      data-testid="search"
+      defaultvalue=""
+      placeholder="Search"
+      template="text"
+      type="text"
+    />
+    <h3
+      class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
     >
-      <input
-        class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
-        data-testid="search"
-        defaultvalue=""
-        placeholder="Search"
-        template="text"
-        type="text"
-      />
-      <h3
-        class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
-      >
-        Sight Words Read Incorrectly
-      </h3>
-      <div
-        class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
-        data-testid="heat-map"
+      Sight Words Read Incorrectly
+    </h3>
+    <div
+      class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
+      data-testid="heat-map"
+    >
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(255, 204, 204);"
       >
         <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(255, 204, 204);"
+          class="font-bold text-gray-900"
         >
-          <span
-            class="font-bold text-gray-900"
-          >
-            this
-          </span>
+          this
         </span>
-        <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(255, 0, 0);"
-        >
-          <span
-            class="font-bold text-white"
-          >
-            that
-          </span>
-          <span
-            class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
-            style="background-color: rgb(0, 0, 0);"
-          >
-            5
-          </span>
-        </span>
-      </div>
-      <h3
-        class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
-      >
-        Sight Words Read In Books
-      </h3>
-      <div
-        class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
-        data-testid="heat-map"
+      </span>
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(255, 0, 0);"
       >
         <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(229.5, 242.25, 255);"
+          class="font-bold text-white"
         >
-          <span
-            class="font-bold text-gray-900"
-          >
-            this
-          </span>
+          that
         </span>
         <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(127.5, 191.25, 255);"
+          class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+          style="background-color: rgb(0, 0, 0);"
         >
-          <span
-            class="font-bold text-gray-900"
-          >
-            that
-          </span>
-          <span
-            class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
-            style="background-color: rgb(127.5, 127.5, 127.5);"
-          >
-            5
-          </span>
+          5
         </span>
-        <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(0, 127.5, 255);"
-        >
-          <span
-            class="font-bold text-white"
-          >
-            would
-          </span>
-          <span
-            class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
-            style="background-color: rgb(0, 0, 0);"
-          >
-            10
-          </span>
-        </span>
-      </div>
-      <h3
-        class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
-      >
-        Sight Words In Books
-      </h3>
-      <div
-        class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
-        data-testid="heat-map"
+      </span>
+    </div>
+    <h3
+      class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
+    >
+      Sight Words Read In Books
+    </h3>
+    <div
+      class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
+      data-testid="heat-map"
+    >
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(229.5, 242.25, 255);"
       >
         <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(238, 249.33333333333334, 238);"
+          class="font-bold text-gray-900"
         >
-          <span
-            class="font-bold text-gray-900"
-          >
-            this
-          </span>
+          this
         </span>
-        <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(170, 226.66666666666666, 170);"
-        >
-          <span
-            class="font-bold text-gray-900"
-          >
-            that
-          </span>
-          <span
-            class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
-            style="background-color: rgb(170, 170, 170);"
-          >
-            5
-          </span>
-        </span>
-        <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(85, 198.33333333333334, 85);"
-        >
-          <span
-            class="font-bold text-white"
-          >
-            would
-          </span>
-          <span
-            class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
-            style="background-color: rgb(85, 85, 85);"
-          >
-            10
-          </span>
-        </span>
-        <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(0, 170, 0);"
-        >
-          <span
-            class="font-bold text-white"
-          >
-            dog
-          </span>
-          <span
-            class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
-            style="background-color: rgb(0, 0, 0);"
-          >
-            15
-          </span>
-        </span>
-      </div>
-      <h3
-        class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
-      >
-        Sight Words Not Available In Books
-      </h3>
-      <div
-        class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
-        data-testid="heat-map"
+      </span>
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(127.5, 191.25, 255);"
       >
         <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(230, 230, 230);"
+          class="font-bold text-gray-900"
         >
-          <span
-            class="font-bold text-gray-900"
-          >
-            right
-          </span>
-          <span
-            class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
-            style="background-color: rgb(127.5, 127.5, 127.5);"
-          >
-            20
-          </span>
+          that
         </span>
         <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(230, 230, 230);"
+          class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+          style="background-color: rgb(127.5, 127.5, 127.5);"
         >
-          <span
-            class="font-bold text-gray-900"
-          >
-            live
-          </span>
-          <span
-            class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
-            style="background-color: rgb(0, 0, 0);"
-          >
-            40
-          </span>
+          5
         </span>
-      </div>
+      </span>
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(0, 127.5, 255);"
+      >
+        <span
+          class="font-bold text-white"
+        >
+          would
+        </span>
+        <span
+          class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+          style="background-color: rgb(0, 0, 0);"
+        >
+          10
+        </span>
+      </span>
+    </div>
+    <h3
+      class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
+    >
+      Sight Words In Books
+    </h3>
+    <div
+      class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
+      data-testid="heat-map"
+    >
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(238, 249.33333333333334, 238);"
+      >
+        <span
+          class="font-bold text-gray-900"
+        >
+          this
+        </span>
+      </span>
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(170, 226.66666666666666, 170);"
+      >
+        <span
+          class="font-bold text-gray-900"
+        >
+          that
+        </span>
+        <span
+          class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+          style="background-color: rgb(170, 170, 170);"
+        >
+          5
+        </span>
+      </span>
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(85, 198.33333333333334, 85);"
+      >
+        <span
+          class="font-bold text-white"
+        >
+          would
+        </span>
+        <span
+          class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+          style="background-color: rgb(85, 85, 85);"
+        >
+          10
+        </span>
+      </span>
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(0, 170, 0);"
+      >
+        <span
+          class="font-bold text-white"
+        >
+          dog
+        </span>
+        <span
+          class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+          style="background-color: rgb(0, 0, 0);"
+        >
+          15
+        </span>
+      </span>
+    </div>
+    <h3
+      class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
+    >
+      Sight Words Not Available In Books
+    </h3>
+    <div
+      class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
+      data-testid="heat-map"
+    >
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(230, 230, 230);"
+      >
+        <span
+          class="font-bold text-gray-900"
+        >
+          right
+        </span>
+        <span
+          class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+          style="background-color: rgb(127.5, 127.5, 127.5);"
+        >
+          20
+        </span>
+      </span>
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(230, 230, 230);"
+      >
+        <span
+          class="font-bold text-gray-900"
+        >
+          live
+        </span>
+        <span
+          class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+          style="background-color: rgb(0, 0, 0);"
+        >
+          40
+        </span>
+      </span>
     </div>
   </main>
 </DocumentFragment>

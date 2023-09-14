@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
-import CollectionRow from '../CollectionRow'
+import CollectionRow from '../../../Components/Row/CollectionRow'
 
 const booksMock = [
     {

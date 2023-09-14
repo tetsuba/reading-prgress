@@ -10,7 +10,7 @@ interface UpdateUserActionTypes extends ActionTypes {
     }
 }
 
-const initialState = {
+export const initialState = {
     firstName: '',
     lastName: '',
     email: '',

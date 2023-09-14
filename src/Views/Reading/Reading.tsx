@@ -11,7 +11,6 @@ import {
     transformStoryToTrackerHistory
 } from './reading-utils'
 import { updateTracker } from '../../api/tracker'
-import { ApiBookHistoryTypes } from '../../api/api-types'
 import { notUndefined } from '../../lib/utils'
 
 // STORE
@@ -22,16 +21,12 @@ import { bookSelector } from '../../store/book/bookSelectors'
 // COMPONENTS
 import Sentence from './Sentence'
 import History from './History'
-import Header from '../../Components/Header/Header'
+import SubHeader from '../../Components/SubHeader/SubHeader'
 import ScrollTo from '../../Components/ScrollTo/ScrollTo'
 import Main from '../../Components/Main/Main'
-import {
-    BackToBooksButton,
-    HistoryButton,
-    SentenceBackButton
-} from '../../Components/Button/Buttons'
 import Display from '../../Components/Dispay/Display'
 import Loop from '../../Components/Loop/Loop'
+import Button from '../../Components/Button/Button'
 
 export default function Reading() {
     const navigate = useNavigate()
@@ -87,9 +82,17 @@ export default function Reading() {
     return (
         <>
             <ScrollTo top={0} />
-            <Header text={`${book.title}`}>
-                <BackToBooksButton onClick={() => navigate('/books')} />
-            </Header>
+            <SubHeader text={`${book.title}`}>
+                <Button
+                    className="ml-4 flex items-center place-self-start"
+                    data-testid="back-button"
+                    icon="back"
+                    template="secondary"
+                    onClick={() => navigate('/books')}
+                >
+                    <span className="ml-2 hidden md:inline">Back to books</span>
+                </Button>
+            </SubHeader>
             <Main>
                 <Display value={showHistory}>
                     <History
@@ -104,12 +107,20 @@ export default function Reading() {
                     <>
                         <div className="flex justify-end">
                             <Display value={count >= 1}>
-                                <SentenceBackButton
+                                <Button
+                                    data-testid="sentence-back-button"
+                                    icon="back"
+                                    template="icon-back"
+                                    className={`mb-3 p-2`}
                                     onClick={() => setCount(count - 1)}
                                 />
                             </Display>
                             <Display value={count < 1}>
-                                <HistoryButton
+                                <Button
+                                    data-testid="history-button"
+                                    icon="history"
+                                    template="icon-history"
+                                    className={`mb-3`}
                                     onClick={() => setShowHistory(true)}
                                 />
                             </Display>

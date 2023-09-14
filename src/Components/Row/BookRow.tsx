@@ -1,15 +1,12 @@
 import * as R from 'ramda'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getIconColorForBookRow } from './book-utils'
-import Row from '../../Components/Row/Row'
-import {
-    DeleteBookButton,
-    ReadBookButton
-} from '../../Components/Button/Buttons'
+import { getIconColorForBookRow } from '../../Views/Books/book-utils'
+import Row from './Row'
 import { addBook } from '../../store/book/bookSlice'
-import Display from '../../Components/Dispay/Display'
+import Display from '../Dispay/Display'
 import { ApiBookTypes } from '../../api/api-types'
+import Button from '../Button/Button'
 
 type BookPropTypes = {
     data?: ApiBookTypes
@@ -40,14 +37,24 @@ export default function BookRow(props: BookPropTypes) {
             icon="bookmark"
             iconColor={iconColor}
         >
-            <ReadBookButton
+            <Button
+                data-testid="book-list-read"
+                template="secondary"
                 onClick={() => {
                     dispatch(addBook({ book: data, libId: collectionId }))
                     navigate('/reading')
                 }}
-            />
+            >
+                Read
+            </Button>
             <Display value={collectionId === '001'}>
-                <DeleteBookButton onClick={() => deleteBook(data)} />
+                <Button
+                    className="ml-2"
+                    data-testid="book-list-delete"
+                    icon="delete"
+                    template="icon-delete"
+                    onClick={() => deleteBook(data)}
+                />
             </Display>
         </Row>
     )

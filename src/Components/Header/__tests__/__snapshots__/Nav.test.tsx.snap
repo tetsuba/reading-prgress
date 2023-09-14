@@ -1,5 +1,62 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Header > not authenticated > clicking on the login button 1`] = `
+<DocumentFragment>
+  <div
+    class="md:h-auto fixed z-10 w-full bg-gray-800"
+  >
+    <header
+      class="h-16 md:relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex justify-between"
+    >
+      <div
+        class="flex items-center"
+      >
+        <svg
+          class="h-6 w-6 stroke-white"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <div
+          class="hidden ml-10 md:flex items-baseline space-x-4"
+        >
+          <a
+            aria-current="page"
+            class="text-sm font-medium rounded-md px-3 py-2  bg-gray-900 text-white"
+            href="/"
+          >
+            Home
+          </a>
+          <a
+            class="text-sm font-medium rounded-md px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+            href="/register"
+          >
+            Register
+          </a>
+        </div>
+      </div>
+      <div
+        class="flex items-center"
+      >
+        <button
+          class="flex items-center rounded-lg font-medium text-base text-center px-5 py-2.5 text-gray bg-gray-200 hover:bg-gray-300 "
+        >
+          Log in
+        </button>
+      </div>
+    </header>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Nav > not authenticated > clicking on the login button 1`] = `
 <DocumentFragment>
   <div

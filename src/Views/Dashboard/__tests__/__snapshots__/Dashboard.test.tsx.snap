@@ -3,7 +3,7 @@
 exports[`Dashboard > should render a list of words 1`] = `
 <DocumentFragment>
   <header
-    class="bg-white shadow"
+    class="relative bg-white pt-16 shadow"
   >
     <div
       class="mx-auto flex max-w-7xl justify-between px-4 py-6 sm:px-6 lg:px-8"
@@ -15,179 +15,177 @@ exports[`Dashboard > should render a list of words 1`] = `
       </h1>
     </div>
   </header>
-  <main>
+  <main
+    class="mx-auto max-w-7xl bg-white py-6 md:px-6 lg:px-8"
+  >
     <div
-      class="mx-auto max-w-7xl py-6 md:px-6 lg:px-8"
+      class="flex justify-between border-y-2 p-4 md:rounded-xl md:border-x-2 mt-4 border-green-500 bg-green-50"
     >
-      <div
-        class="flex justify-between border-y-2 p-4 md:rounded-xl md:border-x-2 mt-4 border-green-500 bg-green-50"
-      >
-        [12/12/2023] The Perfect Pet 
-        <span>
-          <svg
-            class="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </span>
-      </div>
-      <div
-        class="flex justify-between border-y-2 p-4 md:rounded-xl md:border-x-2 mt-4 border-red-500 bg-red-50"
-      >
-        [12/12/2023] Double Trouble 
-        <span>
-          <svg
-            aria-hidden="true"
-            class="h-6 w-6 text-red-600"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </span>
-      </div>
-      <h3
-        class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
-      >
-        Words read incorrectly (In the last week)
-      </h3>
-      <div
-        class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
-        data-testid="heat-map"
+      [12/12/2023] The Perfect Pet 
+      <span>
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+    </div>
+    <div
+      class="flex justify-between border-y-2 p-4 md:rounded-xl md:border-x-2 mt-4 border-red-500 bg-red-50"
+    >
+      [12/12/2023] Double Trouble 
+      <span>
+        <svg
+          aria-hidden="true"
+          class="h-6 w-6 text-red-600"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+    </div>
+    <h3
+      class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
+    >
+      Words read incorrectly (In the last week)
+    </h3>
+    <div
+      class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
+      data-testid="heat-map"
+    >
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(255, 204, 204);"
       >
         <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(255, 204, 204);"
+          class="font-bold text-gray-900"
         >
-          <span
-            class="font-bold text-gray-900"
-          >
-            this
-          </span>
+          this
         </span>
-        <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(255, 0, 0);"
-        >
-          <span
-            class="font-bold text-white"
-          >
-            that
-          </span>
-          <span
-            class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
-            style="background-color: rgb(0, 0, 0);"
-          >
-            5
-          </span>
-        </span>
-      </div>
-      <h3
-        class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
-      >
-        Words read incorrectly (In the last month)
-      </h3>
-      <div
-        class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
-        data-testid="heat-map"
+      </span>
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(255, 0, 0);"
       >
         <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(255, 85, 85);"
+          class="font-bold text-white"
         >
-          <span
-            class="font-bold text-white"
-          >
-            would
-          </span>
-          <span
-            class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
-            style="background-color: rgb(85, 85, 85);"
-          >
-            10
-          </span>
+          that
         </span>
         <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(255, 0, 0);"
+          class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+          style="background-color: rgb(0, 0, 0);"
         >
-          <span
-            class="font-bold text-white"
-          >
-            dog
-          </span>
-          <span
-            class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
-            style="background-color: rgb(0, 0, 0);"
-          >
-            15
-          </span>
+          5
         </span>
-      </div>
-      <h3
-        class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
-      >
-        Words read incorrectly (More than a month ago)
-      </h3>
-      <div
-        class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
-        data-testid="heat-map"
+      </span>
+    </div>
+    <h3
+      class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
+    >
+      Words read incorrectly (In the last month)
+    </h3>
+    <div
+      class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
+      data-testid="heat-map"
+    >
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(255, 85, 85);"
       >
         <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(255, 127.5, 127.5);"
+          class="font-bold text-white"
         >
-          <span
-            class="font-bold text-gray-900"
-          >
-            right
-          </span>
-          <span
-            class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
-            style="background-color: rgb(127.5, 127.5, 127.5);"
-          >
-            20
-          </span>
+          would
         </span>
         <span
-          class="m-2 rounded-2xl border-2 p-3 md:m-5"
-          data-testid="heat-map-word"
-          style="background-color: rgb(255, 0, 0);"
+          class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+          style="background-color: rgb(85, 85, 85);"
         >
-          <span
-            class="font-bold text-white"
-          >
-            live
-          </span>
-          <span
-            class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
-            style="background-color: rgb(0, 0, 0);"
-          >
-            40
-          </span>
+          10
         </span>
-      </div>
+      </span>
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(255, 0, 0);"
+      >
+        <span
+          class="font-bold text-white"
+        >
+          dog
+        </span>
+        <span
+          class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+          style="background-color: rgb(0, 0, 0);"
+        >
+          15
+        </span>
+      </span>
+    </div>
+    <h3
+      class="text-ml font-medium text-gray-900 dark:text-white md:text-xl mt-10 bg-gray-200 p-2 md:rounded-t-lg"
+    >
+      Words read incorrectly (More than a month ago)
+    </h3>
+    <div
+      class="min-h-96 border-dashed md:border-x-2 border-gray-200 md:border-3 md:rounded-b-lg border-b-2 border-t-0 p-2 inline-flex w-full flex-wrap items-center justify-center shadow-md"
+      data-testid="heat-map"
+    >
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(255, 127.5, 127.5);"
+      >
+        <span
+          class="font-bold text-gray-900"
+        >
+          right
+        </span>
+        <span
+          class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+          style="background-color: rgb(127.5, 127.5, 127.5);"
+        >
+          20
+        </span>
+      </span>
+      <span
+        class="m-2 rounded-2xl border-2 p-3 md:m-5"
+        data-testid="heat-map-word"
+        style="background-color: rgb(255, 0, 0);"
+      >
+        <span
+          class="font-bold text-white"
+        >
+          live
+        </span>
+        <span
+          class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+          style="background-color: rgb(0, 0, 0);"
+        >
+          40
+        </span>
+      </span>
     </div>
   </main>
 </DocumentFragment>

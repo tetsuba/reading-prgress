@@ -5,7 +5,7 @@ import store from './store/store'
 import { setupAxiosInterceptors } from './api/api-utils'
 
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
-import Nav from './Components/Nav/Nav'
+import Header from './Components/Header/Header'
 import FirstLoad from './Components/FirstLoad/FirstLoad'
 
 // VIEWS
@@ -20,7 +20,7 @@ import Footer from './Components/Footer/Footer'
 import Settings from './Views/Settings'
 import PageNotFound from './Views/PageNotFound'
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
             staleTime: Infinity,
@@ -38,7 +38,7 @@ function App() {
                     <BrowserRouter>
                         <FirstLoad>
                             <>
-                                <Nav />
+                                <Header />
                                 <Routes>
                                     <Route path="/" element={<Home />} />
                                     <Route

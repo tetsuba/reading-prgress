@@ -1,7 +1,7 @@
 import { ApiBookTypes, ApiCollectionTypes } from '../../api/api-types'
 import * as R from 'ramda'
 import { isUndefined } from '../../lib/monads'
-import { CollectionPropTypes } from './CollectionRow'
+import { CollectionPropTypes } from '../../Components/Row/CollectionRow'
 import { ifElse, isEmpty } from 'ramda'
 
 const returnBoolean = <T>(value: T) => value as boolean

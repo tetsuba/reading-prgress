@@ -6,12 +6,9 @@ type PropTypes = {
     id?: string
     rows?: number
     className?: number
-    template: FormClassesTypes
 }
 
 export default function Textarea(props: PropTypes) {
-    const className = `${getFormClasses(props.template)} ${
-        props.className || ''
-    }`
+    const className = `${getFormClasses('textarea')} ${props.className || ''}`
     return <textarea {...props} className={className} />
 }

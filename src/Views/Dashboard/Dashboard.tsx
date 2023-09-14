@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import { userIdSelector } from '../../store/user/userSelectors'
 
 // COMPONENTS
-import Header from '../../Components/Header/Header'
+import SubHeader from '../../Components/SubHeader/SubHeader'
 import HeatMap from '../../Components/HeatMap/HeatMap'
 import Banner from '../../Components/Banner/Banner'
 import Loading from '../../Components/Loading/Loading'
@@ -21,7 +21,7 @@ export default function Dashboard() {
     }
     return (
         <>
-            <Header text="Dashboard" />
+            <SubHeader text="Dashboard" />
             <Main>
                 <Display value={isSuccess}>
                     <>

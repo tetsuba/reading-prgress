@@ -3,8 +3,6 @@ import Button from '../Button/Button'
 import { resetUserToInitialState } from '../../store/user/userSlice'
 import ls from '../../lib/localStorage'
 import { useDispatch } from 'react-redux'
-import Svg from '../Svg/Svg'
-import { NavSignOutButton } from '../Button/Buttons'
 
 function getClasses({ isActive }: { isActive: boolean }) {
     const defaultStyles = 'block px-4 py-2 text-sm round-xl'
@@ -13,21 +11,23 @@ function getClasses({ isActive }: { isActive: boolean }) {
         : `text-gray-700 hover:bg-gray-200 ${defaultStyles}`
 }
 
-export default function DesktopNavMenu() {
+export default function DesktopMenu() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     return (
         <div
             data-testid="user-menu"
-            className="group/menu hidden pt-4 text-end md:block"
+            className="group/menu relative hidden pt-4 text-end md:block"
         >
-            <Button data-testid="user-menu-button" template="svgUser">
-                <Svg icon="user" />
-            </Button>
+            <Button
+                data-testid="user-menu-button"
+                icon="user"
+                template="icon-user"
+            />
             <div
                 data-testid="user-menu-open"
-                className="absolute right-8 top-12 mt-2 hidden w-48 rounded-md border-2 border-gray-300 bg-white py-2 text-left shadow-xl group-hover/menu:block"
+                className="absolute right-0 top-10 mt-2 hidden w-48 rounded-md border-2 border-gray-300 bg-white py-2 text-left shadow-xl group-hover/menu:block"
                 role="menu"
             >
                 <NavLink className={getClasses} to="/profile">
@@ -36,13 +36,16 @@ export default function DesktopNavMenu() {
                 <NavLink className={getClasses} to="/settings">
                     Settings
                 </NavLink>
-                <NavSignOutButton
+                <Button
                     onClick={() => {
                         dispatch(resetUserToInitialState())
                         ls.remove()
                         navigate('/')
                     }}
-                />
+                    template="nav-menu-desktop"
+                >
+                    Sign out
+                </Button>
             </div>
         </div>
     )

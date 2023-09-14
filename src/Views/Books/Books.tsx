@@ -6,7 +6,7 @@ import { viewBooksCollectionSelector } from '../../store/view/viewSelectors'
 import { getBooks } from '../../api/book'
 
 // COMPONENTS
-import Header from '../../Components/Header/Header'
+import SubHeader from '../../Components/SubHeader/SubHeader'
 import Loading from '../../Components/Loading/Loading'
 import Main from '../../Components/Main/Main'
 import Display from '../../Components/Dispay/Display'
@@ -38,7 +38,7 @@ export default function Books() {
 
     return (
         <>
-            <Header text="Books" />
+            <SubHeader text="Books" />
             <Main>
                 <Display value={isSuccess && R.isNil(collection)}>
                     <ListOfCollections collections={data?.data} />

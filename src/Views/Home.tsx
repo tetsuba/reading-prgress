@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Modal from '../Components/Modal/Modal'
-import Login from './Login'
+import Login from '../Components/Modal/Login'
 import H1 from '../Components/H1/H1'
 import P from '../Components/P/P'
 import Button from '../Components/Button/Button'
@@ -42,20 +42,20 @@ const Home = () => {
                         </P>
                         <div className="mt-8 flex gap-x-4 sm:justify-center">
                             <Button
-                                className="flex items-center"
+                                icon="arrowRight"
                                 onClick={() => setShowLogin(true)}
                                 template="primary"
+                                right
                             >
-                                Log in{' '}
-                                <Svg icon="arrowRight" className="ml-1" />
+                                <span className="mr-1">Log in</span>
                             </Button>
                             <Button
-                                className="flex items-center"
+                                icon="arrowRight"
                                 onClick={() => navigate('/register')}
                                 template="secondary"
+                                right
                             >
-                                Register{' '}
-                                <Svg icon="arrowRight" className="ml-1" />
+                                <span className="mr-1">Register</span>
                             </Button>
                         </div>
                     </div>

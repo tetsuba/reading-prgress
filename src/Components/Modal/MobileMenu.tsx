@@ -4,8 +4,6 @@ import { resetUserToInitialState } from '../../store/user/userSlice'
 import ls from '../../lib/localStorage'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import Svg from '../Svg/Svg'
-import { CloseButton } from '../Button/Buttons'
 
 type PropTypes = {
     closeMenu: () => void
@@ -36,8 +34,10 @@ export default function MobileMenu(props: PropTypes) {
 
     return (
         <div data-testid="mobile-nav-menu" className="flex flex-col pt-10">
-            <CloseButton
-                className="right-1 top-1.5"
+            <Button
+                className="absolute right-1 top-1.5"
+                icon="close"
+                template="icon-close"
                 onClick={() => props.closeMenu()}
             />
             {links.map((link, i) => (
@@ -57,7 +57,7 @@ export default function MobileMenu(props: PropTypes) {
 
             <Button
                 data-testid="sign-out-mobile-menu"
-                template="mobileMenuButton"
+                template="menu-button-mobile"
                 onClick={() => {
                     dispatch(resetUserToInitialState())
                     ls.remove()

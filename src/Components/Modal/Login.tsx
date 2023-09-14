@@ -1,17 +1,16 @@
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { formDataToObject, getErrorMessage } from '../lib/utils'
-import { updateUser } from '../store/user/userSlice'
+import { formDataToObject, getErrorMessage } from '../../lib/utils'
+import { updateUser } from '../../store/user/userSlice'
 
 // COMPONENTS
-import H3 from '../Components/H3/H3'
-import Label from '../Components/Form/Label'
-import Input from '../Components/Form/Input'
-import ErrorMessage from '../Components/Form/ErrorMessage'
-import Button from '../Components/Button/Button'
-import { CloseButton, TextLinkButton } from '../Components/Button/Buttons'
-import { loginUser } from '../api/user'
+import H3 from '../H3/H3'
+import Label from '../Form/Label'
+import Input from '../Form/Input'
+import ErrorMessage from '../Form/ErrorMessage'
+import Button from '../Button/Button'
+import { loginUser } from '../../api/user'
 
 type PropTypes = {
     setShowLogin: (p: boolean) => void
@@ -27,13 +26,14 @@ export default function Login(props: PropTypes) {
         }
     })
 
-    console.log('Login: ', mutation)
-
     return (
         <div data-testid="login-view">
-            <CloseButton
-                className=""
+            <Button
+                className="absolute right-2.5 top-3"
+                data-testid="modal-close"
+                icon="close"
                 onClick={() => props.setShowLogin(false)}
+                template="icon-close"
             />
             <div className="px-6 py-6 lg:px-8">
                 <H3 className="mb-3">Sign in to our platform</H3>
@@ -78,14 +78,15 @@ export default function Login(props: PropTypes) {
                                 Remember me
                             </Label>
                         </div>
-                        <TextLinkButton
+                        <Button
+                            template="text-link"
                             onClick={() => {
                                 navigate('/lostPassword')
                                 props.setShowLogin(false)
                             }}
                         >
                             Lost Password?
-                        </TextLinkButton>
+                        </Button>
                     </div>
                     <ErrorMessage
                         show={mutation.isError}
@@ -98,14 +99,16 @@ export default function Login(props: PropTypes) {
                     </Button>
                     <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                         Not registered?
-                        <TextLinkButton
+                        <Button
+                            className="ml-1"
+                            template="text-link"
                             onClick={() => {
                                 navigate('/register')
                                 props.setShowLogin(false)
                             }}
                         >
                             Create account
-                        </TextLinkButton>
+                        </Button>
                     </div>
                 </form>
             </div>

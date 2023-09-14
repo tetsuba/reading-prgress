@@ -45,14 +45,13 @@ export default function RegisterBookForm(props: PropTypes) {
                 <div>
                     <Label htmlFor="story">Story</Label>
                     <Textarea
-                        template="textarea"
                         id="about"
                         name="story"
                         rows={8}
                         placeholder="Story Here."
                     />
                 </div>
-                <div className="py-3 text-right">
+                <div className="flex justify-end py-3">
                     <Button
                         type="button"
                         template="secondary"

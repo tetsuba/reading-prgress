@@ -1,10 +1,4 @@
-import {
-    render,
-    fireEvent,
-    screen,
-    waitFor,
-    waitForElementToBeRemoved
-} from '@testing-library/react'
+import { render, fireEvent, screen, waitFor } from '@testing-library/react'
 import Home from '../Home'
 import {
     WrapperWithRouter,

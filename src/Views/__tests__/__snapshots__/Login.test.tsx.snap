@@ -6,9 +6,8 @@ exports[`Login > should render 1`] = `
     data-testid="login-view"
   >
     <button
-      class="bg-transparent inline-flex items-center rounded-lg text-sm text-gray-400 absolute right-2.5 top-3 ml-auto p-1.5 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white "
+      class="bg-transparent inline-flex items-center rounded-lg text-sm text-gray-400 p-1.5 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white absolute right-2.5 top-3"
       data-testid="modal-close"
-      template="svgClose"
     >
       <svg
         aria-hidden="true"
@@ -92,15 +91,13 @@ exports[`Login > should render 1`] = `
             </label>
           </div>
           <button
-            class="text-blue-700 hover:underline dark:text-blue-500 ml-1"
-            template="textLink"
+            class="text-blue-700 hover:underline dark:text-blue-500 "
           >
             Lost Password?
           </button>
         </div>
         <button
-          class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 w-full"
-          template="primary"
+          class="flex items-center rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 w-full"
           type="submit"
         >
           Login to your account
@@ -111,7 +108,6 @@ exports[`Login > should render 1`] = `
           Not registered?
           <button
             class="text-blue-700 hover:underline dark:text-blue-500 ml-1"
-            template="textLink"
           >
             Create account
           </button>

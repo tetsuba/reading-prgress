@@ -1,6 +1,6 @@
 import { ApiCollectionTypes } from '../../api/api-types'
 import Loop from '../../Components/Loop/Loop'
-import CollectionRow from './CollectionRow'
+import CollectionRow from '../../Components/Row/CollectionRow'
 
 type PropTypes = {
     collections: ApiCollectionTypes[] | undefined

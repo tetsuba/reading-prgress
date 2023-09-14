@@ -1,7 +1,7 @@
 import Word from './Word'
 import TAILWIND_CLASSES from '../../shared.tailwind'
-import { SentenceCompleteButton } from '../../Components/Button/Buttons'
 import Loop from '../../Components/Loop/Loop'
+import Button from '../../Components/Button/Button'
 
 export type WordTypes = {
     word: string
@@ -35,7 +35,13 @@ export default function Sentence(props: PropTypes) {
             data-testid="sentence-block"
             className={`${active} ${TAILWIND_CLASSES.sentenceBorder} relative`}
         >
-            <SentenceCompleteButton onClick={props.sentenceClickHandler} />
+            <Button
+                className="absolute bottom-1 right-2"
+                data-testid="sentence-complete"
+                icon="check-badge"
+                template="icon-check-badge"
+                onClick={props.sentenceClickHandler}
+            />
             <Loop array={props.data || []}>
                 <Word onClick={props.wordClickHandler} />
             </Loop>

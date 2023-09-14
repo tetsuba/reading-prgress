@@ -8,7 +8,7 @@ import Label from '../Components/Form/Label'
 import Input from '../Components/Form/Input'
 import Button from '../Components/Button/Button'
 import ErrorMessage from '../Components/Form/ErrorMessage'
-import Header from '../Components/Header/Header'
+import SubHeader from '../Components/SubHeader/SubHeader'
 import Main from '../Components/Main/Main'
 import Display from '../Components/Dispay/Display'
 
@@ -16,7 +16,7 @@ export default function Register() {
     const mutation = useMutation(registerUser)
     return (
         <>
-            <Header text="Register" />
+            <SubHeader text="Register" />
             <Main>
                 <div className="mx-auto max-w-3xl rounded-lg border-dashed border-gray-200 sm:border-4">
                     <div className="sm:p-6">
