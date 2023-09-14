@@ -23,7 +23,6 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         updateUser: (state, action: UpdateUserActionTypes) => {
-            console.log('userUpdate', action.payload.data)
             ls.save(action.payload.token)
             state.firstName = action.payload.data.firstName
             state.lastName = action.payload.data.lastName
