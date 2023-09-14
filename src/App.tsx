@@ -2,9 +2,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
 import store from './store/store'
+import { setupAxiosInterceptors } from './api/api-utils'
 
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
-import Nav from './Components/Nav/Nav'
+import Header from './Components/Header/Header'
 import FirstLoad from './Components/FirstLoad/FirstLoad'
 
 // VIEWS
@@ -19,7 +20,7 @@ import Footer from './Components/Footer/Footer'
 import Settings from './Views/Settings'
 import PageNotFound from './Views/PageNotFound'
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
             staleTime: Infinity,
@@ -29,69 +30,75 @@ const queryClient = new QueryClient({
 })
 
 function App() {
+    setupAxiosInterceptors(store)
     return (
         <div className="min-h-full">
             <Provider store={store}>
                 <QueryClientProvider client={queryClient}>
                     <BrowserRouter>
-                        <Nav />
                         <FirstLoad>
-                            <Routes>
-                                <Route path="/" element={<Home />} />
-                                <Route
-                                    path="/register"
-                                    element={<Register />}
-                                />
-                                <Route
-                                    path="/dashboard"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Dashboard />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/reading"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Reading />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/profile"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Profile />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/books"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Books />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/sight-words"
-                                    element={
-                                        <ProtectedRoute>
-                                            <SightWords />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/settings"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Settings />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route path="*" element={<PageNotFound />} />
-                            </Routes>
+                            <>
+                                <Header />
+                                <Routes>
+                                    <Route path="/" element={<Home />} />
+                                    <Route
+                                        path="/register"
+                                        element={<Register />}
+                                    />
+                                    <Route
+                                        path="/dashboard"
+                                        element={
+                                            <ProtectedRoute>
+                                                <Dashboard />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/reading"
+                                        element={
+                                            <ProtectedRoute>
+                                                <Reading />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/profile"
+                                        element={
+                                            <ProtectedRoute>
+                                                <Profile />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/books"
+                                        element={
+                                            <ProtectedRoute>
+                                                <Books />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/sight-words"
+                                        element={
+                                            <ProtectedRoute>
+                                                <SightWords />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/settings"
+                                        element={
+                                            <ProtectedRoute>
+                                                <Settings />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="*"
+                                        element={<PageNotFound />}
+                                    />
+                                </Routes>
+                            </>
                         </FirstLoad>
                         <Footer />
                     </BrowserRouter>

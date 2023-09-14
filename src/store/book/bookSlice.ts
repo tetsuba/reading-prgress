@@ -4,13 +4,13 @@ import {
     StateBookTypes,
     StateBookHistoryTypes
 } from '../store-types'
-import { ApiBookTypes, ApiCollectionTypes } from '../../lib/service-types'
+import { ApiBookTypes, ApiCollectionTypes } from '../../api/api-types'
 
 const initialState = {
     bookId: 0,
     libId: '',
     history: [],
-    story: '',
+    story: [],
     title: ''
 } as StateBookTypes
 

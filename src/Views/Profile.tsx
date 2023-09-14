@@ -1,4 +1,4 @@
-import Header from '../Components/Header/Header'
+import SubHeader from '../Components/SubHeader/SubHeader'
 import Input from '../Components/Form/Input'
 import Label from '../Components/Form/Label'
 import { useSelector } from 'react-redux'
@@ -9,7 +9,7 @@ export default function Profile() {
     const userProfile = useSelector(userSelector)
     return (
         <>
-            <Header text="Profile" />
+            <SubHeader text="Profile" />
             <Main>
                 <div>
                     <div className="md:grid md:grid-cols-3 md:gap-6">

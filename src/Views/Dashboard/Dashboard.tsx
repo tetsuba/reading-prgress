@@ -1,22 +1,16 @@
 import { useSelector } from 'react-redux'
 import { useQuery } from 'react-query'
 import { userIdSelector } from '../../store/user/userSelectors'
-import { getWords } from '../../lib/service'
 
 // COMPONENTS
-import Header from '../../Components/Header/Header'
+import SubHeader from '../../Components/SubHeader/SubHeader'
 import HeatMap from '../../Components/HeatMap/HeatMap'
 import Banner from '../../Components/Banner/Banner'
 import Loading from '../../Components/Loading/Loading'
 import Main from '../../Components/Main/Main'
 import Display from '../../Components/Dispay/Display'
 import Loop from '../../Components/Loop/Loop'
-
-type LastBookReadTypes = {
-    words: string[]
-    date: string
-    title: string
-}
+import { getWords } from '../../api/tracker'
 
 export default function Dashboard() {
     const userId = useSelector(userIdSelector)
@@ -27,7 +21,7 @@ export default function Dashboard() {
     }
     return (
         <>
-            <Header text="Dashboard" />
+            <SubHeader text="Dashboard" />
             <Main>
                 <Display value={isSuccess}>
                     <>

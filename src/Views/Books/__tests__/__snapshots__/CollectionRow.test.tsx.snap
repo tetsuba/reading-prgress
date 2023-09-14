@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CollectionRow > props data is undefined 1`] = `
+exports[`CollectionRow > if collection row icon is green 1`] = `
 <DocumentFragment>
   <div
     class="flex justify-between px-4 py-5 sm:gap-4 sm:px-6 bg-gray-50"
@@ -9,7 +9,7 @@ exports[`CollectionRow > props data is undefined 1`] = `
       class="flex items-center"
     >
       <span
-        class="mr-6 "
+        class="mr-6 text-green-500"
       >
         <svg
           class="h-6 w-6"
@@ -28,23 +28,24 @@ exports[`CollectionRow > props data is undefined 1`] = `
       </span>
       <span
         class="font-medium text-gray-800"
-      />
+      >
+        title collection 1 (2)
+      </span>
     </div>
     <div
       class="flex justify-end"
     >
       <button
-        class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-gray bg-gray-200 hover:bg-gray-300 flex items-center"
+        class="flex items-center rounded-lg font-medium text-base text-center px-5 py-2.5 text-gray-400 bg-gray-200 flex items-center"
         data-testid="collection-button"
-        template="secondary"
       >
         <span
-          class="hidden md:inline"
+          class="mr-1 hidden md:inline"
         >
           View Books
         </span>
         <svg
-          class="h-5 w-5 md:ml-2"
+          class="h-5 w-5 "
           fill="none"
           stroke="currentColor"
           stroke-width="1"
@@ -62,8 +63,15 @@ exports[`CollectionRow > props data is undefined 1`] = `
             stroke-linejoin="round"
           />
         </svg>
+         
       </button>
     </div>
   </div>
+</DocumentFragment>
+`;
+
+exports[`CollectionRow > props data is undefined 1`] = `
+<DocumentFragment>
+  loading...
 </DocumentFragment>
 `;

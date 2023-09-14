@@ -1,150 +1,150 @@
-import { WordTypes } from './Sentence'
-import { StateBookHistoryTypes, StateBookTypes } from '../../store/store-types'
-import {
-    ApiBookHistoryTypes,
-    ApiCollectionTypes
-} from '../../lib/service-types'
+import { StateBookTypes } from '../../store/store-types'
+import { ApiBookHistoryTypes, ApiCollectionTypes } from '../../api/api-types'
+import { isArray } from '../../lib/utils'
+import { isUndefined, Task } from '../../lib/monads'
+import * as R from 'ramda'
+
+export type WordType = { word: string; status: string }
+type StoryType = string | string[]
 
 export const STATUS = {
     CORRECT: 'green',
     WRONG: 'red'
 }
 
-type WordType = {
-    word: string
-    status: string
-}
-export function buildStoryStructure(
-    story: string | string[]
-): WordType[][] | [] {
-    return Array.isArray(story)
-        ? story.map((sentence) =>
-              sentence
-                  .split(' ')
-                  .filter((word) => word !== '')
-                  .map((word) => ({
-                      word: word,
-                      status: ''
-                  }))
-          )
-        : story // TODO: To be removed when story format is finalized.
-              .split(/\./g)
-              .filter((sentence) => sentence !== '')
-              .map((sentence) => sentence.concat('.'))
-              .map((sentence) =>
-                  sentence
-                      .split(' ')
-                      .filter((word) => word !== '')
-                      .map((word) => ({
-                          word: word,
-                          status: ''
-                      }))
-              )
-}
+const GREEN = 'green'
+const RED = 'red'
 
-export function allWordsAreCorrect(story: WordType[][], count: number) {
-    return story[count].every(
-        ({ status }: WordTypes) => status === STATUS.CORRECT
-    )
-}
+export const greaterThanZero = R.gt(R.__, 0)
+export const concatFullStop: (val: string) => string = R.concat(R.__, '.')
 
-export function removeSpecialCharacters(word: string): string {
-    return word
-        .toLowerCase()
-        .replace(/^\W/, '')
-        .replace(/\W$/, '')
-        .replace(/\W$/, '')
-}
+// EQUALS
+const equalsCorrect = R.equals(GREEN)
+const equalsWrong = R.equals(RED)
 
-export function updateSentence(
-    story: WordType[][],
-    count: number,
-    speech: string[]
-) {
-    return story[count].map((wordObj: WordTypes) => {
-        const word = removeSpecialCharacters(wordObj.word)
-        if (speech.includes(word)) {
-            return {
-                ...wordObj,
-                status: STATUS.CORRECT
-            }
-        }
-        return wordObj
-    })
-}
+export const toggleStatus = R.ifElse(
+    equalsWrong,
+    R.always(GREEN),
+    R.always(RED)
+)
 
-export function getReadingMistakes(story: WordType[][]): string[] | [] {
-    return story
-        .map((sentence) =>
-            sentence
-                .filter(({ status }) => status === 'red')
-                .map(({ word }) => removeSpecialCharacters(word))
-        )
-        .flat()
-}
+// ALWAYS
+const completed = R.always('100% Completed')
+const agrIsUndefined = R.always('arg is undefined')
+
+// PROPS
+const getPropStatus = R.prop('status')
+
+const notEmptyString = (text: string): boolean => R.not(R.isEmpty(text))
+
+export const removeSpecialCharacter = (word: string) =>
+    word.toLowerCase().replace(/^\W/, '').replace(/\W$/, '').replace(/\W$/, '')
+
+const removeSpecialCharacterFromWord = R.compose(
+    removeSpecialCharacter,
+    R.prop('word')
+)
+
+const wordObject = (word: string): WordType => ({
+    word: word,
+    status: ''
+})
 
 export function getShortDate(): string {
     return new Date().toLocaleDateString('en-UK')
 }
 
-export function updateHistory(
-    history: StateBookHistoryTypes[],
-    story: WordType[][]
-) {
-    const newHistory = [
-        {
-            date: getShortDate(),
-            words: getReadingMistakes(story)
-        }
-    ]
-    return history.concat(newHistory)
+export const filterBySentence = R.filter(notEmptyString)
+
+export const createAListOfWordObjectsFromString = R.compose(
+    R.map(wordObject),
+    R.filter(notEmptyString),
+    R.split(' ')
+)
+
+const mapStorySentences = R.map(createAListOfWordObjectsFromString)
+
+export const convertStoryString = R.compose(
+    mapStorySentences,
+    R.map(concatFullStop),
+    filterBySentence,
+    R.split(/\./g)
+)
+
+export function buildStoryStructure(story: StoryType) {
+    return isArray(story)
+        ? mapStorySentences(story as string[])
+        : convertStoryString(story as string)
 }
+
+const statusEqualsCorrect = R.compose(equalsCorrect, getPropStatus)
+export const allWordsAreCorrect = R.all(statusEqualsCorrect)
+
+const filterStatusWrong = R.compose(equalsWrong, getPropStatus)
+
+const getWordsFromSentence = R.compose(
+    R.map(removeSpecialCharacterFromWord),
+    R.filter(filterStatusWrong)
+)
+
+export const transformStoryToTrackerHistory = (data: WordType[][]) =>
+    Task(data)
+        .map(R.map(getWordsFromSentence))
+        .map(R.flatten)
+        .map((words): ApiBookHistoryTypes[] => [
+            {
+                words,
+                date: getShortDate()
+            }
+        ])
 
 export function findBookHistory(
     collections: ApiCollectionTypes[],
     book: StateBookTypes
 ) {
-    // @ts-ignore
-    return collections
-        .find(({ id }) => id === book.libId)
-        .books.find(({ id }) => id === book.bookId).history
+    const collectionId = R.compose(R.equals(book.libId), R.prop('id'))
+    const bookId = R.compose(R.equals(book.bookId), R.prop('id'))
+
+    return R.compose(
+        R.prop('history'),
+        R.find(bookId),
+        R.prop('books'),
+        R.find(collectionId)
+    )(collections) as ApiBookHistoryTypes[]
 }
 
 export function isReadingCompleted(
-    story: WordType[][],
+    storyLength: number,
     count: number
 ): boolean {
-    return !!story.length && story.length <= count
+    return greaterThanZero(storyLength) && R.lte(storyLength, count)
+    // return !!story.length && story.length <= count
 }
 
-export function prepareTrackerData(
-    userId: number,
-    book: StateBookTypes,
-    story: WordType[][]
-) {
-    const history = updateHistory(book.history, story)
-    return {
-        userId,
-        bookId: book.bookId,
-        libId: book.libId,
-        history: history
-    }
+function transformArrayToString(words: string[]): string {
+    return words.toString().replace(/,/g, ', ')
 }
 
-export function wordsFound(data: ApiBookHistoryTypes | undefined): boolean {
-    return data ? data.words.length > 0 : false
-}
+const isGreaterThanZero = R.compose(greaterThanZero, R.prop('length'))
+const getWordsFromBookHistory = R.ifElse(
+    isGreaterThanZero,
+    transformArrayToString,
+    completed
+)
 
-function isCompleted(
-    completed: (a: ApiBookHistoryTypes | undefined) => boolean
-) {
-    return function wordsReadIncorrectly(
-        data: ApiBookHistoryTypes | undefined
-    ) {
-        return completed(data)
-            ? data?.words.toString().replace(/,/g, ', ')
-            : '100% Completed'
-    }
-}
+const wordsReadIncorrectly = (data: string[] | undefined) =>
+    isUndefined(data)
+        .map(getWordsFromBookHistory)
+        .fold(agrIsUndefined, (text) => text)
 
-export const wordsReadIncorrectly = isCompleted(wordsFound)
+const moreThanZeroWords = (num: number | undefined) =>
+    isUndefined(num).fold(R.F, greaterThanZero)
+
+export const getHistoryWords = R.compose(
+    wordsReadIncorrectly,
+    R.path(['data', 'words'])
+)
+export const doesHistoryHaveWords = R.compose(
+    moreThanZeroWords,
+    R.path(['data', 'words', 'length'])
+)

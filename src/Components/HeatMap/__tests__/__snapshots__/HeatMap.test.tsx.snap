@@ -14,7 +14,7 @@ exports[`HeatMap > should render a word heatmap 1`] = `
     <span
       class="m-2 rounded-2xl border-2 p-3 md:m-5"
       data-testid="heat-map-word"
-      style="background-color: rgb(255, 255, 255);"
+      style="background-color: rgb(255, 204, 204);"
     >
       <span
         class="font-bold text-gray-900"
@@ -25,16 +25,26 @@ exports[`HeatMap > should render a word heatmap 1`] = `
     <span
       class="m-2 rounded-2xl border-2 p-3 md:m-5"
       data-testid="heat-map-word"
-      style="background-color: rgb(255, 204, 204);"
+      style="background-color: rgb(255, 0, 0);"
     >
       <span
-        class="font-bold text-gray-900"
+        class="font-bold text-white"
       >
         then
+      </span>
+      <span
+        class="ml-1 rounded-full px-2 py-1 text-white md:ml-3"
+        style="background-color: rgb(0, 0, 0);"
+      >
+        5
       </span>
     </span>
   </div>
 </DocumentFragment>
 `;
 
-exports[`HeatMap > should render nothing if words undefined 1`] = `<DocumentFragment />`;
+exports[`HeatMap > should render nothing if words undefined 1`] = `
+<DocumentFragment>
+  loading...
+</DocumentFragment>
+`;

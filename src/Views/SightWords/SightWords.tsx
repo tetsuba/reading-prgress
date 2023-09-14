@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { userIdSelector } from '../../store/user/userSelectors'
 import { useQuery } from 'react-query'
-import { getSightWords } from '../../lib/service'
+import { getSightWords } from '../../api/sightWords'
 
 // COMPONENTS
-import Header from '../../Components/Header/Header'
+import SubHeader from '../../Components/SubHeader/SubHeader'
 import Input from '../../Components/Form/Input'
 import HeatMap from '../../Components/HeatMap/HeatMap'
 import Loading from '../../Components/Loading/Loading'
@@ -25,7 +25,7 @@ export default function SightWords() {
     }
     return (
         <>
-            <Header text="Sight Words" />
+            <SubHeader text="Sight Words" />
             <Main>
                 <>
                     <Input

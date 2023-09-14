@@ -7,7 +7,7 @@ type PropTypes = {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
     placeholder?: string
     readonly?: boolean
-    template: FormClassesTypes
+    template: Exclude<FormClassesTypes, 'textarea'>
     type: 'email' | 'password' | 'checkbox' | 'text'
     value?: string
 }

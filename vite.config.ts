@@ -1,10 +1,16 @@
 import { defineConfig } from 'vite'
+import { configDefaults } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 
 export default defineConfig({
+    server: {
+        proxy: {
+            '/api': 'http://localhost:3001'
+        }
+    },
     plugins: [
         react(),
         VitePWA({
@@ -40,6 +46,7 @@ export default defineConfig({
     test: {
         globals: true,
         environment: 'happy-dom',
-        setupFiles: './src/vitest-setup.tsx'
+        setupFiles: './src/vitest-setup.tsx',
+        exclude: [...configDefaults.exclude, 'tests/*', 'tests-examples/*.ts'],
     }
 })

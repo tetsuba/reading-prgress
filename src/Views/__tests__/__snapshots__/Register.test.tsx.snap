@@ -3,7 +3,7 @@
 exports[`Register > should render 1`] = `
 <DocumentFragment>
   <header
-    class="bg-white shadow"
+    class="relative bg-white pt-16 shadow"
   >
     <div
       class="mx-auto flex max-w-7xl justify-between px-4 py-6 sm:px-6 lg:px-8"
@@ -15,93 +15,90 @@ exports[`Register > should render 1`] = `
       </h1>
     </div>
   </header>
-  <main>
+  <main
+    class="mx-auto max-w-7xl bg-white py-6 md:px-6 lg:px-8"
+  >
     <div
-      class="mx-auto max-w-7xl py-6 md:px-6 lg:px-8"
+      class="mx-auto max-w-3xl rounded-lg border-dashed border-gray-200 sm:border-4"
     >
       <div
-        class="mx-auto max-w-3xl rounded-lg border-dashed border-gray-200 sm:border-4"
+        class="sm:p-6"
       >
-        <div
-          class="sm:p-6"
+        <form
+          class="space-y-6"
+          data-testid="register-form"
         >
-          <form
-            class="space-y-6"
-            data-testid="register-form"
-          >
-            <div>
-              <label
-                class="text-sm font-medium text-gray-900 dark:text-white "
-                for="firstName"
-              >
-                First Name:
-              </label>
-              <input
-                class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
-                name="firstName"
-                placeholder="first name"
-                template="text"
-                type="text"
-              />
-            </div>
-            <div>
-              <label
-                class="text-sm font-medium text-gray-900 dark:text-white "
-                for="lastName"
-              >
-                Last Name:
-              </label>
-              <input
-                class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
-                name="lastName"
-                placeholder="last name"
-                template="text"
-                type="text"
-              />
-            </div>
-            <div>
-              <label
-                class="text-sm font-medium text-gray-900 dark:text-white "
-                for="email"
-              >
-                Your email:
-              </label>
-              <input
-                class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
-                name="email"
-                placeholder="name@company.com"
-                template="text"
-                type="email"
-              />
-            </div>
-            <div>
-              <label
-                class="text-sm font-medium text-gray-900 dark:text-white "
-                for="password"
-              >
-                Your password:
-              </label>
-              <input
-                class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
-                name="password"
-                placeholder="••••••••"
-                template="text"
-                type="password"
-              />
-            </div>
-            <div
-              class="flex sm:justify-end"
+          <div>
+            <label
+              class="text-sm font-medium text-gray-900 dark:text-white "
+              for="firstName"
             >
-              <button
-                class="rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 w-full sm:w-fit"
-                template="primary"
-                type="submit"
-              >
-                Register
-              </button>
-            </div>
-          </form>
-        </div>
+              First Name:
+            </label>
+            <input
+              class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
+              name="firstName"
+              placeholder="first name"
+              template="text"
+              type="text"
+            />
+          </div>
+          <div>
+            <label
+              class="text-sm font-medium text-gray-900 dark:text-white "
+              for="lastName"
+            >
+              Last Name:
+            </label>
+            <input
+              class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
+              name="lastName"
+              placeholder="last name"
+              template="text"
+              type="text"
+            />
+          </div>
+          <div>
+            <label
+              class="text-sm font-medium text-gray-900 dark:text-white "
+              for="email"
+            >
+              Your email:
+            </label>
+            <input
+              class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
+              name="email"
+              placeholder="name@company.com"
+              template="text"
+              type="email"
+            />
+          </div>
+          <div>
+            <label
+              class="text-sm font-medium text-gray-900 dark:text-white "
+              for="password"
+            >
+              Your password:
+            </label>
+            <input
+              class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
+              name="password"
+              placeholder="••••••••"
+              template="text"
+              type="password"
+            />
+          </div>
+          <div
+            class="flex sm:justify-end"
+          >
+            <button
+              class="flex items-center rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 w-full sm:w-fit"
+              type="submit"
+            >
+              Register
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </main>

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor, act } from '@testing-library/react'
 import { Mocked } from 'vitest'
 import { WrapperWith_Store_Query_Router } from '../../vitest-setup'
-import Login from '../Login'
+import Login from '../../Components/Modal/Login'
 
 import axios from 'axios'
 vi.mock('axios')

@@ -1,24 +1,56 @@
+
 # Reading Tracker
-Reading Tracker helps to identify the weaknesses of a child learning to read. It will help identify which phonetics the reader is struggling with and which sight words it cannot read.
+Reading Tracker is an app to help identify weaknesses for children learning to read. 
+It can track sight words a child struggles with and phonetics they have difficulty sounding out.
+
+###
+#### Features
+
+ - Track sight words child can and cannot read
+ - Track child's ability to sound out phonetic patterns
+ - View progress over time
+ - Generate custom reading exercises based on trouble words
 
 
-## Tech stack
- - [Vite]("https://vitejs.dev/")
- - [React]("https://reactjs.org/")
- - [Typescript]("https://www.typescriptlang.org/")
- - [Eslint]("https://eslint.org/")
- - [Prettier]("https://prettier.io/")
- - Tailwind
- - react-query
- - Redux
- - React Router
+##
 
-## Testing
- - [Vitest]("https://vitest.dev/")
- - [Testing library]("https://testing-library.com/")
- - [Happy-dom]("https://github.com/capricorn86/happy-dom")
+#### Tech Stack
+- React
+- Redux Toolkit
+- Tailwind CSS
+- React Query
+- React Router
+- Vite
+- Vitest
+- Happy DOM
+- Playwright
+- Ramdajs
+- Storybook
 
+##
+#### Getting Started
 
-## Other Tech
- - [Speech Recognition]("https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition#instance_methods")
+Install dependencies
+```
+npm install
+```
 
+Run dev server
+```
+npm run dev
+```
+
+Run tests
+```
+npm run test
+```
+
+Run e2e tests
+```
+npm run e2e
+```
+
+Run Storybook
+```
+npm run storybook
+```

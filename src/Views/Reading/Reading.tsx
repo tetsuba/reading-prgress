@@ -1,16 +1,17 @@
 import { useState } from 'react'
+import * as R from 'ramda'
 import { useMutation, useQueryClient } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import {
     buildStoryStructure,
     findBookHistory,
     isReadingCompleted,
-    prepareTrackerData,
-    STATUS
+    toggleStatus,
+    transformStoryToTrackerHistory
 } from './reading-utils'
-
-// SERVICE
-import { updateTracker } from '../../lib/service'
+import { updateTracker } from '../../api/tracker'
+import { notUndefined } from '../../lib/utils'
 
 // STORE
 import { updateBookHistory } from '../../store/book/bookSlice'
@@ -20,18 +21,12 @@ import { bookSelector } from '../../store/book/bookSelectors'
 // COMPONENTS
 import Sentence from './Sentence'
 import History from './History'
-import Speech from '../../Components/Speech/Speech'
-import Header from '../../Components/Header/Header'
-import { useNavigate } from 'react-router-dom'
+import SubHeader from '../../Components/SubHeader/SubHeader'
 import ScrollTo from '../../Components/ScrollTo/ScrollTo'
 import Main from '../../Components/Main/Main'
-import {
-    BackToBooksButton,
-    HistoryButton,
-    SentenceBackButton
-} from '../../Components/Button/Buttons'
 import Display from '../../Components/Dispay/Display'
 import Loop from '../../Components/Loop/Loop'
+import Button from '../../Components/Button/Button'
 
 export default function Reading() {
     const navigate = useNavigate()
@@ -57,19 +52,29 @@ export default function Reading() {
         }
     })
 
-    if (isReadingCompleted(story, count)) {
+    if (isReadingCompleted(story.length, count)) {
         setStory(buildStoryStructure(book.story))
         setCount(0)
-        mutation.mutate(prepareTrackerData(userId, book, story))
+
+        const trackerData = {
+            userId,
+            bookId: book.bookId,
+            libId: book.libId,
+            history: transformStoryToTrackerHistory(story)
+                .concat(book.history)
+                .emit()
+        }
+        mutation.mutate(trackerData)
     }
 
     function updateStoryState(
         status: string | undefined,
         wordIndex: number | undefined
     ) {
-        if (status !== undefined && wordIndex !== undefined) {
-            story[count][wordIndex].status =
-                status === STATUS.WRONG ? STATUS.CORRECT : STATUS.WRONG
+        if (notUndefined(status) && notUndefined(wordIndex)) {
+            story[count][wordIndex as number].status = toggleStatus(
+                status as string
+            )
             setStory([...story])
         }
     }
@@ -77,29 +82,45 @@ export default function Reading() {
     return (
         <>
             <ScrollTo top={0} />
-            <Header text={`${book.title}`}>
-                <BackToBooksButton onClick={() => navigate('/books')} />
-            </Header>
+            <SubHeader text={`${book.title}`}>
+                <Button
+                    className="ml-4 flex items-center place-self-start"
+                    data-testid="back-button"
+                    icon="back"
+                    template="secondary"
+                    onClick={() => navigate('/books')}
+                >
+                    <span className="ml-2 hidden md:inline">Back to books</span>
+                </Button>
+            </SubHeader>
             <Main>
                 <Display value={showHistory}>
                     <History
-                        history={book.history}
+                        history={R.reverse(book.history)}
                         story={story}
                         restart={() => {
                             setShowHistory(false)
                         }}
                     />
                 </Display>
-                <Display value={!showHistory && !!book.story}>
+                <Display value={R.not(showHistory) && !!book.story}>
                     <>
                         <div className="flex justify-end">
                             <Display value={count >= 1}>
-                                <SentenceBackButton
+                                <Button
+                                    data-testid="sentence-back-button"
+                                    icon="back"
+                                    template="icon-back"
+                                    className={`mb-3 p-2`}
                                     onClick={() => setCount(count - 1)}
                                 />
                             </Display>
                             <Display value={count < 1}>
-                                <HistoryButton
+                                <Button
+                                    data-testid="history-button"
+                                    icon="history"
+                                    template="icon-history"
+                                    className={`mb-3`}
                                     onClick={() => setShowHistory(true)}
                                 />
                             </Display>

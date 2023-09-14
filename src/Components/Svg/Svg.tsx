@@ -1,20 +1,23 @@
-export type SvgIconTypes =
-    | 'close'
-    | 'delete'
-    | 'user'
-    | 'mic'
-    | 'check-badge'
-    | 'history'
-    | 'warning'
-    | 'bookmark'
-    | 'library'
-    | 'eye'
-    | 'back'
-    | 'plus'
-    | 'thumb'
-    | 'menu'
-    | 'arrowRight'
-    | 'book'
+export const icons = [
+    'close',
+    'delete',
+    'user',
+    'mic',
+    'check-badge',
+    'history',
+    'warning',
+    'bookmark',
+    'library',
+    'eye',
+    'back',
+    'plus',
+    'thumb',
+    'menu',
+    'arrowRight',
+    'book'
+] as const
+
+export type SvgIconTypes = typeof icons[number]
 
 type PropTypes = {
     icon: SvgIconTypes

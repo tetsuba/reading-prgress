@@ -1,3 +1,6 @@
+import { LoginUserTypes, RegisterBookTypes } from '../api/api-types'
+import * as R from 'ramda'
+
 type ValueType = {
     value: string
 }
@@ -11,10 +14,10 @@ export interface RegistrationFormTypes extends EventTarget {
 
 export function formDataToQueryString(target: RegistrationFormTypes): string {
     const formData: { [key: string]: string } = {
-        firstName: target.firstName ? target.firstName.value : '',
-        lastName: target.lastName ? target.lastName.value : '',
-        email: target.email ? target.email.value : '',
-        password: target.password ? target.password.value : ''
+        firstName: R.pathOr('', ['firstName', 'value'], target),
+        lastName: R.pathOr('', ['lastName', 'value'], target),
+        email: R.pathOr('', ['email', 'value'], target),
+        password: R.pathOr('', ['password', 'value'], target)
     }
 
     return Object.keys(formData)
@@ -26,10 +29,10 @@ interface LoginFormTypes extends EventTarget {
     email?: ValueType
     password?: ValueType
 }
-export function formDataToObject(target: LoginFormTypes) {
+export function formDataToObject(target: LoginFormTypes): LoginUserTypes {
     return {
-        username: target.email?.value,
-        password: target.password?.value
+        username: R.pathOr('', ['email', 'value'], target),
+        password: R.pathOr('', ['password', 'value'], target)
     }
 }
 
@@ -42,15 +45,8 @@ interface LoginErrorMessageTypes extends Error {
 }
 
 export function getErrorMessage(error: LoginErrorMessageTypes): string {
-    if (
-        error &&
-        error.response &&
-        error.response.data &&
-        error.response.data.error
-    ) {
-        return error.response.data.error
-    }
-    return ''
+    console.log('getErrorMessage:', error)
+    return R.pathOr('', ['response', 'data', 'stack'], error)
 }
 
 export function delay(time: number) {
@@ -61,18 +57,26 @@ interface StoryFormTypes extends EventTarget {
     title?: ValueType
     story?: ValueType
 }
+
+const constructStory = R.compose(
+    R.filter((word) => R.not(R.isEmpty(word))),
+    R.split(/\n/),
+    R.pathOr('', ['story', 'value'])
+)
+
 export function mutateRegisterBookData(
     target: StoryFormTypes,
     userId: number
-): { [key: string]: number | string | undefined | string[] } {
-    const story = target.story?.value.split(/\n/).filter((word) => word)
+): RegisterBookTypes {
     return {
         userId,
-        title: target.title?.value,
-        story
+        title: R.pathOr('', ['title', 'value'], target),
+        story: constructStory(target)
     }
 }
 
-export function isNull<T>(data: T): boolean {
-    return data === null
+export function isArray<T>(data: T): boolean {
+    return Array.isArray(data)
 }
+
+export const notUndefined = <T>(v: T): boolean => R.not(R.isNil(v))

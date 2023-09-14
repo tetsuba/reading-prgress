@@ -1,10 +1,10 @@
 import H3 from '../../Components/H3/H3'
 import { WordTypes } from './Sentence'
-import { ApiBookHistoryTypes } from '../../lib/service-types'
+import { ApiBookHistoryTypes } from '../../api/api-types'
 import TAILWIND_CLASSES from '../../shared.tailwind'
-import { wordsFound, wordsReadIncorrectly } from './reading-utils'
-import { HistoryBackButton } from '../../Components/Button/Buttons'
+import { doesHistoryHaveWords, getHistoryWords } from './reading-utils'
 import Loop from '../../Components/Loop/Loop'
+import Button from '../../Components/Button/Button'
 
 type PropTypes = {
     story: WordTypes[][]
@@ -16,13 +16,18 @@ function HistoryHeader(props: PropTypes) {
     return (
         <div className="mb-4 flex items-center justify-between px-4">
             <H3 className="">{`I read this book ${props.history.length} times`}</H3>
-            <HistoryBackButton onClick={props.restart} />
+            <Button
+                data-testid="history-back-button"
+                icon="back"
+                template="icon-back"
+                onClick={props.restart}
+            />
         </div>
     )
 }
 
 function HistoryBlock(props: { data?: ApiBookHistoryTypes }) {
-    const status = wordsFound(props.data)
+    const status: boolean = doesHistoryHaveWords(props)
     return (
         <div data-testid="history-block">
             <div className="flex justify-between px-4 text-sm">
@@ -35,7 +40,7 @@ function HistoryBlock(props: { data?: ApiBookHistoryTypes }) {
                         status
                     )}`}
                 >
-                    {wordsReadIncorrectly(props.data)}
+                    {getHistoryWords(props)}
                 </span>
             </div>
         </div>
