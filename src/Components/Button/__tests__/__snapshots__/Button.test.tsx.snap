@@ -3,7 +3,7 @@
 exports[`Button > should render an icon button 1`] = `
 <DocumentFragment>
   <button
-    class="bg-transparent inline-flex items-center rounded-lg text-sm text-gray-400 p-1.5 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white "
+    class="bg-transparent inline-flex items-center rounded-lg text-sm text-gray-400 "
   >
     <svg
       aria-hidden="true"
@@ -18,6 +18,16 @@ exports[`Button > should render an icon button 1`] = `
         fill-rule="evenodd"
       />
     </svg>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button > should render icon button 1`] = `
+<DocumentFragment>
+  <button
+    class="bg-transparent inline-flex items-center rounded-lg text-sm text-gray-400 "
+  >
+    icon
   </button>
 </DocumentFragment>
 `;
@@ -42,16 +52,6 @@ exports[`Button > should render secondary button 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Button > should render svgClose button 1`] = `
-<DocumentFragment>
-  <button
-    class="bg-transparent inline-flex items-center rounded-lg text-sm text-gray-400 p-1.5 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white "
-  >
-    svgClose
-  </button>
-</DocumentFragment>
-`;
-
 exports[`Button > should render tertiary button 1`] = `
 <DocumentFragment>
   <button
@@ -62,12 +62,12 @@ exports[`Button > should render tertiary button 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Button > should render textLink button 1`] = `
+exports[`Button > should render text-link button 1`] = `
 <DocumentFragment>
   <button
-    class="undefined "
+    class="text-blue-700 hover:underline dark:text-blue-500 "
   >
-    textLink
+    text-link
   </button>
 </DocumentFragment>
 `;

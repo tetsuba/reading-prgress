@@ -9,8 +9,8 @@ describe('Button', () => {
         'secondary',
         'tertiary',
         'warning',
-        'svgClose',
-        'textLink'
+        'icon',
+        'text-link'
     ]
     test.each(buttonTemplates)(
         'should render %s button',
@@ -23,7 +23,7 @@ describe('Button', () => {
     )
     test('should render an icon button', () => {
         const { asFragment } = render(
-            <Button template="svgClose">
+            <Button template="icon">
                 <Svg icon="close"></Svg>
             </Button>
         )
