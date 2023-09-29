@@ -46,7 +46,6 @@ exports[`Login > should render 1`] = `
             class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
             name="email"
             placeholder="name@company.com"
-            template="text"
             type="email"
           />
         </div>
@@ -61,7 +60,6 @@ exports[`Login > should render 1`] = `
             class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
             name="password"
             placeholder="••••••••"
-            template="text"
             type="password"
           />
         </div>
@@ -78,7 +76,6 @@ exports[`Login > should render 1`] = `
                 class="bg-gray-50 border border-gray-300 w-4 h-4 rounded focus:ring-3 focus:ring-blue-300 "
                 defaultvalue=""
                 id="remember-me"
-                template="checkbox"
                 type="checkbox"
                 value=""
               />

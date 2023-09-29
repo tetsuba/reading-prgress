@@ -6,8 +6,6 @@ import {story1} from './mockData/myBooks'
 import {setupRoute, clickOnViewBooks} from "./tests-utils";
 
 test.describe('Book', () => {
-
-
     test.use({storageState: './tests/mockData/localStorage.json'})
     test.beforeEach(async ({page  }) => {
         await setupRoute(page, '**/api/reading/user', userDetails)

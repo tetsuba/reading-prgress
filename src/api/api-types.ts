@@ -23,6 +23,7 @@ export type ApiCollectionResponseTypes = {
     data: ApiCollectionTypes[]
 }
 
+// TODO: to be removed
 export type ApiUpdateTrackerTypes = {
     userId: ApiBookTypes['userId']
     libId: ApiCollectionTypes['id']
@@ -37,16 +38,37 @@ export type ApiUserTypes = {
     id: number
 }
 
+export type ApiProgressType = {
+    userId: ApiBookTypes['userId']
+    libId: ApiCollectionTypes['id']
+    bookId: ApiBookTypes['id']
+    history: ApiBookHistoryTypes[]
+}
+
+export type ApiStudentType = {
+    studentId: number
+    firstname: string
+    lastname: string
+    dob: string
+    progress: ApiProgressType[] | []
+}
+
 export type ApiUserResponseTypes = {
     data: {
-        data: ApiUserTypes
+        user: ApiUserTypes
+        books: ApiCollectionTypes[]
+        students: []
         token: string
     }
 }
 
 export type ApiGetUserDetailsTypes = {
     status: number
-    data: ApiUserTypes
+    data: {
+        user: ApiUserTypes
+        books: ApiCollectionTypes[]
+        students: []
+    }
 }
 
 export type ApiWordTypes = {
@@ -80,6 +102,17 @@ export type ApiDashboardResponseTypes = {
             history: ApiWordTypes[]
         }
     }
+}
+
+export type ApiStudentResponseTypes = {
+    data: ApiStudentType[]
+}
+
+export type JsonStudentTypes = {
+    firstname: string
+    lastname: string
+    dob: string
+    userId: number
 }
 
 export type RegisterBookTypes = {

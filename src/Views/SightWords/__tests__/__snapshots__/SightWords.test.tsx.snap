@@ -23,7 +23,6 @@ exports[`SightWords > will render groups of sight words 1`] = `
       data-testid="search"
       defaultvalue=""
       placeholder="Search"
-      template="text"
       type="text"
     />
     <h3

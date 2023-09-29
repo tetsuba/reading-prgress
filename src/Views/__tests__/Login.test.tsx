@@ -69,7 +69,7 @@ describe('Login', () => {
     test('should return success with correct login details', async () => {
         mockedAxios.post.mockResolvedValue({
             data: {
-                data: {
+                user: {
                     firstName: 'firstName',
                     lastName: 'lastName',
                     email: 'email',

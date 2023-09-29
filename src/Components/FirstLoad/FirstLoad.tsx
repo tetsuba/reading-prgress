@@ -10,6 +10,8 @@ import Expired from '../Modal/Expired'
 import Loading from '../Loading/Loading'
 import { getUserDetails } from '../../api/user'
 import { updateUser } from '../../store/user/userSlice'
+import { addBooks } from '../../store/books/booksSlice'
+import { addStudents } from '../../store/students/studentsSlice'
 
 type PropTypes = {
     children: JSX.Element
@@ -33,7 +35,14 @@ export default function FirstLoad(props: PropTypes) {
 
     if (isLoading) return <Loading />
     if (isError) ls.remove()
-    if (isSuccess) dispatch(updateUser({ data: data.data, token }))
+    if (isSuccess) {
+        const {
+            data: { user, books, students }
+        } = data
+        dispatch(updateUser({ user, token }))
+        dispatch(addBooks(books))
+        dispatch(addStudents(students))
+    }
 
     return (
         <>

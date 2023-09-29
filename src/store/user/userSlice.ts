@@ -5,7 +5,7 @@ import { ApiUserTypes } from '../../api/api-types'
 
 interface UpdateUserActionTypes extends ActionTypes {
     payload: {
-        data: ApiUserTypes
+        user: ApiUserTypes
         token: string
     }
 }
@@ -24,10 +24,10 @@ export const userSlice = createSlice({
     reducers: {
         updateUser: (state, action: UpdateUserActionTypes) => {
             ls.save(action.payload.token)
-            state.firstName = action.payload.data.firstName
-            state.lastName = action.payload.data.lastName
-            state.email = action.payload.data.email
-            state.id = action.payload.data.id
+            state.firstName = action.payload.user.firstName
+            state.lastName = action.payload.user.lastName
+            state.email = action.payload.user.email
+            state.id = action.payload.user.id
             state.token = action.payload.token
         },
         resetUserToInitialState: () => initialState

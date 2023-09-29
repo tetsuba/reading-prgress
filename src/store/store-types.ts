@@ -1,4 +1,8 @@
-import { ApiBookHistoryTypes, ApiCollectionTypes } from '../api/api-types'
+import {
+    ApiBookHistoryTypes,
+    ApiCollectionTypes,
+    ApiStudentType
+} from '../api/api-types'
 import store from './store'
 
 export type ActionTypes = {
@@ -6,6 +10,8 @@ export type ActionTypes = {
 }
 
 export type StateBookHistoryTypes = ApiBookHistoryTypes
+export type StateBooksTypes = ApiCollectionTypes[]
+export type StateStudentTypes = ApiStudentType
 
 export interface StateBookTypes {
     bookId: number
@@ -34,11 +40,14 @@ export type StateViewGlobalTypes = {
 export interface StateViewTypes {
     books: BooksViewTypes
     global: StateViewGlobalTypes
+    studentId: number | null
 }
 
 export interface StateTypes {
-    user: StateUserTypes
     book: StateBookTypes
+    books: StateBooksTypes
+    students: StateStudentTypes[]
+    user: StateUserTypes
     view: StateViewTypes
 }
 

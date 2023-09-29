@@ -67,7 +67,7 @@ describe('FirstLoad', () => {
         const SUCCESS: {
             status: number
             data: {
-                data: {
+                user: {
                     firstName: string
                     lastName: string
                     email: string
@@ -77,7 +77,7 @@ describe('FirstLoad', () => {
         } = {
             status: 200,
             data: {
-                data: {
+                user: {
                     firstName: 'firstName',
                     lastName: 'lastName',
                     email: 'email',

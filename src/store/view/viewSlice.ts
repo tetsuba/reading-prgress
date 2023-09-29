@@ -8,11 +8,16 @@ const initialState = {
     },
     global: {
         expired: false
-    }
+    },
+    studentId: null
 } as StateViewTypes
 
 interface UpdateViewBooksCollectionActionTypes extends ActionTypes {
     payload: ApiCollectionTypes | null
+}
+
+interface UpdateViewStudentIdActionTypes extends ActionTypes {
+    payload: number | null
 }
 
 export const viewSlice = createSlice({
@@ -30,12 +35,21 @@ export const viewSlice = createSlice({
             action: ActionTypes & { payload: boolean }
         ) => {
             state.global.expired = action.payload
+        },
+        updateViewStudentId: (
+            state,
+            action: UpdateViewStudentIdActionTypes
+        ) => {
+            state.studentId = action.payload
         }
     }
 })
 
 // Action creators are generated for each case reducer function
-export const { updateViewBookCollection, toggleViewGlobalExpired } =
-    viewSlice.actions
+export const {
+    updateViewStudentId,
+    updateViewBookCollection,
+    toggleViewGlobalExpired
+} = viewSlice.actions
 
 export default viewSlice.reducer

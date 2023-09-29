@@ -1,6 +1,6 @@
 export const userDetailsLogin = {
     token: 'mockTokenForTesting',
-    data: {
+    user: {
         id: 7,
         firstName: 'bob',
         lastName: 'bob',
@@ -8,10 +8,12 @@ export const userDetailsLogin = {
     }
 }
 export const userDetails = {
-    id: 7,
-    firstName: 'bob',
-    lastName: 'bob',
-    email: 'bob@bob.com'
+    user: {
+        id: 7,
+        firstName: 'bob',
+        lastName: 'bob',
+        email: 'bob@bob.com'
+    }
 }
 
 export const userLoginError = {

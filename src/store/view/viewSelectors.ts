@@ -11,3 +11,8 @@ export const viewGlobalExpiredSelector = createSelector(
     stateView,
     (view: StateViewTypes) => view.global.expired
 )
+
+export const viewStudentIdSelector = createSelector(
+    stateView,
+    (view) => view.studentId
+)
