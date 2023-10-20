@@ -4,6 +4,7 @@ exports[`CollectionRow > if collection row icon is green 1`] = `
 <DocumentFragment>
   <div
     class="flex justify-between px-4 py-5 sm:gap-4 sm:px-6 bg-gray-50"
+    data-testid="row-test"
   >
     <div
       class="flex items-center"

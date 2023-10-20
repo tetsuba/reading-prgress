@@ -1,9 +1,17 @@
 import * as R from 'ramda'
-import { ApiCollectionTypes } from '../../api/api-types'
 import { useDispatch } from 'react-redux'
-import Row from './Row'
-import { updateViewBookCollection } from '../../store/view/viewSlice'
+
+// TYPES
+import { ApiCollectionTypes } from '../../api/api-types'
+
+// STORE
+import { updateCurrentCollectionId } from '../../store/current/currentSlice'
+
+// UTILS
 import { allBooksCompleted } from '../../Views/Books/book-utils'
+
+// COMPONENTS
+import Row from './Row'
 import Button from '../Button/Button'
 
 export type CollectionPropTypes = {
@@ -27,7 +35,7 @@ export default function CollectionRow(props: CollectionPropTypes) {
                 data-testid="collection-button"
                 icon="eye"
                 template={`${completed ? 'disabled' : 'secondary'}`}
-                onClick={() => dispatch(updateViewBookCollection(data))}
+                onClick={() => dispatch(updateCurrentCollectionId(data.id))}
                 right
             >
                 <span className="mr-1 hidden md:inline">View Books</span>

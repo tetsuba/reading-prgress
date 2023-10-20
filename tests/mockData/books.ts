@@ -1,10 +1,41 @@
 export default [
     {
         "id": "001",
-        "author": "My Books",
-        "title": "My Books",
-        "description": "Books added by me",
-        "books": []
+        "author": "Progress Reader",
+        "title": "Books for testing",
+        "description": "Books for e2e tests",
+        "books": [
+            {
+                "id": 1,
+                "title": "Test book 1",
+                "story": [
+                    "Once upon a time",
+                    "There was a dog",
+                    "the end",
+                ],
+                "history": null
+            },
+            {
+                "id": 2,
+                "title": "Test book 1",
+                "story": [
+                    "Long long time ago",
+                    "In a far away land",
+                    "never to be seen",
+                ],
+                "history": null
+            },
+            {
+                "id": 3,
+                "title": "Test book 1",
+                "story": [
+                    "In a distance land",
+                    "a person called bob",
+                    "lived happy ever after",
+                ],
+                "history": null
+            }
+        ]
     },
     {
         "id": "002",
@@ -1242,37 +1273,3 @@ export default [
         ]
     }
 ]
-
-
-
-// History Example
-// "history": [
-//     {
-//         "date": "18/02/2023",
-//         "words": [
-//             "pick",
-//             "and",
-//             "nell",
-//             "pup",
-//             "and",
-//             "ted",
-//             "tell",
-//             "bug",
-//             "got"
-//         ]
-//     },
-//     {
-//         "date": "24/02/2023",
-//         "words": []
-//     },
-//     {
-//         "date": "02/03/2023",
-//         "words": [
-//             "pick"
-//         ]
-//     },
-//     {
-//         "date": "03/03/2023",
-//         "words": []
-//     }
-// ]

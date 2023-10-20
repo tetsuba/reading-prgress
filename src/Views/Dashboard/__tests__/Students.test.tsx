@@ -8,7 +8,6 @@ import {
 import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
 import Students from '../Students'
 import store from '../../../store/store'
-import { addStudents } from '../../../store/students/studentsSlice'
 import axios from 'axios'
 import { Mocked } from 'vitest'
 
@@ -37,8 +36,6 @@ mockedAxios.delete.mockResolvedValue({
 })
 
 describe('Students', () => {
-    store.dispatch(addStudents(mockStudents))
-
     test('should render students', () => {
         const { asFragment } = render(
             <WrapperWith_Store_Query_Router pathname={'/dashboard'}>
@@ -65,15 +62,14 @@ describe('Students', () => {
         expect(screen.getAllByTestId('student-delete')).toHaveLength(1)
     })
     test('should select a student', () => {
-        const name = `${mockStudents[0].firstname} ${mockStudents[0].lastname}`
         render(
             <WrapperWith_Store_Query_Router pathname={'/dashboard'}>
                 <Students />
             </WrapperWith_Store_Query_Router>
         )
         fireEvent.click(screen.getAllByTestId('select-student')[0])
-        expect(store.getState().view.studentId).toEqual(
-            mockStudents[1].studentId
+        expect(store.getState().current.studentId).toEqual(
+            store.getState().students[0].studentId
         )
     })
 })

@@ -1,22 +1,20 @@
 import { useState } from 'react'
 import * as R from 'ramda'
-import { useMutation, useQueryClient } from 'react-query'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {
     buildStoryStructure,
-    findBookHistory,
     isReadingCompleted,
-    toggleStatus,
-    transformStoryToTrackerHistory
+    toggleStatus
 } from './reading-utils'
-import { updateTracker } from '../../api/tracker'
 import { notUndefined } from '../../lib/utils'
 
+// CUSTOM HOOK
+import useUpdateStudentProgress from './useUpdateStudentProgress'
+
 // STORE
-import { updateBookHistory } from '../../store/book/bookSlice'
-import { userIdSelector } from '../../store/user/userSelectors'
-import { bookSelector } from '../../store/book/bookSelectors'
+import { bookSelector } from '../../store/books/booksSelectors'
+import { studentProgressBookHistorySelector } from '../../store/students/studentsSelectors'
 
 // COMPONENTS
 import Sentence from './Sentence'
@@ -30,41 +28,27 @@ import Button from '../../Components/Button/Button'
 
 export default function Reading() {
     const navigate = useNavigate()
-    const queryClient = useQueryClient()
-    const dispatch = useDispatch()
+
     // SELECTORS
     const book = useSelector(bookSelector)
-    const userId = useSelector(userIdSelector)
+    const studentProgressHistory = useSelector(
+        studentProgressBookHistorySelector
+    )
+
     // STATES
-    const [story, setStory] = useState(buildStoryStructure(book.story))
+    const [story, setStory] = useState(
+        buildStoryStructure(book ? book.story : [])
+    )
     const [count, setCount] = useState(0)
     const [showHistory, setShowHistory] = useState(false)
-    // SERVICES
-    const mutation = useMutation(updateTracker, {
-        onSuccess: async (data) => {
-            queryClient.setQueryData(['books', userId], data)
-            await queryClient.invalidateQueries(['words'])
-            const history = findBookHistory(data.data, book)
-            dispatch(updateBookHistory(history))
-        },
-        onSettled() {
-            setShowHistory(true)
-        }
-    })
 
-    if (isReadingCompleted(story.length, count)) {
-        setStory(buildStoryStructure(book.story))
+    // CUSTOM STATE
+    const updateStudentProgress = useUpdateStudentProgress(setShowHistory)
+
+    if (isReadingCompleted(story.length, count) && book) {
+        updateStudentProgress(story)
         setCount(0)
-
-        const trackerData = {
-            userId,
-            bookId: book.bookId,
-            libId: book.libId,
-            history: transformStoryToTrackerHistory(story)
-                .concat(book.history)
-                .emit()
-        }
-        mutation.mutate(trackerData)
+        setStory(buildStoryStructure(book.story))
     }
 
     function updateStoryState(
@@ -77,6 +61,10 @@ export default function Reading() {
             )
             setStory([...story])
         }
+    }
+
+    if (!book) {
+        return <div>Loading...</div>
     }
 
     return (
@@ -96,7 +84,7 @@ export default function Reading() {
             <Main>
                 <Display value={showHistory}>
                     <History
-                        history={R.reverse(book.history)}
+                        history={R.reverse(studentProgressHistory)}
                         story={story}
                         restart={() => {
                             setShowHistory(false)

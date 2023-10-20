@@ -39,6 +39,7 @@ const AXIOS_ERROR: AxiosErrorTypes = {
 
 const spyGet = vi.spyOn(localStorage, 'get')
 const spyRemove = vi.spyOn(localStorage, 'remove')
+const spyGetStudentId = vi.spyOn(localStorage, 'getStudentId')
 
 describe('FirstLoad', () => {
     afterEach(() => {
@@ -100,6 +101,7 @@ describe('FirstLoad', () => {
         )
 
         expect(spyGet).toHaveBeenCalled()
+        expect(spyGetStudentId).toHaveBeenCalled()
         await waitFor(() => expect(screen.getByText('Loading...')))
         await waitFor(() => expect(screen.getByText('Dash Mock')))
     })

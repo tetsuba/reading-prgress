@@ -1,6 +1,7 @@
 import {
     ApiBookHistoryTypes,
     ApiCollectionTypes,
+    ApiProgressType,
     ApiStudentType
 } from '../api/api-types'
 import store from './store'
@@ -12,6 +13,8 @@ export type ActionTypes = {
 export type StateBookHistoryTypes = ApiBookHistoryTypes
 export type StateBooksTypes = ApiCollectionTypes[]
 export type StateStudentTypes = ApiStudentType
+export type StateCollectionTypes = ApiCollectionTypes
+export type StateProgressTypes = ApiProgressType
 
 export interface StateBookTypes {
     bookId: number
@@ -29,26 +32,37 @@ export interface StateUserTypes {
     token: string
 }
 
-export type BooksViewTypes = {
-    collection: ApiCollectionTypes | null
-}
-
 export type StateViewGlobalTypes = {
     expired: boolean
 }
 
 export interface StateViewTypes {
-    books: BooksViewTypes
     global: StateViewGlobalTypes
+}
+
+export interface StateCurrentTypes {
     studentId: number | null
+    collectionId: string | null
+    bookId: number | null
 }
 
 export interface StateTypes {
-    book: StateBookTypes
     books: StateBooksTypes
+    current: StateCurrentTypes
     students: StateStudentTypes[]
     user: StateUserTypes
     view: StateViewTypes
 }
 
 export type AppDispatch = typeof store.dispatch
+
+export type ReadWordsTypes = {
+    word: string
+    index: number
+}
+
+export type StudentProgressReadWordsTypes = {
+    oneWeekAgo: ReadWordsTypes[] | string[]
+    oneMonthAgo: ReadWordsTypes[] | string[]
+    history: ReadWordsTypes[] | string[]
+}

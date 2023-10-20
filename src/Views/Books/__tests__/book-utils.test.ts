@@ -29,7 +29,6 @@ describe('book-utils', () => {
                 id: 1,
                 story: [],
                 title: '',
-                userId: 1,
                 history: [
                     { date: '', words: ['word'] },
                     { date: '', words: [] }
@@ -39,14 +38,12 @@ describe('book-utils', () => {
                 id: 1,
                 story: [],
                 title: '',
-                userId: 1,
                 history: [{ date: '', words: [] }]
             },
             {
                 id: 1,
                 story: [],
                 title: '',
-                userId: 1,
                 history: [{ date: '', words: [] }]
             }
         ]
@@ -55,21 +52,18 @@ describe('book-utils', () => {
                 id: 1,
                 story: [],
                 title: '',
-                userId: 1,
                 history: [{ date: '', words: ['word'] }]
             },
             {
                 id: 1,
                 story: [],
                 title: '',
-                userId: 1,
                 history: [{ date: '', words: [] }]
             },
             {
                 id: 1,
                 story: [],
                 title: '',
-                userId: 1,
                 history: [{ date: '', words: [] }]
             }
         ]
@@ -78,7 +72,6 @@ describe('book-utils', () => {
                 id: 1,
                 story: [],
                 title: '',
-                userId: 1,
                 history: null
             }
         ]

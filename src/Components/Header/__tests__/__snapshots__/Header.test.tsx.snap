@@ -3,10 +3,10 @@
 exports[`Header > not authenticated > clicking on the login button 1`] = `
 <DocumentFragment>
   <div
-    class="fixed z-10 w-full bg-gray-800 md:h-auto"
+    class="fixed z-10 flex w-full flex-col md:h-auto"
   >
     <header
-      class="mx-auto flex h-16 max-w-7xl justify-between px-4 sm:px-6 md:relative lg:px-8"
+      class="mx-auto flex h-16 w-full max-w-7xl justify-between bg-gray-800 px-4 sm:px-6 md:relative lg:px-8"
     >
       <div
         class="flex items-center"

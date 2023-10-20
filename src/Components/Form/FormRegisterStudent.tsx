@@ -15,7 +15,7 @@ import { getErrorMessage } from '../../lib/utils'
 import Button from '../Button/Button'
 
 // API
-import { registerStudent } from '../../api/api-students'
+import { registerStudent } from '../../api/students'
 
 type FormTypes = {
     closeModal: () => void

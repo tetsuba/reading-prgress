@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as R from 'ramda'
+import ls from '../../lib/localStorage'
 
 // STORE
 import { studentsSelector } from '../../store/students/studentsSelectors'
-import { updateViewStudentId } from '../../store/view/viewSlice'
+import { updateCurrentStudentId } from '../../store/current/currentSlice'
 
 // TYPES
-import { StateStudentTypes } from '../../store/store-types'
+import { StateStudentTypes } from '../../store/store.types'
 
 // COMPONENTS
 import Loop from '../../Components/Loop/Loop'
@@ -25,7 +26,8 @@ export default function Students() {
             <Loop array={students}>
                 <StudentRow
                     selectStudent={(student) => {
-                        dispatch(updateViewStudentId(student.studentId))
+                        dispatch(updateCurrentStudentId(student.studentId))
+                        ls.saveStudentId(student.studentId)
                     }}
                     deleteStudent={(student) => {
                         setDeleteStudent(student)

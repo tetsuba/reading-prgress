@@ -1,5 +1,6 @@
+import * as R from 'ramda'
 import { createSlice } from '@reduxjs/toolkit'
-import { ActionTypes, StateStudentTypes } from '../store-types'
+import { ActionTypes, StateStudentTypes } from '../store.types'
 
 interface AddStudentActionTypes extends ActionTypes {
     payload: StateStudentTypes[]

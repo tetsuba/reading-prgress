@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { queryClient } from '../../App'
 import { initialState } from '../../store/user/userSlice'
 import { configureStore, createSlice } from '@reduxjs/toolkit'
-import { StateUserTypes } from '../../store/store-types'
+import { StateUserTypes } from '../../store/store.types'
 
 const meta = {
     title: 'Layout/Header',

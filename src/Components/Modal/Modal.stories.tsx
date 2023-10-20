@@ -4,7 +4,6 @@ import Expired from './Expired'
 import { Provider } from 'react-redux'
 import store from '../../store/store'
 import Confirmation from './Confirmation'
-import RegisterBookForm from '../../Views/Books/RegisterBookForm'
 import { QueryClientProvider } from 'react-query'
 import { queryClient } from '../../App'
 import MobileMenu from './MobileMenu'
@@ -76,22 +75,6 @@ export const ConfirmationModal: Story = {
                 clickHandlerCancel={() => null}
             />
         )
-    }
-}
-
-export const RegisterBookModal: Story = {
-    decorators: [
-        (story) => (
-            <Provider store={store}>
-                <QueryClientProvider client={queryClient}>
-                    <div id="modal">{story()}</div>
-                </QueryClientProvider>
-            </Provider>
-        )
-    ],
-    args: {
-        className: '',
-        children: <RegisterBookForm clickHandlerCancel={() => () => null} />
     }
 }
 

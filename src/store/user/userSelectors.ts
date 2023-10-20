@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { StateUserTypes, StateTypes } from '../store-types'
+import { StateUserTypes, StateTypes } from '../store.types'
 
 export const userSelector = (state: StateTypes) => state.user
 export const userTokenSelector = createSelector(

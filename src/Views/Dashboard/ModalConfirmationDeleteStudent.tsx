@@ -2,7 +2,7 @@ import { useMutation } from 'react-query'
 import * as R from 'ramda'
 
 // API
-import { deleteStudent } from '../../api/api-students'
+import { deleteStudent } from '../../api/students'
 
 // COMPONENTS
 import Modal from '../../Components/Modal/Modal'
@@ -10,7 +10,7 @@ import Confirmation from '../../Components/Modal/Confirmation'
 import Display from '../../Components/Dispay/Display'
 import { useDispatch } from 'react-redux'
 import { addStudents } from '../../store/students/studentsSlice'
-import { StateStudentTypes } from '../../store/store-types'
+import { StateStudentTypes } from '../../store/store.types'
 
 // TODO: if delete responds an error what should happen?
 

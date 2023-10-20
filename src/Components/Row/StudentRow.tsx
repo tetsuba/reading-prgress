@@ -4,7 +4,7 @@ import * as R from 'ramda'
 import { getIconColorForBookRow } from '../../Views/Books/book-utils'
 
 // TYPES
-import { StateStudentTypes } from '../../store/store-types'
+import { StateStudentTypes } from '../../store/store.types'
 
 // COMPONENTS
 import Row from './Row'
@@ -13,19 +13,14 @@ import Button from '../Button/Button'
 type PropTypes = {
     data?: StateStudentTypes
     index?: number
-    deleteStudent?: (v: StateStudentTypes) => void
-    selectStudent?: (v: StateStudentTypes) => void
+    deleteStudent: (v: StateStudentTypes) => void
+    selectStudent: (v: StateStudentTypes) => void
 }
 
 export default function StudentRow(props: PropTypes) {
     const { data, index, deleteStudent, selectStudent } = props
 
-    if (
-        R.isNil(data) ||
-        R.isNil(deleteStudent) ||
-        R.isNil(selectStudent) ||
-        R.isNil(index)
-    ) {
+    if (R.isNil(data) || R.isNil(index)) {
         return <>loading...</>
     }
 

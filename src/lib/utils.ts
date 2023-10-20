@@ -63,17 +63,6 @@ const constructStory = R.compose(
     R.pathOr('', ['story', 'value'])
 )
 
-export function mutateRegisterBookData(
-    target: StoryFormTypes,
-    userId: number
-): RegisterBookTypes {
-    return {
-        userId,
-        title: R.pathOr('', ['title', 'value'], target),
-        story: constructStory(target)
-    }
-}
-
 export function isArray<T>(data: T): boolean {
     return Array.isArray(data)
 }

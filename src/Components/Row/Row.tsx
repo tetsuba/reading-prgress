@@ -12,6 +12,7 @@ export default function Row(props: PropTypes) {
     const rowShade = props.index & 1 ? 'bg-white' : 'bg-gray-50'
     return (
         <div
+            data-testid="row-test"
             key={`book-list-${props.index}`}
             className={`flex justify-between px-4 py-5 sm:gap-4 sm:px-6 ${rowShade}`}
         >

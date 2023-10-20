@@ -101,7 +101,11 @@ export default function Login(props: PropTypes) {
                     >
                         {getErrorMessage(mutation.error as Error)}
                     </ErrorMessage>
-                    <Button template="primary" className="w-full" type="submit">
+                    <Button
+                        template="primary"
+                        className="w-full justify-center"
+                        type="submit"
+                    >
                         Login to your account
                     </Button>
                     <div className="text-sm font-medium text-gray-500 dark:text-gray-300">

@@ -1,23 +1,22 @@
 import * as R from 'ramda'
-import { updateViewBookCollection } from '../../store/view/viewSlice'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useState, useMemo } from 'react'
-import { ApiBookTypes, ApiCollectionTypes } from '../../api/api-types'
-import { userIdSelector } from '../../store/user/userSelectors'
-import { useMutation, useQueryClient } from 'react-query'
+
+// UTILS
 import { filterBooksByTitle, getBooks } from './book-utils'
-import { deleteBook } from '../../api/book'
+
+// STORE
+import { updateCurrentCollectionId } from '../../store/current/currentSlice'
 
 // COMPONENTS
 import Svg from '../../Components/Svg/Svg'
 import Input from '../../Components/Form/Input'
-import Display from '../../Components/Dispay/Display'
-import AddBook from './AddBook'
-import Modal from '../../Components/Modal/Modal'
-import Confirmation from '../../Components/Modal/Confirmation'
 import Loop from '../../Components/Loop/Loop'
 import BookRow from '../../Components/Row/BookRow'
 import Button from '../../Components/Button/Button'
+
+// TYPES
+import { ApiCollectionTypes } from '../../api/api-types'
 
 type PropTypes = {
     collection: ApiCollectionTypes | null
@@ -25,16 +24,7 @@ type PropTypes = {
 
 export default function ListOfBooks(props: PropTypes) {
     const dispatch = useDispatch()
-    // TODO: rename to deleteBookData or something like that
-    const [book, setBook] = useState<null | ApiBookTypes>(null)
     const [search, setSearch] = useState('')
-    const userId = useSelector(userIdSelector)
-    const queryClient = useQueryClient()
-    const mutation = useMutation(deleteBook, {
-        onSuccess: (data) => {
-            queryClient.setQueryData(['books', userId], data)
-        }
-    })
     const books = useMemo(() => getBooks(props), [props.collection])
 
     if (R.isNil(props.collection)) return <>loading...</>
@@ -48,7 +38,7 @@ export default function ListOfBooks(props: PropTypes) {
                     data-testid="back-button"
                     icon="back"
                     template="primary"
-                    onClick={() => dispatch(updateViewBookCollection(null))}
+                    onClick={() => dispatch(updateCurrentCollectionId(null))}
                 >
                     <span className="ml-2">Back</span>
                 </Button>
@@ -72,33 +62,10 @@ export default function ListOfBooks(props: PropTypes) {
                         placeholder="Search"
                     />
                 </div>
-                <div className=" ml-2 flex items-center justify-end">
-                    <Display value={props.collection.id === '001'}>
-                        <AddBook />
-                    </Display>
-                </div>
             </div>
-            <Loop
-                array={filteredBooks}
-                collectionId={props.collection.id}
-                deleteBook={setBook}
-            >
+            <Loop array={filteredBooks} collectionId={props.collection.id}>
                 <BookRow />
             </Loop>
-            <Display value={R.isNotNil(book)}>
-                <Modal className="max-w-md">
-                    <Confirmation
-                        bookTitle={book ? book.title : ''}
-                        clickHandlerCancel={() => setBook(null)}
-                        clickHandlerDelete={() => {
-                            if (book) {
-                                mutation.mutate(book.id)
-                                setBook(null)
-                            }
-                        }}
-                    />
-                </Modal>
-            </Display>
         </div>
     )
 }

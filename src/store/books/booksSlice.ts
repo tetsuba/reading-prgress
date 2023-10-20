@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ActionTypes } from '../store-types'
+import { ActionTypes } from '../store.types'
 import { ApiCollectionTypes } from '../../api/api-types'
 
-const initialState = [] as ApiCollectionTypes[] | []
+export const initialState = [] as ApiCollectionTypes[] | []
 
 interface UpdateBooksActionTypes extends ActionTypes {
     payload: ApiCollectionTypes[]
