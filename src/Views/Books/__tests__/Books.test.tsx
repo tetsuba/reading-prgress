@@ -4,7 +4,8 @@ import Books from '../Books'
 import store from '../../../store/store'
 import {
     updateCurrentBookId,
-    updateCurrentCollectionId
+    updateCurrentCollectionId,
+    updateCurrentStudentId
 } from '../../../store/current/currentSlice'
 
 const mockNavigate = vi.fn()
@@ -15,6 +16,7 @@ vi.mock('react-router-dom', () => ({
 
 describe('Books View', () => {
     beforeEach(() => {
+        store.dispatch(updateCurrentStudentId(1))
         render(
             <WrapperWith_Store_Query_Router pathname={'/books'}>
                 <Books />
@@ -24,7 +26,6 @@ describe('Books View', () => {
             store.dispatch(updateCurrentBookId(null))
             store.dispatch(updateCurrentCollectionId(null))
         })
-        // await waitFor(() => expect(screen.getByTestId('collection-list')))
     })
     test('opening and closing a collection', async () => {
         fireEvent.click(screen.queryAllByTestId('collection-button')[0])

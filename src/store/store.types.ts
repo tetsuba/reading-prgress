@@ -16,7 +16,7 @@ export type StateStudentTypes = ApiStudentType
 export type StateCollectionTypes = ApiCollectionTypes
 export type StateProgressTypes = ApiProgressType
 
-export interface StateBookTypes {
+export type StateBookTypes = {
     bookId: number
     libId: string
     history: StateBookHistoryTypes[] | []
@@ -24,7 +24,7 @@ export interface StateBookTypes {
     title: string
 }
 
-export interface StateUserTypes {
+export type StateUserTypes = {
     firstName: string
     lastName: string
     email: string
@@ -36,17 +36,17 @@ export type StateViewGlobalTypes = {
     expired: boolean
 }
 
-export interface StateViewTypes {
+export type StateViewTypes = {
     global: StateViewGlobalTypes
 }
 
-export interface StateCurrentTypes {
+export type StateCurrentTypes = {
     studentId: number | null
     collectionId: string | null
     bookId: number | null
 }
 
-export interface StateTypes {
+export type StateTypes = {
     books: StateBooksTypes
     current: StateCurrentTypes
     students: StateStudentTypes[]

@@ -17,7 +17,7 @@ export default [
             },
             {
                 "id": 2,
-                "title": "Test book 1",
+                "title": "Test book 2",
                 "story": [
                     "Long long time ago",
                     "In a far away land",
@@ -27,7 +27,7 @@ export default [
             },
             {
                 "id": 3,
-                "title": "Test book 1",
+                "title": "Test book 3",
                 "story": [
                     "In a distance land",
                     "a person called bob",

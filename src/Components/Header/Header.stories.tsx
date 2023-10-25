@@ -4,9 +4,8 @@ import { Provider } from 'react-redux'
 import { QueryClientProvider } from 'react-query'
 import { BrowserRouter } from 'react-router-dom'
 import { queryClient } from '../../App'
-import { initialState } from '../../store/user/userSlice'
-import { configureStore, createSlice } from '@reduxjs/toolkit'
-import { StateUserTypes } from '../../store/store.types'
+import { updateUser } from '../../store/user/userSlice'
+import store from '../../store/store'
 
 const meta = {
     title: 'Layout/Header',
@@ -24,34 +23,30 @@ type Story = StoryObj<typeof meta>
 // TODO: Create a new store mocking the data required
 
 const Wrapper = ({
-    userState,
+    authenticated,
     children
 }: {
-    userState: StateUserTypes
+    authenticated: boolean
     children: JSX.Element
-}) => (
-    <Provider
-        store={configureStore({
-            reducer: {
-                user: createSlice({
-                    name: 'user',
-                    initialState: userState,
-                    reducers: {}
-                }).reducer
-            }
-        })}
-    >
-        <QueryClientProvider client={queryClient}>
-            <BrowserRouter>{children}</BrowserRouter>
-        </QueryClientProvider>
-    </Provider>
-)
+}) => {
+    const user = { firstName: 'John', lastName: 'Doe', email: '<EMAIL>', id: 1 }
+    if (authenticated) {
+        store.dispatch(updateUser({ token: '123456', user }))
+    } else {
+        store.dispatch(updateUser({ token: '', user }))
+    }
+    return (
+        <Provider store={store}>
+            <QueryClientProvider client={queryClient}>
+                <BrowserRouter>{children}</BrowserRouter>
+            </QueryClientProvider>
+        </Provider>
+    )
+}
 
 export const UserLoggedOut: Story = {
     args: {},
-    decorators: [
-        (story) => <Wrapper userState={initialState}>{story()}</Wrapper>
-    ]
+    decorators: [(story) => <Wrapper authenticated={false}>{story()}</Wrapper>]
 }
 
 /**
@@ -59,11 +54,5 @@ export const UserLoggedOut: Story = {
  */
 export const UserLoggedIn: Story = {
     args: {},
-    decorators: [
-        (story) => (
-            <Wrapper userState={{ ...initialState, token: '123456' }}>
-                {story()}
-            </Wrapper>
-        )
-    ]
+    decorators: [(story) => <Wrapper authenticated={true}>{story()}</Wrapper>]
 }

@@ -17,7 +17,10 @@ export default function Row(props: PropTypes) {
             className={`flex justify-between px-4 py-5 sm:gap-4 sm:px-6 ${rowShade}`}
         >
             <div className="flex items-center">
-                <span className={`mr-6 ${props.iconColor}`}>
+                <span
+                    data-testid="test-row-icon"
+                    className={`mr-6 ${props.iconColor}`}
+                >
                     <Svg icon={props.icon} />
                 </span>
                 <span className="font-medium text-gray-800">{props.text}</span>

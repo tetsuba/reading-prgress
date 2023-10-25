@@ -1,7 +1,7 @@
 import * as R from 'ramda'
 
 // UTILS
-import { getIconColorForBookRow } from '../../Views/Books/book-utils'
+import { greenText } from '../../Views/Books/book-utils'
 
 // TYPES
 import { StateStudentTypes } from '../../store/store.types'
@@ -24,13 +24,12 @@ export default function StudentRow(props: PropTypes) {
         return <>loading...</>
     }
 
-    const iconColor = getIconColorForBookRow(data)
     return (
         <Row
             index={index}
             text={`${data.firstname} ${data.lastname}`}
             icon="user2"
-            iconColor={iconColor}
+            iconColor={greenText()}
         >
             <Button
                 data-testid="select-student"

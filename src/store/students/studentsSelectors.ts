@@ -7,12 +7,7 @@ import {
     currentCollectionIdSelector,
     currentStudentIdSelector
 } from '../current/currentSelectors'
-import {
-    countDuplicates,
-    DATE_FORMAT,
-    dateIsAfterOne,
-    formatDate
-} from '../store.utils'
+import { countDuplicates, dateIsAfterOne, formatDate } from '../store.utils'
 
 export const studentsSelector = (state: StateTypes) => state.students
 
@@ -24,7 +19,7 @@ export const studentSelector = createSelector(
 
 export const studentProgressSelector = createSelector(
     [studentSelector],
-    (student): StateProgressTypes[] | undefined => student?.progress
+    (student): StateProgressTypes[] | undefined | null => student?.progress
 )
 
 export const studentProgressBookSelector = createSelector(
@@ -140,4 +135,10 @@ export const progressWords = createSelector(
         }
         return undefined
     }
+)
+
+export const filteredStudentProgressByCollectionId = createSelector(
+    [studentProgressSelector, currentCollectionIdSelector],
+    (progress, collectionId) =>
+        progress?.filter((data) => data.collectionId === collectionId)
 )

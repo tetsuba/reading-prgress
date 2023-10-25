@@ -1,9 +1,9 @@
-import { ApiCollectionTypes } from '../../api/api-types'
 import Loop from '../../Components/Loop/Loop'
 import CollectionRow from '../../Components/Row/CollectionRow'
+import { CollectionsTypes } from '../../store/selector.types'
 
 type PropTypes = {
-    collections: ApiCollectionTypes[] | undefined
+    collections: CollectionsTypes[] | undefined
 }
 
 export default function ListOfCollections(props: PropTypes) {

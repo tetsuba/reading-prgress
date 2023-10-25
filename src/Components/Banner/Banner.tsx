@@ -4,6 +4,8 @@ export type LastBookReadTypes = {
     completed: boolean
     date: string
     title: string
+    // bookId: number
+    // collectionId: string
 }
 
 type PropTypes = {

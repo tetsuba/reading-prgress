@@ -5,34 +5,30 @@ import CollectionRow from '../../../Components/Row/CollectionRow'
 const booksMock = [
     {
         title: 'titleBook 1',
-        story: ['story 1'],
         id: 1,
-        userId: 1,
-        history: [{ date: '16/02/2023', words: [] }]
+        completed: true,
+        numberOfBooks: 10
     },
     {
         title: 'titleBook 2',
-        story: ['story 2'],
         id: 2,
-        userId: 2,
-        history: [{ date: '16/02/2023', words: [] }]
+        completed: false,
+        numberOfBooks: 12
     }
 ]
 
 const mockData = [
     {
-        id: '001',
-        author: '',
         title: 'title collection 1',
-        description: 'description',
-        books: booksMock
+        id: '001',
+        completed: true,
+        numberOfBooks: 2
     },
     {
-        id: '002',
-        author: '',
         title: 'title collection 2',
-        description: 'description',
-        books: booksMock
+        id: '002',
+        completed: false,
+        numberOfBooks: 12
     }
 ]
 

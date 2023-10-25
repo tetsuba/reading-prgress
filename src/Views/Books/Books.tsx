@@ -9,26 +9,23 @@ import ListOfCollections from './ListOfCollections'
 import ListOfBooks from './ListOfBooks'
 
 import {
-    booksSelector,
-    collectionSelector
+    collectionsSelector,
+    collectionWithBooksIconSelector
 } from '../../store/books/booksSelectors'
-import { StateCollectionTypes } from '../../store/store.types'
 
 export default function Books() {
-    const books = useSelector(booksSelector)
-    const collection = useSelector(collectionSelector)
+    const collectionWithBooksIcon = useSelector(collectionWithBooksIconSelector)
+    const collections = useSelector(collectionsSelector)
 
     return (
         <>
             <SubHeader text="Books" />
             <Main>
-                <Display value={R.isNil(collection)}>
-                    <ListOfCollections collections={books} />
+                <Display value={R.isNil(collectionWithBooksIcon)}>
+                    <ListOfCollections collections={collections} />
                 </Display>
-                <Display value={R.not(R.isNil(collection))}>
-                    <ListOfBooks
-                        collection={collection as StateCollectionTypes}
-                    />
+                <Display value={R.not(R.isNil(collectionWithBooksIcon))}>
+                    <ListOfBooks collection={collectionWithBooksIcon} />
                 </Display>
             </Main>
         </>

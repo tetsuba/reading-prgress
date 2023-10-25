@@ -32,7 +32,8 @@ exports[`Dashboard > should render a list of students 1`] = `
           class="flex items-center"
         >
           <span
-            class="mr-6 text-gray-300"
+            class="mr-6 text-green-500"
+            data-testid="test-row-icon"
           >
             <svg
               class="h-6 w-6"
@@ -93,7 +94,8 @@ exports[`Dashboard > should render a list of students 1`] = `
           class="flex items-center"
         >
           <span
-            class="mr-6 text-gray-300"
+            class="mr-6 text-green-500"
+            data-testid="test-row-icon"
           >
             <svg
               class="h-6 w-6"
@@ -147,34 +149,6 @@ exports[`Dashboard > should render a list of students 1`] = `
         </div>
       </div>
     </section>
-  </main>
-</DocumentFragment>
-`;
-
-exports[`Dashboard > should render no students 1`] = `
-<DocumentFragment>
-  <header
-    class="relative bg-white pt-16 shadow"
-  >
-    <div
-      class="mx-auto flex max-w-7xl justify-between px-4 py-6 sm:px-6 lg:px-8"
-    >
-      <h1
-        class="text-3xl font-bold tracking-tight text-gray-900"
-      >
-        Dashboard
-      </h1>
-      <button
-        class="flex items-center rounded-lg font-medium text-base text-center px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 "
-      >
-        Register Student
-      </button>
-    </div>
-  </header>
-  <main
-    class="mx-auto max-w-7xl bg-white py-6 md:px-6 lg:px-8"
-  >
-    <section />
   </main>
 </DocumentFragment>
 `;

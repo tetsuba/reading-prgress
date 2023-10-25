@@ -15,6 +15,18 @@ const PROGRESS_FIRST_UPDATE = {
     history:[ HISTORY_NO_MISTAKES ]
 }
 
+const PROGRESS_SECOND_UPDATE = {
+    collectionId: "001",
+    bookId:2,
+    history:[ HISTORY_NO_MISTAKES ]
+}
+
+const PROGRESS_THIRD_UPDATE = {
+    collectionId: "001",
+    bookId:3,
+    history:[ HISTORY_NO_MISTAKES ]
+}
+
 export const STUDENT_1 = {
     studentId: 1,
     firstname: 'John',
@@ -26,6 +38,16 @@ export const STUDENT_1 = {
 export const STUDENT_1__FIRST_UPDATE = {
     ...STUDENT_1,
     progress: [PROGRESS_FIRST_UPDATE]
+}
+
+export const STUDENT_1__SECOND_UPDATE = {
+    ...STUDENT_1,
+    progress: [PROGRESS_FIRST_UPDATE, PROGRESS_SECOND_UPDATE]
+}
+
+export const STUDENT_1__THIRD_UPDATE = {
+    ...STUDENT_1,
+    progress: [PROGRESS_FIRST_UPDATE, PROGRESS_SECOND_UPDATE, PROGRESS_THIRD_UPDATE]
 }
 
 const STUDENT_2 = {

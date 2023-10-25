@@ -2,9 +2,6 @@ import * as R from 'ramda'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-// UTILS
-import { getIconColorForBookRow } from '../../Views/Books/book-utils'
-
 // STORE
 import { updateCurrentBookId } from '../../store/current/currentSlice'
 
@@ -13,30 +10,28 @@ import Button from '../Button/Button'
 import Row from './Row'
 
 // TYPES
-import { ApiBookTypes } from '../../api/api-types'
+import { BookWithIconColorTypes } from '../../store/selector.types'
 
 type BookPropTypes = {
-    data?: ApiBookTypes
+    data?: BookWithIconColorTypes
     index?: number
-    collectionId?: string
 }
 
 export default function BookRow(props: BookPropTypes) {
-    const { data, index, collectionId } = props
+    const { data, index } = props
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    if (R.isNil(data) || R.isNil(collectionId) || R.isNil(index)) {
+    if (R.isNil(data) || R.isNil(index)) {
         return <>loading...</>
     }
 
-    const iconColor = getIconColorForBookRow(data)
     return (
         <Row
             index={index}
             text={data.title}
             icon="bookmark"
-            iconColor={iconColor}
+            iconColor={data.iconColor}
         >
             <Button
                 data-testid="book-list-read"

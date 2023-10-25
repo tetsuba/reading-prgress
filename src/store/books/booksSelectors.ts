@@ -1,3 +1,4 @@
+import * as R from 'ramda'
 import { createSelector } from '@reduxjs/toolkit'
 import { StateTypes } from '../store.types'
 import {
@@ -5,25 +6,83 @@ import {
     currentBookIdSelector
 } from '../current/currentSelectors'
 import {
+    filteredStudentProgressByCollectionId,
     studentLastProgressUpdate,
     studentProgressSelector
 } from '../students/studentsSelectors'
+import { COMPLETED, getBookStatus, NOT_STARTED } from './books.utils'
+import {
+    CollectionsTypes,
+    CollectionWithBooksIconTypes
+} from '../selector.types'
+import { ApiBookTypes } from '../../api/api-types'
 
 const stateBooks = (state: StateTypes) => state.books
 
-export const booksSelector = createSelector(stateBooks, (books) => books)
 export const collectionSelector = createSelector(
     [stateBooks, currentCollectionIdSelector],
     (books, collectionId) =>
         books.find((collection) => collection.id === collectionId)
 )
 
+export const collectionsSelector = createSelector(
+    [stateBooks, studentProgressSelector],
+    (collections, progress): CollectionsTypes[] | undefined => {
+        if (!collections) return undefined
+        return collections.map((collection) => {
+            return {
+                ...R.pick(['id', 'title'])(collection),
+                numberOfBooks: collection.books.length,
+                completed: collection.books.every((book) =>
+                    R.isNil(progress)
+                        ? false
+                        : progress.some((data) => {
+                              const bookFound = R.allPass([
+                                  R.propEq(collection.id, 'collectionId'),
+                                  R.propEq(book.id, 'bookId')
+                              ])(data)
+                              return (
+                                  bookFound &&
+                                  R.equals(COMPLETED(), getBookStatus(data))
+                              )
+                          })
+                )
+            }
+        })
+    }
+)
+
+export const collectionWithBooksIconSelector = createSelector(
+    [collectionSelector, filteredStudentProgressByCollectionId],
+    (collection, progress): CollectionWithBooksIconTypes | undefined => {
+        if (!collection) return undefined
+        return {
+            title: collection.title,
+            books: collection.books.map((book) => {
+                return {
+                    ...R.pick(['id', 'title'])(book),
+                    iconColor: !progress
+                        ? NOT_STARTED()
+                        : R.compose(
+                              getBookStatus,
+                              R.find(R.propEq(book.id, 'bookId'))
+                          )(progress)
+                }
+            })
+        }
+    }
+)
+
+export const collectionBooksSelector = createSelector(
+    [collectionSelector],
+    (collection) => (R.isNil(collection) ? undefined : collection.books)
+)
+
 export const bookSelector = createSelector(
-    [collectionSelector, currentBookIdSelector],
-    (collection, bookId) => {
-        return collection === undefined
-            ? undefined
-            : collection.books.find((book) => book.id === bookId)
+    [collectionBooksSelector, currentBookIdSelector],
+    (collectionBooks, bookId): ApiBookTypes | undefined => {
+        if (R.isNil(bookId) || collectionBooks === undefined) return undefined
+        return collectionBooks.find(R.propEq(bookId, 'id'))
     }
 )
 
@@ -32,13 +91,16 @@ export const lastBooksRead = createSelector(
     (collection, studentProgress) => {
         if (studentProgress) {
             return studentProgress.map((progress) => {
-                const bookTitle = collection
-                    .find((col) => col.id == progress.collectionId)
-                    ?.books.find((book) => book.id === progress.bookId)?.title
+                const getTitle = R.compose(
+                    R.propOr('', 'title'),
+                    R.find(R.propEq(progress.bookId, 'id')),
+                    R.propOr([], 'books'),
+                    R.find(R.propEq(progress.collectionId, 'id'))
+                )
 
                 return {
-                    title: bookTitle,
-                    ...progress
+                    ...progress,
+                    title: getTitle(collection)
                 }
             })
         }

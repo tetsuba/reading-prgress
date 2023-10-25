@@ -16,10 +16,10 @@ import BookRow from '../../Components/Row/BookRow'
 import Button from '../../Components/Button/Button'
 
 // TYPES
-import { ApiCollectionTypes } from '../../api/api-types'
+import { CollectionWithBooksIconTypes } from '../../store/selector.types'
 
 type PropTypes = {
-    collection: ApiCollectionTypes | null
+    collection: CollectionWithBooksIconTypes | undefined
 }
 
 export default function ListOfBooks(props: PropTypes) {
@@ -63,7 +63,7 @@ export default function ListOfBooks(props: PropTypes) {
                     />
                 </div>
             </div>
-            <Loop array={filteredBooks} collectionId={props.collection.id}>
+            <Loop array={filteredBooks}>
                 <BookRow />
             </Loop>
         </div>
