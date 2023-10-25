@@ -17,7 +17,7 @@ test.describe('Books', () => {
         await page.getByTestId('sentence-complete').first().click()
     }
 
-    test('A student reads and completes a book', async ({page}) => {
+    test('A student completes a collection of books', async ({page}) => {
         await test.step('Select a collection', async () => {
             await page
                 .getByTestId('collection-list')
@@ -78,5 +78,22 @@ test.describe('Books', () => {
             await expect(page.getByTestId('test-row-icon').first()).toHaveClass(/text-green-500/)
         })
 
+    })
+    test('Selecting a book without selecting a student', async ({page}) => {
+        await test.step('Unselect a student', async () => {
+            await page.getByRole('link', { name: 'Dashboard' }).click()
+            await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible()
+            await page.getByTestId('change-student-button').click()
+            await page.getByRole('link', { name: 'Books' }).click()
+            await expect(page.getByRole('heading', { name: 'Books' })).toBeVisible()
+        })
+        await test.step('Selecting a book and receiving a message', async () => {
+            await page.getByTestId('collection-button').first().click()
+            await page.getByTestId('book-list-read').first().click()
+            await expect(page.getByTestId('modal-test')).toBeVisible()
+            await expect(page.getByRole('heading', { name: 'Please select a student' })).toBeVisible()
+            await page.getByTestId('modal-message-button').click()
+            await expect(page).toHaveURL('/dashboard')
+        })
     })
 })

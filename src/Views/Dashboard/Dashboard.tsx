@@ -7,7 +7,7 @@ import {
     studentSelector
 } from '../../store/students/studentsSelectors'
 import { lastBooksRead } from '../../store/books/booksSelectors'
-import { updateCurrentStudentId } from '../../store/current/currentSlice'
+import { resetCurrentToInitialState } from '../../store/current/currentSlice'
 
 // COMPONENTS
 import SubHeader from '../../Components/SubHeader/SubHeader'
@@ -20,8 +20,6 @@ import Loop from '../../Components/Loop/Loop'
 import Button from '../../Components/Button/Button'
 import RegisterStudent from '../../Components/Modal/RegisterStudent'
 import Students from './Students'
-import moment from 'moment/moment'
-import { DATE_FORMAT } from '../../store/store.utils'
 
 export default function Dashboard() {
     const dispatch = useDispatch()
@@ -41,7 +39,7 @@ export default function Dashboard() {
                             data-testid="change-student-button"
                             template="secondary"
                             onClick={() => {
-                                dispatch(updateCurrentStudentId(null))
+                                dispatch(resetCurrentToInitialState())
                                 ls.removeStudentId()
                             }}
                         >

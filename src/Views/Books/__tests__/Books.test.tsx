@@ -53,4 +53,17 @@ describe('Books View', () => {
         })
         expect(screen.getAllByText(/Pirate Pat/)).toHaveLength(1)
     })
+    test('selecting a book without a student selected', async () => {
+        act(() => {
+            store.dispatch(updateCurrentStudentId(null))
+        })
+        fireEvent.click(screen.getAllByTestId('collection-button')[0])
+        await waitFor(() =>
+            expect(screen.getByTestId('book-list')).not.toBeNull()
+        )
+        fireEvent.click(screen.getAllByTestId('book-list-read')[0])
+        await waitFor(() => expect(screen.getByTestId('modal-test')).exist)
+        fireEvent.click(screen.getByTestId('modal-message-button'))
+        await waitFor(() => expect(mockNavigate).toHaveBeenCalled())
+    })
 })

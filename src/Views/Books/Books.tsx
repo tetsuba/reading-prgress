@@ -12,10 +12,13 @@ import {
     collectionsSelector,
     collectionWithBooksIconSelector
 } from '../../store/books/booksSelectors'
+import ModalMessage from '../../Components/Modal/ModalMessage'
+import { viewBooksShowMessageSelector } from '../../store/view/viewSelectors'
 
 export default function Books() {
     const collectionWithBooksIcon = useSelector(collectionWithBooksIconSelector)
     const collections = useSelector(collectionsSelector)
+    const showMessage = useSelector(viewBooksShowMessageSelector)
 
     return (
         <>
@@ -28,6 +31,9 @@ export default function Books() {
                     <ListOfBooks collection={collectionWithBooksIcon} />
                 </Display>
             </Main>
+            <Display value={showMessage}>
+                <ModalMessage />
+            </Display>
         </>
     )
 }

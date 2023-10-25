@@ -38,6 +38,9 @@ export type StateViewGlobalTypes = {
 
 export type StateViewTypes = {
     global: StateViewGlobalTypes
+    books: {
+        showMessage: boolean
+    }
 }
 
 export type StateCurrentTypes = {

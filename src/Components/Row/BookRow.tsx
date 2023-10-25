@@ -1,5 +1,5 @@
 import * as R from 'ramda'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 // STORE
@@ -11,6 +11,8 @@ import Row from './Row'
 
 // TYPES
 import { BookWithIconColorTypes } from '../../store/selector.types'
+import { currentStudentIdSelector } from '../../store/current/currentSelectors'
+import { toggleBooksShowMessage } from '../../store/view/viewSlice'
 
 type BookPropTypes = {
     data?: BookWithIconColorTypes
@@ -18,9 +20,10 @@ type BookPropTypes = {
 }
 
 export default function BookRow(props: BookPropTypes) {
-    const { data, index } = props
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const studentId = useSelector(currentStudentIdSelector)
+    const { data, index } = props
 
     if (R.isNil(data) || R.isNil(index)) {
         return <>loading...</>
@@ -37,8 +40,12 @@ export default function BookRow(props: BookPropTypes) {
                 data-testid="book-list-read"
                 template="secondary"
                 onClick={() => {
-                    dispatch(updateCurrentBookId(data.id))
-                    navigate('/reading')
+                    if (studentId) {
+                        dispatch(updateCurrentBookId(data.id))
+                        navigate('/reading')
+                    } else {
+                        dispatch(toggleBooksShowMessage())
+                    }
                 }}
             >
                 Read

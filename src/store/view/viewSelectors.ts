@@ -7,3 +7,8 @@ export const viewGlobalExpiredSelector = createSelector(
     stateView,
     (view: StateViewTypes) => view.global.expired
 )
+
+export const viewBooksShowMessageSelector = createSelector(
+    stateView,
+    (view: StateViewTypes) => view.books.showMessage
+)
