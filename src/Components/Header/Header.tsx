@@ -15,8 +15,8 @@ export default function Header() {
     const studentName = useSelector(studentNameSelector)
 
     return (
-        <div className="fixed z-10 flex w-full flex-col md:h-auto">
-            <header className="mx-auto flex h-16 w-full max-w-7xl justify-between bg-gray-800 px-4 sm:px-6 md:relative lg:px-8">
+        <div className="bg-gray-800 fixed z-10 flex w-full flex-col md:h-auto">
+            <header className="mx-auto flex h-16 w-full max-w-7xl justify-between px-4 sm:px-6 md:relative lg:px-8">
                 <div className="flex items-center">
                     <Svg icon="book" />
                     <DesktopNavigation />
@@ -36,7 +36,7 @@ export default function Header() {
             {studentName && (
                 <div
                     data-testid="student-name-holder"
-                    className="flex w-full items-center justify-center max-md:absolute"
+                    className="flex w-full items-center justify-center absolute md:top-16"
                 >
                     <span className="rounded-b-lg border-x-2 border-b-2 border-gray-800 bg-white py-1 px-4 font-bold drop-shadow">
                         Student: {studentName}
