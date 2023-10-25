@@ -44,6 +44,7 @@ export default function Expired() {
                     className="mr-5"
                     onClick={() => {
                         ls.remove()
+                        ls.getStudentId()
                         dispatch(resetUserToInitialState())
                         dispatch(resetCurrentToInitialState())
                         dispatch(toggleViewGlobalExpired(false))
