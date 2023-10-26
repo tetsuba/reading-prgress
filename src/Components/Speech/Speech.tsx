@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import speechToText from '../../lib/speechToText'
-import Button from '../Button/Button'
 import { WordTypes } from '../../Views/Reading/Sentence'
 import { allWordsAreCorrect } from '../../Views/Reading/reading-utils'
-import Svg from '../Svg/Svg'
 import { updateSentence } from './speech-utils'
+
+// import Button from '../Button/Button'
+// import Svg from '../Svg/Svg'
 
 type PropTypes = {
     story: WordTypes[][]
@@ -51,19 +52,19 @@ export default function Speech(props: PropTypes) {
     return (
         <div className="mb-3 flex place-content-between">
             <span className="place-self-start">{speech}</span>
-            <Button
-                data-testid="speech-button"
-                template="icon"
-                icon="mic"
-                type="button"
-                className={`${
-                    micOn ? MIC_ON : MIC_OFF
-                } p-2 hover:border-white hover:bg-gray-100 focus:outline-none`}
-                onClick={() => {
-                    setMicOn(!micOn)
-                    micOn ? stop() : start()
-                }}
-            />
+            {/*<Button*/}
+            {/*    data-testid="speech-button"*/}
+            {/*    template="icon"*/}
+            {/*    icon="mic"*/}
+            {/*    type="button"*/}
+            {/*    className={`${*/}
+            {/*        micOn ? MIC_ON : MIC_OFF*/}
+            {/*    } p-2 hover:border-white hover:bg-gray-100 focus:outline-none`}*/}
+            {/*    onClick={() => {*/}
+            {/*        setMicOn(!micOn)*/}
+            {/*        micOn ? stop() : start()*/}
+            {/*    }}*/}
+            {/*/>*/}
         </div>
     )
 }
