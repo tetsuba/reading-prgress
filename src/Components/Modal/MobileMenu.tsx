@@ -1,15 +1,12 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import Button from '../Button/Button'
-import { resetUserToInitialState } from '../../store/user/userSlice'
-import ls from '../../lib/localStorage'
-import { useDispatch } from 'react-redux'
 import { useState } from 'react'
+import SignOutButton from '../Nav/SignOutButton'
 
 type PropTypes = {
     closeMenu: () => void
 }
 export default function MobileMenu(props: PropTypes) {
-    const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
     const [links] = useState([
@@ -54,18 +51,10 @@ export default function MobileMenu(props: PropTypes) {
                     {link.name}
                 </Button>
             ))}
-
-            <Button
+            <SignOutButton
                 data-testid="sign-out-mobile-menu"
                 template="menu-button-mobile"
-                onClick={() => {
-                    dispatch(resetUserToInitialState())
-                    ls.remove()
-                    navigate('/')
-                }}
-            >
-                Sign out
-            </Button>
+            />
         </div>
     )
 }

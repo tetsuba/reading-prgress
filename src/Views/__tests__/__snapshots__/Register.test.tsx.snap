@@ -39,7 +39,6 @@ exports[`Register > should render 1`] = `
               class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
               name="firstName"
               placeholder="first name"
-              template="text"
               type="text"
             />
           </div>
@@ -54,7 +53,6 @@ exports[`Register > should render 1`] = `
               class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
               name="lastName"
               placeholder="last name"
-              template="text"
               type="text"
             />
           </div>
@@ -69,7 +67,6 @@ exports[`Register > should render 1`] = `
               class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
               name="email"
               placeholder="name@company.com"
-              template="text"
               type="email"
             />
           </div>
@@ -84,7 +81,6 @@ exports[`Register > should render 1`] = `
               class="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500 "
               name="password"
               placeholder="••••••••"
-              template="text"
               type="password"
             />
           </div>

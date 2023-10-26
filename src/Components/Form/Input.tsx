@@ -8,13 +8,12 @@ type PropTypes = {
     placeholder?: string
     readonly?: boolean
     template: Exclude<FormClassesTypes, 'textarea'>
-    type: 'email' | 'password' | 'checkbox' | 'text'
+    type: 'email' | 'password' | 'checkbox' | 'text' | 'date'
     value?: string
 }
 
 export default function Input(props: PropTypes) {
-    const className = `${getFormClasses(props.template)} ${
-        props.className || ''
-    }`
-    return <input {...props} className={className} />
+    const { template, className, ...rest } = props
+    const classname = `${getFormClasses(template)} ${className || ''}`
+    return <input {...rest} className={classname} />
 }

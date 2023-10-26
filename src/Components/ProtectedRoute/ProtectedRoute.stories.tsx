@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import ProtectedRoute from './ProtectedRoute'
-import { StateUserTypes } from '../../store/store-types'
+import { StateUserTypes } from '../../store/store.types'
 import { Provider } from 'react-redux'
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import { QueryClientProvider } from 'react-query'

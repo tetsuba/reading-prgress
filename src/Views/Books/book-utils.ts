@@ -18,18 +18,13 @@ export function filterBooksByTitle(
 }
 
 const defaultText = R.always('text-gray-300')
-const greenText = R.always('text-green-500')
+export const greenText = R.always('text-green-500')
 const redText = R.always('text-red-500')
 
 const getIconColor = R.compose(
     R.ifElse(R.isEmpty, greenText, redText),
     R.prop('words'),
     R.last
-)
-
-export const getIconColorForBookRow = R.compose(
-    R.ifElse(R.isEmpty, defaultText, getIconColor),
-    R.pathOr([], ['history'])
 )
 
 const historyWordsEmpty = R.compose(

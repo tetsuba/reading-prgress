@@ -7,6 +7,7 @@ import {
 import Header from '../Header'
 import store from '../../../store/store'
 import { updateUser } from '../../../store/user/userSlice'
+import { updateCurrentStudentId } from '../../../store/current/currentSlice'
 
 const mockNavigate = vi.fn()
 vi.mock('react-router-dom', async () => {
@@ -18,7 +19,7 @@ vi.mock('react-router-dom', async () => {
 })
 
 export const mockUser = {
-    data: {
+    user: {
         firstName: 'Bob',
         lastName: 'Bob',
         email: 'Bob@Bob.com',
@@ -31,7 +32,10 @@ describe('Header', () => {
     describe('not authenticated', () => {
         test('clicking on the login button', async () => {
             const { asFragment } = render(
-                <WrapperWith_Store_Query_Router pathname="/">
+                <WrapperWith_Store_Query_Router
+                    pathname="/"
+                    notAuthenticated={true}
+                >
                     <Header />
                 </WrapperWith_Store_Query_Router>
             )
@@ -43,6 +47,25 @@ describe('Header', () => {
         })
     })
     describe('authenticated', () => {
+        test('a student is selected', async () => {
+            const STUDENT_NAME = 'Student: John Bob'
+            store.dispatch(updateUser(mockUser))
+            store.dispatch(updateCurrentStudentId(1))
+            render(
+                <WrapperWith_Store_Query_Router pathname="/dashboard">
+                    <Header />
+                </WrapperWith_Store_Query_Router>
+            )
+
+            await waitFor(() =>
+                expect(screen.getByTestId('student-name-holder'))
+            )
+            await waitFor(() =>
+                expect(screen.getByText(STUDENT_NAME).textContent).toEqual(
+                    STUDENT_NAME
+                )
+            )
+        })
         test('clicking on the sign out button [desktop]', async () => {
             store.dispatch(updateUser(mockUser))
 

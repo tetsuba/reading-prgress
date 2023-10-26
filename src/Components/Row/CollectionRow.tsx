@@ -1,13 +1,18 @@
 import * as R from 'ramda'
-import { ApiCollectionTypes } from '../../api/api-types'
 import { useDispatch } from 'react-redux'
+
+// TYPES
+import { CollectionsTypes } from '../../store/selector.types'
+
+// STORE
+import { updateCurrentCollectionId } from '../../store/current/currentSlice'
+
+// COMPONENTS
 import Row from './Row'
-import { updateViewBookCollection } from '../../store/view/viewSlice'
-import { allBooksCompleted } from '../../Views/Books/book-utils'
 import Button from '../Button/Button'
 
 export type CollectionPropTypes = {
-    data?: ApiCollectionTypes | undefined
+    data?: CollectionsTypes | undefined
     index?: number
 }
 
@@ -16,9 +21,9 @@ export default function CollectionRow(props: CollectionPropTypes) {
     const { data, index = 0 } = props
 
     if (R.isNil(data)) return <>loading...</>
-    const text = `${data.title} (${data.books.length})`
-    const completed = allBooksCompleted(data.books)
-    const iconColour = completed ? 'text-green-500' : ''
+
+    const text = `${data.title} (${data.numberOfBooks})`
+    const iconColour = data.completed ? 'text-green-500' : ''
 
     return (
         <Row index={index} text={text} iconColor={iconColour} icon="library">
@@ -26,8 +31,8 @@ export default function CollectionRow(props: CollectionPropTypes) {
                 className="flex items-center"
                 data-testid="collection-button"
                 icon="eye"
-                template={`${completed ? 'disabled' : 'secondary'}`}
-                onClick={() => dispatch(updateViewBookCollection(data))}
+                template={`${data.completed ? 'disabled' : 'secondary'}`}
+                onClick={() => dispatch(updateCurrentCollectionId(data.id))}
                 right
             >
                 <span className="mr-1 hidden md:inline">View Books</span>

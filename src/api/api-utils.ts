@@ -3,7 +3,7 @@ import ls from '../lib/localStorage'
 import CONFIG from './api-config'
 import { AuthorizationHeader, QueryTypes } from './api-types'
 import { toggleViewGlobalExpired } from '../store/view/viewSlice'
-import { AppDispatch } from '../store/store-types'
+import { AppDispatch } from '../store/store.types'
 
 export function getAuthHeaders(): AuthorizationHeader {
     const token = ls.get()

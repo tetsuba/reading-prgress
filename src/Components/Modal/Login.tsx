@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { formDataToObject, getErrorMessage } from '../../lib/utils'
 import { updateUser } from '../../store/user/userSlice'
+import { addBooks } from '../../store/books/booksSlice'
 
 // COMPONENTS
 import H3 from '../H3/H3'
@@ -11,6 +12,7 @@ import Input from '../Form/Input'
 import ErrorMessage from '../Form/ErrorMessage'
 import Button from '../Button/Button'
 import { loginUser } from '../../api/user'
+import { addStudents } from '../../store/students/studentsSlice'
 
 type PropTypes = {
     setShowLogin: (p: boolean) => void
@@ -20,7 +22,12 @@ export default function Login(props: PropTypes) {
     const navigate = useNavigate()
     const mutation = useMutation(loginUser, {
         onSuccess: (data) => {
-            dispatch(updateUser(data.data))
+            const {
+                data: { user, token, books, students }
+            } = data
+            dispatch(updateUser({ user, token }))
+            dispatch(addBooks(books))
+            dispatch(addStudents(students))
             props.setShowLogin(false)
             navigate('/dashboard')
         }
@@ -94,7 +101,11 @@ export default function Login(props: PropTypes) {
                     >
                         {getErrorMessage(mutation.error as Error)}
                     </ErrorMessage>
-                    <Button template="primary" className="w-full" type="submit">
+                    <Button
+                        template="primary"
+                        className="w-full justify-center"
+                        type="submit"
+                    >
                         Login to your account
                     </Button>
                     <div className="text-sm font-medium text-gray-500 dark:text-gray-300">

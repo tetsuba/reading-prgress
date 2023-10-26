@@ -1,52 +1,39 @@
-import { useQuery } from 'react-query'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import * as R from 'ramda'
-import { userIdSelector } from '../../store/user/userSelectors'
-import { viewBooksCollectionSelector } from '../../store/view/viewSelectors'
-import { getBooks } from '../../api/book'
 
 // COMPONENTS
 import SubHeader from '../../Components/SubHeader/SubHeader'
-import Loading from '../../Components/Loading/Loading'
 import Main from '../../Components/Main/Main'
 import Display from '../../Components/Dispay/Display'
 import ListOfCollections from './ListOfCollections'
-
 import ListOfBooks from './ListOfBooks'
-import { updateViewBookCollection } from '../../store/view/viewSlice'
-import { useEffect } from 'react'
+
+import {
+    collectionsSelector,
+    collectionWithBooksIconSelector
+} from '../../store/books/booksSelectors'
+import ModalMessage from '../../Components/Modal/ModalMessage'
+import { viewBooksShowMessageSelector } from '../../store/view/viewSelectors'
 
 export default function Books() {
-    const dispatch = useDispatch()
-    const collection = useSelector(viewBooksCollectionSelector)
-    const userId = useSelector(userIdSelector)
-    const { data, isSuccess, isLoading } = useQuery(['books', userId], getBooks)
-
-    useEffect(() => {
-        if (collection) {
-            data?.data.forEach((c) => {
-                if (collection && c.id === collection.id) {
-                    dispatch(updateViewBookCollection(c))
-                }
-            })
-        }
-    }, [data?.data])
-
-    if (isLoading) {
-        return <Loading />
-    }
+    const collectionWithBooksIcon = useSelector(collectionWithBooksIconSelector)
+    const collections = useSelector(collectionsSelector)
+    const showMessage = useSelector(viewBooksShowMessageSelector)
 
     return (
         <>
             <SubHeader text="Books" />
             <Main>
-                <Display value={isSuccess && R.isNil(collection)}>
-                    <ListOfCollections collections={data?.data} />
+                <Display value={R.isNil(collectionWithBooksIcon)}>
+                    <ListOfCollections collections={collections} />
                 </Display>
-                <Display value={R.not(R.isNil(collection))}>
-                    <ListOfBooks collection={collection} />
+                <Display value={R.not(R.isNil(collectionWithBooksIcon))}>
+                    <ListOfBooks collection={collectionWithBooksIcon} />
                 </Display>
             </Main>
+            <Display value={showMessage}>
+                <ModalMessage />
+            </Display>
         </>
     )
 }

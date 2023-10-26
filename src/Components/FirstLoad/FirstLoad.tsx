@@ -10,6 +10,9 @@ import Expired from '../Modal/Expired'
 import Loading from '../Loading/Loading'
 import { getUserDetails } from '../../api/user'
 import { updateUser } from '../../store/user/userSlice'
+import { addBooks } from '../../store/books/booksSlice'
+import { addStudents } from '../../store/students/studentsSlice'
+import { updateCurrentStudentId } from '../../store/current/currentSlice'
 
 type PropTypes = {
     children: JSX.Element
@@ -18,6 +21,8 @@ export default function FirstLoad(props: PropTypes) {
     const dispatch = useDispatch()
     const sessionExpired = useSelector(viewGlobalExpiredSelector)
     const token = ls.get()
+    const studentId = ls.getStudentId()
+
     /* NOTE:
      * Look inside getUserDetails to see a dispatch to update
      * the store.user
@@ -33,7 +38,15 @@ export default function FirstLoad(props: PropTypes) {
 
     if (isLoading) return <Loading />
     if (isError) ls.remove()
-    if (isSuccess) dispatch(updateUser({ data: data.data, token }))
+    if (isSuccess) {
+        const {
+            data: { user, books, students }
+        } = data
+        dispatch(updateUser({ user, token }))
+        dispatch(addBooks(books))
+        dispatch(addStudents(students))
+        if (studentId) dispatch(updateCurrentStudentId(studentId))
+    }
 
     return (
         <>

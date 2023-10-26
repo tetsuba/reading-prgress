@@ -2,6 +2,12 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { MemoryRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store/store'
+import { updateUser } from './store/user/userSlice'
+import { addBooks } from './store/books/booksSlice'
+import { addStudents } from './store/students/studentsSlice'
+import { studentsMockData } from '../tests/mockData/students'
+import booksMockData from '../tests/mockData/books'
+import { userMockData } from '../tests/mockData/user'
 
 const portal = document.createElement('div')
 portal.setAttribute('id', 'modal')
@@ -40,9 +46,17 @@ const queryClient = new QueryClient({
 type PropTypes = {
     pathname: string
     children: JSX.Element
+    notAuthenticated?: boolean
+}
+
+export function updateStoreWithMockData() {
+    store.dispatch(updateUser(userMockData))
+    store.dispatch(addBooks(booksMockData))
+    store.dispatch(addStudents(studentsMockData))
 }
 
 export function WrapperWith_Store_Query_Router(props: PropTypes) {
+    if (!props.notAuthenticated) updateStoreWithMockData()
     return (
         <Provider store={store}>
             <QueryClientProvider client={queryClient}>

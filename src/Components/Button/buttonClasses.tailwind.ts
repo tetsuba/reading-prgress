@@ -37,7 +37,6 @@ const BUTTON_CLASSES = {
     },
     HOVER: {
         GREY: 'hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white'
-        // GREY: 'hover:bg-gray-100 hover:text-gray-900 focus:outline-none hover:border-white '
     },
     get primary(): string {
         return `${this.FILLED.PRIMARY}`
@@ -53,9 +52,6 @@ const BUTTON_CLASSES = {
     },
     get disabled() {
         return `${this.FILLED.DISABLED}`
-    },
-    get svgClose() {
-        return `${this.ICON.CLOSE} ${this.HOVER.GREY}`
     },
     get ['icon-close']() {
         return `${this.ICON.CLOSE} ${this.HOVER.GREY}`

@@ -1,8 +1,14 @@
-import { StateBookTypes } from '../../store/store-types'
-import { ApiBookHistoryTypes, ApiCollectionTypes } from '../../api/api-types'
+import { StateBookTypes, StateStudentTypes } from '../../store/store.types'
+import {
+    ApiBookHistoryTypes,
+    ApiCollectionTypes,
+    ApiStudentType
+} from '../../api/api-types'
 import { isArray } from '../../lib/utils'
 import { isUndefined, Task } from '../../lib/monads'
 import * as R from 'ramda'
+import store from '../../store/store'
+import { studentSelector } from '../../store/students/studentsSelectors'
 
 export type WordType = { word: string; status: string }
 type StoryType = string | string[]
@@ -97,21 +103,6 @@ export const transformStoryToTrackerHistory = (data: WordType[][]) =>
                 date: getShortDate()
             }
         ])
-
-export function findBookHistory(
-    collections: ApiCollectionTypes[],
-    book: StateBookTypes
-) {
-    const collectionId = R.compose(R.equals(book.libId), R.prop('id'))
-    const bookId = R.compose(R.equals(book.bookId), R.prop('id'))
-
-    return R.compose(
-        R.prop('history'),
-        R.find(bookId),
-        R.prop('books'),
-        R.find(collectionId)
-    )(collections) as ApiBookHistoryTypes[]
-}
 
 export function isReadingCompleted(
     storyLength: number,

@@ -1,33 +1,36 @@
-import { render, screen, waitFor, fireEvent, act } from '@testing-library/react'
+import {
+    render,
+    screen,
+    waitFor,
+    fireEvent,
+    act,
+    waitForElementToBeRemoved
+} from '@testing-library/react'
 import { WrapperWith_Store_Query_Router } from '../../../vitest-setup'
 import { Mocked } from 'vitest'
 import Reading from '../Reading'
 import store from '../../../store/store'
-import { addBook, AddBookPayloadTypes } from '../../../store/book/bookSlice'
 
 import axios from 'axios'
+import {
+    updateCurrentBookId,
+    updateCurrentCollectionId,
+    updateCurrentStudentId
+} from '../../../store/current/currentSlice'
+import { studentsMockData } from '../../../../tests/mockData/students'
 vi.mock('axios')
 const mockedAxios = axios as Mocked<typeof axios>
 
-const mockHistory = [
-    { date: '12/12/12', words: ['This', 'There', 'Their'] },
-    { date: '13/12/12', words: ['This', 'story'] }
-]
-
-const mockBookData: AddBookPayloadTypes = {
-    book: {
-        title: 'mock title',
-        story: ['This is a story', 'There is a bear', 'Their is a book'],
-        id: 1,
-        userId: 2,
-        history: mockHistory
-    },
-    libId: '002'
-}
-
 describe('Reading', () => {
-    describe('store.book', () => {
-        test('with initial state', () => {
+    describe('initial render', () => {
+        afterEach(() => {
+            act(() => {
+                store.dispatch(updateCurrentCollectionId(null))
+                store.dispatch(updateCurrentBookId(null))
+                store.dispatch(updateCurrentStudentId(null))
+            })
+        })
+        test('book not selected. student not selected ', () => {
             render(
                 <WrapperWith_Store_Query_Router pathname="/reading">
                     <Reading />
@@ -35,183 +38,109 @@ describe('Reading', () => {
             )
             expect(screen.queryAllByTestId('sentence-block')).toHaveLength(0)
         })
-        describe('dispatched with book data', () => {
-            beforeEach(() => {
-                store.dispatch(addBook(mockBookData))
-                render(
-                    <WrapperWith_Store_Query_Router pathname="/reading">
-                        <Reading />
-                    </WrapperWith_Store_Query_Router>
-                )
-            })
-            test('should render 3 sentences and a title', async () => {
-                await waitFor(() =>
-                    expect(screen.getByText(`${mockBookData.book.title}`))
-                )
-                expect(screen.queryAllByTestId('sentence-block')).toHaveLength(
-                    3
-                )
-            })
-            test('clicking on a word in a sentence', () => {
-                expect(screen.getByText('This').getAttribute('class')).toEqual(
-                    expect.stringContaining('border-gray-100')
-                )
-                fireEvent.click(screen.getByText('This'))
-                expect(screen.getByText('This').getAttribute('class')).toEqual(
-                    expect.stringContaining('border-white')
-                )
-                fireEvent.click(screen.getByText('This'))
-                expect(screen.getByText('This').getAttribute('class')).toEqual(
-                    expect.stringContaining('border-green-500')
-                )
-            })
-            test('clicking on the show history button', () => {
-                expect(screen.queryAllByTestId('sentence-block')).toHaveLength(
-                    3
-                )
-                fireEvent.click(screen.getByTestId('history-button'))
-                expect(screen.queryAllByTestId('sentence-block')).toHaveLength(
-                    0
-                )
-                expect(screen.queryAllByTestId('history-block')).toHaveLength(2)
-            })
-            test('clicking on the complete button in the sentence component', async () => {
-                await waitFor(() =>
-                    expect(
-                        screen.queryAllByTestId('sentence-block')
-                    ).toHaveLength(3)
-                )
-                screen.queryAllByTestId('sentence-block').forEach((ele) => {
-                    expect(ele.getAttribute('class')).not.toEqual(
-                        expect.stringContaining('hidden')
-                    )
-                })
-                fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
-                await waitFor(() =>
-                    expect(
-                        screen.queryAllByTestId('sentence-block')
-                    ).toHaveLength(2)
-                )
-                fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
-                await waitFor(() =>
-                    expect(
-                        screen.queryAllByTestId('sentence-block')
-                    ).toHaveLength(1)
-                )
-            })
-            test('completing all sentences', async () => {
-                const mockHistoryResponse = mockHistory.concat([
-                    { date: '14/12/12', words: [] }
-                ])
-                const mockResponse = {
-                    data: [
-                        {
-                            id: '001',
-                            books: []
-                        },
-                        {
-                            id: '002',
-                            books: [
-                                {
-                                    ...mockBookData.book,
-                                    history: mockHistoryResponse
-                                }
-                            ]
-                        }
-                    ]
-                }
-                mockedAxios.patch.mockResolvedValueOnce(mockResponse)
-                await waitFor(() =>
-                    expect(
-                        screen.queryAllByTestId('sentence-block')
-                    ).toHaveLength(3)
-                )
-                fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
-                await waitFor(() =>
-                    expect(
-                        screen.queryAllByTestId('sentence-block')
-                    ).toHaveLength(2)
-                )
-                fireEvent.click(screen.getByTestId('sentence-back-button'))
-                await waitFor(() =>
-                    expect(
-                        screen.queryAllByTestId('sentence-block')
-                    ).toHaveLength(3)
-                )
-                fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
-                await waitFor(() =>
-                    expect(
-                        screen.queryAllByTestId('sentence-block')
-                    ).toHaveLength(2)
-                )
-                fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
-                await waitFor(() =>
-                    expect(
-                        screen.queryAllByTestId('sentence-block')
-                    ).toHaveLength(1)
-                )
-                fireEvent.click(screen.getByTestId('sentence-complete'))
-                await waitFor(() =>
-                    expect(
-                        screen.queryAllByTestId('sentence-block')
-                    ).toHaveLength(0)
-                )
-                await waitFor(() =>
-                    expect(
-                        screen.queryAllByTestId('history-block')
-                    ).toHaveLength(3)
-                )
-                expect(screen.getByText('100% Completed'))
-                fireEvent.click(screen.getByTestId('history-back-button'))
-                await waitFor(() =>
-                    expect(
-                        screen.queryAllByTestId('sentence-block')
-                    ).toHaveLength(3)
-                )
-                await waitFor(() =>
-                    expect(
-                        screen.queryAllByTestId('history-block')
-                    ).toHaveLength(0)
-                )
-            })
-            test.todo(
-                'clicking on the speech button and completing and not completing a sentence',
-                () => {
-                    fireEvent.click(screen.getByTestId('speech-button'))
-                    expect(
-                        screen
-                            .getByTestId('speech-button')
-                            .getAttribute('class')
-                    ).toEqual(expect.stringContaining('text-green-500'))
-
-                    expect(
-                        screen.getByText('This').getAttribute('class')
-                    ).toEqual(expect.stringContaining('border-green-500'))
-
-                    const firstSentenceClasses = screen
-                        .queryAllByTestId('sentence-block')[0]
-                        .getAttribute('class')
-                    expect(firstSentenceClasses).toEqual(
-                        expect.stringContaining('hidden')
-                    )
-
-                    fireEvent.click(screen.getByTestId('speech-button'))
-                    expect(
-                        screen
-                            .getByTestId('speech-button')
-                            .getAttribute('class')
-                    ).toEqual(expect.stringContaining('text-red-500'))
-
-                    fireEvent.click(screen.getByTestId('speech-button'))
-                    const secondSentenceClasses = screen
-                        .queryAllByTestId('sentence-block')[1]
-                        .getAttribute('class')
-                    expect(secondSentenceClasses).not.toEqual(
-                        expect.stringContaining('hidden')
-                    )
-                    fireEvent.click(screen.getByTestId('speech-button'))
-                }
+        test('book not selected. student selected ', () => {
+            store.dispatch(updateCurrentStudentId(1))
+            render(
+                <WrapperWith_Store_Query_Router pathname="/reading">
+                    <Reading />
+                </WrapperWith_Store_Query_Router>
             )
+
+            expect(screen.queryAllByTestId('sentence-block')).toHaveLength(0)
+        })
+        test('book selected. student not selected ', () => {
+            store.dispatch(updateCurrentCollectionId('002'))
+            store.dispatch(updateCurrentBookId(1))
+            render(
+                <WrapperWith_Store_Query_Router pathname="/reading">
+                    <Reading />
+                </WrapperWith_Store_Query_Router>
+            )
+            expect(screen.queryAllByTestId('sentence-block')).toHaveLength(15)
+            expect(screen.getByText('Double Trouble')).exist
+        })
+        test('book selected. student selected ', () => {
+            store.dispatch(updateCurrentCollectionId('002'))
+            store.dispatch(updateCurrentBookId(1))
+            store.dispatch(updateCurrentStudentId(1))
+            render(
+                <WrapperWith_Store_Query_Router pathname="/reading">
+                    <Reading />
+                </WrapperWith_Store_Query_Router>
+            )
+
+            expect(screen.queryAllByTestId('sentence-block')).toHaveLength(15)
+            expect(screen.getByText('Double Trouble')).exist
+        })
+    })
+
+    describe('Story', () => {
+        beforeEach(() => {
+            store.dispatch(updateCurrentCollectionId('002'))
+            store.dispatch(updateCurrentBookId(1))
+            store.dispatch(updateCurrentStudentId(1))
+            render(
+                <WrapperWith_Store_Query_Router pathname="/reading">
+                    <Reading />
+                </WrapperWith_Store_Query_Router>
+            )
+        })
+        afterEach(() => {
+            act(() => {
+                store.dispatch(updateCurrentCollectionId(null))
+                store.dispatch(updateCurrentBookId(null))
+                store.dispatch(updateCurrentStudentId(null))
+            })
+        })
+        test('clicking on a word in a sentence', () => {
+            const WORD = 'am'
+            expect(screen.getAllByText(WORD)[0].getAttribute('class')).toEqual(
+                expect.stringContaining('border-gray-100')
+            )
+            fireEvent.click(screen.getAllByText(WORD)[0])
+            expect(screen.getAllByText(WORD)[0].getAttribute('class')).toEqual(
+                expect.stringContaining('border-white')
+            )
+            fireEvent.click(screen.getAllByText(WORD)[0])
+            expect(screen.getAllByText(WORD)[0].getAttribute('class')).toEqual(
+                expect.stringContaining('border-green-500')
+            )
+        })
+        test('clicking on the show history button', () => {
+            fireEvent.click(screen.getByTestId('history-button'))
+            expect(screen.queryAllByTestId('sentence-block')).toHaveLength(0)
+            expect(screen.queryAllByTestId('history-block')).toHaveLength(5)
+        })
+        test('completing all sentences with no errors', async () => {
+            mockedAxios.patch.mockResolvedValue({
+                data: studentsMockData
+            })
+
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+            fireEvent.click(screen.queryAllByTestId('sentence-complete')[0])
+
+            const text = 'I read this book 5 times'
+
+            await waitFor(() =>
+                expect(screen.getByText(text).textContent).toEqual(text)
+            )
+
+            expect(screen.getByText('100% Completed'))
+            fireEvent.click(screen.getByTestId('history-back-button'))
+            expect(screen.queryByText(text)).toBeNull()
         })
     })
 })

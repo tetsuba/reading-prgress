@@ -30,7 +30,7 @@ export const BannerGreen: Story = {
     args: {
         className: '',
         data: {
-            words: [],
+            completed: true,
             date: '12/12/12',
             title: 'Book Title'
         }
@@ -44,7 +44,7 @@ export const BannerRed: Story = {
     args: {
         className: '',
         data: {
-            words: ['word'],
+            completed: false,
             date: '12/12/12',
             title: 'Book Title'
         }

@@ -36,6 +36,7 @@ export default function Modal(props: PropTypes) {
 
     return createPortal(
         <div
+            data-testid="modal-test"
             className={`relative m-auto w-full rounded-lg bg-white shadow dark:bg-gray-700 md:h-auto md:w-9/12 ${
                 props.className || ''
             }`}

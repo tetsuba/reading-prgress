@@ -15,13 +15,10 @@ const TAILWIND_CLASSES = {
     },
     get checkbox() {
         return `${this.SHARED.BG} ${this.SHARED.BORDER} ${this.INPUT.CHECKBOX}`
-    },
-    get textarea() {
-        return `${this.SHARED.BG} ${this.SHARED.BORDER} ${this.TEXTAREA} ${this.SHARED.FOCUS}`
     }
 }
 
-export type FormClassesTypes = 'text' | 'checkbox' | 'textarea'
+export type FormClassesTypes = 'text' | 'checkbox'
 export default function getFormClasses(key: FormClassesTypes): string {
     return TAILWIND_CLASSES[key]
 }

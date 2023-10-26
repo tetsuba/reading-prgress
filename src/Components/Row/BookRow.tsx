@@ -1,61 +1,55 @@
 import * as R from 'ramda'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getIconColorForBookRow } from '../../Views/Books/book-utils'
-import Row from './Row'
-import { addBook } from '../../store/book/bookSlice'
-import Display from '../Dispay/Display'
-import { ApiBookTypes } from '../../api/api-types'
+
+// STORE
+import { updateCurrentBookId } from '../../store/current/currentSlice'
+
+// COMPONENTS
 import Button from '../Button/Button'
+import Row from './Row'
+
+// TYPES
+import { BookWithIconColorTypes } from '../../store/selector.types'
+import { currentStudentIdSelector } from '../../store/current/currentSelectors'
+import { toggleBooksShowMessage } from '../../store/view/viewSlice'
 
 type BookPropTypes = {
-    data?: ApiBookTypes
+    data?: BookWithIconColorTypes
     index?: number
-    collectionId?: string
-    deleteBook?: (book: ApiBookTypes) => void
 }
 
 export default function BookRow(props: BookPropTypes) {
-    const { data, index, collectionId, deleteBook } = props
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const studentId = useSelector(currentStudentIdSelector)
+    const { data, index } = props
 
-    if (
-        R.isNil(data) ||
-        R.isNil(deleteBook) ||
-        R.isNil(collectionId) ||
-        R.isNil(index)
-    ) {
+    if (R.isNil(data) || R.isNil(index)) {
         return <>loading...</>
     }
 
-    const iconColor = getIconColorForBookRow(data)
     return (
         <Row
             index={index}
             text={data.title}
             icon="bookmark"
-            iconColor={iconColor}
+            iconColor={data.iconColor}
         >
             <Button
                 data-testid="book-list-read"
                 template="secondary"
                 onClick={() => {
-                    dispatch(addBook({ book: data, libId: collectionId }))
-                    navigate('/reading')
+                    if (studentId) {
+                        dispatch(updateCurrentBookId(data.id))
+                        navigate('/reading')
+                    } else {
+                        dispatch(toggleBooksShowMessage())
+                    }
                 }}
             >
                 Read
             </Button>
-            <Display value={collectionId === '001'}>
-                <Button
-                    className="ml-2"
-                    data-testid="book-list-delete"
-                    icon="delete"
-                    template="icon-delete"
-                    onClick={() => deleteBook(data)}
-                />
-            </Display>
         </Row>
     )
 }

@@ -1,13 +1,16 @@
 import { useDispatch } from 'react-redux'
-import { resetUserToInitialState } from '../../store/user/userSlice'
 import ls from '../../lib/localStorage'
+
+// STORE
+import { toggleViewGlobalExpired } from '../../store/view/viewSlice'
+import { resetUserToInitialState } from '../../store/user/userSlice'
+import { resetCurrentToInitialState } from '../../store/current/currentSlice'
 
 // COMPONENTS
 import Svg from '../Svg/Svg'
 import H3 from '../H3/H3'
 import P from '../P/P'
 import Button from '../Button/Button'
-import { toggleViewGlobalExpired } from '../../store/view/viewSlice'
 
 export default function Expired() {
     const dispatch = useDispatch()
@@ -41,7 +44,9 @@ export default function Expired() {
                     className="mr-5"
                     onClick={() => {
                         ls.remove()
+                        ls.getStudentId()
                         dispatch(resetUserToInitialState())
+                        dispatch(resetCurrentToInitialState())
                         dispatch(toggleViewGlobalExpired(false))
                     }}
                 >
