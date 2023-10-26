@@ -8,8 +8,6 @@ const TAILWIND_CLASSES = {
         TEXT: ` text-gray-900 text-sm rounded-lg block w-full p-2.5`,
         CHECKBOX: `w-4 h-4 rounded focus:ring-3 focus:ring-blue-300`
     },
-    TEXTAREA: `mt-1 block w-full rounded-md shadow-sm sm:text-sm`,
-
     get text() {
         return `${this.SHARED.BG} ${this.SHARED.BORDER} ${this.INPUT.TEXT} ${this.SHARED.FOCUS}`
     },
