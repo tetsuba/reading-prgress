@@ -9,7 +9,7 @@ exports[`SightWords > will render groups of sight words 1`] = `
       class="mx-auto flex max-w-7xl justify-between px-4 py-6 sm:px-6 lg:px-8"
     >
       <h1
-        class="text-3xl font-bold tracking-tight text-gray-900"
+        class="text-3xl font-bold leading-[3rem] tracking-tight text-gray-900"
       >
         Sight Words
       </h1>

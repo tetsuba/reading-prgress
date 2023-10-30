@@ -4,14 +4,21 @@ import Modal from './Modal'
 import { useState } from 'react'
 import FormRegisterStudent from '../Form/FormRegisterStudent'
 import H3 from '../H3/H3'
+import Svg from '../Svg/Svg'
 
 export default function RegisterStudent() {
     const [showModal, setShowModal] = useState(false)
 
     return (
         <>
-            <Button onClick={() => setShowModal(true)} template="primary">
-                Register Student
+            <Button
+                className="max-md:px-3"
+                onClick={() => setShowModal(true)}
+                icon="addUser"
+                template="primary"
+                right
+            >
+                <span className="mr-2 hidden md:block">Register Student</span>
             </Button>
             <Display value={showModal}>
                 <Modal className="md:max-w-xl">

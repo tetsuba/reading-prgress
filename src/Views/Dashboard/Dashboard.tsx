@@ -36,14 +36,19 @@ export default function Dashboard() {
                     </Display>
                     <Display value={student !== undefined}>
                         <Button
+                            className="max-md:px-3"
                             data-testid="change-student-button"
                             template="secondary"
+                            icon="users"
                             onClick={() => {
                                 dispatch(resetCurrentToInitialState())
                                 ls.removeStudentId()
                             }}
+                            right
                         >
-                            Change Student
+                            <span className="mr-2 hidden md:block">
+                                Change Student
+                            </span>
                         </Button>
                     </Display>
                 </>
