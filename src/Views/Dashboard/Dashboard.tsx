@@ -16,7 +16,6 @@ import Banner from '../../Components/Banner/Banner'
 import Main from '../../Components/Main/Main'
 import Display from '../../Components/Dispay/Display'
 import Loop from '../../Components/Loop/Loop'
-
 import Button from '../../Components/Button/Button'
 import RegisterStudent from '../../Components/Modal/RegisterStudent'
 import Students from './Students'

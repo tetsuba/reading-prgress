@@ -91,6 +91,15 @@ test.describe('New User Registration Flow', () => {
             await expect(page.getByRole('heading', { name: 'I read this book 1 times' })).toBeVisible()
             await expect(page.getByTestId('history-block').locator('div').filter({ hasText: '100% Completed' })).toBeVisible()
         })
+        await test.step('Returns to the dashboard and click on the banner', async () => {
+            await page.getByRole('link', { name: 'Dashboard' }).click()
+            await page.waitForURL('/dashboard')
+            await expect(
+                page.getByTestId('banner-test')
+            ).toBeVisible()
+            await page.getByTestId('banner-title').click()
+            await expect(page.getByRole('heading', { name: 'Test book 1' })).toBeVisible()
+        })
     })
 
 })

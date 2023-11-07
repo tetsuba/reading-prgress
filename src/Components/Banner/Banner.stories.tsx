@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Banner from './Banner'
+import {Provider} from "react-redux";
+import store from "../../store/store";
+import {QueryClientProvider} from "react-query";
+import {BrowserRouter} from "react-router-dom";
 /**
  * Displays a banner showing the last book read and is color-coded based on
  * words length.
@@ -7,6 +11,13 @@ import Banner from './Banner'
 const meta = {
     title: 'COMPONENTS/Banner',
     component: Banner,
+    decorators: [
+        (story) => (
+            <Provider store={store}>
+                <BrowserRouter>{story()}</BrowserRouter>
+            </Provider>
+        )
+    ],
     parameters: {
         layout: 'fullscreen'
     },
@@ -32,7 +43,9 @@ export const BannerGreen: Story = {
         data: {
             completed: true,
             date: '12/12/12',
-            title: 'Book Title'
+            title: 'Book Title',
+            collectionId: '002',
+            bookId: 1
         }
     }
 }
@@ -46,7 +59,9 @@ export const BannerRed: Story = {
         data: {
             completed: false,
             date: '12/12/12',
-            title: 'Book Title'
+            title: 'Book Title',
+            collectionId: '002',
+            bookId: 1
         }
     }
 }

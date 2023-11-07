@@ -1,11 +1,17 @@
 import Svg from '../Svg/Svg'
+import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import {
+    updateCurrentBookId,
+    updateCurrentCollectionId
+} from '../../store/current/currentSlice'
 
 export type LastBookReadTypes = {
     completed: boolean
     date: string
     title: string
-    // bookId: number
-    // collectionId: string
+    bookId: number
+    collectionId: string
 }
 
 type PropTypes = {
@@ -14,6 +20,7 @@ type PropTypes = {
 }
 
 export default function Banner(props: PropTypes) {
+    const dispatch = useDispatch()
     const { data = { completed: false, date: '', title: '' } } = props
     const { completed, date, title } = data
 
@@ -26,7 +33,19 @@ export default function Banner(props: PropTypes) {
             data-testid="banner-test"
             className={`flex justify-between border-y-2 p-4 md:rounded-xl md:border-x-2 ${props.className} ${color}`}
         >
-            {`[${date}] ${title}  `}
+            <span>
+                <Link
+                    data-testid="banner-title"
+                    className="hover:underline"
+                    onClick={() => {
+                        dispatch(
+                            updateCurrentCollectionId(props.data!.collectionId)
+                        )
+                        dispatch(updateCurrentBookId(props.data!.bookId))
+                    }}
+                    to="/reading"
+                >{`[${date}] ${title} `}</Link>
+            </span>
             <span>
                 <Svg icon={completed ? 'thumb' : 'warning'} />
             </span>
