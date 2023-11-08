@@ -13,11 +13,13 @@ import ErrorMessage from '../Form/ErrorMessage'
 import Button from '../Button/Button'
 import { loginUser } from '../../api/user'
 import { addStudents } from '../../store/students/studentsSlice'
+import { useEffect, useRef } from 'react'
 
 type PropTypes = {
     setShowLogin: (p: boolean) => void
 }
 export default function Login(props: PropTypes) {
+    const eleRefButton = useRef<HTMLButtonElement | null>(null)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const mutation = useMutation(loginUser, {
@@ -33,9 +35,25 @@ export default function Login(props: PropTypes) {
         }
     })
 
+    useEffect(() => {
+        // TODO: Fix this hacky way of focusing on the first input element after the modal is rendered
+        setTimeout(() => {
+            if (eleRefButton.current !== null) {
+                eleRefButton.current.focus()
+            }
+        }, 0)
+    }, [])
+
     return (
-        <div data-testid="login-view">
+        <div
+            role="dialog"
+            aria-labelledby="Login"
+            aria-describedby="Please enter your username and password"
+            data-testid="login-view"
+        >
             <Button
+                tabIndex={0}
+                ref={eleRefButton}
                 className="absolute right-2.5 top-3"
                 data-testid="modal-close"
                 icon="close"
@@ -111,6 +129,7 @@ export default function Login(props: PropTypes) {
                     <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                         Not registered?
                         <Button
+                            onBlur={() => eleRefButton.current?.focus()}
                             className="ml-1"
                             template="text-link"
                             onClick={() => {

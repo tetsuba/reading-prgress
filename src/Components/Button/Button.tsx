@@ -1,4 +1,4 @@
-import * as R from 'ramda'
+import { forwardRef } from 'react'
 import getTailWindClasses, {
     TailwindTemplateTypes
 } from './buttonClasses.tailwind'
@@ -7,17 +7,22 @@ import Svg, { SvgIconTypes } from '../Svg/Svg'
 type ChildrenTypes = string | JSX.Element
 
 type PropTypes = {
+    template: TailwindTemplateTypes
     children?: ChildrenTypes | ChildrenTypes[]
     className?: string
-    onClick?: () => void
-    template: TailwindTemplateTypes
-    type?: 'button' | 'submit' | 'reset'
     icon?: SvgIconTypes
+    onBlur?: () => void
+    onClick?: () => void
     right?: boolean
+    tabIndex?: number
+    type?: 'button' | 'submit' | 'reset'
 }
 
 //** This is a test  */
-export default function Button(props: PropTypes): JSX.Element {
+export default forwardRef(function Button(
+    props: PropTypes,
+    ref: React.Ref<HTMLButtonElement>
+): JSX.Element {
     const { right, icon, children, template, className, ...rest } = props
 
     const iconOnly = !!icon && !children
@@ -27,7 +32,7 @@ export default function Button(props: PropTypes): JSX.Element {
     const tailwindClasses = `${getTailWindClasses(template)} ${className || ''}`
 
     return (
-        <button {...rest} className={tailwindClasses}>
+        <button {...rest} ref={ref} className={tailwindClasses}>
             {iconOnly && <Svg icon={icon} />}
             {textOnly && children}
             {textAndIcon &&
@@ -44,4 +49,4 @@ export default function Button(props: PropTypes): JSX.Element {
                 ))}
         </button>
     )
-}
+})

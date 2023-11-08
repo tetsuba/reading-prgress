@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Banner from './Banner'
-import {Provider} from "react-redux";
-import store from "../../store/store";
-import {QueryClientProvider} from "react-query";
-import {BrowserRouter} from "react-router-dom";
+import { Provider } from 'react-redux'
+import store from '../../store/store'
+import { QueryClientProvider } from 'react-query'
+import { BrowserRouter } from 'react-router-dom'
 /**
  * Displays a banner showing the last book read and is color-coded based on
  * words length.
