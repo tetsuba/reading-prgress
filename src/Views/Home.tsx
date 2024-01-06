@@ -18,7 +18,7 @@ const Home = () => {
                     <div className="mb-8 hidden justify-center sm:flex ">
                         <div className="rounded-full px-4 py-1.5 text-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                             <span className="text-gray-600">
-                                Decodable Reading Books For Children
+                                Decodable Reading Books For Children.
                             </span>
                             <Link
                                 to=""
