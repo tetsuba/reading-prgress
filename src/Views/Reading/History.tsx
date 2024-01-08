@@ -1,14 +1,17 @@
 import H3 from '../../Components/H3/H3'
-import { WordTypes } from './Sentence'
-import { ApiBookHistoryTypes } from '../../api/api-types'
+import { HistoryTypes } from '../../api/api-types'
 import TAILWIND_CLASSES from '../../shared.tailwind'
-import { doesHistoryHaveWords, getHistoryWords } from './reading-utils'
+import {
+    doesHistoryHaveWords,
+    getHistoryWords,
+    WordStatusTypes
+} from './reading-utils'
 import Loop from '../../Components/Loop/Loop'
 import Button from '../../Components/Button/Button'
 
 type PropTypes = {
-    story: WordTypes[][]
-    history: ApiBookHistoryTypes[] | []
+    story: WordStatusTypes[][]
+    history: HistoryTypes[] | []
     restart: () => void
 }
 
@@ -26,7 +29,7 @@ function HistoryHeader(props: PropTypes) {
     )
 }
 
-function HistoryBlock(props: { data?: ApiBookHistoryTypes }) {
+function HistoryBlock(props: { data?: HistoryTypes }) {
     const status: boolean = doesHistoryHaveWords(props)
     return (
         <div data-testid="history-block">

@@ -1,4 +1,5 @@
-import { formDataToQueryString, RegistrationFormTypes } from '../utils'
+import { formDataToQueryString } from '../utils'
+import { RegistrationFormTypes } from '../lib.types'
 
 describe('utils', () => {
     describe('formDataToQueryString()', () => {
@@ -17,7 +18,7 @@ describe('utils', () => {
             )
         })
         test('does not have form data', () => {
-            const target: RegistrationFormTypes = {
+            const target: Partial<RegistrationFormTypes> = {
                 addEventListener: vi.fn(),
                 dispatchEvent: vi.fn(),
                 removeEventListener: vi.fn()

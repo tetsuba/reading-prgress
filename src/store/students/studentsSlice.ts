@@ -1,18 +1,13 @@
-import * as R from 'ramda'
 import { createSlice } from '@reduxjs/toolkit'
-import { ActionTypes, StateStudentTypes } from '../store.types'
+import { ActionAddStudentTypes, StateStudentTypes } from '../store.types'
 
-interface AddStudentActionTypes extends ActionTypes {
-    payload: StateStudentTypes[]
-}
-
-export const initialState = [] as StateStudentTypes[] | []
+export const initialState: StateStudentTypes[] | [] = []
 
 export const studentsSlice = createSlice({
     name: 'students',
     initialState,
     reducers: {
-        addStudents: (state, action: AddStudentActionTypes) => {
+        addStudents: (state, action: ActionAddStudentTypes) => {
             return action.payload
         }
     }

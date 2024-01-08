@@ -1,9 +1,9 @@
 import Loop from '../../Components/Loop/Loop'
 import CollectionRow from '../../Components/Row/CollectionRow'
-import { CollectionsTypes } from '../../store/selector.types'
+import { SelectorCollectionsTypes } from '../../store/selector.types'
 
 type PropTypes = {
-    collections: CollectionsTypes[] | undefined
+    collections: SelectorCollectionsTypes[] | undefined
 }
 
 export default function ListOfCollections(props: PropTypes) {

@@ -1,71 +1,60 @@
-import {
-    ApiBookHistoryTypes,
-    ApiCollectionTypes,
-    ApiProgressType,
-    ApiStudentType
-} from '../api/api-types'
 import store from './store'
+import {
+    ProgressType,
+    StudentType,
+    UserTypes,
+    TokenType,
+    CollectionTypes,
+    ApiTypes
+} from '../api/api-types'
 
-export type ActionTypes = {
-    type: string
-}
+export type AppDispatch = typeof store.dispatch
+export type ActionTypes = { type: string }
 
-export type StateBookHistoryTypes = ApiBookHistoryTypes
-export type StateBooksTypes = ApiCollectionTypes[]
-export type StateStudentTypes = ApiStudentType
-export type StateCollectionTypes = ApiCollectionTypes
-export type StateProgressTypes = ApiProgressType
+// BOOKS
+export type StateBooksTypes = CollectionTypes[]
+export type ActionUpdateBooksTypes = ActionTypes &
+    Record<'payload', CollectionTypes[]>
+export type StateCollectionTypes = CollectionTypes
 
-export type StateBookTypes = {
-    bookId: number
-    libId: string
-    history: StateBookHistoryTypes[] | []
-    story: string | string[]
-    title: string
-}
+// CURRENT
+export type StateCurrentTypes = Record<
+    keyof Pick<ApiTypes, 'studentId' | 'bookId'>,
+    number | null
+> &
+    Record<keyof Pick<ApiTypes, 'collectionId'>, string | null>
+export type ActionUpdateCurrentStudentIdTypes = ActionTypes &
+    Record<'payload', StateCurrentTypes['studentId']>
+export type ActionUpdateCurrentCollectionIdTypes = ActionTypes &
+    Record<'payload', StateCurrentTypes['collectionId']>
+export type ActionUpdateCurrentBookIdTypes = ActionTypes &
+    Record<'payload', StateCurrentTypes['bookId']>
 
-export type StateUserTypes = {
-    firstName: string
-    lastName: string
-    email: string
-    id: number
-    token: string
-}
+// STUDENTS
+export type StateStudentTypes = StudentType
+export type ActionAddStudentTypes = ActionTypes &
+    Record<'payload', StateStudentTypes[]>
 
-export type StateViewGlobalTypes = {
-    expired: boolean
-}
+export type StateProgressTypes = ProgressType
 
+// USER
+export type StateUserTypes = UserTypes & TokenType
+export type ActionUserUpdateTypes = ActionTypes &
+    Record<'payload', Record<'user', UserTypes> & TokenType>
+
+// VIEW
 export type StateViewTypes = {
-    global: StateViewGlobalTypes
-    books: {
-        showMessage: boolean
-    }
+    global: { expired: boolean }
+    books: { showMessage: boolean }
 }
+export type ActionViewGlobalExpiredToggleTypes = ActionTypes &
+    Record<'payload', boolean>
 
-export type StateCurrentTypes = {
-    studentId: number | null
-    collectionId: string | null
-    bookId: number | null
-}
-
+// Main State
 export type StateTypes = {
     books: StateBooksTypes
     current: StateCurrentTypes
     students: StateStudentTypes[]
     user: StateUserTypes
     view: StateViewTypes
-}
-
-export type AppDispatch = typeof store.dispatch
-
-export type ReadWordsTypes = {
-    word: string
-    index: number
-}
-
-export type StudentProgressReadWordsTypes = {
-    oneWeekAgo: ReadWordsTypes[] | string[]
-    oneMonthAgo: ReadWordsTypes[] | string[]
-    history: ReadWordsTypes[] | string[]
 }

@@ -36,6 +36,10 @@ export default function Modal(props: PropTypes) {
 
     return createPortal(
         <div
+            aria-hidden="false"
+            aria-labelledby="modalTitle"
+            aria-describedby="modalDescription"
+            role="dialog"
             data-testid="modal-test"
             className={`relative m-auto w-full rounded-lg bg-white shadow dark:bg-gray-700 md:h-auto md:w-9/12 ${
                 props.className || ''

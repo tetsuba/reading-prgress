@@ -1,9 +1,9 @@
 import { allBooksCompleted } from '../book-utils'
-import { ApiBookTypes } from '../../../api/api-types'
+import { BookTypes } from '../../../api/api-types'
 
 describe('book-utils', () => {
     describe('allBooksCompleted()', () => {
-        const booksCompleted: ApiBookTypes[] = [
+        const booksCompleted: BookTypes[] = [
             {
                 id: 1,
                 story: [],
@@ -26,7 +26,7 @@ describe('book-utils', () => {
                 history: [{ date: '', words: [] }]
             }
         ]
-        const booksNotCompleted: ApiBookTypes[] = [
+        const booksNotCompleted: BookTypes[] = [
             {
                 id: 1,
                 story: [],
@@ -46,7 +46,7 @@ describe('book-utils', () => {
                 history: [{ date: '', words: [] }]
             }
         ]
-        const booksHistoryNull: ApiBookTypes[] = [
+        const booksHistoryNull: BookTypes[] = [
             {
                 id: 1,
                 story: [],

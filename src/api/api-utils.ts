@@ -1,7 +1,12 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
 import ls from '../lib/localStorage'
 import CONFIG from './api-config'
-import { AuthorizationHeader, QueryTypes } from './api-types'
+import {
+    AuthorizationHeader,
+    BaseUrlType,
+    OriginType,
+    QueryTypes
+} from './api-types'
 import { toggleViewGlobalExpired } from '../store/view/viewSlice'
 import { AppDispatch } from '../store/store.types'
 
@@ -13,15 +18,15 @@ export function getAuthHeaders(): AuthorizationHeader {
 }
 
 /* c8 ignore start */
-export function getOrigin(): string {
+export function getOrigin(): OriginType {
     return import.meta.env.DEV
         ? CONFIG.LOCATION.DEV
         : CONFIG.LOCATION.PRODUCTION
 }
 /* c8 ignore end */
 
-export function getBaseUrl(): string {
-    const ORIGIN: string = getOrigin()
+export function getBaseUrl(): BaseUrlType {
+    const ORIGIN = getOrigin()
     return `${ORIGIN}/api/reading`
 }
 

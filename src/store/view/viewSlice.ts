@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ActionTypes, StateViewTypes } from '../store.types'
+import {
+    ActionViewGlobalExpiredToggleTypes,
+    StateViewTypes
+} from '../store.types'
 
 export const initialState = {
     global: {
@@ -16,7 +19,7 @@ export const viewSlice = createSlice({
     reducers: {
         toggleViewGlobalExpired: (
             state,
-            action: ActionTypes & { payload: boolean }
+            action: ActionViewGlobalExpiredToggleTypes
         ) => {
             state.global.expired = action.payload
         },

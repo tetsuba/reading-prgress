@@ -1,13 +1,7 @@
 import * as R from 'ramda'
-import { HeatMapColors, HeatMapWordTypes } from './HeatMap'
+import { HeatMapColors } from './HeatMap'
 import Display from '../Dispay/Display'
-
-export type WordHeatMapTypes = {
-    data?: HeatMapWordTypes
-    index?: number
-    max: number
-    color: HeatMapColors
-}
+import { WordTypes } from '../../api/api-types'
 
 const sub255 = R.subtract(255)
 const multi255 = R.multiply(255)
@@ -29,7 +23,14 @@ const backgroundStyles = R.cond([
     [R.equals('none'), () => backgroundNone]
 ])
 
-function getTextStyles(props: WordHeatMapTypes) {
+export type PropTypes = {
+    data?: WordTypes
+    index?: number
+    max: number
+    color: HeatMapColors
+}
+
+function getTextStyles(props: PropTypes) {
     const { data = { index: 0 } } = props
 
     if (props.color === 'none') {
@@ -38,7 +39,7 @@ function getTextStyles(props: WordHeatMapTypes) {
     return (data.index / props.max) * 100 > 50 ? 'text-white' : 'text-gray-900'
 }
 
-export default function WordHeatMap(props: WordHeatMapTypes) {
+export default function WordHeatMap(props: PropTypes) {
     const { data = { word: '', index: 0 } } = props
     const rgb: number = multi255(data.index / props.max)
     const showBadge = R.gt(data.index, 1)

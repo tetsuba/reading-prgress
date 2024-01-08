@@ -7,15 +7,15 @@ import {
 } from '../current/currentSelectors'
 import {
     filteredStudentProgressByCollectionId,
-    studentLastProgressUpdate,
+    studentLastProgress,
     studentProgressSelector
 } from '../students/studentsSelectors'
 import { COMPLETED, getBookStatus, NOT_STARTED } from './books.utils'
 import {
-    CollectionsTypes,
-    CollectionWithBooksIconTypes
+    SelectorCollectionsTypes,
+    SelectorCollectionTypes
 } from '../selector.types'
-import { ApiBookTypes } from '../../api/api-types'
+import { BookTypes } from '../../api/api-types'
 
 const stateBooks = (state: StateTypes) => state.books
 
@@ -27,7 +27,7 @@ export const collectionSelector = createSelector(
 
 export const collectionsSelector = createSelector(
     [stateBooks, studentProgressSelector],
-    (collections, progress): CollectionsTypes[] | undefined => {
+    (collections, progress): SelectorCollectionsTypes[] | undefined => {
         if (!collections) return undefined
         return collections.map((collection) => {
             return {
@@ -54,7 +54,7 @@ export const collectionsSelector = createSelector(
 
 export const collectionWithBooksIconSelector = createSelector(
     [collectionSelector, filteredStudentProgressByCollectionId],
-    (collection, progress): CollectionWithBooksIconTypes | undefined => {
+    (collection, progress): SelectorCollectionTypes | undefined => {
         if (!collection) return undefined
         return {
             title: collection.title,
@@ -80,14 +80,14 @@ export const collectionBooksSelector = createSelector(
 
 export const bookSelector = createSelector(
     [collectionBooksSelector, currentBookIdSelector],
-    (collectionBooks, bookId): ApiBookTypes | undefined => {
+    (collectionBooks, bookId): BookTypes | undefined => {
         if (R.isNil(bookId) || collectionBooks === undefined) return undefined
         return collectionBooks.find(R.propEq(bookId, 'id'))
     }
 )
 
 export const lastBooksRead = createSelector(
-    [stateBooks, studentLastProgressUpdate],
+    [stateBooks, studentLastProgress],
     (collection, studentProgress) => {
         if (studentProgress) {
             return studentProgress.map((progress) => {

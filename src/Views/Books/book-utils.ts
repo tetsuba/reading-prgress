@@ -1,31 +1,19 @@
-import { ApiBookTypes, ApiCollectionTypes } from '../../api/api-types'
+import { BookTypes } from '../../api/api-types'
 import * as R from 'ramda'
-import { isUndefined } from '../../lib/monads'
-import { CollectionPropTypes } from '../../Components/Row/CollectionRow'
 import { ifElse, isEmpty } from 'ramda'
-
-const returnBoolean = <T>(value: T) => value as boolean
 
 export const getBooks = R.pathOr([], ['collection', 'books'])
 
 export function filterBooksByTitle(
-    books: ApiBookTypes[],
+    books: BookTypes[],
     search: string
-): ApiBookTypes[] | [] {
+): BookTypes[] | [] {
     return books.filter((book) =>
         book.title.toLowerCase().startsWith(search.toLowerCase())
     )
 }
 
-const defaultText = R.always('text-gray-300')
 export const greenText = R.always('text-green-500')
-const redText = R.always('text-red-500')
-
-const getIconColor = R.compose(
-    R.ifElse(R.isEmpty, greenText, redText),
-    R.prop('words'),
-    R.last
-)
 
 const historyWordsEmpty = R.compose(
     R.isEmpty,

@@ -10,12 +10,12 @@ import Button from '../Button/Button'
 import Row from './Row'
 
 // TYPES
-import { BookWithIconColorTypes } from '../../store/selector.types'
+import { SelectorBookTypes } from '../../store/selector.types'
 import { currentStudentIdSelector } from '../../store/current/currentSelectors'
 import { toggleBooksShowMessage } from '../../store/view/viewSlice'
 
 type BookPropTypes = {
-    data?: BookWithIconColorTypes
+    data?: SelectorBookTypes
     index?: number
 }
 

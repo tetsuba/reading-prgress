@@ -16,10 +16,10 @@ import BookRow from '../../Components/Row/BookRow'
 import Button from '../../Components/Button/Button'
 
 // TYPES
-import { CollectionWithBooksIconTypes } from '../../store/selector.types'
+import { SelectorCollectionTypes } from '../../store/selector.types'
 
 type PropTypes = {
-    collection: CollectionWithBooksIconTypes | undefined
+    collection: SelectorCollectionTypes | undefined
 }
 
 export default function ListOfBooks(props: PropTypes) {

@@ -8,6 +8,7 @@ import {
     currentStudentIdSelector
 } from '../current/currentSelectors'
 import { countDuplicates, dateIsAfterOne, formatDate } from '../store.utils'
+import { SelectorStudentLastProgressTypes } from '../selector.types'
 
 export const studentsSelector = (state: StateTypes) => state.students
 
@@ -48,22 +49,14 @@ export const studentNameSelector = createSelector(
     (student) => (student ? `${student?.firstname} ${student?.lastname}` : '')
 )
 
-type StudentLastProgressUpdateTypes =
-    | undefined
-    | Array<{
-          collectionId: string
-          bookId: number
-          date: string
-          completed: boolean
-      }>
-export const studentLastProgressUpdate = createSelector(
+export const studentLastProgress = createSelector(
     [studentProgressSelector],
-    (progress): StudentLastProgressUpdateTypes => {
+    (progress): SelectorStudentLastProgressTypes => {
         // moment
         if (progress) {
             return progress.reduce(
                 (
-                    capture: StudentLastProgressUpdateTypes,
+                    capture: SelectorStudentLastProgressTypes,
                     data: StateProgressTypes
                 ) => {
                     const { collectionId, bookId, history } = data

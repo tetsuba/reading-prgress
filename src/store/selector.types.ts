@@ -1,18 +1,27 @@
 import { StateCollectionTypes } from './store.types'
-import { ApiBookTypes } from '../api/api-types'
+import { ApiTypes, BookTypes } from '../api/api-types'
 
-export type BookWithIconColorTypes = Pick<ApiBookTypes, 'id' | 'title'> & {
+type SelectorTypes = {
     iconColor: string
-}
-
-export type CollectionWithBooksIconTypes = Pick<
-    StateCollectionTypes,
-    'title'
-> & {
-    books: BookWithIconColorTypes[]
-}
-
-export type CollectionsTypes = Pick<StateCollectionTypes, 'title' | 'id'> & {
     numberOfBooks: number
     completed: boolean
 }
+
+export type SelectorBookTypes = Pick<BookTypes, 'id' | 'title'> &
+    Pick<SelectorTypes, 'iconColor'>
+
+export type SelectorCollectionTypes = Pick<StateCollectionTypes, 'title'> &
+    Record<'books', SelectorBookTypes[]>
+
+export type SelectorCollectionsTypes = Pick<
+    StateCollectionTypes,
+    'title' | 'id'
+> &
+    Pick<SelectorTypes, 'numberOfBooks' | 'completed'>
+
+export type SelectorStudentLastProgressTypes =
+    | undefined
+    | Array<
+          Pick<ApiTypes, 'collectionId' | 'bookId' | 'date'> &
+              Pick<SelectorTypes, 'completed'>
+      >

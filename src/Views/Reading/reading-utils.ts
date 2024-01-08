@@ -1,16 +1,10 @@
-import { StateBookTypes, StateStudentTypes } from '../../store/store.types'
-import {
-    ApiBookHistoryTypes,
-    ApiCollectionTypes,
-    ApiStudentType
-} from '../../api/api-types'
+import * as R from 'ramda'
 import { isArray } from '../../lib/utils'
 import { isUndefined, Task } from '../../lib/monads'
-import * as R from 'ramda'
-import store from '../../store/store'
-import { studentSelector } from '../../store/students/studentsSelectors'
+import { HistoryTypes } from '../../api/api-types'
 
-export type WordType = { word: string; status: string }
+export type WordStatusTypes = { word: string; status: string }
+
 type StoryType = string | string[]
 
 export const STATUS = {
@@ -51,7 +45,7 @@ const removeSpecialCharacterFromWord = R.compose(
     R.prop('word')
 )
 
-const wordObject = (word: string): WordType => ({
+const wordObject = (word: string): WordStatusTypes => ({
     word: word,
     status: ''
 })
@@ -93,11 +87,11 @@ const getWordsFromSentence = R.compose(
     R.filter(filterStatusWrong)
 )
 
-export const transformStoryToTrackerHistory = (data: WordType[][]) =>
+export const transformStoryToTrackerHistory = (data: WordStatusTypes[][]) =>
     Task(data)
         .map(R.map(getWordsFromSentence))
         .map(R.flatten)
-        .map((words): ApiBookHistoryTypes[] => [
+        .map((words): HistoryTypes[] => [
             {
                 words,
                 date: getShortDate()

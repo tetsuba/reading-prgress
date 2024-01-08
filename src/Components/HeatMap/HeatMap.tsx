@@ -3,16 +3,12 @@ import WordHeatMap from './WordHeatMap'
 import H3 from '../H3/H3'
 import TAILWIND_CLASSES from '../../shared.tailwind'
 import Loop from '../Loop/Loop'
+import { WordTypes } from '../../api/api-types'
 
 export type HeatMapColors = 'red' | 'blue' | 'green' | 'none'
 
-export type HeatMapWordTypes = {
-    word: string
-    index: number
-}
-
 type PropTypes = {
-    words: HeatMapWordTypes[] | undefined
+    words: WordTypes[] | undefined
     search: string
     children: string
     color: HeatMapColors
@@ -27,7 +23,7 @@ const findMax = R.compose(
 )
 
 export default function HeatMap(props: PropTypes) {
-    function sightWords(words: HeatMapWordTypes) {
+    function sightWords(words: WordTypes) {
         const regEx = new RegExp(props.search.toLowerCase(), 'g')
         return regEx.test(words.word.toLowerCase())
     }

@@ -3,7 +3,7 @@
 Reading Tracker is an app to help identify weaknesses for children learning to read. 
 It can track sight words a child struggles with and phonetics they have difficulty sounding out.
 
-###
+npm run test
 #### Features
 
  - Track sight words child can and cannot read

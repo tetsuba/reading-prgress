@@ -1,17 +1,19 @@
 import { useState } from 'react'
 import speechToText from '../../lib/speechToText'
-import { WordTypes } from '../../Views/Reading/Sentence'
-import { allWordsAreCorrect } from '../../Views/Reading/reading-utils'
+import {
+    allWordsAreCorrect,
+    WordStatusTypes
+} from '../../Views/Reading/reading-utils'
 import { updateSentence } from './speech-utils'
 
 // import Button from '../Button/Button'
 // import Svg from '../Svg/Svg'
 
 type PropTypes = {
-    story: WordTypes[][]
+    story: WordStatusTypes[][]
     count: number
     setCount: (count: number) => void
-    setStory: (story: WordTypes[][]) => void
+    setStory: (story: WordStatusTypes[][]) => void
 }
 
 const MIC_ON = 'text-green-500'

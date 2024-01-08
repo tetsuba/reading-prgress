@@ -15,7 +15,10 @@ import { addStudents } from '../../store/students/studentsSlice'
 import { updateStudent } from '../../api/students'
 
 // UTILS
-import { transformStoryToTrackerHistory, WordType } from './reading-utils'
+import {
+    transformStoryToTrackerHistory,
+    WordStatusTypes
+} from './reading-utils'
 import { isArray } from '../../lib/utils'
 
 // TYPES
@@ -69,7 +72,7 @@ export default function useUpdateStudentProgress(
         ? { collectionId, bookId, history: [] }
         : studentBookProgress
 
-    function updateStudentProgress(story: WordType[][]) {
+    function updateStudentProgress(story: WordStatusTypes[][]) {
         let studentUpdate
         const previousHistory = studentBookProgress
             ? studentBookProgress.history

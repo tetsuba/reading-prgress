@@ -2,14 +2,10 @@ import Word from './Word'
 import TAILWIND_CLASSES from '../../shared.tailwind'
 import Loop from '../../Components/Loop/Loop'
 import Button from '../../Components/Button/Button'
-
-export type WordTypes = {
-    word: string
-    status: string
-}
+import { WordStatusTypes } from './reading-utils'
 
 type PropTypes = {
-    data?: WordTypes[]
+    data?: WordStatusTypes[]
     index?: number
     count: number
     wordClickHandler: (

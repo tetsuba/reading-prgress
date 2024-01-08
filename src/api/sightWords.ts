@@ -1,12 +1,15 @@
-import { ApiSightWordsResponseTypes, QueryTypes } from './api-types'
+import {
+    ApiResponseSightWordsTypes,
+    BaseUrlType,
+    QueryTypes
+} from './api-types'
 import { attachQueryToUrl, axiosGet, getBaseUrl } from './api-utils'
 
-const BASE_URL: string = getBaseUrl()
-const URL_SIGHT_WORDS = `${BASE_URL}/sightWords`
+const URL_SIGHT_WORDS: `${BaseUrlType}/sightWords` = `${getBaseUrl()}/sightWords`
 
 export async function getSightWords(
     props: QueryTypes
-): Promise<ApiSightWordsResponseTypes> {
+): Promise<ApiResponseSightWordsTypes> {
     const url = attachQueryToUrl(URL_SIGHT_WORDS, props.queryKey)
     return await axiosGet(url)
 }

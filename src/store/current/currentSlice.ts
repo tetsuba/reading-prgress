@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ActionTypes, StateCurrentTypes } from '../store.types'
+import {
+    ActionUpdateCurrentBookIdTypes,
+    ActionUpdateCurrentCollectionIdTypes,
+    ActionUpdateCurrentStudentIdTypes,
+    StateCurrentTypes
+} from '../store.types'
 
 export const initialState = {
     collectionId: null,
@@ -7,35 +12,25 @@ export const initialState = {
     studentId: null
 } as StateCurrentTypes
 
-interface UpdateCurrentStudentIdActionTypes extends ActionTypes {
-    payload: number | null
-}
-interface UpdateCurrentCollectionIdActionTypes extends ActionTypes {
-    payload: string | null
-}
-interface UpdateCurrentBookIdActionTypes extends ActionTypes {
-    payload: number | null
-}
-
 export const currentSlice = createSlice({
     name: 'view',
     initialState,
     reducers: {
         updateCurrentStudentId: (
             state,
-            action: UpdateCurrentStudentIdActionTypes
+            action: ActionUpdateCurrentStudentIdTypes
         ) => {
             state.studentId = action.payload
         },
         updateCurrentCollectionId: (
             state,
-            action: UpdateCurrentCollectionIdActionTypes
+            action: ActionUpdateCurrentCollectionIdTypes
         ) => {
             state.collectionId = action.payload
         },
         updateCurrentBookId: (
             state,
-            action: UpdateCurrentBookIdActionTypes
+            action: ActionUpdateCurrentBookIdTypes
         ) => {
             state.bookId = action.payload
         },

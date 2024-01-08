@@ -1,147 +1,107 @@
-export type ApiBookHistoryTypes = {
-    date: string
-    words: string[]
-}
+import CONFIG from './api-config'
 
-export type ApiBookTypes = {
-    id: number
-    story: string | string[]
-    title: string
-    history: ApiBookHistoryTypes[] | null
-}
-
-export type ApiCollectionTypes = {
+export type ApiTypes = {
     author: string
-    books: ApiBookTypes[]
-    description: string
-    id: string
-    title: string
-}
-
-export type ApiCollectionResponseTypes = {
-    data: ApiCollectionTypes[]
-}
-
-// TODO: to be removed
-export type ApiUpdateTrackerTypes = {
-    userId: number
-    libId: ApiCollectionTypes['id']
-    bookId: ApiBookTypes['id']
-    history: ApiBookHistoryTypes[]
-}
-
-export type ApiUserTypes = {
-    firstName: string
-    lastName: string
-    email: string
-    id: number
-}
-
-export type ApiProgressType = {
-    collectionId: ApiCollectionTypes['id']
-    bookId: ApiBookTypes['id']
-    history: ApiBookHistoryTypes[]
-}
-
-export type ApiStudentType = {
-    studentId: number
-    firstname: string
-    lastname: string
-    dob: string
-    progress: ApiProgressType[] | null
-}
-
-export type ApiUserResponseTypes = {
-    data: {
-        user: ApiUserTypes
-        books: ApiCollectionTypes[]
-        students: []
-        token: string
-    }
-}
-
-export type ApiGetUserDetailsTypes = {
-    status: number
-    data: {
-        user: ApiUserTypes
-        books: ApiCollectionTypes[]
-        students: []
-    }
-}
-
-export type ApiWordTypes = {
-    word: string
-    index: number
-}
-
-export type ApiSightWordsTypes = {
-    sightWordsReadWrong: ApiWordTypes[]
-    sightWordsReadInBooks: ApiWordTypes[]
-    sightWordsFromBooks: ApiWordTypes[]
-    sightWordsNotInBooks: ApiWordTypes[]
-}
-
-export type ApiSightWordsResponseTypes = {
-    data: ApiSightWordsTypes
-}
-
-export type ApiDashboardLastBookReadTypes = {
+    bookId: number
+    collectionId: string
     date: string
+    description: string
+    dob: string
+    email: string
+    firstName: string
+    id: number
+    index: number
+    lastName: string
+    password: string
+    story: string[]
+    studentId: number
     title: string
+    token: string
+    userId: number
+    username: string
+    word: string
     words: string[]
 }
 
-export type ApiDashboardResponseTypes = {
-    data: {
-        lastBookRead: ApiDashboardLastBookReadTypes[]
-        readIncorrectly: {
-            oneWeekAgo: ApiWordTypes[]
-            oneMonthAgo: ApiWordTypes[]
-            history: ApiWordTypes[]
-        }
+// TODO: test this and see if it works (https://www.youtube.com/watch?v=q5DFpyIN5Xs)
+// type Prettify<T> = { [key in keyof T]: T[key] } & {}
+
+type StudentNameProperties = keyof Pick<ApiTypes, 'firstName' | 'lastName'>
+
+type StudentNameTypes = Record<Lowercase<StudentNameProperties>, string>
+
+export type TokenType = Pick<ApiTypes, 'token'>
+
+export type HistoryTypes = Pick<ApiTypes, 'date' | 'words'>
+
+export type UserTypes = Pick<
+    ApiTypes,
+    'email' | 'id' | 'firstName' | 'lastName'
+>
+
+export type BookTypes = Pick<ApiTypes, 'story' | 'title' | 'id'> &
+    Record<'history', HistoryTypes[] | null>
+
+export type BooksTypes = Record<'books', BookTypes[]>
+
+export type ProgressType = Pick<ApiTypes, 'collectionId' | 'bookId'> &
+    Record<'history', HistoryTypes[]>
+
+export type CollectionTypes = Pick<
+    ApiTypes,
+    'author' | 'description' | 'title'
+> &
+    BooksTypes & {
+        id: string // Collection id is string not a number.
     }
+
+export type StudentType = Pick<ApiTypes, 'studentId' | 'dob'> &
+    StudentNameTypes &
+    Record<'progress', ProgressType[]>
+
+export type WordTypes = Pick<ApiTypes, 'word' | 'index'>
+
+export type LoginUserTypes = Pick<ApiTypes, 'username' | 'password'>
+
+export type SightWordsTypes = {
+    sightWordsReadWrong: WordTypes[]
+    sightWordsReadInBooks: WordTypes[]
+    sightWordsFromBooks: WordTypes[]
+    sightWordsNotInBooks: WordTypes[]
 }
 
-export type ApiStudentResponseTypes = {
-    data: ApiStudentType[]
+type ResponseUserTypes = {
+    user: UserTypes
+    books: CollectionTypes[]
+    students: StudentType[] | []
 }
 
-export type JsonStudentTypes = {
-    firstname: string
-    lastname: string
-    dob: string
-    studentId: number
+export type ApiResponseLoginTypes = Record<
+    'data',
+    TokenType & ResponseUserTypes
+>
+
+export type ApiResponseUserDetailsTypes = Record<'data', ResponseUserTypes>
+
+export type ApiResponseSightWordsTypes = Record<'data', SightWordsTypes>
+
+export type ApiResponseStudentTypes = Record<'data', StudentType[]>
+
+export type ApiPayloadStudentTypes = Pick<ApiTypes, 'dob' | 'studentId'> &
+    StudentNameTypes
+
+export type ApiPayloadUpdateStudentTypes = ApiPayloadStudentTypes & {
     progress: string
-}
-
-export type JsonRegisterStudentTypes = {
-    firstname: string
-    lastname: string
-    dob: string
-    userId: number
-}
-
-export type RegisterBookTypes = {
-    userId: number
-    title: string | undefined
-    story: string[] | undefined
 }
 
 export type QueryTypes = {
     queryKey: (string | number)[]
 }
 
-export type ErrorTypes = {
-    response: {
-        status: number
-    }
-}
-
 export type AuthorizationHeader = {
     Authorization: string
 }
 
-export type LoginUserTypes = {
-    username: string | undefined
-    password: string | undefined
-}
+export type OriginType = typeof CONFIG.LOCATION[keyof typeof CONFIG.LOCATION]
+
+export type BaseUrlType = `${OriginType}/api/reading`

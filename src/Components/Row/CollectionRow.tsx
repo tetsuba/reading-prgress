@@ -2,7 +2,7 @@ import * as R from 'ramda'
 import { useDispatch } from 'react-redux'
 
 // TYPES
-import { CollectionsTypes } from '../../store/selector.types'
+import { SelectorCollectionsTypes } from '../../store/selector.types'
 
 // STORE
 import { updateCurrentCollectionId } from '../../store/current/currentSlice'
@@ -12,7 +12,7 @@ import Row from './Row'
 import Button from '../Button/Button'
 
 export type CollectionPropTypes = {
-    data?: CollectionsTypes | undefined
+    data?: SelectorCollectionsTypes | undefined
     index?: number
 }
 

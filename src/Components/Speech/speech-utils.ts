@@ -1,16 +1,15 @@
-import { WordTypes } from '../../Views/Reading/Sentence'
 import {
     removeSpecialCharacter,
     STATUS,
-    WordType
+    WordStatusTypes
 } from '../../Views/Reading/reading-utils'
 
 export function updateSentence(
-    story: WordType[][],
+    story: WordStatusTypes[][],
     count: number,
     speech: string[]
 ) {
-    return story[count].map((wordObj: WordTypes) => {
+    return story[count].map((wordObj: WordStatusTypes) => {
         const word = removeSpecialCharacter(wordObj.word)
         if (speech.includes(word)) {
             return {

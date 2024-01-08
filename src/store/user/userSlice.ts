@@ -1,28 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 import ls from '../../lib/localStorage'
-import { ActionTypes, StateUserTypes } from '../store.types'
-import { ApiUserTypes } from '../../api/api-types'
+import { ActionUserUpdateTypes, StateUserTypes } from '../store.types'
 
-interface UpdateUserActionTypes extends ActionTypes {
-    payload: {
-        user: ApiUserTypes
-        token: string
-    }
-}
-
-export const initialState = {
-    firstName: '',
-    lastName: '',
+export const initialState: StateUserTypes = {
     email: '',
-    token: '',
-    id: 0
-} as StateUserTypes
+    firstName: '',
+    id: 0,
+    lastName: '',
+    token: ''
+}
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        updateUser: (state, action: UpdateUserActionTypes) => {
+        updateUser: (state, action: ActionUserUpdateTypes) => {
             ls.save(action.payload.token)
             state.firstName = action.payload.user.firstName
             state.lastName = action.payload.user.lastName

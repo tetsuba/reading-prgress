@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { HeatMapWordTypes } from '../Components/HeatMap/HeatMap'
+import { WordTypes } from '../api/api-types'
 
 export const DATE_FORMAT = 'DD/MM/YYYY'
 
@@ -15,10 +15,10 @@ export function dateIsAfterOne(
     return moment(date, DATE_FORMAT).isAfter(oneWeek)
 }
 
-export function countDuplicates(words: string[]): HeatMapWordTypes[] | [] {
+export function countDuplicates(words: string[]): WordTypes[] | [] {
     return words
         .filter((word) => word !== '')
-        .reduce((acc: HeatMapWordTypes[] | [], word) => {
+        .reduce((acc: WordTypes[] | [], word) => {
             const update = acc.some((obj) => obj.word === word)
             if (update) {
                 acc.forEach((obj, i) => {
@@ -27,7 +27,7 @@ export function countDuplicates(words: string[]): HeatMapWordTypes[] | [] {
                     }
                 })
             } else {
-                ;(acc as HeatMapWordTypes[]).push({ word, index: 1 })
+                ;(acc as WordTypes[]).push({ word, index: 1 })
             }
             return acc
         }, [])
