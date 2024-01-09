@@ -23,9 +23,6 @@ export type ApiTypes = {
     words: string[]
 }
 
-// TODO: test this and see if it works (https://www.youtube.com/watch?v=q5DFpyIN5Xs)
-// type Prettify<T> = { [key in keyof T]: T[key] } & {}
-
 type StudentNameProperties = keyof Pick<ApiTypes, 'firstName' | 'lastName'>
 
 type StudentNameTypes = Record<Lowercase<StudentNameProperties>, string>

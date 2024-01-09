@@ -10,6 +10,3 @@ type TargetValueTypes = Record<
 >
 
 export type RegistrationFormTypes = EventTarget & TargetValueTypes
-
-export type LoginFormTypes = EventTarget &
-    Pick<TargetValueTypes, 'email' | 'password'>

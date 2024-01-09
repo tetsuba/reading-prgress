@@ -1,6 +1,6 @@
 import { LoginUserTypes } from '../api/api-types'
 import * as R from 'ramda'
-import { LoginFormTypes, RegistrationFormTypes } from './lib.types'
+import { RegistrationFormTypes } from './lib.types'
 
 export function formDataToQueryString(
     target: Partial<RegistrationFormTypes>
@@ -17,7 +17,7 @@ export function formDataToQueryString(
         .join('&')
 }
 
-export function formDataToObject(target: LoginFormTypes): LoginUserTypes {
+export function formDataToObject(target: EventTarget): LoginUserTypes {
     return {
         username: R.pathOr('', ['email', 'value'], target),
         password: R.pathOr('', ['password', 'value'], target)
