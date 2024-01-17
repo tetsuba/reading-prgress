@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { forwardRef, Ref } from 'react'
 import getTailWindClasses, {
     TailwindTemplateTypes
 } from './buttonClasses.tailwind'
@@ -21,7 +21,7 @@ type PropTypes = {
 //** This is a test  */
 export default forwardRef(function Button(
     props: PropTypes,
-    ref: React.Ref<HTMLButtonElement>
+    ref: Ref<HTMLButtonElement>
 ): JSX.Element {
     const { right, icon, children, template, className, ...rest } = props
 
